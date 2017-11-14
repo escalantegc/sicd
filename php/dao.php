@@ -315,6 +315,49 @@ class dao
    				WHERE
   					$where";
   		return consultar_fuente($sql);
+  	}  
+  	function get_listado_localidad($where = null)
+	{
+		if (!isset($where))
+		{
+			$where = '1 = 1';
+		}
+  		$sql = "SELECT 	localidad.idprovincia, 
+  						localidad.idlocalidad,
+  						pais.descripcion as pais,
+  						provincia.descripcion as provincia,
+  						localidad.descripcion as localidad
+  				FROM 
+  					public.localidad
+  				inner join provincia using (idprovincia)
+  				inner join pais using (idpais)
+   				WHERE
+  					$where";
+  		return consultar_fuente($sql);
   	}
+
+  	function get_pais_localidad($idlocalidad)
+  	{
+  		$sql = "SELECT idpais
+				FROM 
+					public.localidad
+				 inner join provincia using (idprovincia)
+				   where idlocalidad =$idlocalidad";
+
+		return consultar_fuente($sql);
+  	}
+
+
+  	  function get_listado_provincia_cascada($idpais = null)
+	{
+
+  		$sql = "SELECT 	idprovincia, 
+  						provincia.descripcion
+  				FROM 
+  					public.provincia
+   				WHERE
+  					provincia.idpais = $idpais ";
+  		return consultar_fuente($sql);
+  	}  
 }
 ?>

@@ -289,6 +289,59 @@ class cn_parametros extends sicd_cn
 	{
 		$id = $this->dep('dr_parametros')->tabla('dt_provincia')->get_id_fila_condicion($seleccion);
 		$this->dep('dr_parametros')->tabla('dt_provincia')->eliminar_fila($id[0]);
+	}	
+
+	//-----------------------------------------------------------------------------------
+	//---- DT-LOCALIDAD	 -----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function cargar_dt_localidad($seleccion)
+	{
+		if(!$this->dep('dr_parametros')->tabla('dt_localidad')->esta_cargada())
+		{				// verifica si esta cargada el datos relacion			
+			if(!isset($seleccion))
+			{
+				$this->dep('dr_parametros')->tabla('dt_localidad')->cargar();					// lee de la BD fisica y carga al datos relacion
+			}else{
+				$this->dep('dr_parametros')->tabla('dt_localidad')->cargar($seleccion);				// lee de la BD fisica y carga al datos relacion
+			}
+		}
+	}
+	function set_cursor_dt_localidad($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_localidad')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_localidad')->set_cursor($id[0]);
+	}
+
+	function hay_cursor_dt_localidad()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_localidad')->hay_cursor();
+	}
+
+	function resetear_cursor_dt_localidad()
+	{
+		$this->dep('dr_parametros')->tabla('dt_localidad')->resetear_cursor();
+	}
+
+	function get_dt_localidad()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_localidad')->get();
+	}
+
+	function set_dt_localidad($datos)
+	{
+		$this->dep('dr_parametros')->tabla('dt_localidad')->set($datos);
+	}
+
+	function agregar_dt_localidad($datos)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_localidad')->nueva_fila($datos);
+		$this->dep('dr_parametros')->tabla('dt_localidad')->set_cursor($id);
+	}	
+
+	function eliminar_dt_localidad($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_localidad')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_localidad')->eliminar_fila($id[0]);
 	}
 }
 
