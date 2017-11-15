@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.9
 -- Dumped by pg_dump version 9.5.9
 
--- Started on 2017-11-13 14:47:39 ART
+-- Started on 2017-11-15 20:38:54 ART
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,7 +24,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2382 (class 0 OID 0)
+-- TOC entry 2403 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -104,7 +104,7 @@ CREATE SEQUENCE detalle_dias_viatico_iddetalle_dias_viatico_seq
 ALTER TABLE detalle_dias_viatico_iddetalle_dias_viatico_seq OWNER TO postgres;
 
 --
--- TOC entry 2383 (class 0 OID 0)
+-- TOC entry 2404 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: detalle_dias_viatico_iddetalle_dias_viatico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -144,7 +144,7 @@ CREATE SEQUENCE detalle_viatico_iddetalle_viatico_seq
 ALTER TABLE detalle_viatico_iddetalle_viatico_seq OWNER TO postgres;
 
 --
--- TOC entry 2384 (class 0 OID 0)
+-- TOC entry 2405 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: detalle_viatico_iddetalle_viatico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -187,7 +187,7 @@ CREATE SEQUENCE entidad_identidad_seq
 ALTER TABLE entidad_identidad_seq OWNER TO postgres;
 
 --
--- TOC entry 2385 (class 0 OID 0)
+-- TOC entry 2406 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: entidad_identidad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -224,13 +224,67 @@ CREATE SEQUENCE estado_civil_idestado_civil_seq
 ALTER TABLE estado_civil_idestado_civil_seq OWNER TO postgres;
 
 --
--- TOC entry 2386 (class 0 OID 0)
+-- TOC entry 2407 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: estado_civil_idestado_civil_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE estado_civil_idestado_civil_seq OWNED BY estado_civil.idestado_civil;
 
+
+--
+-- TOC entry 214 (class 1259 OID 31371)
+-- Name: estudio; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE estudio (
+    titulo character(300),
+    idestudio integer NOT NULL,
+    sigla character(10)
+);
+
+
+ALTER TABLE estudio OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 31382)
+-- Name: estudio_idestudio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE estudio_idestudio_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE estudio_idestudio_seq OWNER TO postgres;
+
+--
+-- TOC entry 2408 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: estudio_idestudio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE estudio_idestudio_seq OWNED BY estudio.idestudio;
+
+
+--
+-- TOC entry 216 (class 1259 OID 31395)
+-- Name: estudio_por_persona; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE estudio_por_persona (
+    idestudio integer NOT NULL,
+    idnivel_estudio integer NOT NULL,
+    idpersona integer NOT NULL,
+    identidad integer,
+    obervaciones character(300)
+);
+
+
+ALTER TABLE estudio_por_persona OWNER TO postgres;
 
 --
 -- TOC entry 187 (class 1259 OID 30037)
@@ -263,7 +317,7 @@ CREATE SEQUENCE funcion_idfuncion_seq
 ALTER TABLE funcion_idfuncion_seq OWNER TO postgres;
 
 --
--- TOC entry 2387 (class 0 OID 0)
+-- TOC entry 2409 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: funcion_idfuncion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -301,7 +355,7 @@ CREATE SEQUENCE localidad_idlocalidad_seq
 ALTER TABLE localidad_idlocalidad_seq OWNER TO postgres;
 
 --
--- TOC entry 2388 (class 0 OID 0)
+-- TOC entry 2410 (class 0 OID 0)
 -- Dependencies: 194
 -- Name: localidad_idlocalidad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -339,7 +393,7 @@ CREATE SEQUENCE nivel_estudio_idnivel_estudio_seq
 ALTER TABLE nivel_estudio_idnivel_estudio_seq OWNER TO postgres;
 
 --
--- TOC entry 2389 (class 0 OID 0)
+-- TOC entry 2411 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: nivel_estudio_idnivel_estudio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -376,7 +430,7 @@ CREATE SEQUENCE pais_idpais_seq
 ALTER TABLE pais_idpais_seq OWNER TO postgres;
 
 --
--- TOC entry 2390 (class 0 OID 0)
+-- TOC entry 2412 (class 0 OID 0)
 -- Dependencies: 190
 -- Name: pais_idpais_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -431,7 +485,7 @@ CREATE SEQUENCE persona_idpersona_seq
 ALTER TABLE persona_idpersona_seq OWNER TO postgres;
 
 --
--- TOC entry 2391 (class 0 OID 0)
+-- TOC entry 2413 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: persona_idpersona_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -469,7 +523,7 @@ CREATE SEQUENCE provincia_idprovincia_seq
 ALTER TABLE provincia_idprovincia_seq OWNER TO postgres;
 
 --
--- TOC entry 2392 (class 0 OID 0)
+-- TOC entry 2414 (class 0 OID 0)
 -- Dependencies: 192
 -- Name: provincia_idprovincia_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -520,7 +574,7 @@ CREATE SEQUENCE tipo_cargo_idtipo_cargo_seq
 ALTER TABLE tipo_cargo_idtipo_cargo_seq OWNER TO postgres;
 
 --
--- TOC entry 2393 (class 0 OID 0)
+-- TOC entry 2415 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: tipo_cargo_idtipo_cargo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -557,7 +611,7 @@ CREATE SEQUENCE tipo_detalle_viatico_idtipo_detalle_viatico_seq
 ALTER TABLE tipo_detalle_viatico_idtipo_detalle_viatico_seq OWNER TO postgres;
 
 --
--- TOC entry 2394 (class 0 OID 0)
+-- TOC entry 2416 (class 0 OID 0)
 -- Dependencies: 184
 -- Name: tipo_detalle_viatico_idtipo_detalle_viatico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -595,7 +649,7 @@ CREATE SEQUENCE tipo_documento_idtipo_documento_seq
 ALTER TABLE tipo_documento_idtipo_documento_seq OWNER TO postgres;
 
 --
--- TOC entry 2395 (class 0 OID 0)
+-- TOC entry 2417 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: tipo_documento_idtipo_documento_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -632,7 +686,7 @@ CREATE SEQUENCE tipo_telefono_idtipo_telefono_seq
 ALTER TABLE tipo_telefono_idtipo_telefono_seq OWNER TO postgres;
 
 --
--- TOC entry 2396 (class 0 OID 0)
+-- TOC entry 2418 (class 0 OID 0)
 -- Dependencies: 188
 -- Name: tipo_telefono_idtipo_telefono_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -677,7 +731,7 @@ CREATE SEQUENCE viatico_idviatico_seq
 ALTER TABLE viatico_idviatico_seq OWNER TO postgres;
 
 --
--- TOC entry 2397 (class 0 OID 0)
+-- TOC entry 2419 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: viatico_idviatico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -686,7 +740,7 @@ ALTER SEQUENCE viatico_idviatico_seq OWNED BY viatico.idviatico;
 
 
 --
--- TOC entry 2175 (class 2604 OID 31350)
+-- TOC entry 2185 (class 2604 OID 31350)
 -- Name: iddetalle_dias_viatico; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -694,7 +748,7 @@ ALTER TABLE ONLY detalle_dias_viatico ALTER COLUMN iddetalle_dias_viatico SET DE
 
 
 --
--- TOC entry 2174 (class 2604 OID 30200)
+-- TOC entry 2184 (class 2604 OID 30200)
 -- Name: iddetalle_viatico; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -702,7 +756,7 @@ ALTER TABLE ONLY detalle_viatico ALTER COLUMN iddetalle_viatico SET DEFAULT next
 
 
 --
--- TOC entry 2165 (class 2604 OID 30085)
+-- TOC entry 2175 (class 2604 OID 30085)
 -- Name: identidad; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -710,7 +764,7 @@ ALTER TABLE ONLY entidad ALTER COLUMN identidad SET DEFAULT nextval('entidad_ide
 
 
 --
--- TOC entry 2166 (class 2604 OID 30093)
+-- TOC entry 2176 (class 2604 OID 30093)
 -- Name: idestado_civil; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -718,7 +772,15 @@ ALTER TABLE ONLY estado_civil ALTER COLUMN idestado_civil SET DEFAULT nextval('e
 
 
 --
--- TOC entry 2160 (class 2604 OID 30040)
+-- TOC entry 2186 (class 2604 OID 31384)
+-- Name: idestudio; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY estudio ALTER COLUMN idestudio SET DEFAULT nextval('estudio_idestudio_seq'::regclass);
+
+
+--
+-- TOC entry 2170 (class 2604 OID 30040)
 -- Name: idfuncion; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -726,7 +788,7 @@ ALTER TABLE ONLY funcion ALTER COLUMN idfuncion SET DEFAULT nextval('funcion_idf
 
 
 --
--- TOC entry 2164 (class 2604 OID 30077)
+-- TOC entry 2174 (class 2604 OID 30077)
 -- Name: idlocalidad; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -734,7 +796,7 @@ ALTER TABLE ONLY localidad ALTER COLUMN idlocalidad SET DEFAULT nextval('localid
 
 
 --
--- TOC entry 2158 (class 2604 OID 30021)
+-- TOC entry 2168 (class 2604 OID 30021)
 -- Name: idnivel_estudio; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -742,7 +804,7 @@ ALTER TABLE ONLY nivel_estudio ALTER COLUMN idnivel_estudio SET DEFAULT nextval(
 
 
 --
--- TOC entry 2162 (class 2604 OID 30061)
+-- TOC entry 2172 (class 2604 OID 30061)
 -- Name: idpais; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -750,7 +812,7 @@ ALTER TABLE ONLY pais ALTER COLUMN idpais SET DEFAULT nextval('pais_idpais_seq':
 
 
 --
--- TOC entry 2169 (class 2604 OID 30117)
+-- TOC entry 2179 (class 2604 OID 30117)
 -- Name: idpersona; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -758,7 +820,7 @@ ALTER TABLE ONLY persona ALTER COLUMN idpersona SET DEFAULT nextval('persona_idp
 
 
 --
--- TOC entry 2163 (class 2604 OID 30069)
+-- TOC entry 2173 (class 2604 OID 30069)
 -- Name: idprovincia; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -766,7 +828,7 @@ ALTER TABLE ONLY provincia ALTER COLUMN idprovincia SET DEFAULT nextval('provinc
 
 
 --
--- TOC entry 2167 (class 2604 OID 30101)
+-- TOC entry 2177 (class 2604 OID 30101)
 -- Name: idtipo_cargo; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -774,7 +836,7 @@ ALTER TABLE ONLY tipo_cargo ALTER COLUMN idtipo_cargo SET DEFAULT nextval('tipo_
 
 
 --
--- TOC entry 2159 (class 2604 OID 30032)
+-- TOC entry 2169 (class 2604 OID 30032)
 -- Name: idtipo_detalle_viatico; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -782,7 +844,7 @@ ALTER TABLE ONLY tipo_detalle_viatico ALTER COLUMN idtipo_detalle_viatico SET DE
 
 
 --
--- TOC entry 2168 (class 2604 OID 30109)
+-- TOC entry 2178 (class 2604 OID 30109)
 -- Name: idtipo_documento; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -790,7 +852,7 @@ ALTER TABLE ONLY tipo_documento ALTER COLUMN idtipo_documento SET DEFAULT nextva
 
 
 --
--- TOC entry 2161 (class 2604 OID 30053)
+-- TOC entry 2171 (class 2604 OID 30053)
 -- Name: idtipo_telefono; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -798,7 +860,7 @@ ALTER TABLE ONLY tipo_telefono ALTER COLUMN idtipo_telefono SET DEFAULT nextval(
 
 
 --
--- TOC entry 2172 (class 2604 OID 30128)
+-- TOC entry 2182 (class 2604 OID 30128)
 -- Name: idviatico; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -806,7 +868,7 @@ ALTER TABLE ONLY viatico ALTER COLUMN idviatico SET DEFAULT nextval('viatico_idv
 
 
 --
--- TOC entry 2369 (class 0 OID 30174)
+-- TOC entry 2387 (class 0 OID 30174)
 -- Dependencies: 208
 -- Data for Name: cargo_por_persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -816,7 +878,7 @@ COPY cargo_por_persona (idpersona, idfuncion, identidad, idtipo_cargo, idnivel_e
 
 
 --
--- TOC entry 2344 (class 0 OID 30024)
+-- TOC entry 2362 (class 0 OID 30024)
 -- Dependencies: 183
 -- Data for Name: configuracion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -826,7 +888,7 @@ COPY configuracion (cantidas_dias_viatico) FROM stdin;
 
 
 --
--- TOC entry 2373 (class 0 OID 31345)
+-- TOC entry 2391 (class 0 OID 31345)
 -- Dependencies: 212
 -- Data for Name: detalle_dias_viatico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -835,20 +897,21 @@ COPY detalle_dias_viatico (iddetalle_dias_viatico, fecha_desde, fecha_hasta, can
 1	2017-11-11	2017-11-14	4	442	442	\N
 2	2017-11-22	2017-11-24	3	218	264	\N
 3	2017-11-01	2017-11-08	8	77	94	\N
+4	2017-11-11	2017-11-13	3	218	442	1
 \.
 
 
 --
--- TOC entry 2398 (class 0 OID 0)
+-- TOC entry 2420 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: detalle_dias_viatico_iddetalle_dias_viatico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('detalle_dias_viatico_iddetalle_dias_viatico_seq', 3, true);
+SELECT pg_catalog.setval('detalle_dias_viatico_iddetalle_dias_viatico_seq', 4, true);
 
 
 --
--- TOC entry 2371 (class 0 OID 30197)
+-- TOC entry 2389 (class 0 OID 30197)
 -- Dependencies: 210
 -- Data for Name: detalle_viatico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -859,7 +922,7 @@ COPY detalle_viatico (iddetalle_viatico, monto, descripcion, idtipo_detalle_viat
 
 
 --
--- TOC entry 2399 (class 0 OID 0)
+-- TOC entry 2421 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: detalle_viatico_iddetalle_viatico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -868,26 +931,27 @@ SELECT pg_catalog.setval('detalle_viatico_iddetalle_viatico_seq', 1, true);
 
 
 --
--- TOC entry 2358 (class 0 OID 30082)
+-- TOC entry 2376 (class 0 OID 30082)
 -- Dependencies: 197
 -- Data for Name: entidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY entidad (identidad, sigla, nombre, idlocalidad, calle, altura, piso, depto) FROM stdin;
+1	UNAM	UNIVERSIDAD NACIONAL DE MISIONES	218	\N	\N	\N	\N
 \.
 
 
 --
--- TOC entry 2400 (class 0 OID 0)
+-- TOC entry 2422 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: entidad_identidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('entidad_identidad_seq', 1, false);
+SELECT pg_catalog.setval('entidad_identidad_seq', 1, true);
 
 
 --
--- TOC entry 2360 (class 0 OID 30090)
+-- TOC entry 2378 (class 0 OID 30090)
 -- Dependencies: 199
 -- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -903,7 +967,7 @@ COPY estado_civil (idestado_civil, descripcion) FROM stdin;
 
 
 --
--- TOC entry 2401 (class 0 OID 0)
+-- TOC entry 2423 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: estado_civil_idestado_civil_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -912,7 +976,40 @@ SELECT pg_catalog.setval('estado_civil_idestado_civil_seq', 6, true);
 
 
 --
--- TOC entry 2348 (class 0 OID 30037)
+-- TOC entry 2393 (class 0 OID 31371)
+-- Dependencies: 214
+-- Data for Name: estudio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY estudio (titulo, idestudio, sigla) FROM stdin;
+LICENCIATURA EN SISTEMAS DE INFORMACION                                                                                                                                                                                                                                                                     	2	LSI       
+ANALISTA SISTEMAS DE COMPUTACION                                                                                                                                                                                                                                                                            	1	ASC       
+\.
+
+
+--
+-- TOC entry 2424 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: estudio_idestudio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('estudio_idestudio_seq', 2, true);
+
+
+--
+-- TOC entry 2395 (class 0 OID 31395)
+-- Dependencies: 216
+-- Data for Name: estudio_por_persona; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY estudio_por_persona (idestudio, idnivel_estudio, idpersona, identidad, obervaciones) FROM stdin;
+2	5	1	1	\N
+1	6	1	1	\N
+\.
+
+
+--
+-- TOC entry 2366 (class 0 OID 30037)
 -- Dependencies: 187
 -- Data for Name: funcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -922,7 +1019,7 @@ COPY funcion (idfuncion, descripcion, maximo_horas, cantidad_permitida) FROM std
 
 
 --
--- TOC entry 2402 (class 0 OID 0)
+-- TOC entry 2425 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: funcion_idfuncion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -931,7 +1028,7 @@ SELECT pg_catalog.setval('funcion_idfuncion_seq', 1, false);
 
 
 --
--- TOC entry 2356 (class 0 OID 30074)
+-- TOC entry 2374 (class 0 OID 30074)
 -- Dependencies: 195
 -- Data for Name: localidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1387,7 +1484,7 @@ COPY localidad (idlocalidad, idprovincia, descripcion) FROM stdin;
 
 
 --
--- TOC entry 2403 (class 0 OID 0)
+-- TOC entry 2426 (class 0 OID 0)
 -- Dependencies: 194
 -- Name: localidad_idlocalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1396,26 +1493,28 @@ SELECT pg_catalog.setval('localidad_idlocalidad_seq', 446, true);
 
 
 --
--- TOC entry 2343 (class 0 OID 30018)
+-- TOC entry 2361 (class 0 OID 30018)
 -- Dependencies: 182
 -- Data for Name: nivel_estudio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY nivel_estudio (idnivel_estudio, descripcion, maximo_horas) FROM stdin;
+5	PRIMARIO	10
+6	SECUNDARIO	20
 \.
 
 
 --
--- TOC entry 2404 (class 0 OID 0)
+-- TOC entry 2427 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: nivel_estudio_idnivel_estudio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('nivel_estudio_idnivel_estudio_seq', 1, false);
+SELECT pg_catalog.setval('nivel_estudio_idnivel_estudio_seq', 6, true);
 
 
 --
--- TOC entry 2352 (class 0 OID 30058)
+-- TOC entry 2370 (class 0 OID 30058)
 -- Dependencies: 191
 -- Data for Name: pais; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1445,7 +1544,7 @@ COPY pais (idpais, descripcion) FROM stdin;
 
 
 --
--- TOC entry 2405 (class 0 OID 0)
+-- TOC entry 2428 (class 0 OID 0)
 -- Dependencies: 190
 -- Name: pais_idpais_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1454,7 +1553,7 @@ SELECT pg_catalog.setval('pais_idpais_seq', 20, true);
 
 
 --
--- TOC entry 2366 (class 0 OID 30114)
+-- TOC entry 2384 (class 0 OID 30114)
 -- Dependencies: 205
 -- Data for Name: persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1465,7 +1564,7 @@ COPY persona (idpersona, nombres, apellido, idtipo_documento, nro_documento, mat
 
 
 --
--- TOC entry 2406 (class 0 OID 0)
+-- TOC entry 2429 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: persona_idpersona_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1474,7 +1573,7 @@ SELECT pg_catalog.setval('persona_idpersona_seq', 1, true);
 
 
 --
--- TOC entry 2354 (class 0 OID 30066)
+-- TOC entry 2372 (class 0 OID 30066)
 -- Dependencies: 193
 -- Data for Name: provincia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1547,7 +1646,7 @@ COPY provincia (idprovincia, idpais, descripcion) FROM stdin;
 
 
 --
--- TOC entry 2407 (class 0 OID 0)
+-- TOC entry 2430 (class 0 OID 0)
 -- Dependencies: 192
 -- Name: provincia_idprovincia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1556,7 +1655,7 @@ SELECT pg_catalog.setval('provincia_idprovincia_seq', 63, true);
 
 
 --
--- TOC entry 2372 (class 0 OID 30219)
+-- TOC entry 2390 (class 0 OID 30219)
 -- Dependencies: 211
 -- Data for Name: telefono_por_persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1567,7 +1666,7 @@ COPY telefono_por_persona (idtipo_telefono, idpersona, numero) FROM stdin;
 
 
 --
--- TOC entry 2362 (class 0 OID 30098)
+-- TOC entry 2380 (class 0 OID 30098)
 -- Dependencies: 201
 -- Data for Name: tipo_cargo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1577,7 +1676,7 @@ COPY tipo_cargo (idtipo_cargo, descripcion) FROM stdin;
 
 
 --
--- TOC entry 2408 (class 0 OID 0)
+-- TOC entry 2431 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: tipo_cargo_idtipo_cargo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1586,7 +1685,7 @@ SELECT pg_catalog.setval('tipo_cargo_idtipo_cargo_seq', 1, false);
 
 
 --
--- TOC entry 2346 (class 0 OID 30029)
+-- TOC entry 2364 (class 0 OID 30029)
 -- Dependencies: 185
 -- Data for Name: tipo_detalle_viatico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1599,7 +1698,7 @@ COPY tipo_detalle_viatico (idtipo_detalle_viatico, descripcion) FROM stdin;
 
 
 --
--- TOC entry 2409 (class 0 OID 0)
+-- TOC entry 2432 (class 0 OID 0)
 -- Dependencies: 184
 -- Name: tipo_detalle_viatico_idtipo_detalle_viatico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1608,7 +1707,7 @@ SELECT pg_catalog.setval('tipo_detalle_viatico_idtipo_detalle_viatico_seq', 3, t
 
 
 --
--- TOC entry 2364 (class 0 OID 30106)
+-- TOC entry 2382 (class 0 OID 30106)
 -- Dependencies: 203
 -- Data for Name: tipo_documento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1622,7 +1721,7 @@ COPY tipo_documento (idtipo_documento, sigla, descripcion) FROM stdin;
 
 
 --
--- TOC entry 2410 (class 0 OID 0)
+-- TOC entry 2433 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: tipo_documento_idtipo_documento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1631,7 +1730,7 @@ SELECT pg_catalog.setval('tipo_documento_idtipo_documento_seq', 7, true);
 
 
 --
--- TOC entry 2350 (class 0 OID 30050)
+-- TOC entry 2368 (class 0 OID 30050)
 -- Dependencies: 189
 -- Data for Name: tipo_telefono; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1644,7 +1743,7 @@ COPY tipo_telefono (idtipo_telefono, descripcion) FROM stdin;
 
 
 --
--- TOC entry 2411 (class 0 OID 0)
+-- TOC entry 2434 (class 0 OID 0)
 -- Dependencies: 188
 -- Name: tipo_telefono_idtipo_telefono_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1653,18 +1752,18 @@ SELECT pg_catalog.setval('tipo_telefono_idtipo_telefono_seq', 3, true);
 
 
 --
--- TOC entry 2368 (class 0 OID 30125)
+-- TOC entry 2386 (class 0 OID 30125)
 -- Dependencies: 207
 -- Data for Name: viatico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY viatico (idviatico, fecha_desde, nro_expediente, fecha_hasta, idpersona, idlocalidad_origen, idlocalidad_destino, cantidad_total_dias, mes, cantidad_dias_reintegro) FROM stdin;
-1	2017-11-07	213	2017-11-09	1	218	264	15	11	0
+1	2017-11-07	213	2017-11-09	1	218	264	15	11	12
 \.
 
 
 --
--- TOC entry 2412 (class 0 OID 0)
+-- TOC entry 2435 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: viatico_idviatico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1673,7 +1772,7 @@ SELECT pg_catalog.setval('viatico_idviatico_seq', 1, true);
 
 
 --
--- TOC entry 2206 (class 2606 OID 31370)
+-- TOC entry 2217 (class 2606 OID 31370)
 -- Name: detalle_dias_viatico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1682,7 +1781,25 @@ ALTER TABLE ONLY detalle_dias_viatico
 
 
 --
--- TOC entry 2201 (class 2606 OID 30120)
+-- TOC entry 2219 (class 2606 OID 31389)
+-- Name: estudio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY estudio
+    ADD CONSTRAINT estudio_pkey PRIMARY KEY (idestudio);
+
+
+--
+-- TOC entry 2221 (class 2606 OID 31401)
+-- Name: estudio_por_persona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY estudio_por_persona
+    ADD CONSTRAINT estudio_por_persona_pkey PRIMARY KEY (idestudio, idnivel_estudio, idpersona);
+
+
+--
+-- TOC entry 2212 (class 2606 OID 30120)
 -- Name: id_persona; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1691,7 +1808,7 @@ ALTER TABLE ONLY persona
 
 
 --
--- TOC entry 2191 (class 2606 OID 30087)
+-- TOC entry 2202 (class 2606 OID 30087)
 -- Name: identidad; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1700,7 +1817,7 @@ ALTER TABLE ONLY entidad
 
 
 --
--- TOC entry 2193 (class 2606 OID 30095)
+-- TOC entry 2204 (class 2606 OID 30095)
 -- Name: idestado_civil; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1709,7 +1826,7 @@ ALTER TABLE ONLY estado_civil
 
 
 --
--- TOC entry 2181 (class 2606 OID 30045)
+-- TOC entry 2192 (class 2606 OID 30045)
 -- Name: idfuncion; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1718,7 +1835,7 @@ ALTER TABLE ONLY funcion
 
 
 --
--- TOC entry 2189 (class 2606 OID 30079)
+-- TOC entry 2200 (class 2606 OID 30079)
 -- Name: idlocalidad; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1727,7 +1844,7 @@ ALTER TABLE ONLY localidad
 
 
 --
--- TOC entry 2177 (class 2606 OID 30023)
+-- TOC entry 2188 (class 2606 OID 30023)
 -- Name: idnivel_estudio; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1736,7 +1853,7 @@ ALTER TABLE ONLY nivel_estudio
 
 
 --
--- TOC entry 2185 (class 2606 OID 30063)
+-- TOC entry 2196 (class 2606 OID 30063)
 -- Name: idpais; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1745,7 +1862,7 @@ ALTER TABLE ONLY pais
 
 
 --
--- TOC entry 2187 (class 2606 OID 30071)
+-- TOC entry 2198 (class 2606 OID 30071)
 -- Name: idprovincia; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1754,7 +1871,7 @@ ALTER TABLE ONLY provincia
 
 
 --
--- TOC entry 2195 (class 2606 OID 30103)
+-- TOC entry 2206 (class 2606 OID 30103)
 -- Name: idtipo_cargo; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1763,7 +1880,7 @@ ALTER TABLE ONLY tipo_cargo
 
 
 --
--- TOC entry 2179 (class 2606 OID 30034)
+-- TOC entry 2190 (class 2606 OID 30034)
 -- Name: idtipo_detalle_viatico; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1772,7 +1889,7 @@ ALTER TABLE ONLY tipo_detalle_viatico
 
 
 --
--- TOC entry 2197 (class 2606 OID 30111)
+-- TOC entry 2208 (class 2606 OID 30111)
 -- Name: idtipo_documento; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1781,7 +1898,7 @@ ALTER TABLE ONLY tipo_documento
 
 
 --
--- TOC entry 2183 (class 2606 OID 30055)
+-- TOC entry 2194 (class 2606 OID 30055)
 -- Name: idtipo_telefono; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1790,7 +1907,7 @@ ALTER TABLE ONLY tipo_telefono
 
 
 --
--- TOC entry 2204 (class 2606 OID 30130)
+-- TOC entry 2215 (class 2606 OID 30130)
 -- Name: idviatico; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1799,7 +1916,7 @@ ALTER TABLE ONLY viatico
 
 
 --
--- TOC entry 2202 (class 1259 OID 30121)
+-- TOC entry 2213 (class 1259 OID 30121)
 -- Name: persona_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1807,7 +1924,7 @@ CREATE UNIQUE INDEX persona_idx ON persona USING btree (idtipo_documento, nro_do
 
 
 --
--- TOC entry 2198 (class 1259 OID 31338)
+-- TOC entry 2209 (class 1259 OID 31338)
 -- Name: tipo_documento_descripcion_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1815,7 +1932,7 @@ CREATE UNIQUE INDEX tipo_documento_descripcion_idx ON tipo_documento USING btree
 
 
 --
--- TOC entry 2199 (class 1259 OID 31337)
+-- TOC entry 2210 (class 1259 OID 31337)
 -- Name: tipo_documento_sigla_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1823,7 +1940,7 @@ CREATE INDEX tipo_documento_sigla_idx ON tipo_documento USING btree (sigla);
 
 
 --
--- TOC entry 2225 (class 2606 OID 31364)
+-- TOC entry 2240 (class 2606 OID 31364)
 -- Name: detalle_dias_viatico_idlocalidad_destino_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1832,7 +1949,7 @@ ALTER TABLE ONLY detalle_dias_viatico
 
 
 --
--- TOC entry 2226 (class 2606 OID 31359)
+-- TOC entry 2241 (class 2606 OID 31359)
 -- Name: detalle_dias_viatico_idlocalidad_origen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1841,7 +1958,7 @@ ALTER TABLE ONLY detalle_dias_viatico
 
 
 --
--- TOC entry 2227 (class 2606 OID 31354)
+-- TOC entry 2242 (class 2606 OID 31354)
 -- Name: detalle_dias_viatico_idviatico_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1850,7 +1967,7 @@ ALTER TABLE ONLY detalle_dias_viatico
 
 
 --
--- TOC entry 2218 (class 2606 OID 31292)
+-- TOC entry 2233 (class 2606 OID 31292)
 -- Name: entidad_cargo_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1859,7 +1976,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 2211 (class 2606 OID 31297)
+-- TOC entry 2226 (class 2606 OID 31297)
 -- Name: estado_civil_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1868,7 +1985,34 @@ ALTER TABLE ONLY persona
 
 
 --
--- TOC entry 2219 (class 2606 OID 31252)
+-- TOC entry 2243 (class 2606 OID 31413)
+-- Name: estudio_por_persona_identidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY estudio_por_persona
+    ADD CONSTRAINT estudio_por_persona_identidad_fkey FOREIGN KEY (identidad) REFERENCES entidad(identidad);
+
+
+--
+-- TOC entry 2244 (class 2606 OID 31408)
+-- Name: estudio_por_persona_idnivel_estudio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY estudio_por_persona
+    ADD CONSTRAINT estudio_por_persona_idnivel_estudio_fkey FOREIGN KEY (idnivel_estudio) REFERENCES nivel_estudio(idnivel_estudio) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 2245 (class 2606 OID 31403)
+-- Name: estudio_por_persona_idpersona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY estudio_por_persona
+    ADD CONSTRAINT estudio_por_persona_idpersona_fkey FOREIGN KEY (idpersona) REFERENCES persona(idpersona) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 2234 (class 2606 OID 31252)
 -- Name: funcion_cargo_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1877,7 +2021,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 2209 (class 2606 OID 31287)
+-- TOC entry 2224 (class 2606 OID 31287)
 -- Name: localidad_entidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1886,7 +2030,7 @@ ALTER TABLE ONLY entidad
 
 
 --
--- TOC entry 2212 (class 2606 OID 31272)
+-- TOC entry 2227 (class 2606 OID 31272)
 -- Name: localidad_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1895,7 +2039,7 @@ ALTER TABLE ONLY persona
 
 
 --
--- TOC entry 2215 (class 2606 OID 31277)
+-- TOC entry 2230 (class 2606 OID 31277)
 -- Name: localidad_viatico_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1904,7 +2048,7 @@ ALTER TABLE ONLY viatico
 
 
 --
--- TOC entry 2214 (class 2606 OID 31282)
+-- TOC entry 2229 (class 2606 OID 31282)
 -- Name: localidad_viatico_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1913,7 +2057,7 @@ ALTER TABLE ONLY viatico
 
 
 --
--- TOC entry 2220 (class 2606 OID 31242)
+-- TOC entry 2235 (class 2606 OID 31242)
 -- Name: nivel_estudio_cargo_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1922,7 +2066,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 2207 (class 2606 OID 31262)
+-- TOC entry 2222 (class 2606 OID 31262)
 -- Name: pais_provincia_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1931,7 +2075,7 @@ ALTER TABLE ONLY provincia
 
 
 --
--- TOC entry 2216 (class 2606 OID 31312)
+-- TOC entry 2231 (class 2606 OID 31312)
 -- Name: persona_cargo_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1940,7 +2084,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 2223 (class 2606 OID 31317)
+-- TOC entry 2238 (class 2606 OID 31317)
 -- Name: persona_telefono_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1949,7 +2093,7 @@ ALTER TABLE ONLY telefono_por_persona
 
 
 --
--- TOC entry 2213 (class 2606 OID 31327)
+-- TOC entry 2228 (class 2606 OID 31327)
 -- Name: persona_viatico_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1958,7 +2102,7 @@ ALTER TABLE ONLY viatico
 
 
 --
--- TOC entry 2208 (class 2606 OID 31267)
+-- TOC entry 2223 (class 2606 OID 31267)
 -- Name: provincia_localidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1967,7 +2111,7 @@ ALTER TABLE ONLY localidad
 
 
 --
--- TOC entry 2217 (class 2606 OID 31302)
+-- TOC entry 2232 (class 2606 OID 31302)
 -- Name: tipo_cargo_cargo_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1976,7 +2120,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 2222 (class 2606 OID 31247)
+-- TOC entry 2237 (class 2606 OID 31247)
 -- Name: tipo_detalle_viatico_detalle_viatico_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1985,7 +2129,7 @@ ALTER TABLE ONLY detalle_viatico
 
 
 --
--- TOC entry 2210 (class 2606 OID 31307)
+-- TOC entry 2225 (class 2606 OID 31307)
 -- Name: tipo_documento_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1994,7 +2138,7 @@ ALTER TABLE ONLY persona
 
 
 --
--- TOC entry 2224 (class 2606 OID 31257)
+-- TOC entry 2239 (class 2606 OID 31257)
 -- Name: tipo_telefono_telefono_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2003,7 +2147,7 @@ ALTER TABLE ONLY telefono_por_persona
 
 
 --
--- TOC entry 2221 (class 2606 OID 31332)
+-- TOC entry 2236 (class 2606 OID 31332)
 -- Name: viatico_detalle_viatico_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2012,7 +2156,7 @@ ALTER TABLE ONLY detalle_viatico
 
 
 --
--- TOC entry 2381 (class 0 OID 0)
+-- TOC entry 2402 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -2023,7 +2167,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2017-11-13 14:47:40 ART
+-- Completed on 2017-11-15 20:38:54 ART
 
 --
 -- PostgreSQL database dump complete

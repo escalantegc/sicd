@@ -73,7 +73,7 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	'', --parametros_b
 	NULL, --parametros_c
 	NULL, --inicializar
-	NULL  --orden
+	'1'  --orden
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'sicd', --proyecto
@@ -85,7 +85,7 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	'', --parametros_b
 	NULL, --parametros_c
 	NULL, --inicializar
-	NULL  --orden
+	'2'  --orden
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'sicd', --proyecto
@@ -97,14 +97,14 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	'', --parametros_b
 	NULL, --parametros_c
 	NULL, --inicializar
-	NULL  --orden
+	'3'  --orden
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'sicd', --proyecto
-	'1223', --dep_id
+	'1247', --dep_id
 	'2311', --objeto_consumidor
-	'2353', --objeto_proveedor
-	'dt_pais', --identificador
+	'2379', --objeto_proveedor
+	'dt_estudio_por_persona', --identificador
 	'', --parametros_a
 	'', --parametros_b
 	NULL, --parametros_c
@@ -121,19 +121,7 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	'', --parametros_b
 	NULL, --parametros_c
 	NULL, --inicializar
-	NULL  --orden
-);
-INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
-	'sicd', --proyecto
-	'1230', --dep_id
-	'2311', --objeto_consumidor
-	'2361', --objeto_proveedor
-	'dt_provincia', --identificador
-	'', --parametros_a
-	'', --parametros_b
-	NULL, --parametros_c
-	NULL, --inicializar
-	NULL  --orden
+	'4'  --orden
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'sicd', --proyecto
@@ -145,7 +133,7 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	'', --parametros_b
 	NULL, --parametros_c
 	NULL, --inicializar
-	NULL  --orden
+	'5'  --orden
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'sicd', --proyecto
@@ -157,7 +145,7 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	'', --parametros_b
 	NULL, --parametros_c
 	NULL, --inicializar
-	NULL  --orden
+	'6'  --orden
 );
 --- FIN Grupo de desarrollo 0
 
@@ -230,6 +218,38 @@ INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador
 	NULL, --cascada
 	'4'  --orden
 );
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'sicd', --proyecto
+	'2311', --objeto
+	'48', --asoc_id
+	NULL, --identificador
+	'sicd', --padre_proyecto
+	'2321', --padre_objeto
+	'dt_viatico', --padre_id
+	NULL, --padre_clave
+	'sicd', --hijo_proyecto
+	'2365', --hijo_objeto
+	'dt_detalle_dias_viatico', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'5'  --orden
+);
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'sicd', --proyecto
+	'2311', --objeto
+	'49', --asoc_id
+	NULL, --identificador
+	'sicd', --padre_proyecto
+	'2316', --padre_objeto
+	'dt_personal', --padre_id
+	NULL, --padre_clave
+	'sicd', --hijo_proyecto
+	'2379', --hijo_objeto
+	'dt_estudio_por_persona', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'6'  --orden
+);
 --- FIN Grupo de desarrollo 0
 
 ------------------------------------------------------------
@@ -270,4 +290,22 @@ INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_obje
 	'812', --padre_clave
 	'2322', --hijo_objeto
 	'846'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'sicd', --proyecto
+	'2311', --objeto
+	'48', --asoc_id
+	'2321', --padre_objeto
+	'839', --padre_clave
+	'2365', --hijo_objeto
+	'877'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'sicd', --proyecto
+	'2311', --objeto
+	'49', --asoc_id
+	'2316', --padre_objeto
+	'812', --padre_clave
+	'2379', --hijo_objeto
+	'895'  --hijo_clave
 );

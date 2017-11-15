@@ -343,6 +343,164 @@ class cn_parametros extends sicd_cn
 		$id = $this->dep('dr_parametros')->tabla('dt_localidad')->get_id_fila_condicion($seleccion);
 		$this->dep('dr_parametros')->tabla('dt_localidad')->eliminar_fila($id[0]);
 	}
+	//-----------------------------------------------------------------------------------
+	//---- DT-ESTUDIO	 -----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function cargar_dt_estudio($seleccion)
+	{
+		if(!$this->dep('dr_parametros')->tabla('dt_estudio')->esta_cargada())
+		{				// verifica si esta cargada el datos relacion			
+			if(!isset($seleccion))
+			{
+				$this->dep('dr_parametros')->tabla('dt_estudio')->cargar();					// lee de la BD fisica y carga al datos relacion
+			}else{
+				$this->dep('dr_parametros')->tabla('dt_estudio')->cargar($seleccion);				// lee de la BD fisica y carga al datos relacion
+			}
+		}
+	}
+	function set_cursor_dt_estudio($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_estudio')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_estudio')->set_cursor($id[0]);
+	}
+
+	function hay_cursor_dt_estudio()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_estudio')->hay_cursor();
+	}
+
+	function resetear_cursor_dt_estudio()
+	{
+		$this->dep('dr_parametros')->tabla('dt_estudio')->resetear_cursor();
+	}
+
+	function get_dt_estudio()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_estudio')->get();
+	}
+
+	function set_dt_estudio($datos)
+	{
+		$this->dep('dr_parametros')->tabla('dt_estudio')->set($datos);
+	}
+
+	function agregar_dt_estudio($datos)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_estudio')->nueva_fila($datos);
+		$this->dep('dr_parametros')->tabla('dt_estudio')->set_cursor($id);
+	}	
+
+	function eliminar_dt_estudio($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_estudio')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_estudio')->eliminar_fila($id[0]);
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- DT-NIVEL-ESTUDIO	 -----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function cargar_dt_nivel_estudio($seleccion)
+	{
+		if(!$this->dep('dr_parametros')->tabla('dt_nivel_estudio')->esta_cargada())
+		{				// verifica si esta cargada el datos relacion			
+			if(!isset($seleccion))
+			{
+				$this->dep('dr_parametros')->tabla('dt_nivel_estudio')->cargar();					// lee de la BD fisica y carga al datos relacion
+			}else{
+				$this->dep('dr_parametros')->tabla('dt_nivel_estudio')->cargar($seleccion);				// lee de la BD fisica y carga al datos relacion
+			}
+		}
+	}
+	function set_cursor_dt_nivel_estudio($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_nivel_estudio')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_nivel_estudio')->set_cursor($id[0]);
+	}
+
+	function hay_cursor_dt_nivel_estudio()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_nivel_estudio')->hay_cursor();
+	}
+
+	function resetear_cursor_dt_nivel_estudio()
+	{
+		$this->dep('dr_parametros')->tabla('dt_nivel_estudio')->resetear_cursor();
+	}
+
+	function get_dt_nivel_estudio()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_nivel_estudio')->get();
+	}
+
+	function set_dt_nivel_estudio($datos)
+	{
+		$this->dep('dr_parametros')->tabla('dt_nivel_estudio')->set($datos);
+	}
+
+	function agregar_dt_nivel_estudio($datos)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_nivel_estudio')->nueva_fila($datos);
+		$this->dep('dr_parametros')->tabla('dt_nivel_estudio')->set_cursor($id);
+	}	
+
+	function eliminar_dt_nivel_estudio($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_nivel_estudio')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_nivel_estudio')->eliminar_fila($id[0]);
+	}	
+
+	//-----------------------------------------------------------------------------------
+	//---- DT-ENTIDAD	 -----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function cargar_dt_entidad($seleccion)
+	{
+		if(!$this->dep('dr_parametros')->tabla('dt_entidad')->esta_cargada())
+		{				// verifica si esta cargada el datos relacion			
+			if(!isset($seleccion))
+			{
+				$this->dep('dr_parametros')->tabla('dt_entidad')->cargar();					// lee de la BD fisica y carga al datos relacion
+			}else{
+				$this->dep('dr_parametros')->tabla('dt_entidad')->cargar($seleccion);				// lee de la BD fisica y carga al datos relacion
+			}
+		}
+	}
+	function set_cursor_dt_entidad($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_entidad')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_entidad')->set_cursor($id[0]);
+	}
+
+	function hay_cursor_dt_entidad()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_entidad')->hay_cursor();
+	}
+
+	function resetear_cursor_dt_entidad()
+	{
+		$this->dep('dr_parametros')->tabla('dt_entidad')->resetear_cursor();
+	}
+
+	function get_dt_entidad()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_entidad')->get();
+	}
+
+	function set_dt_entidad($datos)
+	{
+		$this->dep('dr_parametros')->tabla('dt_entidad')->set($datos);
+	}
+
+	function agregar_dt_entidad($datos)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_entidad')->nueva_fila($datos);
+		$this->dep('dr_parametros')->tabla('dt_entidad')->set_cursor($id);
+	}	
+
+	function eliminar_dt_entidad($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_entidad')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_entidad')->eliminar_fila($id[0]);
+	}
 }
 
 ?>

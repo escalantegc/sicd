@@ -186,7 +186,46 @@ class cn_personal extends sicd_cn
 		return $this->dep('dr_personal')->tabla('dt_detalle_dias_viatico')->get_filas();
 	}
 
+	//-----------------------------------------------------------------------------------
+	//---- DT-ESTUDIOS-POR-PERSONA -----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function set_cursor_dt_estudio_por_persona($seleccion)
+	{
+		$id = $this->dep('dr_personal')->tabla('dt_estudio_por_persona')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_personal')->tabla('dt_estudio_por_persona')->set_cursor($id[0]);
+	}
+	function hay_cursor_dt_estudio_por_persona()
+	{
+		return $this->dep('dr_personal')->tabla('dt_estudio_por_persona')->hay_cursor();
+	}
 
+	function resetear_cursor_dt_estudio_por_persona()
+	{
+		$this->dep('dr_personal')->tabla('dt_estudio_por_persona')->resetear_cursor();
+	}
+
+	function get_dt_estudio_por_persona()
+	{
+		return $this->dep('dr_personal')->tabla('dt_estudio_por_persona')->get();
+	}
+
+	function set_dt_estudio_por_persona($datos)
+	{
+		$this->dep('dr_personal')->tabla('dt_estudio_por_persona')->set($datos);
+	}
+
+	function agregar_dt_estudio_por_persona($datos)
+	{
+
+		$id = $this->dep('dr_personal')->tabla('dt_estudio_por_persona')->nueva_fila($datos);
+		$this->dep('dr_personal')->tabla('dt_estudio_por_persona')->set_cursor($id);
+	}	
+
+	function eliminar_dt_estudio_por_persona($seleccion)
+	{
+		$id = $this->dep('dr_personal')->tabla('dt_estudio_por_persona')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_personal')->tabla('dt_estudio_por_persona')->eliminar_fila($id);
+	}
 
 }
 

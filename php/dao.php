@@ -128,8 +128,10 @@ class dao
 						calle, 
 						altura, 
 						piso, 
-						depto
+						depto,
+						localidad.descripcion as localidad
   				FROM public.entidad
+  				inner join localidad using (idlocalidad)
   				WHERE
   					$where";
   		return consultar_fuente($sql);			
@@ -222,21 +224,23 @@ class dao
 			$where = '1 = 1';
 		}
 		$sql = "SELECT 	idviatico, 
-						fecha_desde, 
 						nro_expediente, 
-						fecha_hasta, 
 						idpersona, 
-				       idlocalidad_origen, 
-				       idlocalidad_destino,
-				       localidad_origen.descripcion as origen,
-				       localidad_destino.descripcion as destino
+
+					    localidad_origen.descripcion as origen,
+					    localidad_destino.descripcion as destino,
+					    cantidad_total_dias ,
+  						mes,
+  						cantidad_dias_reintegro 
+
   				FROM 
   					public.viatico
-			  inner join localidad localidad_origen on localidad_origen.idlocalidad=viatico.idlocalidad_origen
-			  inner join localidad localidad_destino on localidad_destino.idlocalidad=viatico.idlocalidad_destino 
+
+  				left outer join detalle_dias_viatico using(idviatico)
+				left outer join localidad localidad_origen on localidad_origen.idlocalidad=detalle_dias_viatico.idlocalidad_origen
+				left outer join localidad localidad_destino on localidad_destino.idlocalidad=detalle_dias_viatico.idlocalidad_destino 
 			  WHERE
   					$where";
-  					
   		return consultar_fuente($sql);
 	}
 
@@ -359,5 +363,46 @@ class dao
   					provincia.idpais = $idpais ";
   		return consultar_fuente($sql);
   	}  
+  	function get_listado_estudio($where = null)
+	{
+		if (!isset($where))
+		{
+			$where = '1 = 1';
+		}
+  		$sql = "SELECT 	titulo, 
+  						idestudio,
+  						sigla
+  				FROM public.estudio
+  				WHERE
+  					$where";
+  		return consultar_fuente($sql);
+  	}
+
+  	function get_listado_estudios_por_persona($where = null)
+	{
+		if (!isset($where))
+		{
+			$where = '1 = 1';
+		}
+  		$sql = "SELECT 
+					estudio_por_persona.idestudio, 
+					estudio_por_persona.idnivel_estudio, 
+					estudio_por_persona.idpersona, 
+					estudio_por_persona.identidad, 
+					estudio_por_persona.obervaciones,
+					nivel_estudio.descripcion as nivel_estudio,
+					entidad.nombre as entidad,
+					estudio.titulo
+	
+			  	FROM 
+			  		public.estudio_por_persona
+				inner join nivel_estudio using(idnivel_estudio)
+				inner join persona using(idpersona)
+				inner join entidad using(identidad)
+				inner join estudio using(idestudio)
+				WHERE
+  					$where";
+  		return consultar_fuente($sql);
+  	}
 }
 ?>

@@ -87,7 +87,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --etiqueta
 	'1', --maneja_datos
 	'1', --sobre_fila
-	NULL, --confirmacion
+	'¿Esta seguro de borrar el registro?', --confirmacion
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
 	'borrar', --imagen
@@ -104,7 +104,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --accion_vinculo_carpeta
 	NULL, --accion_vinculo_item
 	NULL, --accion_vinculo_objeto
-	NULL, --accion_vinculo_popup
+	'0', --accion_vinculo_popup
 	NULL, --accion_vinculo_popup_param
 	NULL, --accion_vinculo_target
 	NULL, --accion_vinculo_celda
