@@ -14,7 +14,7 @@ class ei_frm_viatico extends sicd_ei_formulario
 		
 		{$this->objeto_js}.evt__cantidad_dias_reintegro__validar = function()
 		{
-			cantidad = this.ef('cantidad_dias_reintegro').get_estado();
+			cantidad = this.ef('cantidad_dias_disponible').get_estado();
 			
 			if (cantidad=<-1)
 			{

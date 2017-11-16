@@ -146,11 +146,13 @@ class dao
 
 		$sql = "SELECT idnivel_estudio, 
 						descripcion, 
-						maximo_horas
+						maximo_horas,
+						orden
   				FROM 
   				public.nivel_estudio
   				WHERE
-  					$where";
+  					$where
+  				order by orden asc";
   		return consultar_fuente($sql);		
 	}
 
@@ -226,12 +228,11 @@ class dao
 		$sql = "SELECT 	idviatico, 
 						nro_expediente, 
 						idpersona, 
-
-					    localidad_origen.descripcion as origen,
-					    localidad_destino.descripcion as destino,
-					    cantidad_total_dias ,
-  						mes,
-  						cantidad_dias_reintegro 
+						  cantidad_total_dias ,
+						  mes ,
+						  cantidad_dias_reintegro ,
+						  cantidad_dias_disponible ,
+						  cantidad_dias_ 
 
   				FROM 
   					public.viatico
@@ -239,8 +240,20 @@ class dao
   				left outer join detalle_dias_viatico using(idviatico)
 				left outer join localidad localidad_origen on localidad_origen.idlocalidad=detalle_dias_viatico.idlocalidad_origen
 				left outer join localidad localidad_destino on localidad_destino.idlocalidad=detalle_dias_viatico.idlocalidad_destino 
-			  WHERE
-  					$where";
+				WHERE
+  					$where
+  				
+  				group by 
+  				idviatico, 
+						nro_expediente, 
+						idpersona, 
+					    cantidad_total_dias ,
+  						mes,
+  						cantidad_dias_reintegro,
+  						cantidad_dias_disponible,
+  						cantidad_dias_
+  				order by mes asc		
+  				";
   		return consultar_fuente($sql);
 	}
 

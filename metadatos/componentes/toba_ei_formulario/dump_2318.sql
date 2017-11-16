@@ -599,7 +599,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'idestado_civil', --identificador
 	'ef_combo', --elemento_formulario
 	'idestado_civil', --columnas
-	'1', --obligatorio
+	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
 	'6', --orden
 	'Estado Civil', --etiqueta
@@ -839,7 +839,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'fecha_nacimiento', --identificador
 	'ef_editable_fecha', --elemento_formulario
 	'fecha_nacimiento', --columnas
-	'1', --obligatorio
+	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
 	'7', --orden
 	'Fecha nacimiento', --etiqueta
