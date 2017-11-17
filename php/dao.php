@@ -28,7 +28,7 @@ class dao
   				FROM 
   					public.persona
   				inner join tipo_documento using (idtipo_documento)
-  				inner join estado_civil using (idestado_civil)
+  				left outer join estado_civil using (idestado_civil)
   				inner join localidad using (idlocalidad)
   				where
   					$where;";
