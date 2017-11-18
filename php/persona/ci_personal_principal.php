@@ -30,15 +30,27 @@ class ci_personal_principal extends sicd_ci
 	{
 		try{
 			$this->cn()->guardar_dr_personal();
-				toba::notificacion()->agregar("Los datos se han guardado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
 		} catch( toba_error_db $error){
-			$sql_state= $error->get_sqlstate();
-			if($sql_state=='db_23503'){
-				toba::notificacion()->agregar("La persona esta siendo referenciada, no puede eliminarla",'error');
-				$this->cn()->resetear();
-			}else{
-				throw $error;
+			$mensaje_log= $error->get_mensaje_log();
+
+			
+			if (strstr($mensaje_log, 'persona_idx'))
+			{
+				toba::notificacion()->agregar("Esta persona se encuentra registrada",'info');
+			}			
+
+			if (strstr($mensaje_log, 'viatico_nro_expediente_idx'))
+			{
+				toba::notificacion()->agregar("El numero de expediente para el viatico que desea dar de alta ya esta registrado",'info');
+			}			
+
+			if (strstr($mensaje_log, 'estudio_por_persona_pkey'))
+			{
+				toba::notificacion()->agregar("El el titulo para el estudio que desea dar de alta ya esta registrado",'info');
 			}
+
+
 		}
 	}
 
@@ -82,7 +94,7 @@ class ci_personal_principal extends sicd_ci
 		$this->cn()->set_dt_personal($datos);
 			try{
 			$this->cn()->guardar_dr_personal();
-				toba::notificacion()->agregar("Los datos se han guardado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503'){
@@ -103,7 +115,7 @@ class ci_personal_principal extends sicd_ci
 		$this->cn()->set_dt_personal($datos);
 			try{
 			$this->cn()->guardar_dr_personal();
-				toba::notificacion()->agregar("Los datos se han guardado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503'){

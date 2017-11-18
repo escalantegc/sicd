@@ -500,6 +500,59 @@ class cn_parametros extends sicd_cn
 	{
 		$id = $this->dep('dr_parametros')->tabla('dt_entidad')->get_id_fila_condicion($seleccion);
 		$this->dep('dr_parametros')->tabla('dt_entidad')->eliminar_fila($id[0]);
+	}	
+
+	//-----------------------------------------------------------------------------------
+	//---- DT-ESTADO-CIVIL	 -----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function cargar_dt_estado_civil($seleccion)
+	{
+		if(!$this->dep('dr_parametros')->tabla('dt_estado_civil')->esta_cargada())
+		{				// verifica si esta cargada el datos relacion			
+			if(!isset($seleccion))
+			{
+				$this->dep('dr_parametros')->tabla('dt_estado_civil')->cargar();					// lee de la BD fisica y carga al datos relacion
+			}else{
+				$this->dep('dr_parametros')->tabla('dt_estado_civil')->cargar($seleccion);				// lee de la BD fisica y carga al datos relacion
+			}
+		}
+	}
+	function set_cursor_dt_estado_civil($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_estado_civil')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_estado_civil')->set_cursor($id[0]);
+	}
+
+	function hay_cursor_dt_estado_civil()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_estado_civil')->hay_cursor();
+	}
+
+	function resetear_cursor_dt_estado_civil()
+	{
+		$this->dep('dr_parametros')->tabla('dt_estado_civil')->resetear_cursor();
+	}
+
+	function get_dt_estado_civil()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_estado_civil')->get();
+	}
+
+	function set_dt_estado_civil($datos)
+	{
+		$this->dep('dr_parametros')->tabla('dt_estado_civil')->set($datos);
+	}
+
+	function agregar_dt_estado_civil($datos)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_estado_civil')->nueva_fila($datos);
+		$this->dep('dr_parametros')->tabla('dt_estado_civil')->set_cursor($id);
+	}	
+
+	function eliminar_dt_estado_civil($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_estado_civil')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_estado_civil')->eliminar_fila($id[0]);
 	}
 }
 

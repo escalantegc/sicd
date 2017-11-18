@@ -13,7 +13,7 @@ class ci_localidad extends sicd_ci
 	{
 		try{
 			$this->cn()->guardar_dr_parametros();
-				toba::notificacion()->agregar("Los datos se han guardado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503')
@@ -21,11 +21,15 @@ class ci_localidad extends sicd_ci
 				toba::notificacion()->agregar("La localidad esta siendo referenciada, no puede eliminarla",'error');
 				
 			} 
-			if($sql_state=='23505')
+
+
+			$mensaje_log= $error->get_mensaje_log();
+			if(strstr($mensaje_log,'localidad_descripcion_idprovincia_idx'))
 			{
-				toba::notificacion()->agregar("La localidad ya esta registrado.",'info');
+				toba::notificacion()->agregar("La localidad ya esta registrada.",'info');
 				
 			} 
+			
 			
 		}
 		$this->cn()->resetear_dr_parametros();
@@ -73,7 +77,7 @@ class ci_localidad extends sicd_ci
 		$this->cn()->eliminar_dt_localidad($seleccion);
 		try{
 			$this->cn()->guardar_dr_parametros();
-				toba::notificacion()->agregar("Los datos se han borrado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han borrado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503')

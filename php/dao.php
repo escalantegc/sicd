@@ -91,13 +91,19 @@ class dao
 
 	}
 
-	function get_estad_civil()
+	function get_listado_estado_civil($where = null)
 	{
+		if (!isset($where))
+		{
+			$where = '1 = 1';
+		}
 		$sql = "SELECT 	idestado_civil, 
 						descripcion
   				FROM 
-  					public.estado_civil;";
-  		return consultar_fuente($sql);
+  					public.estado_civil	
+  				WHERE
+  					$where";
+  		return consultar_fuente($sql);	
 	}
 
 	function get_tipo_telefono($where = null)

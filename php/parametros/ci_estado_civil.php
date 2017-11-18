@@ -1,8 +1,7 @@
 <?php
 require_once('dao.php');
-class ci_tipo_documento extends sicd_ci
+class ci_estado_civil extends sicd_ci
 {
-
 	protected $s__where;
 	protected $s__datos_filtro;
 	//-----------------------------------------------------------------------------------
@@ -16,26 +15,23 @@ class ci_tipo_documento extends sicd_ci
 				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
+			
 			if($sql_state=='db_23503')
 			{
-				toba::notificacion()->agregar("El tipo de documento esta siendo referenciado, no puede eliminarlo",'error');
+				toba::notificacion()->agregar("El estado civil esta siendo referenciado, no puede eliminarlo",'error');
 				
 			} 
+
 			$mensaje_log= $error->get_mensaje_log();
-			if(strstr($mensaje_log,'tipo_documento_descripcion_idx'))
+			if(strstr($mensaje_log,'estado_civil_descripcion_idx'))
 			{
-				toba::notificacion()->agregar("La descripcion del tipo de documento ya esta registrado.",'info');
-				
-			} 			
-			if(strstr($mensaje_log,'tipo_documento_sigla_idx'))
-			{
-				toba::notificacion()->agregar("La sigla del tipo de documento ya esta registrada.",'info');
+				toba::notificacion()->agregar("El estado civil ya esta registrado.",'info');
 				
 			} 
 			
 		}
 		$this->cn()->resetear_dr_parametros();
-			$this->set_pantalla('pant_inicial');
+		$this->set_pantalla('pant_inicial');
 	}
 
 	function evt__cancelar()
@@ -58,9 +54,9 @@ class ci_tipo_documento extends sicd_ci
 		if(isset($this->s__datos_filtro))
 		{
 			
-			$datos = dao::get_tipo_documento($this->s__where);
+			$datos = dao::get_listado_estado_civil($this->s__where);
 		}else{
-			$datos = dao::get_tipo_documento();
+			$datos = dao::get_listado_estado_civil();
 		}
 
 		$cuadro->set_datos($datos);
@@ -68,15 +64,15 @@ class ci_tipo_documento extends sicd_ci
 
 	function evt__cuadro__seleccion($seleccion)
 	{
-		$this->cn()->cargar_dt_tipo_documento($seleccion);
-		$this->cn()->set_cursor_dt_tipo_documento($seleccion);
+		$this->cn()->cargar_dt_estado_civil($seleccion);
+		$this->cn()->set_cursor_dt_estado_civil($seleccion);
 		$this->set_pantalla('pant_edicion');
 	}
-	
+
 	function evt__cuadro__borrar($seleccion)
 	{
-		$this->cn()->cargar_dt_tipo_documento($seleccion);
-		$this->cn()->eliminar_dt_tipo_documento($seleccion);
+		$this->cn()->cargar_dt_estado_civil($seleccion);
+		$this->cn()->eliminar_dt_estado_civil($seleccion);
 		try{
 			$this->cn()->guardar_dr_parametros();
 				toba::notificacion()->agregar("Los datos se han borrado correctamente",'info');
@@ -84,13 +80,14 @@ class ci_tipo_documento extends sicd_ci
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503')
 			{
-				toba::notificacion()->agregar("El tipo de documento esta siendo referenciado, no puede eliminarlo",'error');
+				toba::notificacion()->agregar("El estado civil esta siendo referenciado, no puede eliminarlo",'error');
 				
 			} 		
 		}
 		$this->cn()->resetear_dr_parametros();
 		$this->set_pantalla('pant_inicial');
 	}
+
 	//-----------------------------------------------------------------------------------
 	//---- filtro -----------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -120,24 +117,23 @@ class ci_tipo_documento extends sicd_ci
 
 	function conf__frm(sicd_ei_formulario $form)
 	{
-		if ($this->cn()->hay_cursor_dt_tipo_documento())
+		if ($this->cn()->hay_cursor_dt_estado_civil())
 		{
-			$datos = $this->cn()->get_dt_tipo_documento();
+			$datos = $this->cn()->get_dt_estado_civil();
 			$form->set_datos($datos);
-		} 
+		}
 	}
 
 	function evt__frm__modificacion($datos)
 	{
-		if ($this->cn()->hay_cursor_dt_tipo_documento())
+		if ($this->cn()->hay_cursor_dt_estado_civil())
 		{
-			$this->cn()->set_dt_tipo_documento($datos);
+			$this->cn()->set_dt_estado_civil($datos);
 		} else {
-			$this->cn()->agregar_dt_tipo_documento($datos);
+			$this->cn()->agregar_dt_estado_civil($datos);
 		}
 	}
 
-
-
 }
+
 ?>

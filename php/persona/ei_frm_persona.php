@@ -52,7 +52,14 @@ class ei_frm_persona extends sicd_ei_formulario
 		{$this->objeto_js}.evt__fecha_nacimiento__procesar = function(es_inicial)
 		{
 			var fecha = new Date();
-			this.ef('edad').set_estado(this.ef('fecha_nacimiento').calcular_edad(fecha));
+
+			if (this.ef('fecha_nacimiento').tiene_estado())
+			{
+				this.ef('edad').set_estado(this.ef('fecha_nacimiento').calcular_edad(fecha));	
+			} else {
+				this.ef('edad').resetear_estado();
+			}
+			
 		}
 		";
 	}

@@ -10,7 +10,7 @@ class ci_tipo_telefono extends sicd_ci
 	{
 		try{
 			$this->cn()->guardar_dr_parametros();
-				toba::notificacion()->agregar("Los datos se han guardado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503')
@@ -18,11 +18,16 @@ class ci_tipo_telefono extends sicd_ci
 				toba::notificacion()->agregar("El tipo de telefono esta siendo referenciado, no puede eliminarlo",'error');
 				
 			} 
-			if($sql_state=='23505')
+
+			
+
+			$mensaje_log= $error->get_mensaje_log();
+			if(strstr($mensaje_log,'tipo_telefono_descripcion_idx'))
 			{
 				toba::notificacion()->agregar("El tipo de telefono ya esta registrado.",'info');
 				
 			} 
+		
 			
 		}
 		$this->cn()->resetear_dr_parametros();
@@ -69,7 +74,7 @@ class ci_tipo_telefono extends sicd_ci
 		$this->cn()->eliminar_dt_tipo_telefono($seleccion);
 		try{
 			$this->cn()->guardar_dr_parametros();
-				toba::notificacion()->agregar("Los datos se han borrado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han borrado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503')

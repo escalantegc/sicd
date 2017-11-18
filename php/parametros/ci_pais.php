@@ -12,7 +12,7 @@ class ci_pais extends sicd_ci
 	{
 		try{
 			$this->cn()->guardar_dr_parametros();
-				toba::notificacion()->agregar("Los datos se han guardado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503')
@@ -20,7 +20,9 @@ class ci_pais extends sicd_ci
 				toba::notificacion()->agregar("El tipo de documento esta siendo referenciado, no puede eliminarlo",'error');
 				
 			} 
-			if($sql_state=='23505')
+
+			$mensaje_log= $error->get_mensaje_log();
+			if(strstr($mensaje_log,'pais_descripcion_idx'))
 			{
 				toba::notificacion()->agregar("El pais ya esta registrado.",'info');
 				
@@ -72,7 +74,7 @@ class ci_pais extends sicd_ci
 		$this->cn()->eliminar_dt_pais($seleccion);
 		try{
 			$this->cn()->guardar_dr_parametros();
-				toba::notificacion()->agregar("Los datos se han borrado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han borrado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503')

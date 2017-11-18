@@ -13,19 +13,23 @@ class ci_tipo_detalle_viatico extends sicd_ci
 	{
 		try{
 			$this->cn()->guardar_dr_parametros();
-				toba::notificacion()->agregar("Los datos se han guardado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503')
 			{
-				toba::notificacion()->agregar("El tipo de documento esta siendo referenciado, no puede eliminarlo",'error');
+				toba::notificacion()->agregar("El tipo de detalle de viatico esta siendo referenciado, no puede eliminarlo",'error');
 				
 			} 
-			if($sql_state=='23505')
+
+			
+			$mensaje_log= $error->get_mensaje_log();
+			if(strstr($mensaje_log,'tipo_detalle_viatico_descripcion_idx'))
 			{
-				toba::notificacion()->agregar("El tipo de documento ya esta registrado.",'info');
+				toba::notificacion()->agregar("La tipo de detalle de viatico ya esta registrado.",'info');
 				
 			} 
+
 			
 		}
 		$this->cn()->resetear_dr_parametros();
@@ -73,7 +77,7 @@ class ci_tipo_detalle_viatico extends sicd_ci
 		$this->cn()->eliminar_dt_tipo_detalle_viatico($seleccion);
 		try{
 			$this->cn()->guardar_dr_parametros();
-				toba::notificacion()->agregar("Los datos se han borrado exitosamente",'info');
+				toba::notificacion()->agregar("Los datos se han borrado correctamente",'info');
 		} catch( toba_error_db $error){
 			$sql_state= $error->get_sqlstate();
 			if($sql_state=='db_23503')
