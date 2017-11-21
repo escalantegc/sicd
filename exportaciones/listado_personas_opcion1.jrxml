@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_personas_opcion1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed811449-f56c-42ef-8ee8-d6b355b7a23f">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logome" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 	idpersona,
+						apellido ||', '|| nombres as persona,
+						sigla ||' - '||  nro_documento as nro_documento ,
+       					matricula,
+       					estado_civil.descripcion as estado_civil,
+       					cuil,
+       					correo,
+       					fecha_nacimiento,
+       					(case when sexo ilike 'm' then 'Masculino' else (case when sexo ilike 'f' then 'Femenino' else 'Otros' end) end) as sexo,
+       					localidad.descripcion as localidad,
+       					 'Calle:' ||calle ||' Numero:' || altura as domocilio,
+       					depto,
+       					piso,
+
+       					matricula_activa,
+       					fecha_baja_matricula,
+       					baja
+  				FROM
+  					public.persona
+  				inner join tipo_documento using (idtipo_documento)
+  				left outer join estado_civil using (idestado_civil)
+  				inner join localidad using (idlocalidad)
+order by persona]]>
+	</queryString>
+	<field name="idpersona" class="java.lang.Integer"/>
+	<field name="persona" class="java.lang.String"/>
+	<field name="nro_documento" class="java.lang.String"/>
+	<field name="matricula" class="java.lang.String"/>
+	<field name="estado_civil" class="java.lang.String"/>
+	<field name="cuil" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="localidad" class="java.lang.String"/>
+	<field name="domocilio" class="java.lang.String"/>
+	<field name="depto" class="java.lang.String"/>
+	<field name="piso" class="java.lang.String"/>
+	<field name="matricula_activa" class="java.lang.Boolean"/>
+	<field name="fecha_baja_matricula" class="java.sql.Date"/>
+	<field name="baja" class="java.lang.Boolean"/>
+	<group name="localidades">
+		<groupExpression><![CDATA[$F{localidad}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<textField>
+					<reportElement x="52" y="0" width="100" height="20" uuid="c2031980-716f-4cc0-83e5-f598c31c80f1"/>
+					<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="52" height="20" uuid="c6a34c1b-3a7d-45c0-8b41-528435b45697"/>
+					<textElement>
+						<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Localidad: ]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="17">
+				<line direction="BottomUp">
+					<reportElement key="line" stretchType="RelativeToBandHeight" x="-2" y="5" width="555" height="2" uuid="5a88ec2b-fd28-4ed9-90ba-38b8176b0f98"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="0" width="376" height="79" uuid="8dcd8260-ad0b-41a9-a179-01cc37ed1f28"/>
+				<textElement textAlignment="Center">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Listado de personas por localidad]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="0" width="88" height="79" uuid="ffda0b15-9f77-4c6f-ad00-1ed589a6c151"/>
+				<imageExpression><![CDATA[$P{logome}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="182" height="16" uuid="7a96502b-37c1-4475-ab73-edce2e00cf67"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Ordenado por: Apellido y Nombres]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="133" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="50" width="105" height="20" uuid="098a3859-2815-402c-abf0-a7802b7e6db4"/>
+				<text><![CDATA[Documento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="114" y="10" width="370" height="20" uuid="06258f79-766e-4eb7-9558-22cad3e01acb"/>
+				<textFieldExpression><![CDATA[$F{persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="50" width="100" height="20" uuid="c68a8351-69fa-4e94-acb8-9cb716b561e1"/>
+				<textFieldExpression><![CDATA[$F{nro_documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="70" width="105" height="20" uuid="19194936-f641-4ff0-bda1-763a1cf73f51"/>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="90" width="105" height="20" uuid="c2ae04df-be02-4c13-9739-c360a353cc95"/>
+				<text><![CDATA[Estado Civil:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="114" y="30" width="100" height="20" uuid="c8e22ffc-8ffc-4d07-b076-35e8ac4ccadd"/>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="114" y="90" width="100" height="20" uuid="6ce03e9d-816e-46c9-9bcf-d9a678e65947"/>
+				<textFieldExpression><![CDATA[$F{estado_civil}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="110" width="105" height="20" uuid="f961d0b4-f1d3-48ff-88c4-0095877967a9"/>
+				<text><![CDATA[Localidad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="114" y="70" width="370" height="20" uuid="bfa5d291-5ecd-4ff7-94b3-b451190e589f"/>
+				<textFieldExpression><![CDATA[$F{domocilio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="110" width="100" height="20" uuid="04c4b389-de81-4629-a1e8-c064972bc614"/>
+				<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="30" width="105" height="20" uuid="d5a625ef-b6bd-455f-a879-af4bface49cd"/>
+				<text><![CDATA[Nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="10" width="105" height="20" uuid="5797af02-2b59-462f-9ab9-77d581f20e31"/>
+				<text><![CDATA[Apellido y Nombres:]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="4" width="555" height="1" uuid="a8c71162-c7c6-4ec5-b29a-30b14019a21b"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
