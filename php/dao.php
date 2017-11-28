@@ -24,7 +24,8 @@ class dao
        					domicilio, 
        					matricula_activa, 
        					fecha_baja_matricula,
-       					baja
+       					baja,
+       					date_part('year',age(fecha_nacimiento))  as edad
   				FROM 
   					public.persona
   				inner join tipo_documento using (idtipo_documento)
