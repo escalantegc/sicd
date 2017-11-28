@@ -49,6 +49,20 @@ class ci_estudios_por_persona extends sicd_ci
 
 	function evt__cuadro__borrar($seleccion)
 	{
+		$this->get_cn()->eliminar_dt_estudio_por_persona($seleccion);
+
+			try{
+			$this->get_cn()->guardar_dr_personal();
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
+		} catch( toba_error_db $error){
+			$sql_state= $error->get_sqlstate();
+			if($sql_state=='db_23503'){
+				toba::notificacion()->agregar("El estudio esta siendo referenciado, no puede eliminarlo",'error');
+				
+			}else{
+				throw $error;
+			}
+		}
 
 	}
 
@@ -93,9 +107,13 @@ class ci_estudios_por_persona extends sicd_ci
 		if ($this->get_cn()->hay_cursor_dt_estudio_por_persona())
 		{
 			$this->get_cn()->set_dt_estudio_por_persona($datos);
+			
+			
 		} else {
 			$this->get_cn()->agregar_dt_estudio_por_persona($datos);
 		}
+		$this->get_cn()->resetear_cursor_dt_estudio_por_persona();
+		$this->set_pantalla('pant_inicial');
 	}
 
 

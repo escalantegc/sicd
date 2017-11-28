@@ -236,7 +236,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'Documento', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'0', --estilo
-	NULL, --ancho
+	'80', --ancho
 	'1', --formateo
 	NULL, --vinculo_indice
 	NULL, --no_ordenar
@@ -267,7 +267,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'Cuil', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
-	NULL, --ancho
+	'70', --ancho
 	'1', --formateo
 	NULL, --vinculo_indice
 	NULL, --no_ordenar
@@ -326,10 +326,10 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'828', --objeto_cuadro_col
 	'fecha_nacimiento', --clave
 	'5', --orden
-	'Fecha nacimiento', --titulo
+	'Fecha acimiento', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
-	NULL, --ancho
+	'60', --ancho
 	'8', --formateo
 	NULL, --vinculo_indice
 	'0', --no_ordenar
@@ -360,7 +360,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'Sexo', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
-	NULL, --ancho
+	'60', --ancho
 	'1', --formateo
 	NULL, --vinculo_indice
 	NULL, --no_ordenar
@@ -391,7 +391,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'Estado Civil', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
-	NULL, --ancho
+	'110', --ancho
 	'1', --formateo
 	NULL, --vinculo_indice
 	'0', --no_ordenar
@@ -453,7 +453,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'Baja', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
-	NULL, --ancho
+	'20', --ancho
 	'13', --formateo
 	NULL, --vinculo_indice
 	'0', --no_ordenar

@@ -16,8 +16,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	'toba', --clase_proyecto
 	'toba_ei_formulario', --clase
 	'13', --punto_montaje
-	NULL, --subclase
-	NULL, --subclase_archivo
+	'ei_frm_estudio', --subclase
+	'persona/ei_frm_estudio.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'ci_personal_principal - ci_personal - ci_estudios_por_persona - frm', --nombre

@@ -248,7 +248,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'31', --objeto_ei_filtro_col
 	'2317', --objeto_ei_filtro
 	'sicd', --objeto_ei_filtro_proyecto
-	'numero', --tipo
+	'cadena', --tipo
 	'nro_documento', --nombre
 	'nro_documento', --expresion
 	'Nro Documento', --etiqueta
@@ -278,7 +278,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	NULL, --edit_mascara
 	NULL, --edit_unidad
 	NULL, --edit_rango
-	NULL, --edit_expreg
+	'/^[0-9]+$/', --edit_expreg
 	NULL, --estilo
 	NULL, --popup_item
 	NULL, --popup_proyecto

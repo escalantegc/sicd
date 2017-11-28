@@ -48,8 +48,15 @@ class ci_personal_principal extends sicd_ci
 			if (strstr($mensaje_log, 'estudio_por_persona_pkey'))
 			{
 				toba::notificacion()->agregar("El el titulo para el estudio que desea dar de alta ya esta registrado",'info');
+
 			}
 
+			$persona = $this->cn()->get_dt_personal();
+			$id['idpersona'] = $persona['idpersona'];
+			$this->cn()->resetear_dr_personal();
+
+			$this->cn()->cargar_dr_personal($id);
+			$this->cn()->set_cursor_dt_personal($id);
 
 		}
 	}

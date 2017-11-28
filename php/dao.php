@@ -15,7 +15,7 @@ class dao
        					cuil, 
        					correo,
        					fecha_nacimiento, 
-       					(case when sexo ilike 'm' then 'Masculino' else (case when sexo ilike 'f' then 'Femenino' else 'Otros' end) end) as sexo, 
+       					(case when sexo ilike 'm' then 'MASCULINO' else (case when sexo ilike 'f' then 'FEMENINO' else 'Otros' end) end) as sexo, 
        					localidad.descripcion as localidad, 
        					calle, 
        					altura, 
@@ -139,7 +139,8 @@ class dao
   				FROM public.entidad
   				inner join localidad using (idlocalidad)
   				WHERE
-  					$where";
+  					$where
+  					order by nombre";
   		return consultar_fuente($sql);			
 	}
 
@@ -393,7 +394,8 @@ class dao
   						sigla
   				FROM public.estudio
   				WHERE
-  					$where";
+  					$where
+  				order by titulo";
   		return consultar_fuente($sql);
   	}
 
@@ -417,10 +419,11 @@ class dao
 			  		public.estudio_por_persona
 				inner join nivel_estudio using(idnivel_estudio)
 				inner join persona using(idpersona)
-				inner join entidad using(identidad)
+				left outer join entidad using(identidad)
 				inner join estudio using(idestudio)
 				WHERE
-  					$where";
+  					$where
+  				order by nivel_estudio.orden";
   		return consultar_fuente($sql);
   	}
 }

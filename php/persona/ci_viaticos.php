@@ -96,6 +96,9 @@ class ci_viaticos extends sicd_ci
 		} else {
 			$this->get_cn()->agregar_dt_viatico($datos);
 		}
+
+		$this->get_cn()->resetear_cursor_dt_viatico();
+		$this->set_pantalla('pant_inicial');
 	}
 
 	//-----------------------------------------------------------------------------------
