@@ -22,7 +22,7 @@ class ei_frm_ml_detalle_dias_viatico extends sicd_ei_formulario_ml
 			total_dias = this.controlador.dep('frm').ef('cantidad_total_dias').get_estado();
 			dias_reintegro = total_dias - dias_usados;
 			this.controlador.dep('frm').ef('cantidad_dias_disponible').set_estado(dias_reintegro);
-			this.controlador.dep('frm').ef('cantidad_dias_').set_estado(dias_usados);
+			this.controlador.dep('frm').ef('cantidad_dias_tomados').set_estado(dias_usados);
 
 		}
 		";

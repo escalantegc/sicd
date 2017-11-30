@@ -390,7 +390,7 @@ a.nivel-0:hover, a.nivel-0:focus, a.nivel-0.rollover, a.nivel-0.rollover:visited
 	padding:2px;
 }
 .ei-cuadro-fila,  .ei-cuadro-total { 
-	border-left: 1px solid #eeeeee;
+	border-left: 1px solid #eeeeee ;
 	border-right: 1px solid #eeeeee;
 }
 .ei-cuadro-totales {
@@ -422,10 +422,13 @@ a.nivel-0:hover, a.nivel-0:focus, a.nivel-0.rollover, a.nivel-0.rollover:visited
 	color:white !important;
 }
 .ei-cuadro-celda-impar {
-	background-color:#ffffff;
+	background-color:#e11616;
+}
+.ei-cuadro-celda-impar2 {
+	background-color:#ea2727;
 }
 .ei-cuadro-celda-par, .ei-ml-fila, .ei-filtro-fila {
-	background-color: #eeeff2;
+	background-color: #e11616;
 }
 .ei-ml-fila, .ei-filtro-fila {
 	border-top: 1px solid #eeeeee;

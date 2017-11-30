@@ -16,8 +16,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	'toba', --clase_proyecto
 	'toba_ei_cuadro', --clase
 	'13', --punto_montaje
-	NULL, --subclase
-	NULL, --subclase_archivo
+	'ei_cuadro_viaticos', --subclase
+	'persona/ei_cuadro_viaticos.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'ci_personal_principal - ci_personal - ci_viaticos - cuadro', --nombre
@@ -135,7 +135,7 @@ INSERT INTO apex_objeto_cuadro_cc (objeto_cuadro_proyecto, objeto_cuadro, objeto
 	'2330', --objeto_cuadro
 	'33', --objeto_cuadro_cc
 	'mes', --identificador
-	'Detalla del mes', --descripcion
+	'Detalle del mes', --descripcion
 	'1', --orden
 	'mes', --columnas_id
 	'mes', --columnas_descripcion
@@ -280,7 +280,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'sicd', --objeto_cuadro_proyecto
 	'2330', --objeto_cuadro
 	'872', --objeto_cuadro_col
-	'cantidad_dias_', --clave
+	'cantidad_dias_tomados', --clave
 	'5', --orden
 	'Dias tomados', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo

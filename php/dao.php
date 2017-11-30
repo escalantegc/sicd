@@ -240,7 +240,7 @@ class dao
 						  mes ,
 						  cantidad_dias_reintegro ,
 						  cantidad_dias_disponible ,
-						  cantidad_dias_ 
+						  cantidad_dias_tomados 
 
   				FROM 
   					public.viatico
@@ -259,7 +259,7 @@ class dao
   						mes,
   						cantidad_dias_reintegro,
   						cantidad_dias_disponible,
-  						cantidad_dias_
+  						cantidad_dias_tomados
   				order by mes asc		
   				";
   		return consultar_fuente($sql);
@@ -425,6 +425,16 @@ class dao
 				WHERE
   					$where
   				order by nivel_estudio.orden";
+  		return consultar_fuente($sql);
+  	}
+
+  	function get_nombre_localidad($idlocalidad = null)
+  	{
+  		$sql = "SELECT  descripcion
+  				FROM 
+  					public.localidad
+  				WHERE
+  					idlocalidad = $idlocalidad;";
   		return consultar_fuente($sql);
   	}
 }

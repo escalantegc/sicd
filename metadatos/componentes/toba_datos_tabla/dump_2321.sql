@@ -227,7 +227,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'sicd', --objeto_proyecto
 	'2321', --objeto
 	'910', --col_id
-	'cantidad_dias_', --columna
+	'cantidad_dias_tomados', --columna
 	'N', --tipo
 	'0', --pk
 	'', --secuencia
