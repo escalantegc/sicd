@@ -42,8 +42,22 @@ class ci_viaticos extends sicd_ci
 		}else{
 			$datos = dao::get_listado_viatico($where);
 		}
+		$datosok = array();
+		foreach ($datos as $dato) 
+		{
+			if ($dato['total_disponible']>=15)
+			{
+				$dato['cantidad_dias_reintegro'] = '<font color= #e30303 ><strong>'.$dato['cantidad_dias_reintegro'].' </strong></font>';
+				$dato['cantidad_dias_disponible'] = '<font color= #e30303 ><strong>'.$dato['cantidad_dias_disponible'].' </strong></font>';
+				$dato['cantidad_dias_tomados'] = '<font color= #e30303 ><strong>'.$dato['cantidad_dias_tomados'].'  </strong></font>';
+				$dato['total_disponible'] = '<font color= #e30303 ><strong>'.$dato['total_disponible'].'  </strong></font>';
+				$dato['nro_expediente'] = '<font color= #e30303 ><strong>'.$dato['nro_expediente'].'  </strong></font>';
+				$dato['cantidad_total_dias'] = '<font color= #e30303 ><strong>'.$dato['cantidad_total_dias'].'  </strong></font>';
+			}
+			$datosok[] = $dato;
+		}
 
-		$cuadro->set_datos($datos);
+		$cuadro->set_datos($datosok);
 	}
 
 	function evt__cuadro__seleccion($seleccion)

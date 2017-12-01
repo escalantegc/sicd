@@ -33,7 +33,7 @@ class ei_frm_viatico extends sicd_ei_formulario
 		{$this->objeto_js}.evt__cantidad_total_dias__procesar = function(es_inicial)
 		{
 			total_dias =  this.ef('cantidad_total_dias').get_estado();
-			this.ef('cantidad_dias_disponible').set_estado(total_diaso);
+			this.ef('cantidad_dias_disponible').set_estado(total_dias);
 		}
 		";
 	}

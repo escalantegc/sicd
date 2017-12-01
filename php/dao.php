@@ -236,11 +236,13 @@ class dao
 		$sql = "SELECT 	idviatico, 
 						nro_expediente, 
 						idpersona, 
-						  cantidad_total_dias ,
-						  mes ,
-						  cantidad_dias_reintegro ,
-						  cantidad_dias_disponible ,
-						  cantidad_dias_tomados 
+						cantidad_total_dias ,
+						mes ,
+						cantidad_dias_reintegro ,
+						cantidad_dias_disponible ,
+						cantidad_dias_tomados, 
+						(select sumar_dias_disponible_por_mes(mes)) as total_disponible
+
 
   				FROM 
   					public.viatico
