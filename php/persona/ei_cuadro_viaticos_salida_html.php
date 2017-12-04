@@ -41,18 +41,21 @@ class ei_cuadro_viaticos_salida_html extends toba_ei_cuadro_salida_html
 			}
 			$estilo_fila = $par ? 'ei-cuadro-celda-par' : 'ei-cuadro-celda-impar';
 			$clave_fila = $this->_cuadro->get_clave_fila($f);
-	
+			
+			//Recorro el array de datos para identificar en mi caso que fila excede el total_dispnible de 15
+			//Este dato no lo seteo en el cuadro pero si lo traigo desde mi consulta en el dao
+			//
 			$claves = array();
-
 			for ($i = 0; $i < count($datos); $i++) 
 			{
 				if ($datos[$i]['total_disponible']>=15)
 				{
 					$claves[] = $i;
-
 				}	  
 			}
-	
+			
+			//Una vez que tengo las claves de fila que debo pintar
+			// busco si la fila en la que estoy parado tengo q pintar y cambio el estilo 
 			if (in_array($clave_fila, $claves)) 
 			{
 				$estilo_fila = 'ei-cuadro-celda-roja';
@@ -76,70 +79,7 @@ class ei_cuadro_viaticos_salida_html extends toba_ei_cuadro_salida_html
 		}
 	}
 
-	function generar_layout_fila($columnas, $datos, $id_fila,  $clave_fila, $evt_multiples, $objeto_js, $estilo_fila, $formateo)
-	{
-
-		$estilo_seleccion = $this->get_estilo_seleccion($clave_fila);
-
-		  //Javascript de seleccion multiple
-		$js = $this->get_invocacion_js_eventos_multiples($evt_multiples, $id_fila, $objeto_js);
-
-		 //---> Creo las CELDAS de una FILA <----
-		echo "<tr class='$estilo_fila' >\n";
-
-		//---> Creo los EVENTOS de la FILA  previos a las columnas<---
-		$this->html_cuadro_celda_evento($id_fila, $clave_fila, true);
-		foreach (array_keys($columnas) as $a) {
-			//*** 1) Recupero el VALOR
-			$valor = "";
-			if(isset($columnas[$a]["clave"])) {
-				if(isset($datos[$id_fila][$columnas[$a]["clave"]])) {
-					$valor_real = $datos[$id_fila][$columnas[$a]["clave"]];
-					//-- Hace el saneamiento para evitar inyección XSS
-					if (!isset($columnas[$a]['permitir_html']) || $columnas[$a]['permitir_html'] == 0) {
-						  $valor_real = texto_plano($valor_real);
-					}
-				}else{
-					$valor_real = null;
-					//ATENCION!! hay una columna que no esta disponible!
-				}
-				//Hay que formatear?
-				if(isset($columnas[$a]["formateo"])) {
-					$funcion = "formato_" . $columnas[$a]["formateo"];
-					//Formateo el valor
-					$valor = $formateo->$funcion($valor_real);
-				} else {
-					$valor = $valor_real;
-				}
-			}
-
-			//*** 2) La celda posee un vinculo??
-			if ($columnas[$a]['usar_vinculo'] )  {
-					$valor = $this->get_html_cuadro_celda_vinculo($columnas, $a, $id_fila, $clave_fila, $valor);
-			}
-
-			//*** 3) Genero el HTML
-			$ancho = "";
-			if(isset($columnas[$a]["ancho"])) {
-				$ancho = " width='". $columnas[$a]["ancho"] . "'";
-			}
-
-		  //Emito el valor de la celda
-			echo "<td class='$estilo_seleccion ".$columnas[$a]["estilo"]."' $ancho $js>\n";
-			if (trim($valor) !== '') {
-				echo $valor;
-			} else {
-				echo '&nbsp;';
-			}
-			echo "</td>\n";
-			//Termino la CELDA
-		}
-		//---> Creo los EVENTOS de la FILA <---
-		$this->html_cuadro_celda_evento($id_fila, $clave_fila, false);
-		echo "</tr>\n";
-	}
-
-
+	
 	
 }
 ?>
