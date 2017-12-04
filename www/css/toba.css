@@ -424,7 +424,7 @@ a.nivel-0:hover, a.nivel-0:focus, a.nivel-0.rollover, a.nivel-0.rollover:visited
 .ei-cuadro-celda-impar {
 	background-color:#ffffff;
 }
-.ei-cuadro-celda-impar2 {
+.ei-cuadro-celda-roja {
 	background-color:#ea2727;
 }
 .ei-cuadro-celda-par, .ei-ml-fila, .ei-filtro-fila {

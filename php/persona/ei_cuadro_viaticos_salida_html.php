@@ -32,8 +32,7 @@ class ei_cuadro_viaticos_salida_html extends toba_ei_cuadro_salida_html
 
 		$objeto_js = $this->_cuadro->get_id_objeto_js();
 		$evt_multiples = $this->_cuadro->get_eventos_multiples();
-		//ei_arbol($filas);
-		//ei_arbol($datos);
+
 		foreach($filas as $f)
 		{
 			if (!is_null($layout_cant_columnas) && ($i % $layout_cant_columnas == 0)) {
@@ -53,16 +52,12 @@ class ei_cuadro_viaticos_salida_html extends toba_ei_cuadro_salida_html
 
 				}	  
 			}
-		//ei_arbol($claves);
+	
 			if (in_array($clave_fila, $claves)) 
 			{
-				$estilo_fila = 'ei-cuadro-celda-impar2';
+				$estilo_fila = 'ei-cuadro-celda-roja';
 			}
 			
-
-		
-			
-
 			//Genero el html de la fila, junto con sus eventos y vinculos
 			$this->generar_layout_fila($columnas, $datos, $f, $clave_fila, $evt_multiples, $objeto_js, $estilo_fila, $formateo);
 			$par = !$par;
