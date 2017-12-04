@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_estudio" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
 	<property name="ireport.zoom" value="1.6105100000000014"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
@@ -67,7 +67,10 @@ order by
 		</band>
 	</title>
 	<columnHeader>
-		<band height="93" splitType="Stretch">
+		<band height="99" splitType="Stretch">
+			<line direction="BottomUp">
+				<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="97" width="802" height="1" uuid="01a8a2f2-29b9-420b-946c-b1c9f61c612d"/>
+			</line>
 			<staticText>
 				<reportElement x="0" y="0" width="69" height="20" uuid="301cde45-2b61-44d0-b41f-9cf840cc005c"/>
 				<textElement>
@@ -156,52 +159,52 @@ order by
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
-			<line direction="BottomUp">
-				<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="0" width="802" height="1" uuid="01a8a2f2-29b9-420b-946c-b1c9f61c612d"/>
-			</line>
+		<band height="27" splitType="Immediate">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="5" width="100" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
+				<reportElement x="0" y="3" width="100" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{persona}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="104" y="5" width="69" height="20" uuid="f7dfe77a-9a44-4168-8f4c-b3dca8a0b2ce"/>
+				<reportElement x="104" y="3" width="69" height="20" uuid="f7dfe77a-9a44-4168-8f4c-b3dca8a0b2ce"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nro_documento}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="178" y="5" width="100" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
+				<reportElement x="178" y="4" width="100" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="283" y="4" width="75" height="20" uuid="877be9d9-9c10-4a39-af02-99a07bf1b628"/>
+				<reportElement x="283" y="3" width="75" height="20" uuid="877be9d9-9c10-4a39-af02-99a07bf1b628"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nivel_estudio}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="365" y="5" width="198" height="20" uuid="90ff6c9b-b8af-4084-af57-94a39e45e0a7"/>
+				<reportElement x="365" y="4" width="198" height="20" uuid="90ff6c9b-b8af-4084-af57-94a39e45e0a7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="574" y="4" width="228" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
+				<reportElement x="574" y="3" width="228" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{entidad}]]></textFieldExpression>
 			</textField>
+			<line direction="BottomUp">
+				<reportElement key="line" stretchType="RelativeToBandHeight" x="-2" y="26" width="802" height="1" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
+			</line>
 		</band>
 	</detail>
 	<pageFooter>

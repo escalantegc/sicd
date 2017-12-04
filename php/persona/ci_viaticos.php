@@ -1,4 +1,5 @@
 <?php
+require_once('persona/ei_cuadro_viaticos_salida_html.php');
 class ci_viaticos extends sicd_ci
 {
 
@@ -29,6 +30,7 @@ class ci_viaticos extends sicd_ci
 
 	function conf__cuadro(sicd_ei_cuadro $cuadro)
 	{
+		$cuadro->set_manejador_salida('html', 'ei_cuadro_viaticos_salida_html');
 
 		$datos = $this->get_cn()->get_dt_personal();
 		$where='viatico.idpersona ='.$datos['idpersona'];
@@ -42,22 +44,9 @@ class ci_viaticos extends sicd_ci
 		}else{
 			$datos = dao::get_listado_viatico($where);
 		}
-		$datosok = array();
-		foreach ($datos as $dato) 
-		{
-			if ($dato['total_disponible']>=15)
-			{
-				$dato['cantidad_dias_reintegro'] = '<font color= #e30303 ><strong>'.$dato['cantidad_dias_reintegro'].' </strong></font>';
-				$dato['cantidad_dias_disponible'] = '<font color= #e30303 ><strong>'.$dato['cantidad_dias_disponible'].' </strong></font>';
-				$dato['cantidad_dias_tomados'] = '<font color= #e30303 ><strong>'.$dato['cantidad_dias_tomados'].'  </strong></font>';
-				$dato['total_disponible'] = '<font color= #e30303 ><strong>'.$dato['total_disponible'].'  </strong></font>';
-				$dato['nro_expediente'] = '<font color= #e30303 ><strong>'.$dato['nro_expediente'].'  </strong></font>';
-				$dato['cantidad_total_dias'] = '<font color= #e30303 ><strong>'.$dato['cantidad_total_dias'].'  </strong></font>';
-			}
-			$datosok[] = $dato;
-		}
+	
 
-		$cuadro->set_datos($datosok);
+		$cuadro->set_datos($datos);
 	}
 
 	function evt__cuadro__seleccion($seleccion)
@@ -111,8 +100,8 @@ class ci_viaticos extends sicd_ci
 			$this->get_cn()->agregar_dt_viatico($datos);
 		}
 
-		$this->get_cn()->resetear_cursor_dt_viatico();
-		$this->set_pantalla('pant_inicial');
+		/*$this->get_cn()->resetear_cursor_dt_viatico();
+		$this->set_pantalla('pant_inicial');*/
 	}
 
 	//-----------------------------------------------------------------------------------
