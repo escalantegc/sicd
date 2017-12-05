@@ -439,5 +439,14 @@ class dao
   					idlocalidad = $idlocalidad;";
   		return consultar_fuente($sql);
   	}
+
+  	function get_configuracion()
+  	{
+  		$sql ="	SELECT cantidad_max_dias_viatico_mensual
+ 				 FROM 
+ 				 	public.configuracion;";
+ 		return consultar_fuente($sql);
+  	
+  	}
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-
+require_once('dao.php');
 class ei_cuadro_viaticos_salida_html extends toba_ei_cuadro_salida_html
 {
 	//-------------------------------------------------------------------------------
@@ -11,6 +11,7 @@ class ei_cuadro_viaticos_salida_html extends toba_ei_cuadro_salida_html
 	 */
 	function html_cuadro(&$filas)
 	{
+		$configuracion = dao::get_configuracion();
 		//Si existen cortes de control y el layout es tabular, el encabezado de la tabla ya se genero
 		if( ! $this->_cuadro->tabla_datos_es_general() ){
 			$this->html_cuadro_inicio();
@@ -48,7 +49,7 @@ class ei_cuadro_viaticos_salida_html extends toba_ei_cuadro_salida_html
 			$claves = array();
 			for ($i = 0; $i < count($datos); $i++) 
 			{
-				if ($datos[$i]['total_disponible']>=15)
+				if ($datos[$i]['total_disponible']>=$configuracion[0]['cantidad_max_dias_viatico_mensual'])
 				{
 					$claves[] = $i;
 				}	  

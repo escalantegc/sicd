@@ -24,8 +24,8 @@ class ci_listado_estudios extends sicd_ci
 		$reporte='listado_estudio.jasper';
 		$path=toba::proyecto()->get_path().'/exportaciones/'.$reporte;	
 
-		$path_logo1=toba::proyecto()->get_path().'/exportaciones/logo1.jpg';	
-		$path_logo2=toba::proyecto()->get_path().'/exportaciones/logo2.jpg';	
+		$path_logo1=toba::proyecto()->get_path().'/www/logo1.jpg';	
+		$path_logo2=toba::proyecto()->get_path().'/www/logo2.jpg';	
 
 
 
