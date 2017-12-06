@@ -16,14 +16,18 @@ class ei_frm_viatico extends sicd_ei_formulario
 		{$this->objeto_js}.evt__cantidad_dias_reintegro__procesar = function(es_inicial)
 		{
 			dias_reintegro = this.ef('cantidad_dias_reintegro').get_estado();
-			dias_disponible = this.ef('cantidad_dias_disponible').get_estado();
-		
-			if (dias_reintegro > dias_disponible)
+			dias_disponible = this.ef('cantidad_total_dias').get_estado();
+			dias_usados = this.controlador.dep('frm_ml_detalle_dias_viatico').total('cantidad_dias');
+			dias_disponibles_menos_usados = dias_disponible - dias_usados;
+			
+			if (dias_reintegro > dias_disponibles_menos_usados)
 			{
 				alert('No puede reintegrar mas dias de los que tiene disponibles');
 				this.ef('cantidad_dias_reintegro').set_estado(0);
 			} else {
-				dif = dias_disponible -dias_reintegro;
+
+	
+				dif = dias_disponibles_menos_usados - dias_reintegro;
 				this.ef('cantidad_dias_disponible').set_estado(dif)
 			}
 		
