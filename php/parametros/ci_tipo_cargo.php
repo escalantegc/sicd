@@ -1,41 +1,59 @@
 <?php
-class ci_cargos extends sicd_ci
+require_once('dao.php');
+class ci_tipo_cargo extends sicd_ci
 {
-
-	function get_cn()
-	{
-		return $this->controlador()->cn();
-	}
 	protected $s__where;
 	protected $s__datos_filtro;
-
 	//-----------------------------------------------------------------------------------
 	//---- Eventos ----------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
+
+	function evt__procesar()
+	{
+		try{
+			$this->cn()->guardar_dr_parametros();
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
+		} catch( toba_error_db $error){
+			$sql_state= $error->get_sqlstate();
+			
+
+			$mensaje_log= $error->get_mensaje_log();
+			if(strstr($mensaje_log,'tipo_cargo_descripcion_idx'))
+			{
+				toba::notificacion()->agregar("La descripcion del tipo de cargo ya esta registrado.",'info');
+				
+			} 			
+
+		
+			
+		}
+		$this->cn()->resetear_dr_parametros();
+		$this->set_pantalla('pant_inicial');
+	}
+
+	function evt__cancelar()
+	{
+		$this->cn()->resetear_dr_parametros();
+		$this->set_pantalla('pant_inicial');
+	}
 
 	function evt__nuevo()
 	{
 		$this->set_pantalla('pant_edicion');
 	}
-	function evt__volver()
-	{
-		$this->get_cn()->resetear_cursor_dt_cargo_por_persona();
-		$this->set_pantalla('pant_inicial');
-	}
+
 	//-----------------------------------------------------------------------------------
 	//---- cuadro -----------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__cuadro(sicd_ei_cuadro $cuadro)
 	{
-			$datos = $this->get_cn()->get_dt_personal();
-		$where='cargo_por_persona.idpersona ='.$datos['idpersona'];
-	
-		if(isset($this->s__datos_filtro)){
+		if(isset($this->s__datos_filtro))
+		{
 			
-			$datos = dao::get_listado_cargos_por_persona($this->s__where);
+			$datos = dao::get_listado_tipo_cargo($this->s__where);
 		}else{
-			$datos = dao::get_listado_cargos_por_persona();
+			$datos = dao::get_listado_tipo_cargo();
 		}
 
 		$cuadro->set_datos($datos);
@@ -43,9 +61,28 @@ class ci_cargos extends sicd_ci
 
 	function evt__cuadro__seleccion($seleccion)
 	{
-
-		$this->get_cn()->set_cursor_dt_cargo_por_persona($seleccion);
+		$this->cn()->cargar_dt_tipo_cargo($seleccion);
+		$this->cn()->set_cursor_dt_tipo_cargo($seleccion);
 		$this->set_pantalla('pant_edicion');
+	}
+
+	function evt__cuadro__borrar($seleccion)
+	{
+		$this->cn()->cargar_dt_tipo_cargo($seleccion);
+		$this->cn()->eliminar_dt_tipo_cargo($seleccion);
+		try{
+			$this->cn()->guardar_dr_parametros();
+				toba::notificacion()->agregar("Los datos se han borrado correctamente",'info');
+		} catch( toba_error_db $error){
+			$sql_state= $error->get_sqlstate();
+			if($sql_state=='db_23503')
+			{
+				toba::notificacion()->agregar("El tipo de cargo esta siendo referenciado, no puede eliminarlo",'error');
+				
+			} 		
+		}
+		$this->cn()->resetear_dr_parametros();
+		$this->set_pantalla('pant_inicial');
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -77,24 +114,23 @@ class ci_cargos extends sicd_ci
 
 	function conf__frm(sicd_ei_formulario $form)
 	{
-		if ($this->get_cn()->hay_cursor_dt_cargo_por_persona())
+		if ($this->cn()->hay_cursor_dt_tipo_cargo())
 		{
-			$datos = $this->get_cn()->get_dt_cargo_por_persona();
+			$datos = $this->cn()->get_dt_tipo_cargo();
 			$form->set_datos($datos);
 		}
 	}
 
 	function evt__frm__modificacion($datos)
 	{
-		if ($this->get_cn()->hay_cursor_dt_cargo_por_persona())
+		if ($this->cn()->hay_cursor_dt_tipo_cargo())
 		{
-			$this->get_cn()->set_dt_cargo_por_persona($datos);
+			$this->cn()->set_dt_tipo_cargo($datos);
 		} else {
-			$this->get_cn()->agregar_dt_cargo_por_persona($datos);
+			$this->cn()->agregar_dt_tipo_cargo($datos);
 		}
 	}
 
-
-
 }
+
 ?>

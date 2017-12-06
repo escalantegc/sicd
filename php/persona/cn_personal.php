@@ -85,7 +85,7 @@ class cn_personal extends sicd_cn
 	function set_cursor_dt_cargo_por_persona($seleccion)
 	{
 		$id = $this->dep('dr_personal')->tabla('dt_cargo_por_persona')->get_id_fila_condicion($seleccion);
-		$this->dep('dr_personal')->tabla('dt_cargo_por_persona')->set_cursor($id);
+		$this->dep('dr_personal')->tabla('dt_cargo_por_persona')->set_cursor($id[0]);
 	}
 
 	function resetear_cursor_dt_cargo_por_persona()

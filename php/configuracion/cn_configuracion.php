@@ -31,14 +31,18 @@ class cn_configuracion extends sicd_cn
 	//-----------------------------------------------------------------------------------
 	function set_dt_configuracion($datos)
 	{
+		
 		$this->dep('dr_conf')->tabla('dt_configuracion')->set($datos);
 	}	
 
 	function get_dt_configuracion()
 	{
-
+		//$id = $this->dep('dr_conf')->tabla('dt_configuracion')->get_cursor();
+		//$this->dep('dr_conf')->tabla('dt_configuracion')->set_cursor($id);
 		return $this->dep('dr_conf')->tabla('dt_configuracion')->get();
-	}
+	}	
+
+
 	function guardar_dt_configuracion()
 	{
 		$this->dep('dr_conf')->tabla('dt_configuracion')->sincronizar();
@@ -51,6 +55,10 @@ class cn_configuracion extends sicd_cn
 	//-----------------------------------------------------------------------------------
 	//---- DT-CONFIGURACION -----------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
+	function cargar_dt_cabecera()
+	{
+		$this->dep('dr_conf')->tabla('dt_cabecera')->cargar();
+	}
 	function set_dt_cabecera($datos)
 	{
 

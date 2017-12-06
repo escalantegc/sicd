@@ -553,6 +553,112 @@ class cn_parametros extends sicd_cn
 	{
 		$id = $this->dep('dr_parametros')->tabla('dt_estado_civil')->get_id_fila_condicion($seleccion);
 		$this->dep('dr_parametros')->tabla('dt_estado_civil')->eliminar_fila($id[0]);
+	}	
+
+	//-----------------------------------------------------------------------------------
+	//---- DT-TIPO-CARGO	 -----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function cargar_dt_tipo_cargo($seleccion)
+	{
+		if(!$this->dep('dr_parametros')->tabla('dt_tipo_cargo')->esta_cargada())
+		{				// verifica si esta cargada el datos relacion			
+			if(!isset($seleccion))
+			{
+				$this->dep('dr_parametros')->tabla('dt_tipo_cargo')->cargar();					// lee de la BD fisica y carga al datos relacion
+			}else{
+				$this->dep('dr_parametros')->tabla('dt_tipo_cargo')->cargar($seleccion);				// lee de la BD fisica y carga al datos relacion
+			}
+		}
+	}
+	function set_cursor_dt_tipo_cargo($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_tipo_cargo')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_tipo_cargo')->set_cursor($id[0]);
+	}
+
+	function hay_cursor_dt_tipo_cargo()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_tipo_cargo')->hay_cursor();
+	}
+
+	function resetear_cursor_dt_tipo_cargo()
+	{
+		$this->dep('dr_parametros')->tabla('dt_tipo_cargo')->resetear_cursor();
+	}
+
+	function get_dt_tipo_cargo()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_tipo_cargo')->get();
+	}
+
+	function set_dt_tipo_cargo($datos)
+	{
+		$this->dep('dr_parametros')->tabla('dt_tipo_cargo')->set($datos);
+	}
+
+	function agregar_dt_tipo_cargo($datos)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_tipo_cargo')->nueva_fila($datos);
+		$this->dep('dr_parametros')->tabla('dt_tipo_cargo')->set_cursor($id);
+	}	
+
+	function eliminar_dt_tipo_cargo($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_tipo_cargo')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_tipo_cargo')->eliminar_fila($id[0]);
+	}	
+
+	//-----------------------------------------------------------------------------------
+	//---- DT-FUNCION-----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function cargar_dt_funcion($seleccion)
+	{
+		if(!$this->dep('dr_parametros')->tabla('dt_funcion')->esta_cargada())
+		{				// verifica si esta cargada el datos relacion			
+			if(!isset($seleccion))
+			{
+				$this->dep('dr_parametros')->tabla('dt_funcion')->cargar();					// lee de la BD fisica y carga al datos relacion
+			}else{
+				$this->dep('dr_parametros')->tabla('dt_funcion')->cargar($seleccion);				// lee de la BD fisica y carga al datos relacion
+			}
+		}
+	}
+	function set_cursor_dt_funcion($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_funcion')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_funcion')->set_cursor($id[0]);
+	}
+
+	function hay_cursor_dt_funcion()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_funcion')->hay_cursor();
+	}
+
+	function resetear_cursor_dt_funcion()
+	{
+		$this->dep('dr_parametros')->tabla('dt_funcion')->resetear_cursor();
+	}
+
+	function get_dt_funcion()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_funcion')->get();
+	}
+
+	function set_dt_funcion($datos)
+	{
+		$this->dep('dr_parametros')->tabla('dt_funcion')->set($datos);
+	}
+
+	function agregar_dt_funcion($datos)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_funcion')->nueva_fila($datos);
+		$this->dep('dr_parametros')->tabla('dt_funcion')->set_cursor($id);
+	}	
+
+	function eliminar_dt_funcion($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_funcion')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_funcion')->eliminar_fila($id[0]);
 	}
 }
 
