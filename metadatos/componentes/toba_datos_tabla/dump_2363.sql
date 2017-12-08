@@ -72,20 +72,6 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'sicd', --objeto_proyecto
 	'2363', --objeto
-	'882', --col_id
-	'idlocalidad', --columna
-	'E', --tipo
-	'1', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'1', --no_nulo_db
-	'0', --externa
-	'localidad'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'sicd', --objeto_proyecto
-	'2363', --objeto
 	'883', --col_id
 	'idprovincia', --columna
 	'E', --tipo
@@ -125,6 +111,20 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'1', --externa
 	NULL  --tabla
 );
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'sicd', --objeto_proyecto
+	'2363', --objeto
+	'924', --col_id
+	'idlocalidad', --columna
+	'E', --tipo
+	'1', --pk
+	'localidad_idlocalidad_seq', --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'1', --no_nulo_db
+	'0', --externa
+	'localidad'  --tabla
+);
 --- FIN Grupo de desarrollo 0
 
 ------------------------------------------------------------
@@ -138,7 +138,7 @@ INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, t
 	'9', --externa_id
 	'dao', --tipo
 	'1', --sincro_continua
-	'get_pais_localidad', --metodo
+	'get_pais_provincia', --metodo
 	NULL, --clase
 	NULL, --include
 	'13', --punto_montaje
@@ -158,7 +158,7 @@ INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_i
 	'sicd', --objeto_proyecto
 	'2363', --objeto
 	'9', --externa_id
-	'882', --col_id
+	'883', --col_id
 	'0'  --es_resultado
 );
 INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (

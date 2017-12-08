@@ -130,7 +130,7 @@ INSERT INTO apex_objeto_cuadro (objeto_cuadro_proyecto, objeto_cuadro, titulo, s
 	'100%', --ancho
 	'1', --ordenar
 	'1', --paginar
-	'10', --tamano_pagina
+	'100', --tamano_pagina
 	'P', --tipo_paginado
 	'0', --mostrar_total_registros
 	'0', --eof_invisible
@@ -176,7 +176,7 @@ INSERT INTO apex_objeto_cuadro_cc (objeto_cuadro_proyecto, objeto_cuadro, objeto
 	'0', --pie_mostrar_titular
 	'1', --pie_mostrar_titulos
 	NULL, --imp_paginar
-	'1'  --modo_inicio_colapsado
+	'0'  --modo_inicio_colapsado
 );
 INSERT INTO apex_objeto_cuadro_cc (objeto_cuadro_proyecto, objeto_cuadro, objeto_cuadro_cc, identificador, descripcion, orden, columnas_id, columnas_descripcion, pie_contar_filas, pie_mostrar_titular, pie_mostrar_titulos, imp_paginar, modo_inicio_colapsado) VALUES (
 	'sicd', --objeto_cuadro_proyecto
@@ -191,7 +191,7 @@ INSERT INTO apex_objeto_cuadro_cc (objeto_cuadro_proyecto, objeto_cuadro, objeto
 	'0', --pie_mostrar_titular
 	'1', --pie_mostrar_titulos
 	NULL, --imp_paginar
-	'1'  --modo_inicio_colapsado
+	'0'  --modo_inicio_colapsado
 );
 --- FIN Grupo de desarrollo 0
 

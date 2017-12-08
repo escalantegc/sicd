@@ -48,7 +48,9 @@ class dao
   				FROM 
   					public.tipo_documento
   				where
-  					$where;";
+  					$where
+  				order by
+  					descripcion";
   		return consultar_fuente($sql);
 	}
 
@@ -103,7 +105,9 @@ class dao
   				FROM 
   					public.estado_civil	
   				WHERE
-  					$where";
+  					$where
+  				order by
+  					descripcion";
   		return consultar_fuente($sql);	
 	}
 
@@ -118,7 +122,9 @@ class dao
   				FROM 
   					public.tipo_telefono
   				WHERE
-  					$where";
+  					$where
+  				order by
+  					descripcion";
   		return consultar_fuente($sql);	
 	}
 
@@ -177,7 +183,9 @@ class dao
   				FROM 
   					public.funcion
   				WHERE
-  					$where";
+  					$where
+  				order by
+  					descripcion";
   		return consultar_fuente($sql);	
 	}
 
@@ -192,7 +200,9 @@ class dao
   				FROM 
   					public.tipo_cargo
   				WHERE
-  					$where";
+  					$where
+  				order by
+  					descripcion";
   		return consultar_fuente($sql);
 	}
 
@@ -310,7 +320,9 @@ class dao
   				FROM 
   					public.tipo_detalle_viatico
   				WHERE
-  					$where";
+  					$where
+  				order by
+  					descripcion";
   		return consultar_fuente($sql);
   	}  
   	function get_listado_pais($where = null)
@@ -323,7 +335,9 @@ class dao
   						descripcion
   				FROM public.pais
   				WHERE
-  					$where";
+  					$where
+  				order by 
+  					descripcion";
   		return consultar_fuente($sql);
   	}  
 
@@ -340,7 +354,9 @@ class dao
   					public.provincia
   				inner join pais using (idpais)
    				WHERE
-  					$where";
+  					$where
+  				order by 
+  					provincia.descripcion";
   		return consultar_fuente($sql);
   	}  
   	function get_listado_localidad($where = null)
@@ -359,7 +375,9 @@ class dao
   				inner join provincia using (idprovincia)
   				inner join pais using (idpais)
    				WHERE
-  					$where";
+  					$where
+  				order by 
+  					localidad.descripcion";
   		return consultar_fuente($sql);
   	}
 
@@ -370,6 +388,15 @@ class dao
 					public.localidad
 				 inner join provincia using (idprovincia)
 				   where idlocalidad =$idlocalidad";
+
+		return consultar_fuente($sql);
+  	}
+  	function get_pais_provincia($idprovincia)
+  	{
+  		$sql = "SELECT idpais
+				FROM 
+					public.provincia
+				   where idprovincia =$idprovincia";
 
 		return consultar_fuente($sql);
   	}

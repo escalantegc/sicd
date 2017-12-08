@@ -54,6 +54,25 @@ class ci_viaticos extends sicd_ci
 		$this->get_cn()->set_cursor_dt_viatico($seleccion);
 		$this->set_pantalla('pant_edicion');
 	}
+	function evt__cuadro__borrar($seleccion)
+	{
+			$this->get_cn()->eliminar_dt_viatico($seleccion);
+
+			try{
+			$this->get_cn()->guardar_dr_personal();
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
+		} catch( toba_error_db $error){
+			$sql_state= $error->get_sqlstate();
+			if($sql_state=='db_23503'){
+				toba::notificacion()->agregar("El viatico esta siendo referenciado, no puede eliminarlo",'error');
+				
+			}else{
+				throw $error;
+			}
+		}
+
+	}
+
 
 	//-----------------------------------------------------------------------------------
 	//---- filtro -----------------------------------------------------------------------
@@ -133,6 +152,7 @@ class ci_viaticos extends sicd_ci
 	{
 		$this->get_cn()->procesar_dt_detalle_dias_viatico($datos);
 	}
+
 
 
 

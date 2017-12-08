@@ -326,7 +326,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'828', --objeto_cuadro_col
 	'fecha_nacimiento', --clave
 	'5', --orden
-	'Fecha acimiento', --titulo
+	'Fecha nacimiento', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
 	'60', --ancho
