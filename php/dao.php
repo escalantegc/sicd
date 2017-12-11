@@ -50,6 +50,7 @@ class dao
   				where
   					$where
   				order by
+  					sigla,
   					descripcion";
   		return consultar_fuente($sql);
 	}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_estudio" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
-	<property name="ireport.zoom" value="7.0"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1280"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
@@ -156,44 +156,44 @@ order by
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="28" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="1" y="5" width="100" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
+				<reportElement x="1" y="3" width="100" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{persona}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="105" y="5" width="69" height="20" uuid="f7dfe77a-9a44-4168-8f4c-b3dca8a0b2ce"/>
+				<reportElement x="105" y="3" width="69" height="20" uuid="f7dfe77a-9a44-4168-8f4c-b3dca8a0b2ce"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nro_documento}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="179" y="6" width="100" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
+				<reportElement x="179" y="3" width="100" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="284" y="5" width="75" height="20" uuid="877be9d9-9c10-4a39-af02-99a07bf1b628"/>
+				<reportElement x="284" y="3" width="75" height="20" uuid="877be9d9-9c10-4a39-af02-99a07bf1b628"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nivel_estudio}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="366" y="6" width="198" height="20" uuid="90ff6c9b-b8af-4084-af57-94a39e45e0a7"/>
+				<reportElement x="366" y="3" width="198" height="20" uuid="90ff6c9b-b8af-4084-af57-94a39e45e0a7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="575" y="5" width="228" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
+				<reportElement x="575" y="3" width="228" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
