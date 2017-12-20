@@ -227,12 +227,12 @@ class dao
 						cantidad_horas, 
 					    (sumas_horas_segun_tipo(cargo_por_persona.idtipo_hora)) as total_horas,
 					    --(contar_cargos_segun_tipo(cargo_por_persona.idtipo_cargo)) as cantidad_cargos,
-					    --(contar_cargos()) as cantidad_cargos,
-					    (contar_cargos_segun_tipo_jerarquico(tipo_cargo.jerarquico))  as cantidad_cargos,
+					    (contar_cargos()) as cantidad_cargos,
+					    --(contar_cargos_segun_tipo_jerarquico(tipo_cargo.jerarquico))  as cantidad_cargos,
 					    tipo_cargo.jerarquico,
 						fecha_fin, 
 						activo,
-						(case when idtipo_cargo is null then 'Bloque 2' else 'Bloque 1' end ) as bloque
+						(case when bloque = 'bloque2' then 'Bloque 2' else 'Bloque 1' end ) as bloque
 				FROM 
 					cargo_por_persona
 				  inner join entidad  using(identidad)

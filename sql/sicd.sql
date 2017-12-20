@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.9
 -- Dumped by pg_dump version 9.5.9
 
--- Started on 2017-12-20 19:01:12 ART
+-- Started on 2017-12-20 20:39:56 ART
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -46,7 +46,8 @@ DECLARE
 	total numeric;
 BEGIN
     total := (SELECT count(idcargo_por_persona) as cantidad
-	      FROM cargo_por_persona) ;
+	      FROM cargo_por_persona
+	      where activo = true) ;
     
     RETURN total;
 END;
@@ -182,7 +183,8 @@ CREATE TABLE cargo_por_persona (
     activo boolean DEFAULT true NOT NULL,
     idtipo_hora integer,
     tipo character(5),
-    idcargo_por_persona integer NOT NULL
+    idcargo_por_persona integer NOT NULL,
+    bloque character(7)
 );
 
 
@@ -1100,15 +1102,15 @@ COPY cabecera (logo1, logo2, nombre, descripcion) FROM stdin;
 -- Data for Name: cargo_por_persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY cargo_por_persona (idpersona, identidad, idtipo_cargo, cantidad_horas, fecha_inicio, fecha_fin, activo, idtipo_hora, tipo, idcargo_por_persona) FROM stdin;
-1	2	\N	10	\N	\N	t	2	horas	1
-1	2	\N	2	\N	\N	t	1	horas	6
-1	2	\N	4	2017-12-18	2017-12-20	f	1	horas	4
-1	2	\N	1	\N	\N	t	2	horas	5
-1	1	5	0	2017-12-18	2017-12-20	t	\N	cargo	2
-1	2	4	0	\N	\N	t	\N	cargo	3
-1	2	3	\N	\N	\N	f	\N	cargo	10
-1	1	5	\N	\N	\N	t	\N	cargo	11
+COPY cargo_por_persona (idpersona, identidad, idtipo_cargo, cantidad_horas, fecha_inicio, fecha_fin, activo, idtipo_hora, tipo, idcargo_por_persona, bloque) FROM stdin;
+1	2	\N	10	\N	\N	t	2	horas	1	bloque2
+1	2	\N	2	\N	\N	t	1	horas	6	bloque2
+1	2	\N	4	2017-12-18	2017-12-20	f	1	horas	4	bloque2
+1	2	\N	6	\N	\N	t	2	horas	5	bloque2
+1	2	3	\N	\N	\N	f	\N	cargo	10	bloque1
+1	1	5	0	2017-12-18	2017-12-20	t	\N	cargo	2	bloque1
+1	1	5	\N	\N	\N	f	\N	cargo	11	bloque1
+1	2	4	0	\N	\N	f	\N	cargo	3	bloque1
 \.
 
 
@@ -2004,8 +2006,8 @@ SELECT pg_catalog.setval('tipo_documento_idtipo_documento_seq', 8, true);
 --
 
 COPY tipo_hora (idtipo_hora, descripcion, max_hs_nivel_medio, max_hs_nivel_superior) FROM stdin;
-1	NIVEL SUPERIOR                                    	0	6
 2	NIVEL MEDIO                                       	12	0
+1	NIVEL SUPERIOR                                    	0	15
 \.
 
 
@@ -2594,7 +2596,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2017-12-20 19:01:13 ART
+-- Completed on 2017-12-20 20:39:56 ART
 
 --
 -- PostgreSQL database dump complete

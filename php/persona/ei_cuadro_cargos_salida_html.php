@@ -68,7 +68,7 @@ class ei_cuadro_cargos_salida_html extends toba_ei_cuadro_salida_html
 						}
 					}
 					
-					if (isset($datos[$i]['idtipo_cargo']))
+					/*if (isset($datos[$i]['idtipo_cargo']))
 					{
 						if (isset($datos[$i]['jerarquico'])==1)
 						{
@@ -88,7 +88,7 @@ class ei_cuadro_cargos_salida_html extends toba_ei_cuadro_salida_html
 
 					
 						
-					}	
+					}	*/
 					
 				}
 
