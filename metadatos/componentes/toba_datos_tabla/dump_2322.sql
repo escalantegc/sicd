@@ -195,4 +195,18 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'0', --externa
 	'cargo_por_persona'  --tabla
 );
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'sicd', --objeto_proyecto
+	'2322', --objeto
+	'936', --col_id
+	'idcargo_por_persona', --columna
+	'E', --tipo
+	'1', --pk
+	'cargo_por_persona_idcargo_por_persona_seq', --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'1', --no_nulo_db
+	'0', --externa
+	'cargo_por_persona'  --tabla
+);
 --- FIN Grupo de desarrollo 0

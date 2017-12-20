@@ -214,14 +214,22 @@ class dao
 		{
 			$where = '1 = 1';
 		}
-		$sql = "SELECT  cargo_por_persona.idpersona, 
+		$sql = "SELECT  cargo_por_persona.idcargo_por_persona,
+						cargo_por_persona.idpersona, 
 						cargo_por_persona.identidad, 
 						cargo_por_persona.idtipo_cargo, 
 						(case when  tipo_cargo.descripcion is null then tipo_hora.descripcion else tipo_cargo.descripcion end) as cargo,
 						cargo_por_persona.idtipo_hora, 
+						tipo_cargo.cantidad_cargos as max_cargos,
 						entidad.nombre as entidad,
+						tipo_hora.max_hs_nivel_medio,
+						tipo_hora.max_hs_nivel_superior,
 						cantidad_horas, 
-						fecha_inicio, 
+					    (sumas_horas_segun_tipo(cargo_por_persona.idtipo_hora)) as total_horas,
+					    --(contar_cargos_segun_tipo(cargo_por_persona.idtipo_cargo)) as cantidad_cargos,
+					    --(contar_cargos()) as cantidad_cargos,
+					    (contar_cargos_segun_tipo_jerarquico(tipo_cargo.jerarquico))  as cantidad_cargos,
+					    tipo_cargo.jerarquico,
 						fecha_fin, 
 						activo,
 						(case when idtipo_cargo is null then 'Bloque 2' else 'Bloque 1' end ) as bloque
@@ -232,7 +240,10 @@ class dao
 				  left outer join tipo_hora  using(idtipo_hora)
 
 				  WHERE
-  					$where";
+  					$where
+  					order by 
+  						bloque,
+  						cargo_por_persona.idtipo_hora";
   		return consultar_fuente($sql);
 	}
 

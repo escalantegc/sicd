@@ -1,4 +1,5 @@
 <?php
+require_once('persona/ei_cuadro_cargos_salida_html.php');
 class ci_cargos extends sicd_ci
 {
 
@@ -28,6 +29,7 @@ class ci_cargos extends sicd_ci
 
 	function conf__cuadro(sicd_ei_cuadro $cuadro)
 	{
+		$cuadro->set_manejador_salida('html', 'ei_cuadro_cargos_salida_html');
 			$datos = $this->get_cn()->get_dt_personal();
 		$where='cargo_por_persona.idpersona ='.$datos['idpersona'];
 	
