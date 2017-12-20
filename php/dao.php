@@ -161,7 +161,7 @@ class dao
 
 		$sql = "SELECT idnivel_estudio, 
 						descripcion, 
-						maximo_horas,
+						nivel,
 						orden
   				FROM 
   				public.nivel_estudio
@@ -197,7 +197,8 @@ class dao
 			$where = '1 = 1';
 		}
 		$sql ="SELECT 	idtipo_cargo, 
-						descripcion
+						descripcion,
+						cantidad_cargos
   				FROM 
   					public.tipo_cargo
   				WHERE
@@ -214,24 +215,22 @@ class dao
 			$where = '1 = 1';
 		}
 		$sql = "SELECT  cargo_por_persona.idpersona, 
-						cargo_por_persona.idfuncion, 
 						cargo_por_persona.identidad, 
 						cargo_por_persona.idtipo_cargo, 
-						cargo_por_persona.idnivel_estudio, 
-						tipo_cargo.descripcion as cargo,
-						funcion.descripcion as funcion,
-						nivel_estudio.descripcion as nivel_estudio,
+						(case when  tipo_cargo.descripcion is null then tipo_hora.descripcion else tipo_cargo.descripcion end) as cargo,
+						cargo_por_persona.idtipo_hora, 
 						entidad.nombre as entidad,
 						cantidad_horas, 
 						fecha_inicio, 
 						fecha_fin, 
-						activo
+						activo,
+						(case when idtipo_cargo is null then 'Bloque 2' else 'Bloque 1' end ) as bloque
 				FROM 
 					cargo_por_persona
-				  inner join funcion  using(idfuncion)
 				  inner join entidad  using(identidad)
-				  inner join tipo_cargo  using(idtipo_cargo)
-				  inner join nivel_estudio using(idnivel_estudio)
+				  left outer join tipo_cargo  using(idtipo_cargo)
+				  left outer join tipo_hora  using(idtipo_hora)
+
 				  WHERE
   					$where";
   		return consultar_fuente($sql);
@@ -475,6 +474,25 @@ class dao
  				 	public.configuracion;";
  		return consultar_fuente($sql);
   	
+  	}
+
+  	function get_listado_tipo_hora($where = null)
+	{
+		if (!isset($where))
+		{
+			$where = '1 = 1';
+		}
+  		$sql = "SELECT 	idtipo_hora, 
+  						descripcion, 
+  						max_hs_nivel_medio, 
+  						max_hs_nivel_superior
+  				FROM 
+  					public.tipo_hora
+  				where 
+  					$where
+  				order by
+  					descripcion";
+  		return consultar_fuente($sql);			
   	}
 
   

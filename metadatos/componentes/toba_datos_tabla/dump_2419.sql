@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[2378]--  - dr_personal - dt_nivel_estudio 
+--[2419]--  - dr_parametros - dt_tipo_hora 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -9,7 +9,7 @@
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'sicd', --proyecto
-	'2378', --objeto
+	'2419', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
@@ -20,7 +20,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'- dr_personal - dt_nivel_estudio', --nombre
+	'- dr_parametros - dt_tipo_hora', --nombre
 	NULL, --titulo
 	NULL, --colapsable
 	NULL, --descripcion
@@ -36,7 +36,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2017-11-15 17:54:48', --creacion
+	'2017-12-18 21:05:50', --creacion
 	NULL  --posicion_botonera
 );
 --- FIN Grupo de desarrollo 0
@@ -46,14 +46,14 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 ------------------------------------------------------------
 INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, min_registros, punto_montaje, ap, ap_clase, ap_archivo, tabla, tabla_ext, alias, modificar_claves, fuente_datos_proyecto, fuente_datos, permite_actualizacion_automatica, esquema, esquema_ext) VALUES (
 	'sicd', --objeto_proyecto
-	'2378', --objeto
+	'2419', --objeto
 	NULL, --max_registros
 	NULL, --min_registros
 	'13', --punto_montaje
 	'1', --ap
 	NULL, --ap_clase
 	NULL, --ap_archivo
-	'nivel_estudio', --tabla
+	'tipo_hora', --tabla
 	NULL, --tabla_ext
 	NULL, --alias
 	'0', --modificar_claves
@@ -71,72 +71,58 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'sicd', --objeto_proyecto
-	'2378', --objeto
-	'890', --col_id
-	'idnivel_estudio', --columna
+	'2419', --objeto
+	'930', --col_id
+	'idtipo_hora', --columna
 	'E', --tipo
 	'1', --pk
-	'nivel_estudio_idnivel_estudio_seq', --secuencia
+	'tipo_hora_idtipo_hora_seq', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
-	'0', --externa
-	'nivel_estudio'  --tabla
+	NULL, --externa
+	'tipo_hora'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'sicd', --objeto_proyecto
-	'2378', --objeto
-	'891', --col_id
+	'2419', --objeto
+	'931', --col_id
 	'descripcion', --columna
 	'C', --tipo
 	'0', --pk
 	'', --secuencia
 	'50', --largo
 	NULL, --no_nulo
-	'1', --no_nulo_db
-	'0', --externa
-	'nivel_estudio'  --tabla
+	'0', --no_nulo_db
+	NULL, --externa
+	'tipo_hora'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'sicd', --objeto_proyecto
-	'2378', --objeto
-	'892', --col_id
-	'maximo_horas', --columna
+	'2419', --objeto
+	'932', --col_id
+	'max_hs_nivel_medio', --columna
 	'N', --tipo
 	'0', --pk
 	'', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
-	'1', --no_nulo_db
-	'0', --externa
-	'nivel_estudio'  --tabla
+	'0', --no_nulo_db
+	NULL, --externa
+	'tipo_hora'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'sicd', --objeto_proyecto
-	'2378', --objeto
-	'906', --col_id
-	'orden', --columna
-	'E', --tipo
+	'2419', --objeto
+	'933', --col_id
+	'max_hs_nivel_superior', --columna
+	'N', --tipo
 	'0', --pk
 	'', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	'0', --externa
-	'nivel_estudio'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'sicd', --objeto_proyecto
-	'2378', --objeto
-	'929', --col_id
-	'nivel', --columna
-	'C', --tipo
-	'0', --pk
-	'', --secuencia
-	'8', --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	'0', --externa
-	'nivel_estudio'  --tabla
+	NULL, --externa
+	'tipo_hora'  --tabla
 );
 --- FIN Grupo de desarrollo 0

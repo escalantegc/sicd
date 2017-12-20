@@ -86,20 +86,6 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'sicd', --objeto_proyecto
 	'2322', --objeto
-	'847', --col_id
-	'idfuncion', --columna
-	'C', --tipo
-	'1', --pk
-	'', --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'1', --no_nulo_db
-	'0', --externa
-	'cargo_por_persona'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'sicd', --objeto_proyecto
-	'2322', --objeto
 	'848', --col_id
 	'identidad', --columna
 	'E', --tipo
@@ -118,20 +104,6 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'idtipo_cargo', --columna
 	'C', --tipo
 	'1', --pk
-	'', --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'1', --no_nulo_db
-	'0', --externa
-	'cargo_por_persona'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'sicd', --objeto_proyecto
-	'2322', --objeto
-	'850', --col_id
-	'idnivel_estudio', --columna
-	'E', --tipo
-	'0', --pk
 	'', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
@@ -192,6 +164,34 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
+	'0', --externa
+	'cargo_por_persona'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'sicd', --objeto_proyecto
+	'2322', --objeto
+	'934', --col_id
+	'idtipo_hora', --columna
+	'E', --tipo
+	'0', --pk
+	'', --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'cargo_por_persona'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'sicd', --objeto_proyecto
+	'2322', --objeto
+	'935', --col_id
+	'tipo', --columna
+	'C', --tipo
+	'0', --pk
+	'', --secuencia
+	'5', --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
 	'0', --externa
 	'cargo_por_persona'  --tabla
 );

@@ -198,9 +198,9 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'sicd', --objeto_cuadro_proyecto
 	'2376', --objeto_cuadro
 	'861', --objeto_cuadro_col
-	'maximo_horas', --clave
+	'nivel', --clave
 	'2', --orden
-	'Maximo Horas', --titulo
+	'Nivel', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
 	NULL, --ancho

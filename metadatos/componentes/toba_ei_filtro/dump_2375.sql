@@ -190,30 +190,30 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'40', --objeto_ei_filtro_col
 	'2375', --objeto_ei_filtro
 	'sicd', --objeto_ei_filtro_proyecto
-	'numero', --tipo
-	'maximo_horas', --nombre
-	'maximo_horas', --expresion
-	'Maximo Horas', --etiqueta
+	'opciones', --tipo
+	'nivel', --nombre
+	'nivel', --expresion
+	'Nivel', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
 	'1', --inicial
 	'2', --orden
 	NULL, --estado_defecto
 	'0', --opciones_es_multiple
-	NULL, --opciones_ef
+	'ef_combo', --opciones_ef
 	NULL, --carga_metodo
 	NULL, --carga_clase
 	NULL, --carga_include
 	NULL, --carga_dt
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
-	NULL, --carga_fuente
-	NULL, --carga_lista
+	'sicd', --carga_fuente
+	'superior/Superior,inferior/Inferior', --carga_lista
 	NULL, --carga_col_clave
 	NULL, --carga_col_desc
-	'0', --carga_permite_no_seteado
-	NULL, --carga_no_seteado
-	NULL, --carga_no_seteado_ocultar
+	'1', --carga_permite_no_seteado
+	'--Seleccione--', --carga_no_seteado
+	'0', --carga_no_seteado_ocultar
 	NULL, --carga_maestros
 	NULL, --edit_tamano
 	NULL, --edit_maximo
@@ -230,7 +230,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	NULL, --popup_carga_desc_clase
 	NULL, --popup_carga_desc_include
 	NULL, --popup_puede_borrar_estado
-	NULL, --punto_montaje
+	'13', --punto_montaje
 	NULL, --check_valor_si
 	NULL, --check_valor_no
 	NULL, --check_desc_si

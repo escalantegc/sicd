@@ -660,6 +660,59 @@ class cn_parametros extends sicd_cn
 		$id = $this->dep('dr_parametros')->tabla('dt_funcion')->get_id_fila_condicion($seleccion);
 		$this->dep('dr_parametros')->tabla('dt_funcion')->eliminar_fila($id[0]);
 	}
+
+	//-----------------------------------------------------------------------------------
+	//---- DT-TIPO-HORA-----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function cargar_dt_tipo_hora($seleccion)
+	{
+		if(!$this->dep('dr_parametros')->tabla('dt_tipo_hora')->esta_cargada())
+		{				// verifica si esta cargada el datos relacion			
+			if(!isset($seleccion))
+			{
+				$this->dep('dr_parametros')->tabla('dt_tipo_hora')->cargar();					// lee de la BD fisica y carga al datos relacion
+			}else{
+				$this->dep('dr_parametros')->tabla('dt_tipo_hora')->cargar($seleccion);				// lee de la BD fisica y carga al datos relacion
+			}
+		}
+	}
+	function set_cursor_dt_tipo_hora($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_tipo_hora')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_tipo_hora')->set_cursor($id[0]);
+	}
+
+	function hay_cursor_dt_tipo_hora()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_tipo_hora')->hay_cursor();
+	}
+
+	function resetear_cursor_dt_tipo_hora()
+	{
+		$this->dep('dr_parametros')->tabla('dt_tipo_hora')->resetear_cursor();
+	}
+
+	function get_dt_tipo_hora()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_tipo_hora')->get();
+	}
+
+	function set_dt_tipo_hora($datos)
+	{
+		$this->dep('dr_parametros')->tabla('dt_tipo_hora')->set($datos);
+	}
+
+	function agregar_dt_tipo_hora($datos)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_tipo_hora')->nueva_fila($datos);
+		$this->dep('dr_parametros')->tabla('dt_tipo_hora')->set_cursor($id);
+	}	
+
+	function eliminar_dt_tipo_hora($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_tipo_hora')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_tipo_hora')->eliminar_fila($id[0]);
+	}
 }
 
 ?>
