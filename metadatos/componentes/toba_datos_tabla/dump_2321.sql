@@ -184,20 +184,6 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'sicd', --objeto_proyecto
 	'2321', --objeto
-	'879', --col_id
-	'mes', --columna
-	'E', --tipo
-	'0', --pk
-	'', --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	'0', --externa
-	'viatico'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'sicd', --objeto_proyecto
-	'2321', --objeto
 	'880', --col_id
 	'cantidad_dias_reintegro', --columna
 	'E', --tipo
@@ -232,6 +218,20 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'0', --pk
 	'', --secuencia
 	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'viatico'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'sicd', --objeto_proyecto
+	'2321', --objeto
+	'939', --col_id
+	'mes', --columna
+	'C', --tipo
+	'0', --pk
+	'', --secuencia
+	'2', --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
