@@ -27,7 +27,7 @@ class ci_listado_viaticos extends sicd_ci
 
 		$report->set_path_reporte($path);
 		//Parametro para el titulo
-		$report->set_parametro('titulo','S','LISTADO bASICO VIATICOS ');
+		$report->set_parametro('titulo','S','LISTADO BASICO VIATICOS ');
 		//Parametros para el encabezado del titulo
 		$report->set_parametro('logo1','S',$path_logo1);
 		$report->set_parametro('logo2','S',$path_logo2);
