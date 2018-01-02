@@ -30,14 +30,15 @@ class ci_cargos extends sicd_ci
 	function conf__cuadro(sicd_ei_cuadro $cuadro)
 	{
 		$cuadro->set_manejador_salida('html', 'ei_cuadro_cargos_salida_html');
-			$datos = $this->get_cn()->get_dt_personal();
-		$where='cargo_por_persona.idpersona ='.$datos['idpersona'];
+		$datos = $this->get_cn()->get_dt_personal();
+		$where = 'cargo_por_persona.idpersona ='.$datos['idpersona'];
 	
 		if(isset($this->s__datos_filtro)){
-			
-			$datos = dao::get_listado_cargos_por_persona($this->s__where);
+			$where += 'and '. $this->s__where;
+
+			$datos = dao::get_listado_cargos_por_persona($where);
 		}else{
-			$datos = dao::get_listado_cargos_por_persona();
+			$datos = dao::get_listado_cargos_por_persona($where);
 		}
 
 		$cuadro->set_datos($datos);
@@ -48,6 +49,24 @@ class ci_cargos extends sicd_ci
 
 		$this->get_cn()->set_cursor_dt_cargo_por_persona($seleccion);
 		$this->set_pantalla('pant_edicion');
+	}
+
+	function evt__cuadro__borrar($seleccion)
+	{
+		$this->get_cn()->eliminar_dt_cargo_por_persona($seleccion);
+
+		try{
+			$this->get_cn()->guardar_dr_personal();
+				toba::notificacion()->agregar("Los datos se han guardado correctamente",'info');
+		} catch( toba_error_db $error){
+			$sql_state= $error->get_sqlstate();
+			if($sql_state=='db_23503'){
+				toba::notificacion()->agregar("El cargo esta siendo referenciado, no puede eliminarlo",'error');
+				
+			}else{
+				throw $error;
+			}
+		}
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -95,6 +114,8 @@ class ci_cargos extends sicd_ci
 			$this->get_cn()->agregar_dt_cargo_por_persona($datos);
 		}
 	}
+
+
 
 
 

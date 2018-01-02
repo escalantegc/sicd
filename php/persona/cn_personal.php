@@ -112,7 +112,7 @@ class cn_personal extends sicd_cn
 	function eliminar_dt_cargo_por_persona($seleccion)
 	{
 		$id = $this->dep('dr_personal')->tabla('dt_cargo_por_persona')->get_id_fila_condicion($seleccion);
-		$this->dep('dr_personal')->tabla('dt_cargo_por_persona')->eliminar_fila($id);
+		$this->dep('dr_personal')->tabla('dt_cargo_por_persona')->eliminar_fila($id[0]);
 	}	
 
 	function hay_cursor_dt_cargo_por_persona()
