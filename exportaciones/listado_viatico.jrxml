@@ -93,7 +93,7 @@ order by
 			</textField>
 			<textField>
 				<reportElement x="85" y="47" width="128" height="20" uuid="02bd12fa-9737-4749-b38e-304be703d52d"/>
-				<textFieldExpression><![CDATA[($P{mes}.toString().equals("") ?"TODOS":$P{mes})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($P{mes}.toString().equals("%%") ?"TODOS":$P{mes})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="357" y="24" width="198" height="20" uuid="97aa7683-e3fd-4457-ac01-d331696a8edb"/>
@@ -115,12 +115,12 @@ order by
 				<text><![CDATA[Mes del Viatico]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="283" y="74" width="101" height="20" uuid="486740c4-c512-4ac8-a063-02132352b27a"/>
+				<reportElement x="283" y="74" width="100" height="20" uuid="486740c4-c512-4ac8-a063-02132352b27a"/>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Cantiidad utilizada]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="402" y="74" width="122" height="20" uuid="a0e3fc24-d8f2-4db2-8b18-24015356c5d5"/>
+				<reportElement x="402" y="74" width="110" height="20" uuid="a0e3fc24-d8f2-4db2-8b18-24015356c5d5"/>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Cantidad reintegrado]]></text>
 			</staticText>
@@ -161,15 +161,15 @@ order by
 				<textFieldExpression><![CDATA[$F{nro_documento}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="179" y="3" width="100" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
-				<textElement>
+				<reportElement x="179" y="3" width="50" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
+				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="284" y="3" width="118" height="20" uuid="877be9d9-9c10-4a39-af02-99a07bf1b628"/>
-				<textElement>
+				<reportElement x="284" y="3" width="50" height="20" uuid="877be9d9-9c10-4a39-af02-99a07bf1b628"/>
+				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_utilizada}]]></textFieldExpression>
@@ -178,8 +178,8 @@ order by
 				<reportElement key="line" x="0" y="1" width="550" height="1" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="402" y="3" width="118" height="20" uuid="8bf673ea-2135-42ba-9ef9-3ae2c8a660cf"/>
-				<textElement>
+				<reportElement x="402" y="3" width="55" height="20" uuid="8bf673ea-2135-42ba-9ef9-3ae2c8a660cf"/>
+				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_reintegrado}]]></textFieldExpression>
