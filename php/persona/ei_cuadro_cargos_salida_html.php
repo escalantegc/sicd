@@ -49,7 +49,7 @@ class ei_cuadro_cargos_salida_html extends toba_ei_cuadro_salida_html
 			$claves = array();
 			for ($i = 0; $i < count($datos); $i++) 
 			{
-				if ($datos[$i]['activo']==1)
+				if ($datos[$i]['estado']=='ACTIVO')
 				{
 					if ($datos[$i]['idtipo_hora']==2)
 					{

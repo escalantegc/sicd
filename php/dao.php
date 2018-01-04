@@ -230,9 +230,13 @@ class dao
 					    (contar_cargos()) as cantidad_cargos,
 					    --(contar_cargos_segun_tipo_jerarquico(tipo_cargo.jerarquico))  as cantidad_cargos,
 					    tipo_cargo.jerarquico,
+						fecha_inicio,
 						fecha_fin, 
+						(case when activo = true then 'ACTIVO' else 'INACTIVO' end) as estado, 
+						(case when bloque = 'bloque2' then 'Bloque 2' else 'Bloque 1' end ) as bloque,
+						observaciones,
 						activo,
-						(case when bloque = 'bloque2' then 'Bloque 2' else 'Bloque 1' end ) as bloque
+						historico
 				FROM 
 					cargo_por_persona
 				  inner join entidad  using(identidad)
@@ -240,10 +244,55 @@ class dao
 				  left outer join tipo_hora  using(idtipo_hora)
 
 				  WHERE
+				  	historico = false and
   					$where
   					order by 
   						bloque,
+  						activo desc,
+  						fecha_inicio,
   						cargo_por_persona.idtipo_hora";
+  		return consultar_fuente($sql);
+	}	
+
+	function get_listado_cargos_por_persona_historico($where = null)
+	{
+		if (!isset($where))
+		{
+			$where = '1 = 1';
+		}
+		$sql = "SELECT  cargo_por_persona.idcargo_por_persona,
+						cargo_por_persona.idpersona, 
+						cargo_por_persona.identidad, 
+						cargo_por_persona.idtipo_cargo, 
+						(case when  tipo_cargo.descripcion is null then tipo_hora.descripcion else tipo_cargo.descripcion end) as cargo,
+						cargo_por_persona.idtipo_hora, 
+						tipo_cargo.cantidad_cargos as max_cargos,
+						entidad.nombre as entidad,
+						tipo_hora.max_hs_nivel_medio,
+						tipo_hora.max_hs_nivel_superior,
+						cantidad_horas, 
+					    (sumas_horas_segun_tipo(cargo_por_persona.idtipo_hora)) as total_horas,
+					    --(contar_cargos_segun_tipo(cargo_por_persona.idtipo_cargo)) as cantidad_cargos,
+					    (contar_cargos()) as cantidad_cargos,
+					    --(contar_cargos_segun_tipo_jerarquico(tipo_cargo.jerarquico))  as cantidad_cargos,
+					    tipo_cargo.jerarquico,
+						fecha_inicio,
+						fecha_fin, 
+						(case when activo = true then 'ACTIVO' else 'INACTIVO' end) as estado, 
+						(case when bloque = 'bloque2' then 'Bloque 2' else 'Bloque 1' end ) as bloque,
+						observaciones,
+						historico
+				FROM 
+					cargo_por_persona
+				  inner join entidad  using(identidad)
+				  left outer join tipo_cargo  using(idtipo_cargo)
+				  left outer join tipo_hora  using(idtipo_hora)
+
+				  WHERE
+				  	historico = true and
+  					$where
+  					order by 
+  						fecha_inicio";
   		return consultar_fuente($sql);
 	}
 

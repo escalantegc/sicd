@@ -223,4 +223,32 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'0', --externa
 	'cargo_por_persona'  --tabla
 );
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'sicd', --objeto_proyecto
+	'2322', --objeto
+	'941', --col_id
+	'historico', --columna
+	'L', --tipo
+	'0', --pk
+	'', --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'cargo_por_persona'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'sicd', --objeto_proyecto
+	'2322', --objeto
+	'942', --col_id
+	'observaciones', --columna
+	'X', --tipo
+	'0', --pk
+	'', --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'cargo_por_persona'  --tabla
+);
 --- FIN Grupo de desarrollo 0
