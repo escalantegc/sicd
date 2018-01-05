@@ -12,9 +12,9 @@ class ei_cuadro_cargos extends sicd_ei_cuadro
 		}
 	}
 
-	
+	/*
 
-	function sumarizar_cc__estado__horas($filas)
+	function sumarizar_cc__estado__total($filas)
 	{
 		$total = 0;
 		foreach ($filas as $fila) {
@@ -26,14 +26,14 @@ class ei_cuadro_cargos extends sicd_ei_cuadro
 		}
 		$resultado = $total;
 
-		//echo "<strong>Cantidad Total de Horas</strong>: $resultado ";
+		echo "<strong>Cantidad Total de Horas</strong>: $resultado ";
 		return number_format($resultado, 1, ',', '.');
 	}
 
-	
+	*/
 
 	//---- Configuracion de cortes de control -------------------------------------------
-
+/*
 	function html_cabecera_cc_contenido__estado(&$nodo)
 	{
 		$zona = toba::escaper()->escapeHtml($nodo['descripcion']['estado']);
@@ -63,7 +63,6 @@ class ei_cuadro_cargos extends sicd_ei_cuadro
 		$promedio = $escapador->escapeHtml($resultado);
 		//$resultado = number_format($promedio, 2, ',', '.');
 		echo "Cantidad de horas: <strong>$promedio</strong>.";
-	}
-
+	}*/
 }
 ?>

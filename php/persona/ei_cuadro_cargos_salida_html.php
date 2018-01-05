@@ -51,28 +51,25 @@ class ei_cuadro_cargos_salida_html extends toba_ei_cuadro_salida_html
 			{
 				if ($datos[$i]['estado']=='ACTIVO')
 				{
-					if ($datos[$i]['idtipo_hora']==2)
+					if ($datos[$i]['tipo']=='horas')
 					{
-						if ($datos[$i]['total_horas']>$datos[$i]['max_hs_nivel_medio'])
+						if ($datos[$i]['cantidad_total_horas']>21)
 						{
 							$claves[] = $i;
+						} else {
+							if ($datos[$i]['idtipo_hora']==1)
+							{
+								if ($datos[$i]['total_horas']>$datos[$i]['max_hs_nivel_superior'])
+								{
+									$claves[] = $i;
+								}
+							}
 						}
 
-					} 
+					} else {				
 
-					if ($datos[$i]['idtipo_hora']==1)
-					{
-						if ($datos[$i]['total_horas']>$datos[$i]['max_hs_nivel_superior'])
-						{
-							$claves[] = $i;
-						}
-					}
-					
-					/*if (isset($datos[$i]['idtipo_cargo']))
-					{
 						if (isset($datos[$i]['jerarquico'])==1)
 						{
-					
 							if ($datos[$i]['cantidad_cargos']>$datos[$i]['max_cargos'])
 							{
 								$claves[] = $i;
@@ -85,10 +82,7 @@ class ei_cuadro_cargos_salida_html extends toba_ei_cuadro_salida_html
 								$claves[] = $i;
 							}
 						}						
-
-					
-						
-					}	*/
+					}	
 					
 				}
 
