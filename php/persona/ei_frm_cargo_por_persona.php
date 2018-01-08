@@ -12,24 +12,29 @@ class ei_frm_cargo_por_persona extends sicd_ei_formulario
 		
 		{$this->objeto_js}.evt__tipo__procesar = function(es_inicial)
 		{
-
-			t = this.ef('tipo').get_estado();
-			if (t=='cargo')
+			if (this.ef('tipo').tiene_estado())
 			{
-				this.ef('idtipo_cargo').mostrar();
-				this.ef('idtipo_hora').ocultar();
-				this.ef('cantidad_horas').set_estado(21);
-				this.ef('cantidad_horas').set_solo_lectura(true);
-				
-			} else{
-				this.ef('idtipo_cargo').ocultar();
-				this.ef('idtipo_hora').mostrar();
-				if (!es_inicial)
+				t = this.ef('tipo').get_estado();
+				if (t=='cargo')
 				{
-					this.ef('cantidad_horas').resetear_estado();
+					this.ef('idtipo_cargo').mostrar();
+					this.ef('idtipo_hora').ocultar();
+					this.ef('cantidad_horas').set_estado(21);
+					this.ef('cantidad_horas').set_solo_lectura(true);
+					
+				} else{
+					this.ef('idtipo_cargo').ocultar();
+					this.ef('idtipo_hora').mostrar();
+					if (!es_inicial)
+					{
+						this.ef('cantidad_horas').resetear_estado();
+					}
+					
+					this.ef('cantidad_horas').set_solo_lectura(false);
 				}
-				
-				this.ef('cantidad_horas').set_solo_lectura(false);
+			} else {
+					this.ef('idtipo_cargo').ocultar();
+					this.ef('idtipo_hora').ocultar();
 			}
 			
 		}

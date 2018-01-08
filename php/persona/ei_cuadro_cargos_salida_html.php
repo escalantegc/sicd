@@ -68,20 +68,29 @@ class ei_cuadro_cargos_salida_html extends toba_ei_cuadro_salida_html
 
 					} else {				
 
-						if (isset($datos[$i]['jerarquico'])==1)
+						if ($datos[$i]['historico']=='NO')
 						{
-							if ($datos[$i]['cantidad_cargos']>$datos[$i]['max_cargos'])
+							if ($datos[$i]['cargos_bloque']>1)
 							{
-								$claves[] = $i;
+									$claves[] = $i;
+							} else {
+
+								if ($datos[$i]['jerarquico']=='SI')
+								{
+									if ($datos[$i]['cantidad_cargos_jerarquicos']>$datos[$i]['max_cargos'])
+									{
+										$claves[] = $i;
+									}
+								} else {
+									if ($datos[$i]['cantidad_cargos']>$datos[$i]['max_cargos'])
+									{
+										$claves[] = $i;
+									}
+								}
 							}
-						} 
-						if (isset($datos[$i]['jerarquico'])==0)
-						{
-							if ($datos[$i]['cantidad_cargos']>$datos[$i]['max_cargos'])
-							{
-								$claves[] = $i;
-							}
-						}						
+	
+						}
+											
 					}	
 					
 				}
