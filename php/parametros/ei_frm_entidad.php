@@ -30,6 +30,19 @@ class ei_frm_entidad extends sicd_ei_formulario
 				var cadena = ef.get_estado().toUpperCase();
 			
 				ef.set_estado(cadena);
+			}		
+			this.ef('piso').input().onchange = function() {
+				var ef = {$this->objeto_js}.ef('piso');
+				var cadena = ef.get_estado().toUpperCase();
+			
+				ef.set_estado(cadena);
+			}		
+
+			this.ef('depto').input().onchange = function() {
+				var ef = {$this->objeto_js}.ef('depto');
+				var cadena = ef.get_estado().toUpperCase();
+			
+				ef.set_estado(cadena);
 			}
 		}
 		";

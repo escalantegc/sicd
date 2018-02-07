@@ -145,7 +145,7 @@ class dao
 						depto,
 						localidad.descripcion as localidad
   				FROM public.entidad
-  				inner join localidad using (idlocalidad)
+  				left outer join localidad using (idlocalidad)
   				WHERE
   					$where
   					order by nombre";

@@ -53,7 +53,9 @@ class ci_personal_principal extends sicd_ci
 
 			$persona = $this->cn()->get_dt_personal();
 			$id['idpersona'] = $persona['idpersona'];
+			//$this->cn()->resetear_cursores_dr_personal();
 			$this->cn()->resetear_dr_personal();
+			
 
 			$this->cn()->cargar_dr_personal($id);
 			$this->cn()->set_cursor_dt_personal($id);

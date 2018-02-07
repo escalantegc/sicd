@@ -25,6 +25,10 @@ class cn_personal extends sicd_cn
 	{
 		$this->dep('dr_personal')->resetear();
 	}
+	function resetear_cursores_dr_personal()
+	{
+		$this->dep('dr_personal')->resetear_cursores();
+	}
 
 	//-----------------------------------------------------------------------------------
 	//---- DT-PERSONAL -----------------------------------------------------------------------

@@ -154,7 +154,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'localidad', --carga_col_clave
 	'localidad', --carga_col_desc
 	'1', --carga_permite_no_seteado
-	'--Seleccione--', --carga_no_seteado
+	'--Todas--', --carga_no_seteado
 	'0', --carga_no_seteado_ocultar
 	NULL, --carga_maestros
 	NULL, --edit_tamano
@@ -212,7 +212,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'descripcion', --carga_col_clave
 	'descripcion', --carga_col_desc
 	'1', --carga_permite_no_seteado
-	'--Seleccione--', --carga_no_seteado
+	'--Todos--', --carga_no_seteado
 	'0', --carga_no_seteado_ocultar
 	NULL, --carga_maestros
 	NULL, --edit_tamano
@@ -270,7 +270,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'titulo', --carga_col_clave
 	'titulo', --carga_col_desc
 	'1', --carga_permite_no_seteado
-	'--Seleccione--', --carga_no_seteado
+	'--Todos--', --carga_no_seteado
 	'0', --carga_no_seteado_ocultar
 	NULL, --carga_maestros
 	NULL, --edit_tamano
@@ -328,7 +328,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'nombre', --carga_col_clave
 	'nombre', --carga_col_desc
 	'1', --carga_permite_no_seteado
-	'--Seleccione--', --carga_no_seteado
+	'--Todas--', --carga_no_seteado
 	'0', --carga_no_seteado_ocultar
 	NULL, --carga_maestros
 	NULL, --edit_tamano

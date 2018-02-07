@@ -16,6 +16,7 @@ class ci_viaticos extends sicd_ci
 
 	function evt__nuevo()
 	{
+		$this->get_cn()->resetear_cursor_dt_viatico();
 		$this->set_pantalla('pant_edicion');
 	}
 
@@ -51,6 +52,7 @@ class ci_viaticos extends sicd_ci
 
 	function evt__cuadro__seleccion($seleccion)
 	{
+
 		$this->get_cn()->set_cursor_dt_viatico($seleccion);
 		$this->set_pantalla('pant_edicion');
 	}
@@ -119,7 +121,7 @@ class ci_viaticos extends sicd_ci
 			$this->get_cn()->agregar_dt_viatico($datos);
 		}
 
-		$this->get_cn()->resetear_cursor_dt_viatico();
+		//$this->get_cn()->resetear_cursor_dt_viatico();
 		$this->set_pantalla('pant_inicial');
 	}
 

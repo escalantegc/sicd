@@ -8,11 +8,7 @@ class ei_frm_ml_detalle_dias_viatico extends sicd_ei_formulario_ml
 	function extender_objeto_js()
 	{
 		echo "
-		//---- Procesamiento de EFs --------------------------------
-		
-	
-		//---- Procesamiento de EFs --------------------------------
-		
+
 		
 		//---- Procesamiento de EFs --------------------------------
 		
