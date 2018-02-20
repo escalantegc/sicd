@@ -8,7 +8,7 @@ class ei_frm_ml_detalle_dias_viatico extends sicd_ei_formulario_ml
 	function extender_objeto_js()
 	{
 		echo "
-
+		
 		
 		//---- Procesamiento de EFs --------------------------------
 		
@@ -21,10 +21,20 @@ class ei_frm_ml_detalle_dias_viatico extends sicd_ei_formulario_ml
 			dias_disponibles = total_dias_menos_reintegro - dias_usados;
 			this.controlador.dep('frm').ef('cantidad_dias_disponible').set_estado(dias_disponibles);
 			this.controlador.dep('frm').ef('cantidad_dias_tomados').set_estado(dias_usados);
-
+		
+		}
+		//---- Procesamiento de EFs --------------------------------
+		
+		{$this->objeto_js}.evt__fecha_desde__procesar = function(es_inicial, fila)
+		{
+		}
+		
+		{$this->objeto_js}.evt__fecha_hasta__procesar = function(es_inicial, fila)
+		{
 		}
 		";
 	}
+
 
 
 

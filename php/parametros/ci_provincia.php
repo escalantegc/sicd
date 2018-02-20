@@ -25,7 +25,7 @@ class ci_provincia extends sicd_ci
 			$mensaje_log= $error->get_mensaje_log();
 			if(strstr($mensaje_log,'provincia_descripcion_idpais_idx'))
 			{
-				toba::notificacion()->agregar("La provincia ya esta registrado.",'info');
+				toba::notificacion()->agregar("La provincia ya esta registrada.",'info');
 				
 			} 
 			

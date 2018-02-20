@@ -31,7 +31,7 @@ class ci_listado_estudios extends sicd_ci
 
 		$report->set_path_reporte($path);
 		//Parametro para el titulo
-		$report->set_parametro('titulo','S','LISTADO ESTUDIOS');
+		$report->set_parametro('titulo','S','LISTADO DE ESTUDIOS');
 		//Parametros para el encabezado del titulo
 		$report->set_parametro('logo1','S',$path_logo1);
 		$report->set_parametro('logo2','S',$path_logo2);

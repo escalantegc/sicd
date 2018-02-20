@@ -254,7 +254,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'Origen', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
-	'1', --inicial
+	'0', --inicial
 	'3', --orden
 	NULL, --estado_defecto
 	'0', --opciones_es_multiple
@@ -312,7 +312,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'Destino', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
-	'1', --inicial
+	'0', --inicial
 	'4', --orden
 	NULL, --estado_defecto
 	'0', --opciones_es_multiple

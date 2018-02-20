@@ -477,7 +477,9 @@ class dao
   				FROM 
   					public.provincia
    				WHERE
-  					provincia.idpais = $idpais ";
+  					provincia.idpais = $idpais 
+  				order by
+  					descripcion";
   		return consultar_fuente($sql);
   	}  
   	function get_listado_estudio($where = null)
