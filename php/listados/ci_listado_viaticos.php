@@ -12,6 +12,7 @@ class ci_listado_viaticos extends sicd_ci
 		$filtro->columna('idlocalidad_origen')->set_condicion_fija('es_igual_a');
 		$filtro->columna('idlocalidad_destino')->set_condicion_fija('es_igual_a');
 		$filtro->columna('mes')->set_condicion_fija('es_igual_a');
+		$filtro->columna('nro_expediente')->set_condicion_fija('es_igual_a');
 	}
 
 	function vista_jasperreports(toba_vista_jasperreports $report)
@@ -36,11 +37,22 @@ class ci_listado_viaticos extends sicd_ci
 		$idlocalidad_origen= '%%';
 		$idlocalidad_destino= '%%';
 		$mes = '%%';
+		$nro_expediente = '%%';
 		
-		$orderby='viatico.mes asc';
+		$orderby=' mes';
 		$orderby_mostrar = 'Mes';
 
 		
+		if (isset($this->s__criterios_filtrado['nro_expediente']['valor'])!='')
+		{
+			if (trim($this->s__criterios_filtrado['nro_expediente']['valor'])!='nopar')
+			{
+				$nro_expediente = utf8_encode(trim($this->s__criterios_filtrado['nro_expediente']['valor']));
+				
+				
+			}
+		}
+
 		if (isset($this->s__criterios_filtrado['idlocalidad_origen']['valor'])!='')
 		{
 			if (trim($this->s__criterios_filtrado['idlocalidad_origen']['valor'])!='nopar')
@@ -72,6 +84,7 @@ class ci_listado_viaticos extends sicd_ci
 		
 		$report->set_parametro('idlocalidad_destino', 'S', $idlocalidad_destino);
 		$report->set_parametro('mes', 'S', $mes);
+		$report->set_parametro('nro_expediente', 'S', $nro_expediente);
 		
 		$report->set_parametro('orderby', 'S', $orderby);
 		$report->set_parametro('orderby_mostrar', 'S', $orderby_mostrar);
@@ -103,6 +116,13 @@ class ci_listado_viaticos extends sicd_ci
 		$this->s__criterios_filtrado['mes']['condicion'] =  'es_igual_a';
 		$this->s__criterios_filtrado['mes']['valor'] =  $mes;
 		$respuesta->set($mes);	
+	}	
+
+	function ajax__get_dato_filtro_nro_expediente($nro_expediente, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['nro_expediente']['condicion'] =  'es_igual_a';
+		$this->s__criterios_filtrado['nro_expediente']['valor'] =  $nro_expediente;
+		$respuesta->set($nro_expediente);	
 	}	
 
 	

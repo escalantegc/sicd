@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_viatico" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="titulo" class="java.lang.String"/>
@@ -13,13 +13,17 @@
 	<parameter name="orderby_mostrar" class="java.lang.String"/>
 	<parameter name="usuario" class="java.lang.String"/>
 	<parameter name="orderby" class="java.lang.String"/>
+	<parameter name="nro_expediente" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 	nombres ||', '|| apellido as persona,
 	sigla ||' - '||  nro_documento as nro_documento,
 	persona.idpersona,
 	mes ,
-	sum(cantidad_dias_reintegro::numeric) as cantidad_reintegrado,
-	sum(cantidad_dias_tomados::numeric)  as cantidad_utilizada
+	nro_expediente,
+	cantidad_total_dias,
+         cantidad_dias_reintegro,
+	cantidad_dias_disponible,
+	cantidad_dias_tomados
 FROM
 	public.persona
 inner join viatico on persona.idpersona=viatico.idpersona
@@ -31,14 +35,20 @@ where
 
 	trim(localidad_origen.descripcion) ilike $P{idlocalidad_origen} and
 	trim(localidad_destino.descripcion) ilike $P{idlocalidad_destino} and
-           trim(mes) ilike $P{mes}
+           trim(mes) ilike $P{mes} and
+           trim(nro_expediente) ilike $P{nro_expediente}
 group by
   	sigla,
   	nro_documento,
   	nombres,
   	apellido,
   	persona.idpersona,
-	mes
+	mes,
+nro_expediente,
+	cantidad_total_dias,
+         cantidad_dias_reintegro,
+	cantidad_dias_disponible,
+	cantidad_dias_tomados
 
 order by
    $P{orderby}]]>
@@ -47,8 +57,11 @@ order by
 	<field name="nro_documento" class="java.lang.String"/>
 	<field name="idpersona" class="java.lang.Integer"/>
 	<field name="mes" class="java.lang.String"/>
-	<field name="cantidad_reintegrado" class="java.math.BigDecimal"/>
-	<field name="cantidad_utilizada" class="java.math.BigDecimal"/>
+	<field name="nro_expediente" class="java.lang.String"/>
+	<field name="cantidad_total_dias" class="java.math.BigDecimal"/>
+	<field name="cantidad_dias_reintegro" class="java.math.BigDecimal"/>
+	<field name="cantidad_dias_disponible" class="java.math.BigDecimal"/>
+	<field name="cantidad_dias_tomados" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -81,58 +94,54 @@ order by
 				<text><![CDATA[Ordenado por: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="24" width="84" height="20" uuid="1de0081f-3a97-4c62-889c-64c7cac3f0ad"/>
+				<reportElement x="1" y="50" width="84" height="20" uuid="1de0081f-3a97-4c62-889c-64c7cac3f0ad"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Localidad origen: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="85" y="24" width="167" height="20" uuid="dd36e75f-f364-479b-a586-eea0255e33c6"/>
+				<reportElement x="86" y="50" width="167" height="20" uuid="dd36e75f-f364-479b-a586-eea0255e33c6"/>
 				<textFieldExpression><![CDATA[($P{idlocalidad_origen}.toString().equals("%%") ?"TODAS":$P{idlocalidad_origen})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="85" y="47" width="128" height="20" uuid="02bd12fa-9737-4749-b38e-304be703d52d"/>
+				<reportElement x="85" y="26" width="128" height="20" uuid="02bd12fa-9737-4749-b38e-304be703d52d"/>
 				<textFieldExpression><![CDATA[($P{mes}.toString().equals("%%") ?"TODOS":$P{mes})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="357" y="24" width="198" height="20" uuid="97aa7683-e3fd-4457-ac01-d331696a8edb"/>
+				<reportElement x="358" y="50" width="198" height="20" uuid="97aa7683-e3fd-4457-ac01-d331696a8edb"/>
 				<textFieldExpression><![CDATA[($P{idlocalidad_destino}.toString().equals("%%") ?"TODAS":$P{idlocalidad_destino})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="74" width="100" height="20" uuid="67dd5898-5259-404e-8008-6915b9822c2e"/>
-				<textElement verticalAlignment="Bottom"/>
+				<reportElement x="0" y="74" width="116" height="20" uuid="67dd5898-5259-404e-8008-6915b9822c2e"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
 				<text><![CDATA[Nombres y Apellido]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="104" y="74" width="69" height="20" uuid="ddfa1253-c913-4b93-b15b-8d4b8861dc99"/>
-				<textElement verticalAlignment="Bottom"/>
+				<reportElement x="115" y="74" width="60" height="20" uuid="ddfa1253-c913-4b93-b15b-8d4b8861dc99"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
 				<text><![CDATA[Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="178" y="74" width="100" height="20" uuid="137dc769-6221-4151-9038-ce38c06a7059"/>
-				<textElement verticalAlignment="Bottom"/>
+				<reportElement x="233" y="70" width="40" height="24" uuid="137dc769-6221-4151-9038-ce38c06a7059"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
 				<text><![CDATA[Mes del Viatico]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="283" y="74" width="100" height="20" uuid="486740c4-c512-4ac8-a063-02132352b27a"/>
-				<textElement verticalAlignment="Bottom"/>
-				<text><![CDATA[Cantiidad utilizada]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="402" y="74" width="110" height="20" uuid="a0e3fc24-d8f2-4db2-8b18-24015356c5d5"/>
-				<textElement verticalAlignment="Bottom"/>
-				<text><![CDATA[Cantidad reintegrado]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="47" width="84" height="20" uuid="55c0fa91-7024-499b-bb5e-45fedab374f3"/>
+				<reportElement x="0" y="26" width="84" height="20" uuid="55c0fa91-7024-499b-bb5e-45fedab374f3"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Mes:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="267" y="24" width="90" height="20" uuid="c3378234-04ff-470a-8236-1fea14c5e561"/>
+				<reportElement x="268" y="50" width="90" height="20" uuid="c3378234-04ff-470a-8236-1fea14c5e561"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
@@ -142,54 +151,125 @@ order by
 				<reportElement x="85" y="0" width="128" height="20" uuid="41127821-31d5-46ad-b561-a9bd04aa3405"/>
 				<textFieldExpression><![CDATA[$P{orderby_mostrar}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="358" y="26" width="128" height="20" uuid="2783728c-fb06-4d50-b48d-122247398e5f"/>
+				<textFieldExpression><![CDATA[($P{nro_expediente}.toString().equals("%%") ?"TODOS":$P{nro_expediente})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="274" y="26" width="84" height="20" uuid="28cfaf5f-b05a-4a4e-9373-7c3636f65e1d"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Nro Expediente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="70" width="55" height="24" uuid="847f38ec-3111-4af0-949e-179420f5fe7f"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Nro Expediente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="70" width="65" height="24" uuid="8a64368c-c9bf-466b-9d3e-2ca865c48666"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Cantidad total
+de dias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="69" width="63" height="24" uuid="a4beb358-aaeb-43b7-b67c-af97b3b7b58b"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Cantidad dias
+disponibles]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="69" width="63" height="24" uuid="36cd9277-4731-4262-9c1b-d75fe895ad73"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Cantidad dias
+tomados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="69" width="84" height="24" uuid="fd3719cc-0c3c-435c-ac4e-ce8a86ead94b"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Cantidad de dias
+para reintegro ]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="23" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="1" y="3" width="100" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
+				<reportElement x="1" y="3" width="116" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{persona}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="105" y="3" width="69" height="20" uuid="f7dfe77a-9a44-4168-8f4c-b3dca8a0b2ce"/>
+				<reportElement x="116" y="3" width="60" height="20" uuid="f7dfe77a-9a44-4168-8f4c-b3dca8a0b2ce"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nro_documento}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="179" y="3" width="50" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
+				<reportElement x="233" y="3" width="20" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="284" y="3" width="50" height="20" uuid="877be9d9-9c10-4a39-af02-99a07bf1b628"/>
-				<textElement textAlignment="Right">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{cantidad_utilizada}]]></textFieldExpression>
-			</textField>
 			<line direction="BottomUp">
-				<reportElement key="line" x="0" y="1" width="550" height="1" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
+				<reportElement key="line" x="0" y="1" width="550" height="1" forecolor="#D5D5D5" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
 			</line>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="402" y="3" width="55" height="20" uuid="8bf673ea-2135-42ba-9ef9-3ae2c8a660cf"/>
+			<textField>
+				<reportElement x="200" y="3" width="31" height="20" uuid="7facd5e3-583a-42a2-92c1-c8833ae2de11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro_expediente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="2" width="34" height="20" uuid="ae1f706a-15b2-49c0-9f93-0acd55e7e70c"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cantidad_reintegrado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cantidad_total_dias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="347" y="2" width="32" height="20" uuid="95399f4c-71c2-4223-86df-5ef10814df19"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_dias_disponible}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="2" width="32" height="20" uuid="c269465e-77a8-4d5c-92e2-42eb1ca564cf"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_dias_tomados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="2" width="42" height="20" uuid="238b1e64-48c9-4588-b56b-575b1bb036e6"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_dias_reintegro}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="57" splitType="Stretch">
 			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="516" y="37" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="08f4c6f9-5e53-40ad-840e-cadc6de1c3d0"/>
+				<reportElement key="textField" x="519" y="37" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="08f4c6f9-5e53-40ad-840e-cadc6de1c3d0"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -202,7 +282,7 @@ order by
 				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="420" y="37" width="96" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="9fe52ed2-4f52-4207-9e92-0e323a6c945c"/>
+				<reportElement key="textField" x="423" y="37" width="96" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="9fe52ed2-4f52-4207-9e92-0e323a6c945c"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -228,7 +308,7 @@ order by
 				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="200" y="38" width="100" height="19" uuid="6641d451-057a-481d-8d4a-b951b68bd656"/>
+				<reportElement x="226" y="38" width="100" height="19" uuid="6641d451-057a-481d-8d4a-b951b68bd656"/>
 				<textElement textAlignment="Center">
 					<font fontName="Liberation Sans" size="8"/>
 				</textElement>
