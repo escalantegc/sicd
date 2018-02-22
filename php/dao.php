@@ -218,7 +218,8 @@ class dao
 		$sql = "SELECT  cargo_por_persona.idcargo_por_persona,
 						cargo_por_persona.idpersona, 
 						cargo_por_persona.identidad, 
-						cargo_por_persona.idtipo_cargo, 
+						cargo_por_persona.idtipo_cargo,
+						nombres ||', '|| apellido as persona, 
 						(case when  tipo_cargo.descripcion is null then tipo_hora.descripcion else tipo_cargo.descripcion end) as cargo,
 						cargo_por_persona.idtipo_hora, 
 						tipo_cargo.cantidad_cargos as max_cargos,
@@ -246,6 +247,7 @@ class dao
 						(case when jerarquico = true then 'SI' else 'NO' end) as jerarquico 
 				FROM 
 					cargo_por_persona
+				  inner join persona using(idpersona)
 				  inner join entidad  using(identidad)
 				  left outer join tipo_cargo  using(idtipo_cargo)
 				  left outer join tipo_hora  using(idtipo_hora)
@@ -312,7 +314,8 @@ class dao
 		}
 		$sql = "SELECT 	idviatico, 
 						nro_expediente, 
-						idpersona, 
+						persona.idpersona, 
+						nombres ||', '|| apellido as persona,
 						cantidad_total_dias ,
 						mes ,
 						cantidad_dias_reintegro ,
@@ -323,7 +326,7 @@ class dao
 
   				FROM 
   					public.viatico
-
+  				inner join persona on persona.idpersona = viatico.idpersona
   				left outer join detalle_dias_viatico using(idviatico)
 				left outer join localidad localidad_origen on localidad_origen.idlocalidad=detalle_dias_viatico.idlocalidad_origen
 				left outer join localidad localidad_destino on localidad_destino.idlocalidad=detalle_dias_viatico.idlocalidad_destino 
@@ -333,7 +336,7 @@ class dao
   				group by 
   				idviatico, 
 						nro_expediente, 
-						idpersona, 
+						persona.idpersona, 
 					    cantidad_total_dias ,
   						mes,
   						cantidad_dias_reintegro,

@@ -25,11 +25,11 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 	'especifico', --actividad_patron
 	'Inicio', --nombre
 	'', --descripcion
-	NULL, --punto_montaje
-	'item_inicial.php', --actividad_accion
+	'13', --punto_montaje
+	NULL, --actividad_accion
 	'1', --menu
 	'0', --orden
-	NULL, --solicitud_registrar
+	'0', --solicitud_registrar
 	NULL, --solicitud_obs_tipo_proyecto
 	NULL, --solicitud_obs_tipo
 	NULL, --solicitud_observacion
@@ -38,17 +38,29 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 	NULL, --zona_proyecto
 	NULL, --zona
 	NULL, --zona_orden
-	NULL, --zona_listar
-	NULL, --imagen_recurso_origen
+	'0', --zona_listar
+	'apex', --imagen_recurso_origen
 	NULL, --imagen
 	NULL, --parametro_a
 	NULL, --parametro_b
 	NULL, --parametro_c
-	NULL, --publico
+	'0', --publico
 	NULL, --redirecciona
 	NULL, --usuario
-	NULL, --exportable
+	'0', --exportable
 	'2017-11-02 17:33:42', --creacion
 	'0'  --retrasar_headers
 );
 --- FIN Grupo de desarrollo 0
+
+------------------------------------------------------------
+-- apex_item_objeto
+------------------------------------------------------------
+INSERT INTO apex_item_objeto (item_id, proyecto, item, objeto, orden, inicializar) VALUES (
+	NULL, --item_id
+	'sicd', --proyecto
+	'2', --item
+	'106000008', --objeto
+	'0', --orden
+	NULL  --inicializar
+);
