@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudios" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f1731819-b5bd-4e7a-9435-cc0cfd3b5b83">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idpersona" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+	nivel_estudio.descripcion as nivel_estudio,
+	entidad.nombre as entidad,
+	estudio.titulo
+
+
+
+FROM
+	public.estudio_por_persona
+inner join nivel_estudio using(idnivel_estudio)
+left outer join entidad using(identidad)
+inner join estudio using(idestudio)
+
+where
+
+estudio_por_persona.idpersona=$P!{idpersona}
+order by
+	nivel_estudio.orden]]>
+	</queryString>
+	<field name="nivel_estudio" class="java.lang.String"/>
+	<field name="entidad" class="java.lang.String"/>
+	<field name="titulo" class="java.lang.String"/>
+	<columnHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="39" width="81" height="20" uuid="c334cc98-8b13-4b85-84ac-1cc861a2eed3"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Nivel de Estudio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="39" width="198" height="20" uuid="f319c7ec-e765-476b-9e1c-e7ac49d25961"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Titulo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="39" width="100" height="20" uuid="8886feb3-df06-4ce3-85ca-53648c08ead8"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Institucion]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="0" width="710" height="29" uuid="6042532e-9e86-4568-9377-1fefb97bc250"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="8" y="4" width="185" height="20" uuid="0e8ff1ba-ab17-4903-b555-7e1418d4eb62"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="12" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[ESTUDIOS ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="3" width="712" height="1" uuid="6290ef0d-8146-413c-b437-9fcf700247d7"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="2" y="7" width="81" height="20" uuid="66abe865-9dfb-42a2-ad31-58bccf2fc288"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nivel_estudio}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="94" y="7" width="198" height="20" uuid="bd581138-f52c-41f2-9f6b-44ceac5038cd"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="303" y="4" width="211" height="20" uuid="b10963ac-5b2a-4351-95dd-9a321922328a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

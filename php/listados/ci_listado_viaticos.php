@@ -39,7 +39,7 @@ class ci_listado_viaticos extends sicd_ci
 		$mes = '%%';
 		$nro_expediente = '%%';
 		
-		$orderby=' mes';
+		$orderby=' mes::int';
 		$orderby_mostrar = 'Mes';
 
 		

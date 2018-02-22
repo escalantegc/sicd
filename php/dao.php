@@ -563,6 +563,19 @@ class dao
   					descripcion";
   		return consultar_fuente($sql);			
   	}
+  		function get_descripcion_persona_popup($idpersona)
+	{
+		$sql = "SELECT  
+					(nombres||', '|| apellido) as persona
+				FROM 
+					persona
+				where 
+					idpersona=$idpersona ";
+		$resultado = consultar_fuente($sql);
+		if ( isset($resultado[0]) ) {
+			return $resultado[0]['persona'];
+		}
+	}
 
   
 }

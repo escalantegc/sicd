@@ -27,10 +27,34 @@ class ei_frm_ml_detalle_dias_viatico extends sicd_ei_formulario_ml
 		
 		{$this->objeto_js}.evt__fecha_desde__procesar = function(es_inicial, fila)
 		{
+			var fecha_desde = this.ef('fecha_desde').ir_a_fila(fila).fecha();
+			var fecha_hasta = this.ef('fecha_hasta').ir_a_fila(fila).fecha();
+
+			if (fecha_desde!=null)
+			{
+				if (fecha_hasta!=null)
+				{
+					diff = fecha_hasta - fecha_desde;
+					dias = diff/(1000*60*60*24) ;
+					this.ef('cantidad_dias').ir_a_fila(fila).set_estado(dias);
+				}
+			}
 		}
 		
 		{$this->objeto_js}.evt__fecha_hasta__procesar = function(es_inicial, fila)
 		{
+			var fecha_desde = this.ef('fecha_desde').ir_a_fila(fila).fecha();
+			var fecha_hasta = this.ef('fecha_hasta').ir_a_fila(fila).fecha();
+
+			if (fecha_desde!=null)
+			{
+				if (fecha_hasta!=null)
+				{
+					diff = fecha_hasta - fecha_desde;
+					dias = diff/(1000*60*60*24) ;
+					this.ef('cantidad_dias').ir_a_fila(fila).set_estado(dias);
+				}
+			}
 		}
 		";
 	}

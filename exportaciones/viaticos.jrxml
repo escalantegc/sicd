@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudios" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f1731819-b5bd-4e7a-9435-cc0cfd3b5b83">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idpersona" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+	viatico,
+	mes ,
+	nro_expediente,
+	cantidad_total_dias,
+         cantidad_dias_reintegro,
+	cantidad_dias_disponible,
+	cantidad_dias_tomados
+FROM
+	viatico
+
+inner join detalle_dias_viatico on detalle_dias_viatico.idviatico=viatico.idviatico
+inner join localidad localidad_origen on localidad_origen.idlocalidad = detalle_dias_viatico.idlocalidad_origen
+inner join localidad localidad_destino on localidad_destino.idlocalidad = detalle_dias_viatico.idlocalidad_destino
+where
+
+	viatico.idpersona=$P!{idpersona}
+
+
+order by
+mes::int]]>
+	</queryString>
+	<field name="viatico" class="java.lang.Object"/>
+	<field name="mes" class="java.lang.String"/>
+	<field name="nro_expediente" class="java.lang.String"/>
+	<field name="cantidad_total_dias" class="java.math.BigDecimal"/>
+	<field name="cantidad_dias_reintegro" class="java.math.BigDecimal"/>
+	<field name="cantidad_dias_disponible" class="java.math.BigDecimal"/>
+	<field name="cantidad_dias_tomados" class="java.math.BigDecimal"/>
+	<columnHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="39" width="77" height="24" uuid="0093acc2-8ab5-4702-9b3e-df0fa6d1cac4"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Nro Expediente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="39" width="85" height="24" uuid="6035d8b1-6327-41a8-903d-c7d34e67fe01"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Cantidad dias
+tomados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="39" width="87" height="24" uuid="39b727bc-9944-4ef7-a9d6-e0ab3c5d8b3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Cantidad total
+de dias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="39" width="106" height="24" uuid="16f247fa-544a-40c6-8fbc-8fcfb46e2807"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Cantidad de dias
+para reintegro ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="39" width="85" height="24" uuid="2b55c491-9c00-4b16-a1c0-a7c9a07db6e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Cantidad dias
+disponibles]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="39" width="62" height="24" uuid="06403bcc-47a1-4eac-bd20-97b68ef18008"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Mes del Viatico]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="0" width="710" height="29" uuid="6042532e-9e86-4568-9377-1fefb97bc250"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="8" y="4" width="185" height="20" uuid="0e8ff1ba-ab17-4903-b555-7e1418d4eb62"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="12" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[VIATICOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="3" width="712" height="1" uuid="6290ef0d-8146-413c-b437-9fcf700247d7"/>
+			</line>
+			<textField>
+				<reportElement x="4" y="7" width="35" height="20" uuid="49928dc3-9856-4588-bc7d-41eef1a57ee1"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro_expediente}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="81" y="7" width="24" height="20" uuid="fe76a7f0-be26-4298-b0ce-7d65881debd8"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="7" width="38" height="20" uuid="9f2861af-391f-458e-95a2-50b69fdd5873"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_total_dias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="7" width="36" height="20" uuid="c6dcff0b-f627-4de7-9fce-34e108e16def"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_dias_disponible}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="7" width="46" height="20" uuid="93ccc406-dff3-40c8-ad64-90e007237e5d"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_dias_reintegro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="7" width="36" height="20" uuid="132b1ddb-a5a9-42f5-b59d-893f64fb4843"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_dias_tomados}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
