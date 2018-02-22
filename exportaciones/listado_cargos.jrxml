@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_cargo" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
+	<property name="ireport.zoom" value="1.4641000000000033"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2"/>
+	<parameter name="fecha_inicio" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo2" class="java.lang.String"/>
+	<parameter name="cantidad_horas" class="java.lang.String"/>
+	<parameter name="idtipo_cargo" class="java.lang.String"/>
+	<parameter name="identidad" class="java.lang.String"/>
+	<parameter name="orderby_mostrar" class="java.lang.String"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="idtipo_hora" class="java.lang.String"/>
+	<parameter name="fecha_fin" class="java.lang.String"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT  	cargo_por_persona.idcargo_por_persona,
+	cargo_por_persona.idpersona,
+	cargo_por_persona.identidad,
+	cargo_por_persona.idtipo_cargo,
+	nombres ||', '|| apellido as persona,
+	(case when  tipo_cargo.descripcion is null then tipo_hora.descripcion else tipo_cargo.descripcion end) as cargo,
+	cargo_por_persona.idtipo_hora,
+	tipo_cargo.cantidad_cargos as max_cargos,
+  	(contar_cargos_segun_tipo(cargo_por_persona.idtipo_cargo,cargo_por_persona.idpersona )) as cantidad_cargos,
+	(contar_cargos_por_bloque(bloque,cargo_por_persona.idpersona)) as cargos_bloque,
+	entidad.nombre as entidad,
+	tipo_hora.max_hs_nivel_medio,
+	tipo_hora.max_hs_nivel_superior,
+	cantidad_horas,
+	(sumas_horas_segun_tipo(cargo_por_persona.idpersona)) as total_horas,
+	--(contar_cargos_segun_tipo(cargo_por_persona.idtipo_cargo)) as cantidad_cargos,
+	(contar_cargos_segun_tipo_jerarquico(cargo_por_persona.idpersona))  as cantidad_cargos_jerarquicos,
+					    (sumar_horas(cargo_por_persona.idpersona)) as cantidad_total_horas,
+	(sumas_horas_segun_tipo(cargo_por_persona.idpersona,cargo_por_persona.idtipo_hora)) as total_horas,
+	fecha_inicio,
+	fecha_fin,
+	(case when activo = true then 'ACTIVO' else 'INACTIVO' end) as estado,
+	(case when bloque = 'bloque2' then 'Bloque 2' else 'Bloque 1' end ) as bloque,
+	observaciones,
+	activo,
+	(case when historico = true then 'SI' else 'NO' end) as historico ,
+	tipo,
+	(case when jerarquico = true then 'SI' else 'NO' end) as jerarquico
+FROM
+	cargo_por_persona
+inner join persona using(idpersona)
+inner join entidad  using(identidad)
+left outer join tipo_cargo  using(idtipo_cargo)
+left outer join tipo_hora  using(idtipo_hora)
+ WHERE
+	historico = false AND
+	activo=true and
+
+	trim(entidad.nombre) ilike $P{identidad} and
+(trim(tipo_cargo.descripcion) ilike $P{idtipo_cargo} or trim(tipo_cargo.descripcion) is null) and
+(trim(tipo_hora.descripcion) ilike $P{idtipo_hora} or trim(tipo_hora.descripcion) is null)
+  order by
+	persona,
+  	bloque,
+  	activo desc,
+  	fecha_inicio,
+  	cargo_por_persona.idtipo_hora]]>
+	</queryString>
+	<field name="idcargo_por_persona" class="java.lang.Integer"/>
+	<field name="idpersona" class="java.lang.Integer"/>
+	<field name="identidad" class="java.lang.Integer"/>
+	<field name="idtipo_cargo" class="java.lang.Integer"/>
+	<field name="persona" class="java.lang.String"/>
+	<field name="cargo" class="java.lang.String"/>
+	<field name="idtipo_hora" class="java.lang.Integer"/>
+	<field name="max_cargos" class="java.lang.Long"/>
+	<field name="cantidad_cargos" class="java.math.BigDecimal"/>
+	<field name="cargos_bloque" class="java.math.BigDecimal"/>
+	<field name="entidad" class="java.lang.String"/>
+	<field name="max_hs_nivel_medio" class="java.lang.Double"/>
+	<field name="max_hs_nivel_superior" class="java.lang.Double"/>
+	<field name="cantidad_horas" class="java.lang.Double"/>
+	<field name="total_horas" class="java.math.BigDecimal"/>
+	<field name="cantidad_cargos_jerarquicos" class="java.math.BigDecimal"/>
+	<field name="cantidad_total_horas" class="java.math.BigDecimal"/>
+	<field name="fecha_inicio" class="java.sql.Date"/>
+	<field name="fecha_fin" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="bloque" class="java.lang.String"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="activo" class="java.lang.Boolean"/>
+	<field name="historico" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="jerarquico" class="java.lang.String"/>
+	<group name="persona">
+		<groupExpression><![CDATA[$F{persona}]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<rectangle>
+					<reportElement x="1" y="1" width="554" height="20" uuid="6526d9eb-8b09-426f-b5c7-d8a815e8d3e6"/>
+				</rectangle>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="3" y="0" width="552" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="boque">
+		<groupExpression><![CDATA[$F{bloque}]]></groupExpression>
+		<groupHeader>
+			<band height="45">
+				<staticText>
+					<reportElement x="163" y="23" width="100" height="20" uuid="a0e3fc24-d8f2-4db2-8b18-24015356c5d5"/>
+					<textElement verticalAlignment="Bottom"/>
+					<text><![CDATA[Institucion]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="104" y="3" width="54" height="41" uuid="16491c71-5562-49ad-a050-5b7b3fe793a1"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+					<text><![CDATA[Cantidad Horas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="24" width="100" height="20" uuid="b5abdd96-3af4-4cc5-b818-9739392a597c"/>
+					<textElement verticalAlignment="Bottom"/>
+					<text><![CDATA[Cargo/Horas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="411" y="23" width="69" height="20" uuid="ef0e7e6e-64a0-4389-ac98-eab4f44cadfd"/>
+					<textElement verticalAlignment="Bottom"/>
+					<text><![CDATA[Fecha Inicio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="483" y="23" width="69" height="20" uuid="b1c4d259-affd-4d0b-9a1c-62badd2ba5d9"/>
+					<textElement verticalAlignment="Bottom"/>
+					<text><![CDATA[Fecha Fin]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="3" width="158" height="20" forecolor="#A8A8A8" uuid="6d846ef5-696a-46d0-a588-959bd6ebce31"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{bloque}]]></textFieldExpression>
+				</textField>
+				<line direction="BottomUp">
+					<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="21" width="555" height="1" forecolor="#A8A8A8" uuid="2a58527a-5685-43e5-9dba-d1a2dc97e27f"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="69" splitType="Stretch">
+			<textField>
+				<reportElement x="73" y="0" width="409" height="69" uuid="5239eb39-6b22-4004-9c7c-2834da3ba7e7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="15" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="73" height="69" uuid="52f12e55-55bb-42b4-b3a9-5c1c65797d4a"/>
+				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="482" y="0" width="73" height="69" uuid="60723f2b-5d80-40fb-9172-55f9a382f94e"/>
+				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="20" uuid="301cde45-2b61-44d0-b41f-9cf840cc005c"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Ordenado por: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="24" width="58" height="20" uuid="1de0081f-3a97-4c62-889c-64c7cac3f0ad"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Cargo: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="58" y="24" width="103" height="20" uuid="dd36e75f-f364-479b-a586-eea0255e33c6"/>
+				<textFieldExpression><![CDATA[($P{idtipo_cargo}.toString().equals("%%") ?"TODOS":$P{idtipo_cargo})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="44" width="100" height="20" uuid="d6fe819d-8a8f-4b9f-8094-0a6e081d71d3"/>
+				<textFieldExpression><![CDATA[($P{cantidad_horas}.toString().equals("") ?"TODAS":$P{cantidad_horas})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="44" width="124" height="20" uuid="97aa7683-e3fd-4457-ac01-d331696a8edb"/>
+				<textFieldExpression><![CDATA[($P{identidad}.toString().equals("%%") ?"TODAS":$P{identidad})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="44" width="58" height="20" uuid="c3378234-04ff-470a-8236-1fea14c5e561"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Entidad: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="44" width="80" height="20" uuid="b3921f6a-b95d-4108-98f5-2a747f201b7e"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Cantidad Horas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="82" y="0" width="285" height="20" uuid="41127821-31d5-46ad-b561-a9bd04aa3405"/>
+				<textFieldExpression><![CDATA[$P{orderby_mostrar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="67" width="100" height="20" uuid="e9babb13-011a-4fec-b48c-23402896dfa5"/>
+				<textFieldExpression><![CDATA[($P{fecha_fin}.toString().equals("") ?"TODAS":$P{fecha_fin})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="66" width="100" height="20" uuid="3209a0ba-b58c-42fb-be3a-d74295a9f0e9"/>
+				<textFieldExpression><![CDATA[($P{fecha_inicio}.toString().equals("") ?"TODAS":$P{fecha_inicio})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="66" width="58" height="20" uuid="738f702a-6a11-4e65-99f2-92c2c83f8755"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Fecha Inicio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="66" width="80" height="20" uuid="f9c74275-7838-46a0-8fe2-9e6fbf74e178"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Fecha Fin:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="163" y="3" width="240" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entidad}]]></textFieldExpression>
+			</textField>
+			<line direction="BottomUp">
+				<reportElement key="line" x="0" y="1" width="555" height="1" forecolor="#A8A8A8" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="104" y="2" width="28" height="20" uuid="457742c8-a0e0-44c2-a6c0-019d202f64f7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{cantidad_horas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="2" width="100" height="20" uuid="19dc29a1-49d6-4c1a-9003-6fb39c285d3b"/>
+				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="411" y="2" width="69" height="20" uuid="44cc68d6-eaf9-41e3-91a6-23b657f13f2f"/>
+				<textFieldExpression><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="483" y="2" width="69" height="20" uuid="8bf2abb3-b84c-4998-9568-a36d15f25bfc"/>
+				<textFieldExpression><![CDATA[$F{fecha_fin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="57" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="544" y="37" width="22" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="08f4c6f9-5e53-40ad-840e-cadc6de1c3d0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Liberation Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="446" y="37" width="96" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="9fe52ed2-4f52-4207-9e92-0e323a6c945c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Liberation Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="49" y="37" width="93" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="0c274c59-191c-400f-8dc5-9851e678e30f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Liberation Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="37" width="100" height="19" uuid="6641d451-057a-481d-8d4a-b951b68bd656"/>
+				<textElement textAlignment="Center">
+					<font fontName="Liberation Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Usuario: "+ $P{usuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="37" width="45" height="19" uuid="996e6858-f213-469a-b4ea-3d4ea4caefe8"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Fecha/Hora: ]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="1" width="555" height="1" uuid="32f61803-d8f1-4042-ba21-67ed60ebe902"/>
+			</line>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="0" y="2" width="446" height="35" isRemoveLineWhenBlank="true" uuid="39df64da-feb8-4cde-b4d9-daa8dd435a63"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="30"/>
+				</textElement>
+				<text><![CDATA[No posee datos]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
