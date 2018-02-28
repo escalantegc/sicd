@@ -32,7 +32,8 @@ class dao
   				left outer join estado_civil using (idestado_civil)
   				inner join localidad using (idlocalidad)
   				where
-  					$where;";
+  					$where
+  				order by apellido, nombres";
   		return consultar_fuente($sql);
 	}
 

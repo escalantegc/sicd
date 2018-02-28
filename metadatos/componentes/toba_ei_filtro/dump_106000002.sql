@@ -157,7 +157,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	NULL, --carga_no_seteado
 	NULL, --carga_no_seteado_ocultar
 	NULL, --carga_maestros
-	NULL, --edit_tamano
+	'100', --edit_tamano
 	NULL, --edit_maximo
 	NULL, --edit_mascara
 	NULL, --edit_unidad
@@ -167,7 +167,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'106000002', --popup_item
 	'sicd', --popup_proyecto
 	'0', --popup_editable
-	'width: 600,height: 800,scrollbars: yes', --popup_ventana
+	'width: 800,height: 600,scrollbars: yes', --popup_ventana
 	'get_descripcion_persona_popup', --popup_carga_desc_metodo
 	'dao', --popup_carga_desc_clase
 	'dao.php', --popup_carga_desc_include

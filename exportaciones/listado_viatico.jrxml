@@ -325,11 +325,13 @@ para reintegro ]]></text>
 				<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="1" width="550" height="1" uuid="32f61803-d8f1-4042-ba21-67ed60ebe902"/>
 			</line>
 			<staticText>
-				<reportElement isPrintRepeatedValues="false" x="0" y="2" width="446" height="35" isRemoveLineWhenBlank="true" uuid="39df64da-feb8-4cde-b4d9-daa8dd435a63"/>
+				<reportElement isPrintRepeatedValues="false" x="0" y="2" width="550" height="35" isRemoveLineWhenBlank="true" uuid="39df64da-feb8-4cde-b4d9-daa8dd435a63">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}.equals(0)]]></printWhenExpression>
+				</reportElement>
 				<textElement>
-					<font fontName="Liberation Sans" size="30"/>
+					<font fontName="Liberation Sans" size="20"/>
 				</textElement>
-				<text><![CDATA[No posee datos]]></text>
+				<text><![CDATA[No hay registros para los criterios de búsqueda ingresados.]]></text>
 			</staticText>
 		</band>
 	</pageFooter>

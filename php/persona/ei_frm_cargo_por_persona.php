@@ -38,9 +38,62 @@ class ei_frm_cargo_por_persona extends sicd_ei_formulario
 			}
 			
 		}
+		//---- Procesamiento de EFs --------------------------------
+		
+		{$this->objeto_js}.evt__fecha_inicio__procesar = function(es_inicial)
+		{
+			var fecha_inicio = this.ef('fecha_inicio').fecha();
+			var fecha_fin = this.ef('fecha_fin').fecha();
+			if (!es_inicial)
+			{
+				if (fecha_inicio != null)
+				{
+					if (fecha_fin != null)
+					{
+						if(fecha_inicio > fecha_fin)
+						{
+							alert('La fecha inicio no puede ser mayor a la fecha fin');
+							this.ef('fecha_fin').resetear_estado();
+							this.ef('fecha_inicio').resetear_estado();
+						} else {
+						
+							diff = fecha_fin - fecha_inicio;
+							dias = diff/(1000*60*60*24) ;
+							this.ef('cantidad_dias').set_estado(dias);
+						}
+					}
+				}
+			}	
+		}
+		
+		{$this->objeto_js}.evt__fecha_fin__procesar = function(es_inicial)
+		{
+			var fecha_inicio = this.ef('fecha_inicio').fecha();
+			var fecha_fin = this.ef('fecha_fin').fecha();
+			if (!es_inicial)
+			{
+				if (fecha_inicio != null)
+				{
+					if (fecha_fin != null)
+					{
+						if(fecha_fin < fecha_inicio)
+						{
+							alert('La fecha fin no puede ser menor a la fecha inicio');
+							this.ef('fecha_fin').resetear_estado();
+							this.ef('fecha_inicio').resetear_estado();
+						} else {
+						
+							diff = fecha_fin - fecha_inicio;
+							dias = diff/(1000*60*60*24) ;
+							this.ef('cantidad_dias').set_estado(dias);
+						}
+					}
+				}
+			}	
+		}
 		";
 	}
 
-}
 
+}
 ?>

@@ -137,7 +137,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'idlocalidad_origen', --expresion
 	'Localidad Origen', --etiqueta
 	NULL, --descripcion
-	'1', --obligatorio
+	'0', --obligatorio
 	'1', --inicial
 	'3', --orden
 	NULL, --estado_defecto
@@ -195,7 +195,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'mes', --expresion
 	'Mes', --etiqueta
 	NULL, --descripcion
-	'1', --obligatorio
+	'0', --obligatorio
 	'1', --inicial
 	'1', --orden
 	NULL, --estado_defecto
@@ -253,7 +253,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'idlocalidad_destino', --expresion
 	'Localidad Destino', --etiqueta
 	NULL, --descripcion
-	'1', --obligatorio
+	'0', --obligatorio
 	'1', --inicial
 	'4', --orden
 	NULL, --estado_defecto
@@ -314,7 +314,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'nro_expediente', --expresion
 	'Nro Expediente', --etiqueta
 	NULL, --descripcion
-	'1', --obligatorio
+	'0', --obligatorio
 	'1', --inicial
 	'2', --orden
 	NULL, --estado_defecto

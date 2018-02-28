@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="legajo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed811449-f56c-42ef-8ee8-d6b355b7a23f">
 	<property name="ireport.zoom" value="1.0000000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="164"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idpersona" class="java.lang.Integer"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
@@ -151,6 +151,16 @@ order by persona]]>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "viaticos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="72">
+			<subreport>
+				<reportElement x="1" y="0" width="553" height="67" uuid="e898da9e-44e3-4b74-8caf-d32a010e5352"/>
+				<subreportParameter name="idpersona">
+					<subreportParameterExpression><![CDATA[$P{idpersona}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "cargos.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

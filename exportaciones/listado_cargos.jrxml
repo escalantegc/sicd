@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_cargo" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
 	<property name="ireport.zoom" value="1.4641000000000033"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="17"/>
+	<property name="ireport.y" value="69"/>
 	<parameter name="fecha_inicio" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
@@ -39,8 +39,8 @@
 	(contar_cargos_segun_tipo_jerarquico(cargo_por_persona.idpersona))  as cantidad_cargos_jerarquicos,
 					    (sumar_horas(cargo_por_persona.idpersona)) as cantidad_total_horas,
 	(sumas_horas_segun_tipo(cargo_por_persona.idpersona,cargo_por_persona.idtipo_hora)) as total_horas,
-	fecha_inicio,
-	fecha_fin,
+	to_char(fecha_inicio,'DD/MM/YYYY') as fecha_inicio,
+	to_char(fecha_fin, 'DD/MM/YYYY') as fecha_fin,
 	(case when activo = true then 'ACTIVO' else 'INACTIVO' end) as estado,
 	(case when bloque = 'bloque2' then 'Bloque 2' else 'Bloque 1' end ) as bloque,
 	observaciones,
@@ -89,7 +89,7 @@ trim(fecha_fin::character(10)) ilike $P{fecha_fin}
 	<field name="total_horas" class="java.math.BigDecimal"/>
 	<field name="cantidad_cargos_jerarquicos" class="java.math.BigDecimal"/>
 	<field name="cantidad_total_horas" class="java.math.BigDecimal"/>
-	<field name="fecha_inicio" class="java.sql.Date"/>
+	<field name="fecha_inicio" class="java.lang.String"/>
 	<field name="fecha_fin" class="java.lang.String"/>
 	<field name="estado" class="java.lang.String"/>
 	<field name="bloque" class="java.lang.String"/>
@@ -383,11 +383,13 @@ trim(fecha_fin::character(10)) ilike $P{fecha_fin}
 				<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="1" width="555" height="1" uuid="32f61803-d8f1-4042-ba21-67ed60ebe902"/>
 			</line>
 			<staticText>
-				<reportElement isPrintRepeatedValues="false" x="0" y="2" width="446" height="35" isRemoveLineWhenBlank="true" uuid="39df64da-feb8-4cde-b4d9-daa8dd435a63"/>
+				<reportElement isPrintRepeatedValues="false" x="0" y="2" width="555" height="35" isRemoveLineWhenBlank="true" uuid="39df64da-feb8-4cde-b4d9-daa8dd435a63">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}.equals(0)]]></printWhenExpression>
+				</reportElement>
 				<textElement>
-					<font fontName="Liberation Sans" size="30"/>
+					<font fontName="Liberation Sans" size="20"/>
 				</textElement>
-				<text><![CDATA[No posee datos]]></text>
+				<text><![CDATA[No hay registros para los criterios de búsqueda ingresados.]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
