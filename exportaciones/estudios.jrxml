@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudios" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f1731819-b5bd-4e7a-9435-cc0cfd3b5b83">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudios" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f1731819-b5bd-4e7a-9435-cc0cfd3b5b83">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -61,21 +61,21 @@ order by
 			<line>
 				<reportElement x="1" y="3" width="712" height="1" uuid="6290ef0d-8146-413c-b437-9fcf700247d7"/>
 			</line>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="2" y="7" width="81" height="20" uuid="66abe865-9dfb-42a2-ad31-58bccf2fc288"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nivel_estudio}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="94" y="7" width="198" height="20" uuid="bd581138-f52c-41f2-9f6b-44ceac5038cd"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="303" y="4" width="211" height="20" uuid="b10963ac-5b2a-4351-95dd-9a321922328a"/>
 				<textElement>
 					<font size="8"/>
@@ -84,4 +84,17 @@ order by
 			</textField>
 		</band>
 	</detail>
+	<pageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="2" y="13" width="555" height="35" isRemoveLineWhenBlank="true" uuid="afbb476e-2a55-434c-b7f4-166e95c27a5b">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}.equals(0)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Liberation Sans" size="20"/>
+				</textElement>
+				<text><![CDATA[No posee estudios declarados]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
 </jasperReport>

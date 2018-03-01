@@ -62,8 +62,8 @@ trim(tipo) ilike $P{tipo} and
 	trim(entidad.nombre) ilike $P{identidad} and
 ((trim(tipo_cargo.descripcion) ilike $P{idtipo_cargo} or trim(tipo_cargo.descripcion) is null) or
 (trim(tipo_hora.descripcion) ilike $P{idtipo_hora} or trim(tipo_hora.descripcion) is null)) and
-trim(fecha_inicio::character(10)) ilike $P{fecha_inicio} and
-trim(fecha_fin::character(10)) ilike $P{fecha_fin}
+(trim(fecha_inicio::character(10)) ilike  $P{fecha_inicio} or trim(fecha_inicio::character(10)) is null) and
+(trim(fecha_fin::character(10)) ilike $P{fecha_fin} or trim(fecha_fin::character(10)) is null)
   order by
 	apellido,
 	nombres,

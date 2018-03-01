@@ -322,7 +322,7 @@ class dao
 						cantidad_dias_reintegro ,
 						cantidad_dias_disponible ,
 						cantidad_dias_tomados, 
-						(select sumar_dias_disponible_por_mes(mes)) as total_disponible
+						(select sumar_dias_disponible_por_mes(mes,viatico.idpersona)) as total_disponible
 
 
   				FROM 
@@ -567,10 +567,11 @@ class dao
   					descripcion";
   		return consultar_fuente($sql);			
   	}
-  		function get_descripcion_persona_popup($idpersona)
+  	
+  	function get_descripcion_persona_popup($idpersona)
 	{
 		$sql = "SELECT  
-					(nombres||', '|| apellido) as persona
+					nombres||', '|| apellido as persona
 				FROM 
 					persona
 				where 

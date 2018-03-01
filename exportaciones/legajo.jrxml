@@ -33,7 +33,7 @@
   				left outer join estado_civil using (idestado_civil)
   				inner join localidad using (idlocalidad)
 where
-idpersona=$P!{idpersona}
+idpersona=$P{idpersona}
 order by persona]]>
 	</queryString>
 	<field name="idpersona" class="java.lang.Integer"/>

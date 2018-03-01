@@ -49,7 +49,7 @@ class ci_legajo extends sicd_ci
 	
 		
 	
-		$report->set_parametro('idpersona', 'E', 1);
+		$report->set_parametro('idpersona', 'E', $idpersona);
 
 	
 

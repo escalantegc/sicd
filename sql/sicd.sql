@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.9
 -- Dumped by pg_dump version 9.5.9
 
--- Started on 2018-03-01 17:41:34 ART
+-- Started on 2018-03-01 19:45:55 ART
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -54,7 +54,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 4127 (class 0 OID 0)
+-- TOC entry 4128 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -331,6 +331,30 @@ $_$;
 
 
 ALTER FUNCTION public.sumar_dias_disponible_por_mes(integer) OWNER TO postgres;
+
+--
+-- TOC entry 452 (class 1255 OID 45216)
+-- Name: sumar_dias_disponible_por_mes(character, integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION sumar_dias_disponible_por_mes(character, integer) RETURNS numeric
+    LANGUAGE plpgsql
+    AS $_$
+DECLARE 
+	total numeric;
+BEGIN
+    total := (SELECT sum(cantidad_dias_disponible) FROM viatico
+    WHERE 
+	mes = $1 and
+	viatico.idpersona = $2
+    ) ;
+    
+    RETURN total;
+END;
+$_$;
+
+
+ALTER FUNCTION public.sumar_dias_disponible_por_mes(character, integer) OWNER TO postgres;
 
 --
 -- TOC entry 449 (class 1255 OID 42713)
@@ -4077,7 +4101,7 @@ CREATE SEQUENCE cargo_por_persona_idcargo_por_persona_seq
 ALTER TABLE cargo_por_persona_idcargo_por_persona_seq OWNER TO postgres;
 
 --
--- TOC entry 4128 (class 0 OID 0)
+-- TOC entry 4129 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: cargo_por_persona_idcargo_por_persona_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4133,7 +4157,7 @@ CREATE SEQUENCE detalle_dias_viatico_iddetalle_dias_viatico_seq
 ALTER TABLE detalle_dias_viatico_iddetalle_dias_viatico_seq OWNER TO postgres;
 
 --
--- TOC entry 4129 (class 0 OID 0)
+-- TOC entry 4130 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: detalle_dias_viatico_iddetalle_dias_viatico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4173,7 +4197,7 @@ CREATE SEQUENCE detalle_viatico_iddetalle_viatico_seq
 ALTER TABLE detalle_viatico_iddetalle_viatico_seq OWNER TO postgres;
 
 --
--- TOC entry 4130 (class 0 OID 0)
+-- TOC entry 4131 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: detalle_viatico_iddetalle_viatico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4216,7 +4240,7 @@ CREATE SEQUENCE entidad_identidad_seq
 ALTER TABLE entidad_identidad_seq OWNER TO postgres;
 
 --
--- TOC entry 4131 (class 0 OID 0)
+-- TOC entry 4132 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: entidad_identidad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4253,7 +4277,7 @@ CREATE SEQUENCE estado_civil_idestado_civil_seq
 ALTER TABLE estado_civil_idestado_civil_seq OWNER TO postgres;
 
 --
--- TOC entry 4132 (class 0 OID 0)
+-- TOC entry 4133 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: estado_civil_idestado_civil_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4291,7 +4315,7 @@ CREATE SEQUENCE estudio_idestudio_seq
 ALTER TABLE estudio_idestudio_seq OWNER TO postgres;
 
 --
--- TOC entry 4133 (class 0 OID 0)
+-- TOC entry 4134 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: estudio_idestudio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4346,7 +4370,7 @@ CREATE SEQUENCE funcion_idfuncion_seq
 ALTER TABLE funcion_idfuncion_seq OWNER TO postgres;
 
 --
--- TOC entry 4134 (class 0 OID 0)
+-- TOC entry 4135 (class 0 OID 0)
 -- Dependencies: 189
 -- Name: funcion_idfuncion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4384,7 +4408,7 @@ CREATE SEQUENCE localidad_idlocalidad_seq
 ALTER TABLE localidad_idlocalidad_seq OWNER TO postgres;
 
 --
--- TOC entry 4135 (class 0 OID 0)
+-- TOC entry 4136 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: localidad_idlocalidad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4424,7 +4448,7 @@ CREATE SEQUENCE nivel_estudio_idnivel_estudio_seq
 ALTER TABLE nivel_estudio_idnivel_estudio_seq OWNER TO postgres;
 
 --
--- TOC entry 4136 (class 0 OID 0)
+-- TOC entry 4137 (class 0 OID 0)
 -- Dependencies: 184
 -- Name: nivel_estudio_idnivel_estudio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4461,7 +4485,7 @@ CREATE SEQUENCE pais_idpais_seq
 ALTER TABLE pais_idpais_seq OWNER TO postgres;
 
 --
--- TOC entry 4137 (class 0 OID 0)
+-- TOC entry 4138 (class 0 OID 0)
 -- Dependencies: 193
 -- Name: pais_idpais_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4516,7 +4540,7 @@ CREATE SEQUENCE persona_idpersona_seq
 ALTER TABLE persona_idpersona_seq OWNER TO postgres;
 
 --
--- TOC entry 4138 (class 0 OID 0)
+-- TOC entry 4139 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: persona_idpersona_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4554,7 +4578,7 @@ CREATE SEQUENCE provincia_idprovincia_seq
 ALTER TABLE provincia_idprovincia_seq OWNER TO postgres;
 
 --
--- TOC entry 4139 (class 0 OID 0)
+-- TOC entry 4140 (class 0 OID 0)
 -- Dependencies: 195
 -- Name: provincia_idprovincia_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4607,7 +4631,7 @@ CREATE SEQUENCE tipo_cargo_idtipo_cargo_seq
 ALTER TABLE tipo_cargo_idtipo_cargo_seq OWNER TO postgres;
 
 --
--- TOC entry 4140 (class 0 OID 0)
+-- TOC entry 4141 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: tipo_cargo_idtipo_cargo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4644,7 +4668,7 @@ CREATE SEQUENCE tipo_detalle_viatico_idtipo_detalle_viatico_seq
 ALTER TABLE tipo_detalle_viatico_idtipo_detalle_viatico_seq OWNER TO postgres;
 
 --
--- TOC entry 4141 (class 0 OID 0)
+-- TOC entry 4142 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: tipo_detalle_viatico_idtipo_detalle_viatico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4682,7 +4706,7 @@ CREATE SEQUENCE tipo_documento_idtipo_documento_seq
 ALTER TABLE tipo_documento_idtipo_documento_seq OWNER TO postgres;
 
 --
--- TOC entry 4142 (class 0 OID 0)
+-- TOC entry 4143 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: tipo_documento_idtipo_documento_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4721,7 +4745,7 @@ CREATE SEQUENCE tipo_hora_idtipo_hora_seq
 ALTER TABLE tipo_hora_idtipo_hora_seq OWNER TO postgres;
 
 --
--- TOC entry 4143 (class 0 OID 0)
+-- TOC entry 4144 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: tipo_hora_idtipo_hora_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4758,7 +4782,7 @@ CREATE SEQUENCE tipo_telefono_idtipo_telefono_seq
 ALTER TABLE tipo_telefono_idtipo_telefono_seq OWNER TO postgres;
 
 --
--- TOC entry 4144 (class 0 OID 0)
+-- TOC entry 4145 (class 0 OID 0)
 -- Dependencies: 191
 -- Name: tipo_telefono_idtipo_telefono_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4805,7 +4829,7 @@ CREATE SEQUENCE viatico_idviatico_seq
 ALTER TABLE viatico_idviatico_seq OWNER TO postgres;
 
 --
--- TOC entry 4145 (class 0 OID 0)
+-- TOC entry 4146 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: viatico_idviatico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -4848,7 +4872,7 @@ CREATE TABLE ref_deportes (
 ALTER TABLE ref_deportes OWNER TO postgres;
 
 --
--- TOC entry 4146 (class 0 OID 0)
+-- TOC entry 4147 (class 0 OID 0)
 -- Dependencies: 412
 -- Name: TABLE ref_deportes; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4857,7 +4881,7 @@ COMMENT ON TABLE ref_deportes IS 'Deportes';
 
 
 --
--- TOC entry 4147 (class 0 OID 0)
+-- TOC entry 4148 (class 0 OID 0)
 -- Dependencies: 412
 -- Name: COLUMN ref_deportes.id; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4866,7 +4890,7 @@ COMMENT ON COLUMN ref_deportes.id IS 'Clave';
 
 
 --
--- TOC entry 4148 (class 0 OID 0)
+-- TOC entry 4149 (class 0 OID 0)
 -- Dependencies: 412
 -- Name: COLUMN ref_deportes.nombre; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4875,7 +4899,7 @@ COMMENT ON COLUMN ref_deportes.nombre IS 'Nombre';
 
 
 --
--- TOC entry 4149 (class 0 OID 0)
+-- TOC entry 4150 (class 0 OID 0)
 -- Dependencies: 412
 -- Name: COLUMN ref_deportes.descripcion; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4884,7 +4908,7 @@ COMMENT ON COLUMN ref_deportes.descripcion IS 'Descripción';
 
 
 --
--- TOC entry 4150 (class 0 OID 0)
+-- TOC entry 4151 (class 0 OID 0)
 -- Dependencies: 412
 -- Name: COLUMN ref_deportes.fecha_inicio; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4908,7 +4932,7 @@ CREATE SEQUENCE ref_deportes_id_seq
 ALTER TABLE ref_deportes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4151 (class 0 OID 0)
+-- TOC entry 4152 (class 0 OID 0)
 -- Dependencies: 411
 -- Name: ref_deportes_id_seq; Type: SEQUENCE OWNED BY; Schema: referencia; Owner: postgres
 --
@@ -4932,7 +4956,7 @@ CREATE TABLE ref_juegos (
 ALTER TABLE ref_juegos OWNER TO postgres;
 
 --
--- TOC entry 4152 (class 0 OID 0)
+-- TOC entry 4153 (class 0 OID 0)
 -- Dependencies: 414
 -- Name: TABLE ref_juegos; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4941,7 +4965,7 @@ COMMENT ON TABLE ref_juegos IS 'Juegos';
 
 
 --
--- TOC entry 4153 (class 0 OID 0)
+-- TOC entry 4154 (class 0 OID 0)
 -- Dependencies: 414
 -- Name: COLUMN ref_juegos.id; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4950,7 +4974,7 @@ COMMENT ON COLUMN ref_juegos.id IS 'Clave';
 
 
 --
--- TOC entry 4154 (class 0 OID 0)
+-- TOC entry 4155 (class 0 OID 0)
 -- Dependencies: 414
 -- Name: COLUMN ref_juegos.nombre; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4959,7 +4983,7 @@ COMMENT ON COLUMN ref_juegos.nombre IS 'Nombre';
 
 
 --
--- TOC entry 4155 (class 0 OID 0)
+-- TOC entry 4156 (class 0 OID 0)
 -- Dependencies: 414
 -- Name: COLUMN ref_juegos.descripcion; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4968,7 +4992,7 @@ COMMENT ON COLUMN ref_juegos.descripcion IS 'Descripción';
 
 
 --
--- TOC entry 4156 (class 0 OID 0)
+-- TOC entry 4157 (class 0 OID 0)
 -- Dependencies: 414
 -- Name: COLUMN ref_juegos.de_mesa; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -4992,7 +5016,7 @@ CREATE SEQUENCE ref_juegos_id_seq
 ALTER TABLE ref_juegos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4157 (class 0 OID 0)
+-- TOC entry 4158 (class 0 OID 0)
 -- Dependencies: 413
 -- Name: ref_juegos_id_seq; Type: SEQUENCE OWNED BY; Schema: referencia; Owner: postgres
 --
@@ -5016,7 +5040,7 @@ CREATE TABLE ref_juegos_oferta (
 ALTER TABLE ref_juegos_oferta OWNER TO postgres;
 
 --
--- TOC entry 4158 (class 0 OID 0)
+-- TOC entry 4159 (class 0 OID 0)
 -- Dependencies: 416
 -- Name: TABLE ref_juegos_oferta; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5025,7 +5049,7 @@ COMMENT ON TABLE ref_juegos_oferta IS 'Ofertas de Juegos';
 
 
 --
--- TOC entry 4159 (class 0 OID 0)
+-- TOC entry 4160 (class 0 OID 0)
 -- Dependencies: 416
 -- Name: COLUMN ref_juegos_oferta.id; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5034,7 +5058,7 @@ COMMENT ON COLUMN ref_juegos_oferta.id IS 'Clave';
 
 
 --
--- TOC entry 4160 (class 0 OID 0)
+-- TOC entry 4161 (class 0 OID 0)
 -- Dependencies: 416
 -- Name: COLUMN ref_juegos_oferta.juego; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5043,7 +5067,7 @@ COMMENT ON COLUMN ref_juegos_oferta.juego IS 'Juego';
 
 
 --
--- TOC entry 4161 (class 0 OID 0)
+-- TOC entry 4162 (class 0 OID 0)
 -- Dependencies: 416
 -- Name: COLUMN ref_juegos_oferta.jugador; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5067,7 +5091,7 @@ CREATE SEQUENCE ref_juegos_oferta_id_seq
 ALTER TABLE ref_juegos_oferta_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4162 (class 0 OID 0)
+-- TOC entry 4163 (class 0 OID 0)
 -- Dependencies: 415
 -- Name: ref_juegos_oferta_id_seq; Type: SEQUENCE OWNED BY; Schema: referencia; Owner: postgres
 --
@@ -5093,7 +5117,7 @@ CREATE TABLE ref_persona (
 ALTER TABLE ref_persona OWNER TO postgres;
 
 --
--- TOC entry 4163 (class 0 OID 0)
+-- TOC entry 4164 (class 0 OID 0)
 -- Dependencies: 418
 -- Name: TABLE ref_persona; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5102,7 +5126,7 @@ COMMENT ON TABLE ref_persona IS 'Personas';
 
 
 --
--- TOC entry 4164 (class 0 OID 0)
+-- TOC entry 4165 (class 0 OID 0)
 -- Dependencies: 418
 -- Name: COLUMN ref_persona.id; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5111,7 +5135,7 @@ COMMENT ON COLUMN ref_persona.id IS 'Clave';
 
 
 --
--- TOC entry 4165 (class 0 OID 0)
+-- TOC entry 4166 (class 0 OID 0)
 -- Dependencies: 418
 -- Name: COLUMN ref_persona.nombre; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5120,7 +5144,7 @@ COMMENT ON COLUMN ref_persona.nombre IS 'Nombre';
 
 
 --
--- TOC entry 4166 (class 0 OID 0)
+-- TOC entry 4167 (class 0 OID 0)
 -- Dependencies: 418
 -- Name: COLUMN ref_persona.fecha_nac; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5129,7 +5153,7 @@ COMMENT ON COLUMN ref_persona.fecha_nac IS 'Fecha de nacimiento';
 
 
 --
--- TOC entry 4167 (class 0 OID 0)
+-- TOC entry 4168 (class 0 OID 0)
 -- Dependencies: 418
 -- Name: COLUMN ref_persona.imagen; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5138,7 +5162,7 @@ COMMENT ON COLUMN ref_persona.imagen IS 'Foto';
 
 
 --
--- TOC entry 4168 (class 0 OID 0)
+-- TOC entry 4169 (class 0 OID 0)
 -- Dependencies: 418
 -- Name: COLUMN ref_persona.planilla_pdf; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5164,7 +5188,7 @@ CREATE TABLE ref_persona_deportes (
 ALTER TABLE ref_persona_deportes OWNER TO postgres;
 
 --
--- TOC entry 4169 (class 0 OID 0)
+-- TOC entry 4170 (class 0 OID 0)
 -- Dependencies: 420
 -- Name: TABLE ref_persona_deportes; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5173,7 +5197,7 @@ COMMENT ON TABLE ref_persona_deportes IS 'Deportes de personas';
 
 
 --
--- TOC entry 4170 (class 0 OID 0)
+-- TOC entry 4171 (class 0 OID 0)
 -- Dependencies: 420
 -- Name: COLUMN ref_persona_deportes.id; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5182,7 +5206,7 @@ COMMENT ON COLUMN ref_persona_deportes.id IS 'Clave';
 
 
 --
--- TOC entry 4171 (class 0 OID 0)
+-- TOC entry 4172 (class 0 OID 0)
 -- Dependencies: 420
 -- Name: COLUMN ref_persona_deportes.persona; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5191,7 +5215,7 @@ COMMENT ON COLUMN ref_persona_deportes.persona IS 'Persona';
 
 
 --
--- TOC entry 4172 (class 0 OID 0)
+-- TOC entry 4173 (class 0 OID 0)
 -- Dependencies: 420
 -- Name: COLUMN ref_persona_deportes.deporte; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5200,7 +5224,7 @@ COMMENT ON COLUMN ref_persona_deportes.deporte IS 'Deporte';
 
 
 --
--- TOC entry 4173 (class 0 OID 0)
+-- TOC entry 4174 (class 0 OID 0)
 -- Dependencies: 420
 -- Name: COLUMN ref_persona_deportes.dia_semana; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5209,7 +5233,7 @@ COMMENT ON COLUMN ref_persona_deportes.dia_semana IS 'Día de la semana';
 
 
 --
--- TOC entry 4174 (class 0 OID 0)
+-- TOC entry 4175 (class 0 OID 0)
 -- Dependencies: 420
 -- Name: COLUMN ref_persona_deportes.hora_inicio; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5218,7 +5242,7 @@ COMMENT ON COLUMN ref_persona_deportes.hora_inicio IS 'Hora de inicio';
 
 
 --
--- TOC entry 4175 (class 0 OID 0)
+-- TOC entry 4176 (class 0 OID 0)
 -- Dependencies: 420
 -- Name: COLUMN ref_persona_deportes.hora_fin; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5242,7 +5266,7 @@ CREATE SEQUENCE ref_persona_deportes_id_seq
 ALTER TABLE ref_persona_deportes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4176 (class 0 OID 0)
+-- TOC entry 4177 (class 0 OID 0)
 -- Dependencies: 419
 -- Name: ref_persona_deportes_id_seq; Type: SEQUENCE OWNED BY; Schema: referencia; Owner: postgres
 --
@@ -5266,7 +5290,7 @@ CREATE SEQUENCE ref_persona_id_seq
 ALTER TABLE ref_persona_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4177 (class 0 OID 0)
+-- TOC entry 4178 (class 0 OID 0)
 -- Dependencies: 417
 -- Name: ref_persona_id_seq; Type: SEQUENCE OWNED BY; Schema: referencia; Owner: postgres
 --
@@ -5292,7 +5316,7 @@ CREATE TABLE ref_persona_juegos (
 ALTER TABLE ref_persona_juegos OWNER TO postgres;
 
 --
--- TOC entry 4178 (class 0 OID 0)
+-- TOC entry 4179 (class 0 OID 0)
 -- Dependencies: 422
 -- Name: TABLE ref_persona_juegos; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5301,7 +5325,7 @@ COMMENT ON TABLE ref_persona_juegos IS 'Juegos de personas';
 
 
 --
--- TOC entry 4179 (class 0 OID 0)
+-- TOC entry 4180 (class 0 OID 0)
 -- Dependencies: 422
 -- Name: COLUMN ref_persona_juegos.id; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5310,7 +5334,7 @@ COMMENT ON COLUMN ref_persona_juegos.id IS 'Clave';
 
 
 --
--- TOC entry 4180 (class 0 OID 0)
+-- TOC entry 4181 (class 0 OID 0)
 -- Dependencies: 422
 -- Name: COLUMN ref_persona_juegos.persona; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5319,7 +5343,7 @@ COMMENT ON COLUMN ref_persona_juegos.persona IS 'Persona';
 
 
 --
--- TOC entry 4181 (class 0 OID 0)
+-- TOC entry 4182 (class 0 OID 0)
 -- Dependencies: 422
 -- Name: COLUMN ref_persona_juegos.juego; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5328,7 +5352,7 @@ COMMENT ON COLUMN ref_persona_juegos.juego IS 'Deporte';
 
 
 --
--- TOC entry 4182 (class 0 OID 0)
+-- TOC entry 4183 (class 0 OID 0)
 -- Dependencies: 422
 -- Name: COLUMN ref_persona_juegos.dia_semana; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5337,7 +5361,7 @@ COMMENT ON COLUMN ref_persona_juegos.dia_semana IS 'Día de la semana';
 
 
 --
--- TOC entry 4183 (class 0 OID 0)
+-- TOC entry 4184 (class 0 OID 0)
 -- Dependencies: 422
 -- Name: COLUMN ref_persona_juegos.hora_inicio; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5346,7 +5370,7 @@ COMMENT ON COLUMN ref_persona_juegos.hora_inicio IS 'Hora de inicio';
 
 
 --
--- TOC entry 4184 (class 0 OID 0)
+-- TOC entry 4185 (class 0 OID 0)
 -- Dependencies: 422
 -- Name: COLUMN ref_persona_juegos.hora_fin; Type: COMMENT; Schema: referencia; Owner: postgres
 --
@@ -5370,7 +5394,7 @@ CREATE SEQUENCE ref_persona_juegos_id_seq
 ALTER TABLE ref_persona_juegos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4185 (class 0 OID 0)
+-- TOC entry 4186 (class 0 OID 0)
 -- Dependencies: 421
 -- Name: ref_persona_juegos_id_seq; Type: SEQUENCE OWNED BY; Schema: referencia; Owner: postgres
 --
@@ -5381,7 +5405,7 @@ ALTER SEQUENCE ref_persona_juegos_id_seq OWNED BY ref_persona_juegos.id;
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2997 (class 2604 OID 45182)
+-- TOC entry 2998 (class 2604 OID 45182)
 -- Name: idcargo_por_persona; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5389,7 +5413,7 @@ ALTER TABLE ONLY cargo_por_persona ALTER COLUMN idcargo_por_persona SET DEFAULT 
 
 
 --
--- TOC entry 3001 (class 2604 OID 45183)
+-- TOC entry 3002 (class 2604 OID 45183)
 -- Name: iddetalle_dias_viatico; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5397,7 +5421,7 @@ ALTER TABLE ONLY detalle_dias_viatico ALTER COLUMN iddetalle_dias_viatico SET DE
 
 
 --
--- TOC entry 2999 (class 2604 OID 45184)
+-- TOC entry 3000 (class 2604 OID 45184)
 -- Name: iddetalle_viatico; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5405,7 +5429,7 @@ ALTER TABLE ONLY detalle_viatico ALTER COLUMN iddetalle_viatico SET DEFAULT next
 
 
 --
--- TOC entry 2988 (class 2604 OID 45185)
+-- TOC entry 2989 (class 2604 OID 45185)
 -- Name: identidad; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5413,7 +5437,7 @@ ALTER TABLE ONLY entidad ALTER COLUMN identidad SET DEFAULT nextval('entidad_ide
 
 
 --
--- TOC entry 2989 (class 2604 OID 45186)
+-- TOC entry 2990 (class 2604 OID 45186)
 -- Name: idestado_civil; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5421,7 +5445,7 @@ ALTER TABLE ONLY estado_civil ALTER COLUMN idestado_civil SET DEFAULT nextval('e
 
 
 --
--- TOC entry 3002 (class 2604 OID 45187)
+-- TOC entry 3003 (class 2604 OID 45187)
 -- Name: idestudio; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5429,7 +5453,7 @@ ALTER TABLE ONLY estudio ALTER COLUMN idestudio SET DEFAULT nextval('estudio_ide
 
 
 --
--- TOC entry 2983 (class 2604 OID 45188)
+-- TOC entry 2984 (class 2604 OID 45188)
 -- Name: idfuncion; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5437,7 +5461,7 @@ ALTER TABLE ONLY funcion ALTER COLUMN idfuncion SET DEFAULT nextval('funcion_idf
 
 
 --
--- TOC entry 2987 (class 2604 OID 45189)
+-- TOC entry 2988 (class 2604 OID 45189)
 -- Name: idlocalidad; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5445,7 +5469,7 @@ ALTER TABLE ONLY localidad ALTER COLUMN idlocalidad SET DEFAULT nextval('localid
 
 
 --
--- TOC entry 2981 (class 2604 OID 45190)
+-- TOC entry 2982 (class 2604 OID 45190)
 -- Name: idnivel_estudio; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5453,7 +5477,7 @@ ALTER TABLE ONLY nivel_estudio ALTER COLUMN idnivel_estudio SET DEFAULT nextval(
 
 
 --
--- TOC entry 2985 (class 2604 OID 45191)
+-- TOC entry 2986 (class 2604 OID 45191)
 -- Name: idpais; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5461,7 +5485,7 @@ ALTER TABLE ONLY pais ALTER COLUMN idpais SET DEFAULT nextval('pais_idpais_seq':
 
 
 --
--- TOC entry 2992 (class 2604 OID 45192)
+-- TOC entry 2993 (class 2604 OID 45192)
 -- Name: idpersona; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5469,7 +5493,7 @@ ALTER TABLE ONLY persona ALTER COLUMN idpersona SET DEFAULT nextval('persona_idp
 
 
 --
--- TOC entry 2986 (class 2604 OID 45193)
+-- TOC entry 2987 (class 2604 OID 45193)
 -- Name: idprovincia; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5477,7 +5501,7 @@ ALTER TABLE ONLY provincia ALTER COLUMN idprovincia SET DEFAULT nextval('provinc
 
 
 --
--- TOC entry 2990 (class 2604 OID 45194)
+-- TOC entry 2991 (class 2604 OID 45194)
 -- Name: idtipo_cargo; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5485,7 +5509,7 @@ ALTER TABLE ONLY tipo_cargo ALTER COLUMN idtipo_cargo SET DEFAULT nextval('tipo_
 
 
 --
--- TOC entry 2982 (class 2604 OID 45195)
+-- TOC entry 2983 (class 2604 OID 45195)
 -- Name: idtipo_detalle_viatico; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5493,7 +5517,7 @@ ALTER TABLE ONLY tipo_detalle_viatico ALTER COLUMN idtipo_detalle_viatico SET DE
 
 
 --
--- TOC entry 2991 (class 2604 OID 45196)
+-- TOC entry 2992 (class 2604 OID 45196)
 -- Name: idtipo_documento; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5501,7 +5525,7 @@ ALTER TABLE ONLY tipo_documento ALTER COLUMN idtipo_documento SET DEFAULT nextva
 
 
 --
--- TOC entry 3003 (class 2604 OID 45197)
+-- TOC entry 3004 (class 2604 OID 45197)
 -- Name: idtipo_hora; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5509,7 +5533,7 @@ ALTER TABLE ONLY tipo_hora ALTER COLUMN idtipo_hora SET DEFAULT nextval('tipo_ho
 
 
 --
--- TOC entry 2984 (class 2604 OID 45198)
+-- TOC entry 2985 (class 2604 OID 45198)
 -- Name: idtipo_telefono; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5517,7 +5541,7 @@ ALTER TABLE ONLY tipo_telefono ALTER COLUMN idtipo_telefono SET DEFAULT nextval(
 
 
 --
--- TOC entry 2995 (class 2604 OID 45199)
+-- TOC entry 2996 (class 2604 OID 45199)
 -- Name: idviatico; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -5527,7 +5551,7 @@ ALTER TABLE ONLY viatico ALTER COLUMN idviatico SET DEFAULT nextval('viatico_idv
 SET search_path = referencia, pg_catalog;
 
 --
--- TOC entry 3129 (class 2604 OID 45086)
+-- TOC entry 3130 (class 2604 OID 45086)
 -- Name: id; Type: DEFAULT; Schema: referencia; Owner: postgres
 --
 
@@ -5535,7 +5559,7 @@ ALTER TABLE ONLY ref_deportes ALTER COLUMN id SET DEFAULT nextval('ref_deportes_
 
 
 --
--- TOC entry 3130 (class 2604 OID 45092)
+-- TOC entry 3131 (class 2604 OID 45092)
 -- Name: id; Type: DEFAULT; Schema: referencia; Owner: postgres
 --
 
@@ -5543,7 +5567,7 @@ ALTER TABLE ONLY ref_juegos ALTER COLUMN id SET DEFAULT nextval('ref_juegos_id_s
 
 
 --
--- TOC entry 3132 (class 2604 OID 45099)
+-- TOC entry 3133 (class 2604 OID 45099)
 -- Name: id; Type: DEFAULT; Schema: referencia; Owner: postgres
 --
 
@@ -5551,7 +5575,7 @@ ALTER TABLE ONLY ref_juegos_oferta ALTER COLUMN id SET DEFAULT nextval('ref_jueg
 
 
 --
--- TOC entry 3134 (class 2604 OID 45106)
+-- TOC entry 3135 (class 2604 OID 45106)
 -- Name: id; Type: DEFAULT; Schema: referencia; Owner: postgres
 --
 
@@ -5559,7 +5583,7 @@ ALTER TABLE ONLY ref_persona ALTER COLUMN id SET DEFAULT nextval('ref_persona_id
 
 
 --
--- TOC entry 3136 (class 2604 OID 45116)
+-- TOC entry 3137 (class 2604 OID 45116)
 -- Name: id; Type: DEFAULT; Schema: referencia; Owner: postgres
 --
 
@@ -5567,7 +5591,7 @@ ALTER TABLE ONLY ref_persona_deportes ALTER COLUMN id SET DEFAULT nextval('ref_p
 
 
 --
--- TOC entry 3137 (class 2604 OID 45122)
+-- TOC entry 3138 (class 2604 OID 45122)
 -- Name: id; Type: DEFAULT; Schema: referencia; Owner: postgres
 --
 
@@ -5577,7 +5601,7 @@ ALTER TABLE ONLY ref_persona_juegos ALTER COLUMN id SET DEFAULT nextval('ref_per
 SET search_path = desarrollo, pg_catalog;
 
 --
--- TOC entry 3979 (class 0 OID 43432)
+-- TOC entry 3980 (class 0 OID 43432)
 -- Dependencies: 283
 -- Data for Name: apex_admin_album_fotos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5587,7 +5611,7 @@ COPY apex_admin_album_fotos (proyecto, usuario, foto_tipo, foto_nombre, foto_nod
 
 
 --
--- TOC entry 3980 (class 0 OID 43440)
+-- TOC entry 3981 (class 0 OID 43440)
 -- Dependencies: 284
 -- Data for Name: apex_admin_param_previsualizazion; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5601,7 +5625,7 @@ sicd	toba	admin	/sicd	\N
 
 
 --
--- TOC entry 4031 (class 0 OID 44086)
+-- TOC entry 4032 (class 0 OID 44086)
 -- Dependencies: 335
 -- Data for Name: apex_admin_persistencia; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5616,7 +5640,7 @@ COPY apex_admin_persistencia (ap, clase, archivo, descripcion, categoria) FROM s
 
 
 --
--- TOC entry 4186 (class 0 OID 0)
+-- TOC entry 4187 (class 0 OID 0)
 -- Dependencies: 334
 -- Name: apex_admin_persistencia_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -5625,7 +5649,7 @@ SELECT pg_catalog.setval('apex_admin_persistencia_seq', 106000000, true);
 
 
 --
--- TOC entry 3978 (class 0 OID 43424)
+-- TOC entry 3979 (class 0 OID 43424)
 -- Dependencies: 282
 -- Data for Name: apex_arbol_items_fotos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5635,18 +5659,18 @@ COPY apex_arbol_items_fotos (proyecto, usuario, foto_nombre, foto_nodos_visibles
 
 
 --
--- TOC entry 3923 (class 0 OID 42751)
+-- TOC entry 3924 (class 0 OID 42751)
 -- Dependencies: 227
 -- Data for Name: apex_checksum_proyectos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
 
 COPY apex_checksum_proyectos (checksum, proyecto) FROM stdin;
-e168c36ab2a0543942e2fd398637c0586f169ab4a8b331084157b3e1ceac4ca8	sicd
+db70c7fe64c6179d3149f5bd358078cc1c5dd7f39caa95a97af16c3b560c2c2b	sicd
 \.
 
 
 --
--- TOC entry 3964 (class 0 OID 43226)
+-- TOC entry 3965 (class 0 OID 43226)
 -- Dependencies: 268
 -- Data for Name: apex_clase; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5675,7 +5699,7 @@ toba	toba_servicio_web	5	nucleo/componentes/negocio/toba_servicio_web.php	Servic
 
 
 --
--- TOC entry 3966 (class 0 OID 43248)
+-- TOC entry 3967 (class 0 OID 43248)
 -- Dependencies: 270
 -- Data for Name: apex_clase_relacion; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5704,7 +5728,7 @@ toba	30000001	toba_ci	toba_ei_firma
 
 
 --
--- TOC entry 4187 (class 0 OID 0)
+-- TOC entry 4188 (class 0 OID 0)
 -- Dependencies: 269
 -- Name: apex_clase_relacion_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -5713,7 +5737,7 @@ SELECT pg_catalog.setval('apex_clase_relacion_seq', 106000000, true);
 
 
 --
--- TOC entry 3963 (class 0 OID 43217)
+-- TOC entry 3964 (class 0 OID 43217)
 -- Dependencies: 267
 -- Data for Name: apex_clase_tipo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5728,7 +5752,7 @@ COPY apex_clase_tipo (clase_tipo, descripcion_corta, descripcion, icono, orden, 
 
 
 --
--- TOC entry 4188 (class 0 OID 0)
+-- TOC entry 4189 (class 0 OID 0)
 -- Dependencies: 266
 -- Name: apex_clase_tipo_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -5737,7 +5761,7 @@ SELECT pg_catalog.setval('apex_clase_tipo_seq', 106000000, true);
 
 
 --
--- TOC entry 3939 (class 0 OID 42935)
+-- TOC entry 3940 (class 0 OID 42935)
 -- Dependencies: 243
 -- Data for Name: apex_columna_estilo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5759,7 +5783,7 @@ COPY apex_columna_estilo (columna_estilo, css, descripcion, descripcion_corta) F
 
 
 --
--- TOC entry 4189 (class 0 OID 0)
+-- TOC entry 4190 (class 0 OID 0)
 -- Dependencies: 242
 -- Name: apex_columna_estilo_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -5768,7 +5792,7 @@ SELECT pg_catalog.setval('apex_columna_estilo_seq', 106000000, true);
 
 
 --
--- TOC entry 3941 (class 0 OID 42946)
+-- TOC entry 3942 (class 0 OID 42946)
 -- Dependencies: 245
 -- Data for Name: apex_columna_formato; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5796,7 +5820,7 @@ COPY apex_columna_formato (columna_formato, funcion, archivo, descripcion, descr
 
 
 --
--- TOC entry 4190 (class 0 OID 0)
+-- TOC entry 4191 (class 0 OID 0)
 -- Dependencies: 244
 -- Name: apex_columna_formato_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -5805,7 +5829,7 @@ SELECT pg_catalog.setval('apex_columna_formato_seq', 106000000, true);
 
 
 --
--- TOC entry 3946 (class 0 OID 42995)
+-- TOC entry 3947 (class 0 OID 42995)
 -- Dependencies: 250
 -- Data for Name: apex_consulta_php; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5820,7 +5844,7 @@ sicd	3	dao	dao	dao.php	\N	13
 
 
 --
--- TOC entry 4191 (class 0 OID 0)
+-- TOC entry 4192 (class 0 OID 0)
 -- Dependencies: 249
 -- Name: apex_consulta_php_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -5829,7 +5853,7 @@ SELECT pg_catalog.setval('apex_consulta_php_seq', 106000000, true);
 
 
 --
--- TOC entry 3981 (class 0 OID 43448)
+-- TOC entry 3982 (class 0 OID 43448)
 -- Dependencies: 285
 -- Data for Name: apex_conversion; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5842,7 +5866,7 @@ toba_referencia	0.8.3.fotos	2005-11-01 19:14:44.749
 
 
 --
--- TOC entry 3999 (class 0 OID 43658)
+-- TOC entry 4000 (class 0 OID 43658)
 -- Dependencies: 303
 -- Data for Name: apex_dimension; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5855,7 +5879,7 @@ toba_referencia	1000001	persona	\N	\N	ref_persona	id	nombre	\N	\N	\N	toba_refere
 
 
 --
--- TOC entry 4001 (class 0 OID 43679)
+-- TOC entry 4002 (class 0 OID 43679)
 -- Dependencies: 305
 -- Data for Name: apex_dimension_gatillo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5871,7 +5895,7 @@ toba_editor	12	18	directo	3	ref_persona_juegos	juego	\N	\N
 
 
 --
--- TOC entry 4192 (class 0 OID 0)
+-- TOC entry 4193 (class 0 OID 0)
 -- Dependencies: 304
 -- Name: apex_dimension_gatillo_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -5880,7 +5904,7 @@ SELECT pg_catalog.setval('apex_dimension_gatillo_seq', 106000000, true);
 
 
 --
--- TOC entry 4193 (class 0 OID 0)
+-- TOC entry 4194 (class 0 OID 0)
 -- Dependencies: 302
 -- Name: apex_dimension_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -5889,7 +5913,7 @@ SELECT pg_catalog.setval('apex_dimension_seq', 106000000, true);
 
 
 --
--- TOC entry 3935 (class 0 OID 42881)
+-- TOC entry 3936 (class 0 OID 42881)
 -- Dependencies: 239
 -- Data for Name: apex_elemento_formulario; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5927,7 +5951,7 @@ ef_upload	ef	upload	\N	toba	\N	0	\N	\N
 
 
 --
--- TOC entry 3925 (class 0 OID 42769)
+-- TOC entry 3926 (class 0 OID 42769)
 -- Dependencies: 229
 -- Data for Name: apex_estilo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -5942,7 +5966,7 @@ sicd	sicd	sicd	1	a:0:{}
 
 
 --
--- TOC entry 4010 (class 0 OID 43799)
+-- TOC entry 4011 (class 0 OID 43799)
 -- Dependencies: 314
 -- Data for Name: apex_eventos_pantalla; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6413,7 +6437,7 @@ COPY apex_eventos_pantalla (pantalla, objeto_ci, evento_id, proyecto) FROM stdin
 
 
 --
--- TOC entry 3930 (class 0 OID 42817)
+-- TOC entry 3931 (class 0 OID 42817)
 -- Dependencies: 234
 -- Data for Name: apex_fuente_datos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6430,7 +6454,7 @@ sicd	sicd	Fuente sicd	sicd	postgres7	\N	13	\N	\N	\N	public	sicd	\N	1	0	0	0	\N	\N
 
 
 --
--- TOC entry 3929 (class 0 OID 42809)
+-- TOC entry 3930 (class 0 OID 42809)
 -- Dependencies: 233
 -- Data for Name: apex_fuente_datos_motor; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6445,7 +6469,7 @@ sqlserver	SQLServer	2005
 
 
 --
--- TOC entry 3931 (class 0 OID 42843)
+-- TOC entry 3932 (class 0 OID 42843)
 -- Dependencies: 235
 -- Data for Name: apex_fuente_datos_schemas; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6458,7 +6482,7 @@ sicd	sicd	public	0
 
 
 --
--- TOC entry 4003 (class 0 OID 43697)
+-- TOC entry 4004 (class 0 OID 43697)
 -- Dependencies: 307
 -- Data for Name: apex_gadgets; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6470,7 +6494,7 @@ COPY apex_gadgets (gadget, proyecto, gadget_url, titulo, descripcion, tipo_gadge
 
 
 --
--- TOC entry 4194 (class 0 OID 0)
+-- TOC entry 4195 (class 0 OID 0)
 -- Dependencies: 306
 -- Name: apex_gadgets_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -6479,7 +6503,7 @@ SELECT pg_catalog.setval('apex_gadgets_seq', 106000000, true);
 
 
 --
--- TOC entry 4026 (class 0 OID 44041)
+-- TOC entry 4027 (class 0 OID 44041)
 -- Dependencies: 330
 -- Data for Name: apex_grafico; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6493,7 +6517,7 @@ pie	Torta	Grafico de torta
 
 
 --
--- TOC entry 4074 (class 0 OID 44637)
+-- TOC entry 4075 (class 0 OID 44637)
 -- Dependencies: 378
 -- Data for Name: apex_grupo_acc_restriccion_funcional; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6503,7 +6527,7 @@ COPY apex_grupo_acc_restriccion_funcional (proyecto, usuario_grupo_acc, restricc
 
 
 --
--- TOC entry 3921 (class 0 OID 42729)
+-- TOC entry 3922 (class 0 OID 42729)
 -- Dependencies: 225
 -- Data for Name: apex_instancia; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6514,7 +6538,7 @@ desarrollo	2.7.12	\N	\N	\N	\N	\N	2018-01-09 11:17:09
 
 
 --
--- TOC entry 3959 (class 0 OID 43128)
+-- TOC entry 3960 (class 0 OID 43128)
 -- Dependencies: 263
 -- Data for Name: apex_item; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6801,7 +6825,7 @@ COPY apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre, carpet
 
 
 --
--- TOC entry 3960 (class 0 OID 43184)
+-- TOC entry 3961 (class 0 OID 43184)
 -- Dependencies: 264
 -- Data for Name: apex_item_info; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6812,7 +6836,7 @@ COPY apex_item_info (item_id, item_proyecto, item, descripcion_breve, descripcio
 
 
 --
--- TOC entry 3986 (class 0 OID 43489)
+-- TOC entry 3987 (class 0 OID 43489)
 -- Dependencies: 290
 -- Data for Name: apex_item_msg; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6822,7 +6846,7 @@ COPY apex_item_msg (item_msg, msg_tipo, indice, item_id, item_proyecto, item, de
 
 
 --
--- TOC entry 4195 (class 0 OID 0)
+-- TOC entry 4196 (class 0 OID 0)
 -- Dependencies: 289
 -- Name: apex_item_msg_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -6831,7 +6855,7 @@ SELECT pg_catalog.setval('apex_item_msg_seq', 106000000, true);
 
 
 --
--- TOC entry 3993 (class 0 OID 43573)
+-- TOC entry 3994 (class 0 OID 43573)
 -- Dependencies: 297
 -- Data for Name: apex_item_nota; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -6841,7 +6865,7 @@ COPY apex_item_nota (item_nota, nota_tipo, item_id, item_proyecto, item, usuario
 
 
 --
--- TOC entry 4196 (class 0 OID 0)
+-- TOC entry 4197 (class 0 OID 0)
 -- Dependencies: 296
 -- Name: apex_item_nota_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -6850,7 +6874,7 @@ SELECT pg_catalog.setval('apex_item_nota_seq', 106000000, true);
 
 
 --
--- TOC entry 3977 (class 0 OID 43409)
+-- TOC entry 3978 (class 0 OID 43409)
 -- Dependencies: 281
 -- Data for Name: apex_item_objeto; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7076,7 +7100,7 @@ COPY apex_item_objeto (item_id, proyecto, item, objeto, orden, inicializar) FROM
 
 
 --
--- TOC entry 3961 (class 0 OID 43197)
+-- TOC entry 3962 (class 0 OID 43197)
 -- Dependencies: 265
 -- Data for Name: apex_item_permisos_tablas; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7093,7 +7117,7 @@ toba_referencia	3294	toba_referencia	referencia	ref_juegos	select,insert,update,
 
 
 --
--- TOC entry 4197 (class 0 OID 0)
+-- TOC entry 4198 (class 0 OID 0)
 -- Dependencies: 262
 -- Name: apex_item_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -7102,7 +7126,7 @@ SELECT pg_catalog.setval('apex_item_seq', 106000005, true);
 
 
 --
--- TOC entry 3957 (class 0 OID 43108)
+-- TOC entry 3958 (class 0 OID 43108)
 -- Dependencies: 261
 -- Data for Name: apex_item_zona; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7124,7 +7148,7 @@ toba_referencia	zona_tutorial	Zona del Tutorial	\N	tutorial/zona_tutorial.php	\N
 
 
 --
--- TOC entry 3926 (class 0 OID 42783)
+-- TOC entry 3927 (class 0 OID 42783)
 -- Dependencies: 230
 -- Data for Name: apex_log_sistema_tipo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7138,7 +7162,7 @@ seguridad	Alerta de seguridad
 
 
 --
--- TOC entry 4081 (class 0 OID 44767)
+-- TOC entry 4082 (class 0 OID 44767)
 -- Dependencies: 385
 -- Data for Name: apex_menu; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7149,7 +7173,7 @@ toba_usuarios	shw_menu1	Menu de Prueba 1	css
 
 
 --
--- TOC entry 4083 (class 0 OID 44787)
+-- TOC entry 4084 (class 0 OID 44787)
 -- Dependencies: 387
 -- Data for Name: apex_menu_operaciones; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7165,7 +7189,7 @@ toba_usuarios	shw_menu1	38	3443	1000229	Logs del sistema	1
 
 
 --
--- TOC entry 4198 (class 0 OID 0)
+-- TOC entry 4199 (class 0 OID 0)
 -- Dependencies: 386
 -- Name: apex_menu_operaciones_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -7174,7 +7198,7 @@ SELECT pg_catalog.setval('apex_menu_operaciones_seq', 38, true);
 
 
 --
--- TOC entry 3924 (class 0 OID 42761)
+-- TOC entry 3925 (class 0 OID 42761)
 -- Dependencies: 228
 -- Data for Name: apex_menu_tipos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7188,7 +7212,7 @@ yui	YUI (css)	nucleo/menu/toba_menu_yui.php	0
 
 
 --
--- TOC entry 4047 (class 0 OID 44312)
+-- TOC entry 4048 (class 0 OID 44312)
 -- Dependencies: 351
 -- Data for Name: apex_molde_opciones_generacion; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7199,7 +7223,7 @@ toba_editor	0	consulta_php	\N	\N	\N
 
 
 --
--- TOC entry 4053 (class 0 OID 44374)
+-- TOC entry 4054 (class 0 OID 44374)
 -- Dependencies: 357
 -- Data for Name: apex_molde_operacion; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7212,7 +7236,7 @@ toba_editor	4	10	Editor de Dimensiones	3441	editor_de_dimensiones	dim	instancia	
 
 
 --
--- TOC entry 4058 (class 0 OID 44440)
+-- TOC entry 4059 (class 0 OID 44440)
 -- Dependencies: 362
 -- Data for Name: apex_molde_operacion_abms; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7225,7 +7249,7 @@ toba_editor	4	apex_dimension	0	0	\N	\N	0	proyecto,dimension	\N	consulta_php	SELE
 
 
 --
--- TOC entry 4060 (class 0 OID 44460)
+-- TOC entry 4061 (class 0 OID 44460)
 -- Dependencies: 364
 -- Data for Name: apex_molde_operacion_abms_fila; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7257,7 +7281,7 @@ toba_editor	4	46	5	subclase_archivo	1000001	Subclase Archivo	1	1	0	ILIKE	4	1	C	\
 
 
 --
--- TOC entry 4199 (class 0 OID 0)
+-- TOC entry 4200 (class 0 OID 0)
 -- Dependencies: 363
 -- Name: apex_molde_operacion_abms_fila_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -7266,7 +7290,7 @@ SELECT pg_catalog.setval('apex_molde_operacion_abms_fila_seq', 106000000, true);
 
 
 --
--- TOC entry 4061 (class 0 OID 44506)
+-- TOC entry 4062 (class 0 OID 44506)
 -- Dependencies: 365
 -- Data for Name: apex_molde_operacion_importacion; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7276,7 +7300,7 @@ COPY apex_molde_operacion_importacion (proyecto, molde, origen_item, origen_proy
 
 
 --
--- TOC entry 4055 (class 0 OID 44412)
+-- TOC entry 4056 (class 0 OID 44412)
 -- Dependencies: 359
 -- Data for Name: apex_molde_operacion_log; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7286,7 +7310,7 @@ COPY apex_molde_operacion_log (proyecto, molde, generacion, momento) FROM stdin;
 
 
 --
--- TOC entry 4057 (class 0 OID 44426)
+-- TOC entry 4058 (class 0 OID 44426)
 -- Dependencies: 361
 -- Data for Name: apex_molde_operacion_log_elementos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7296,7 +7320,7 @@ COPY apex_molde_operacion_log_elementos (generacion, molde, id, tipo, proyecto, 
 
 
 --
--- TOC entry 4200 (class 0 OID 0)
+-- TOC entry 4201 (class 0 OID 0)
 -- Dependencies: 360
 -- Name: apex_molde_operacion_log_elementos_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -7305,7 +7329,7 @@ SELECT pg_catalog.setval('apex_molde_operacion_log_elementos_seq', 106000000, tr
 
 
 --
--- TOC entry 4201 (class 0 OID 0)
+-- TOC entry 4202 (class 0 OID 0)
 -- Dependencies: 358
 -- Name: apex_molde_operacion_log_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -7314,7 +7338,7 @@ SELECT pg_catalog.setval('apex_molde_operacion_log_seq', 106000000, true);
 
 
 --
--- TOC entry 4202 (class 0 OID 0)
+-- TOC entry 4203 (class 0 OID 0)
 -- Dependencies: 356
 -- Name: apex_molde_operacion_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -7323,7 +7347,7 @@ SELECT pg_catalog.setval('apex_molde_operacion_seq', 106000000, true);
 
 
 --
--- TOC entry 4049 (class 0 OID 44332)
+-- TOC entry 4050 (class 0 OID 44332)
 -- Dependencies: 353
 -- Data for Name: apex_molde_operacion_tipo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7336,7 +7360,7 @@ COPY apex_molde_operacion_tipo (operacion_tipo, descripcion_corta, descripcion, 
 
 
 --
--- TOC entry 4051 (class 0 OID 44343)
+-- TOC entry 4052 (class 0 OID 44343)
 -- Dependencies: 355
 -- Data for Name: apex_molde_operacion_tipo_dato; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -7355,7 +7379,7 @@ COPY apex_molde_operacion_tipo_dato (tipo_dato, descripcion_corta, descripcion, 
 
 
 --
--- TOC entry 4203 (class 0 OID 0)
+-- TOC entry 4204 (class 0 OID 0)
 -- Dependencies: 354
 -- Name: apex_molde_operacion_tipo_dato_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -7364,7 +7388,7 @@ SELECT pg_catalog.setval('apex_molde_operacion_tipo_dato_seq', 106000000, true);
 
 
 --
--- TOC entry 4204 (class 0 OID 0)
+-- TOC entry 4205 (class 0 OID 0)
 -- Dependencies: 352
 -- Name: apex_molde_operacion_tipo_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -7373,7 +7397,7 @@ SELECT pg_catalog.setval('apex_molde_operacion_tipo_seq', 106000000, true);
 
 
 --
--- TOC entry 3984 (class 0 OID 43468)
+-- TOC entry 3985 (class 0 OID 43468)
 -- Dependencies: 288
 -- Data for Name: apex_msg; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -8073,7 +8097,7 @@ COPY apex_msg (msg, indice, proyecto, msg_tipo, descripcion_corta, mensaje_a, me
 
 
 --
--- TOC entry 4205 (class 0 OID 0)
+-- TOC entry 4206 (class 0 OID 0)
 -- Dependencies: 287
 -- Name: apex_msg_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -8082,7 +8106,7 @@ SELECT pg_catalog.setval('apex_msg_seq', 106000000, true);
 
 
 --
--- TOC entry 3982 (class 0 OID 43458)
+-- TOC entry 3983 (class 0 OID 43458)
 -- Dependencies: 286
 -- Data for Name: apex_msg_tipo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -8094,7 +8118,7 @@ info	Informacion	\N
 
 
 --
--- TOC entry 3933 (class 0 OID 42865)
+-- TOC entry 3934 (class 0 OID 42865)
 -- Dependencies: 237
 -- Data for Name: apex_nivel_acceso; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -8107,7 +8131,7 @@ COPY apex_nivel_acceso (nivel_acceso, nombre, descripcion) FROM stdin;
 
 
 --
--- TOC entry 3991 (class 0 OID 43541)
+-- TOC entry 3992 (class 0 OID 43541)
 -- Dependencies: 295
 -- Data for Name: apex_nota; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -8117,7 +8141,7 @@ COPY apex_nota (nota, nota_tipo, proyecto, usuario_origen, usuario_destino, titu
 
 
 --
--- TOC entry 4206 (class 0 OID 0)
+-- TOC entry 4207 (class 0 OID 0)
 -- Dependencies: 294
 -- Name: apex_nota_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -8126,7 +8150,7 @@ SELECT pg_catalog.setval('apex_nota_seq', 106000000, true);
 
 
 --
--- TOC entry 3989 (class 0 OID 43531)
+-- TOC entry 3990 (class 0 OID 43531)
 -- Dependencies: 293
 -- Data for Name: apex_nota_tipo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -8139,7 +8163,7 @@ regla	Regla de utilizacion	\N
 
 
 --
--- TOC entry 4207 (class 0 OID 0)
+-- TOC entry 4208 (class 0 OID 0)
 -- Dependencies: 311
 -- Name: apex_obj_ci_pantalla_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -8148,7 +8172,7 @@ SELECT pg_catalog.setval('apex_obj_ci_pantalla_seq', 106000004, true);
 
 
 --
--- TOC entry 4208 (class 0 OID 0)
+-- TOC entry 4209 (class 0 OID 0)
 -- Dependencies: 316
 -- Name: apex_obj_ei_cuadro_cc_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -8157,7 +8181,7 @@ SELECT pg_catalog.setval('apex_obj_ei_cuadro_cc_seq', 106000005, true);
 
 
 --
--- TOC entry 4209 (class 0 OID 0)
+-- TOC entry 4210 (class 0 OID 0)
 -- Dependencies: 318
 -- Name: apex_obj_ei_cuadro_col_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -8166,7 +8190,7 @@ SELECT pg_catalog.setval('apex_obj_ei_cuadro_col_seq', 106000018, true);
 
 
 --
--- TOC entry 4210 (class 0 OID 0)
+-- TOC entry 4211 (class 0 OID 0)
 -- Dependencies: 322
 -- Name: apex_obj_ei_form_fila_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -8175,7 +8199,7 @@ SELECT pg_catalog.setval('apex_obj_ei_form_fila_seq', 106000000, true);
 
 
 --
--- TOC entry 3968 (class 0 OID 43266)
+-- TOC entry 3969 (class 0 OID 43266)
 -- Dependencies: 272
 -- Data for Name: apex_objeto; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -9032,7 +9056,7 @@ sicd	106000012	\N	\N	\N	toba	toba_ei_filtro	13	ei_filtro_listado_cargos	listados
 
 
 --
--- TOC entry 4008 (class 0 OID 43758)
+-- TOC entry 4009 (class 0 OID 43758)
 -- Dependencies: 312
 -- Data for Name: apex_objeto_ci_pantalla; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -9517,7 +9541,7 @@ sicd	106000011	106000004	pant_inicial	\N	Pantalla Inicial	\N	\N	\N	\N	\N	\N	\N	\
 
 
 --
--- TOC entry 4028 (class 0 OID 44064)
+-- TOC entry 4029 (class 0 OID 44064)
 -- Dependencies: 332
 -- Data for Name: apex_objeto_codigo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -9528,7 +9552,7 @@ toba_editor	12000130	\N	800px	500px
 
 
 --
--- TOC entry 4011 (class 0 OID 43814)
+-- TOC entry 4012 (class 0 OID 43814)
 -- Dependencies: 315
 -- Data for Name: apex_objeto_cuadro; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -9663,7 +9687,7 @@ sicd	106000009	\N	\N	\N	idviatico	\N	0	\N	100%	1	0	10	P	0	0	NO existen personas 
 
 
 --
--- TOC entry 4013 (class 0 OID 43831)
+-- TOC entry 4014 (class 0 OID 43831)
 -- Dependencies: 317
 -- Data for Name: apex_objeto_cuadro_cc; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -9712,7 +9736,7 @@ sicd	106000009	106000005	persona	Persona	1	persona	persona	0	0	0	\N	1
 
 
 --
--- TOC entry 4016 (class 0 OID 43880)
+-- TOC entry 4017 (class 0 OID 43880)
 -- Dependencies: 320
 -- Data for Name: apex_objeto_cuadro_col_cc; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -9747,20 +9771,20 @@ COPY apex_objeto_cuadro_col_cc (objeto_cuadro_cc, objeto_cuadro_proyecto, objeto
 4	toba_referencia	1707	361	1
 5	toba_referencia	1707	361	1
 38	sicd	2326	839	1
-33	sicd	2330	868	1
 33	sicd	2330	869	1
 33	sicd	2330	871	1
 33	sicd	2330	872	1
 106000001	sicd	106000009	106000010	1
-106000001	sicd	106000009	106000011	1
 106000001	sicd	106000009	106000012	1
 106000001	sicd	106000009	106000013	1
 106000003	sicd	106000010	106000014	1
+33	sicd	2330	868	1
+106000001	sicd	106000009	106000011	1
 \.
 
 
 --
--- TOC entry 4043 (class 0 OID 44239)
+-- TOC entry 4044 (class 0 OID 44239)
 -- Dependencies: 347
 -- Data for Name: apex_objeto_datos_rel; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -9808,7 +9832,7 @@ sicd	2404	0	\N	2	13	\N	\N	0	1	1
 
 
 --
--- TOC entry 4045 (class 0 OID 44268)
+-- TOC entry 4046 (class 0 OID 44268)
 -- Dependencies: 349
 -- Data for Name: apex_objeto_datos_rel_asoc; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -9904,7 +9928,7 @@ sicd	2311	49	\N	sicd	2316	dt_personal	\N	sicd	2379	dt_estudio_por_persona	\N	\N	
 
 
 --
--- TOC entry 4211 (class 0 OID 0)
+-- TOC entry 4212 (class 0 OID 0)
 -- Dependencies: 348
 -- Name: apex_objeto_datos_rel_asoc_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -9913,7 +9937,7 @@ SELECT pg_catalog.setval('apex_objeto_datos_rel_asoc_seq', 106000000, true);
 
 
 --
--- TOC entry 4037 (class 0 OID 44161)
+-- TOC entry 4038 (class 0 OID 44161)
 -- Dependencies: 341
 -- Data for Name: apex_objeto_db_columna_fks; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -9923,7 +9947,7 @@ COPY apex_objeto_db_columna_fks (id, objeto_proyecto, objeto, tabla, columna, ta
 
 
 --
--- TOC entry 4212 (class 0 OID 0)
+-- TOC entry 4213 (class 0 OID 0)
 -- Dependencies: 340
 -- Name: apex_objeto_db_columna_fks_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -9932,7 +9956,7 @@ SELECT pg_catalog.setval('apex_objeto_db_columna_fks_seq', 106000000, true);
 
 
 --
--- TOC entry 4033 (class 0 OID 44100)
+-- TOC entry 4034 (class 0 OID 44100)
 -- Dependencies: 337
 -- Data for Name: apex_objeto_db_registros; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -10051,7 +10075,7 @@ sicd	2412	\N	\N	13	1	\N	\N	tipo_cargo	\N	\N	0	sicd	sicd	1	public	public
 
 
 --
--- TOC entry 4035 (class 0 OID 44138)
+-- TOC entry 4036 (class 0 OID 44138)
 -- Dependencies: 339
 -- Data for Name: apex_objeto_db_registros_col; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -11222,7 +11246,7 @@ sicd	2322	106000001	fecha_fin	F	0		\N	\N	0	0	cargo_por_persona
 
 
 --
--- TOC entry 4039 (class 0 OID 44177)
+-- TOC entry 4040 (class 0 OID 44177)
 -- Dependencies: 343
 -- Data for Name: apex_objeto_db_registros_ext; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -11243,7 +11267,7 @@ sicd	2363	9	dao	1	get_pais_provincia	\N	\N	13	\N	0	\N	3	0	\N
 
 
 --
--- TOC entry 4040 (class 0 OID 44208)
+-- TOC entry 4041 (class 0 OID 44208)
 -- Dependencies: 344
 -- Data for Name: apex_objeto_db_registros_ext_col; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -11294,7 +11318,7 @@ sicd	2363	9	885	1
 
 
 --
--- TOC entry 4042 (class 0 OID 44225)
+-- TOC entry 4043 (class 0 OID 44225)
 -- Dependencies: 346
 -- Data for Name: apex_objeto_db_registros_uniq; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -11315,7 +11339,7 @@ toba_usuarios	2260	33000001	proyecto,usuario,usuario_perfil_datos
 
 
 --
--- TOC entry 4213 (class 0 OID 0)
+-- TOC entry 4214 (class 0 OID 0)
 -- Dependencies: 338
 -- Name: apex_objeto_dbr_columna_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -11324,7 +11348,7 @@ SELECT pg_catalog.setval('apex_objeto_dbr_columna_seq', 106000001, true);
 
 
 --
--- TOC entry 4214 (class 0 OID 0)
+-- TOC entry 4215 (class 0 OID 0)
 -- Dependencies: 342
 -- Name: apex_objeto_dbr_ext_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -11333,7 +11357,7 @@ SELECT pg_catalog.setval('apex_objeto_dbr_ext_seq', 106000000, true);
 
 
 --
--- TOC entry 4215 (class 0 OID 0)
+-- TOC entry 4216 (class 0 OID 0)
 -- Dependencies: 345
 -- Name: apex_objeto_dbr_uniq_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -11342,7 +11366,7 @@ SELECT pg_catalog.setval('apex_objeto_dbr_uniq_seq', 106000000, true);
 
 
 --
--- TOC entry 3973 (class 0 OID 43336)
+-- TOC entry 3974 (class 0 OID 43336)
 -- Dependencies: 277
 -- Data for Name: apex_objeto_dep_consumo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -11352,7 +11376,7 @@ COPY apex_objeto_dep_consumo (proyecto, consumo_id, objeto_consumidor, objeto_pr
 
 
 --
--- TOC entry 4216 (class 0 OID 0)
+-- TOC entry 4217 (class 0 OID 0)
 -- Dependencies: 276
 -- Name: apex_objeto_dep_consumo_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -11361,7 +11385,7 @@ SELECT pg_catalog.setval('apex_objeto_dep_consumo_seq', 106000000, true);
 
 
 --
--- TOC entry 4217 (class 0 OID 0)
+-- TOC entry 4218 (class 0 OID 0)
 -- Dependencies: 274
 -- Name: apex_objeto_dep_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -11370,7 +11394,7 @@ SELECT pg_catalog.setval('apex_objeto_dep_seq', 106000006, true);
 
 
 --
--- TOC entry 3971 (class 0 OID 43313)
+-- TOC entry 3972 (class 0 OID 43313)
 -- Dependencies: 275
 -- Data for Name: apex_objeto_dependencias; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -12107,7 +12131,7 @@ sicd	106000006	106000011	106000012	filtro	\N	\N	\N	\N	\N
 
 
 --
--- TOC entry 4015 (class 0 OID 43850)
+-- TOC entry 4016 (class 0 OID 43850)
 -- Dependencies: 319
 -- Data for Name: apex_objeto_ei_cuadro_columna; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -12467,22 +12491,22 @@ sicd	2396	879	edad	5	Edad	ei-cuadro-col-tit	col-num-p1	20	1	\N	0	\N	\N	\N	\N	0	\
 sicd	2384	106000002	altura	4	Altura	ei-cuadro-col-tit	4	10%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	Direccion	\N
 sicd	2384	863	nombre	2	Nombre	ei-cuadro-col-tit	4	70%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000006	106000007	nro_documento	2	Nro documento	ei-cuadro-col-tit	0	80	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
-sicd	106000009	106000009	nro_expediente	1	Nro expediente	ei-cuadro-col-tit	4	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
 sicd	106000006	106000004	correo	3	Correo	ei-cuadro-col-tit	4	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
-sicd	106000009	106000010	cantidad_dias_reintegro	4	Dias de Reintegro	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
-sicd	106000009	106000011	cantidad_total_dias	2	Total dias	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
-sicd	106000009	106000012	cantidad_dias_disponible	3	Dias disponibles	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
-sicd	106000009	106000013	cantidad_dias_tomados	5	Dias tomados	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	106000009	106000011	cantidad_total_dias	2	Total dias	ei-cuadro-col-tit	col-num-p1	22,5%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
 sicd	106000010	106000014	cantidad_horas	2	Cantidad horas	ei-cuadro-col-tit	col-num-p1	10%	1	\N	1	\N	\N	\N	\N	1	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000010	106000015	cargo	1	Cargo/Horas	ei-cuadro-col-tit	4	20%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000010	106000016	fecha_inicio	3	Inicio	ei-cuadro-col-tit	4	6%	8	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000010	106000017	fecha_fin	4	Fin	ei-cuadro-col-tit	4	6%	8	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000010	106000018	observaciones	5	Observaciones	ei-cuadro-col-tit	4	58%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
+sicd	106000009	106000009	nro_expediente	1	Nro expediente	ei-cuadro-col-tit	4	10%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	106000009	106000010	cantidad_dias_reintegro	4	Dias de Reintegro	ei-cuadro-col-tit	col-num-p1	22,5%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	106000009	106000012	cantidad_dias_disponible	3	Dias disponibles	ei-cuadro-col-tit	col-num-p1	22,5%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	106000009	106000013	cantidad_dias_tomados	5	Dias tomados	ei-cuadro-col-tit	col-num-p1	22,5%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
 \.
 
 
 --
--- TOC entry 4022 (class 0 OID 43981)
+-- TOC entry 4023 (class 0 OID 43981)
 -- Dependencies: 326
 -- Data for Name: apex_objeto_ei_filtro; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -12521,7 +12545,7 @@ sicd	106000012	100%
 
 
 --
--- TOC entry 4024 (class 0 OID 43993)
+-- TOC entry 4025 (class 0 OID 43993)
 -- Dependencies: 328
 -- Data for Name: apex_objeto_ei_filtro_col; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -12630,7 +12654,7 @@ COPY apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, objeto_e
 
 
 --
--- TOC entry 4218 (class 0 OID 0)
+-- TOC entry 4219 (class 0 OID 0)
 -- Dependencies: 327
 -- Name: apex_objeto_ei_filtro_col_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -12639,7 +12663,7 @@ SELECT pg_catalog.setval('apex_objeto_ei_filtro_col_seq', 106000020, true);
 
 
 --
--- TOC entry 4021 (class 0 OID 43971)
+-- TOC entry 4022 (class 0 OID 43971)
 -- Dependencies: 325
 -- Data for Name: apex_objeto_ei_filtro_tipo_col; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -12656,7 +12680,7 @@ opciones	Lista de opciones	toba
 
 
 --
--- TOC entry 4029 (class 0 OID 44074)
+-- TOC entry 4030 (class 0 OID 44074)
 -- Dependencies: 333
 -- Data for Name: apex_objeto_ei_firma; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -12668,7 +12692,7 @@ toba_referencia	30000174	\N	\N
 
 
 --
--- TOC entry 4019 (class 0 OID 43915)
+-- TOC entry 4020 (class 0 OID 43915)
 -- Dependencies: 323
 -- Data for Name: apex_objeto_ei_formulario_ef; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -13943,7 +13967,7 @@ COPY apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_formular
 5474	2331	sicd	cantidad_dias_disponible	ef_editable_numero	cantidad_dias_disponible	0	0	8	Cantidad dias disponibles	\N	\N	0	0	\N	\N	\N	0	0	\N	1	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5453	2368	sicd	idprovincia	ef_combo	idprovincia	1	0	2	Provincia	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	get_listado_provincia_cascada	\N	\N	\N	3	\N	sicd	\N	idprovincia	descripcion	idpais	0	0	1	--Seleccione--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N
 5449	2331	sicd	cantidad_total_dias	ef_editable_numero	cantidad_total_dias	1	0	7	Cantidad total de dias	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-5451	2331	sicd	cantidad_dias_reintegro	ef_editable_numero	cantidad_dias_reintegro	0	0	10	Cantidad de dias para reintegro	\N	\N	0	0	\N	\N	\N	0	0	0	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+5451	2331	sicd	cantidad_dias_reintegro	ef_editable_numero	cantidad_dias_reintegro	0	0	10	Cantidad dias reintegrados	\N	\N	0	0	\N	\N	\N	0	0	0	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5485	2417	sicd	cantidad_permitida	ef_editable_numero	cantidad_permitida	1	0	3	Cantidad permitida	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5413	2328	sicd	cantidad_horas	ef_editable_numero	cantidad_horas	1	1	6	Cantidad horas	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	2	\N	\N	[0..99]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5414	2328	sicd	fecha_inicio	ef_editable_fecha	fecha_inicio	0	0	7	Fecha inicio	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -14017,7 +14041,7 @@ COPY apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_formular
 
 
 --
--- TOC entry 4020 (class 0 OID 43957)
+-- TOC entry 4021 (class 0 OID 43957)
 -- Dependencies: 324
 -- Data for Name: apex_objeto_esquema; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -14033,7 +14057,7 @@ toba_usuarios	30000109	\N	\N	\N	\N	png	\N	0	\N	\N	\N	1	\N
 
 
 --
--- TOC entry 3975 (class 0 OID 43359)
+-- TOC entry 3976 (class 0 OID 43359)
 -- Dependencies: 279
 -- Data for Name: apex_objeto_eventos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15011,7 +15035,7 @@ sicd	106000019	106000012	filtrar	&Generar	1	\N	\N	ei-boton-filtrar	apex	filtrar.
 
 
 --
--- TOC entry 4219 (class 0 OID 0)
+-- TOC entry 4220 (class 0 OID 0)
 -- Dependencies: 278
 -- Name: apex_objeto_eventos_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -15020,7 +15044,7 @@ SELECT pg_catalog.setval('apex_objeto_eventos_seq', 106000019, true);
 
 
 --
--- TOC entry 4027 (class 0 OID 44049)
+-- TOC entry 4028 (class 0 OID 44049)
 -- Dependencies: 331
 -- Data for Name: apex_objeto_grafico; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15034,7 +15058,7 @@ toba_referencia	12000138	\N	bar	\N	\N
 
 
 --
--- TOC entry 3969 (class 0 OID 43298)
+-- TOC entry 3970 (class 0 OID 43298)
 -- Dependencies: 273
 -- Data for Name: apex_objeto_info; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15044,7 +15068,7 @@ COPY apex_objeto_info (objeto_proyecto, objeto, descripcion_breve, descripcion_l
 
 
 --
--- TOC entry 4025 (class 0 OID 44031)
+-- TOC entry 4026 (class 0 OID 44031)
 -- Dependencies: 329
 -- Data for Name: apex_objeto_mapa; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15055,7 +15079,7 @@ toba_referencia	1000632	componentes/ei_mapa/index.map
 
 
 --
--- TOC entry 3988 (class 0 OID 43512)
+-- TOC entry 3989 (class 0 OID 43512)
 -- Dependencies: 292
 -- Data for Name: apex_objeto_msg; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15066,7 +15090,7 @@ COPY apex_objeto_msg (objeto_msg, msg_tipo, indice, objeto_proyecto, objeto, des
 
 
 --
--- TOC entry 4220 (class 0 OID 0)
+-- TOC entry 4221 (class 0 OID 0)
 -- Dependencies: 291
 -- Name: apex_objeto_msg_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -15075,7 +15099,7 @@ SELECT pg_catalog.setval('apex_objeto_msg_seq', 106000000, true);
 
 
 --
--- TOC entry 4006 (class 0 OID 43738)
+-- TOC entry 4007 (class 0 OID 43738)
 -- Dependencies: 310
 -- Data for Name: apex_objeto_mt_me; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15316,7 +15340,7 @@ sicd	106000011	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 
 
 --
--- TOC entry 4005 (class 0 OID 43733)
+-- TOC entry 4006 (class 0 OID 43733)
 -- Dependencies: 309
 -- Data for Name: apex_objeto_mt_me_tipo_nav; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15329,7 +15353,7 @@ wizard	Wizard
 
 
 --
--- TOC entry 3995 (class 0 OID 43605)
+-- TOC entry 3996 (class 0 OID 43605)
 -- Dependencies: 299
 -- Data for Name: apex_objeto_nota; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15339,7 +15363,7 @@ COPY apex_objeto_nota (objeto_nota, nota_tipo, objeto_proyecto, objeto, usuario_
 
 
 --
--- TOC entry 4221 (class 0 OID 0)
+-- TOC entry 4222 (class 0 OID 0)
 -- Dependencies: 298
 -- Name: apex_objeto_nota_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -15348,7 +15372,7 @@ SELECT pg_catalog.setval('apex_objeto_nota_seq', 106000000, true);
 
 
 --
--- TOC entry 4046 (class 0 OID 44292)
+-- TOC entry 4047 (class 0 OID 44292)
 -- Dependencies: 350
 -- Data for Name: apex_objeto_rel_columnas_asoc; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15531,7 +15555,7 @@ sicd	2311	46	2321	839	2320	835
 
 
 --
--- TOC entry 4222 (class 0 OID 0)
+-- TOC entry 4223 (class 0 OID 0)
 -- Dependencies: 271
 -- Name: apex_objeto_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -15540,7 +15564,7 @@ SELECT pg_catalog.setval('apex_objeto_seq', 106000012, true);
 
 
 --
--- TOC entry 4017 (class 0 OID 43896)
+-- TOC entry 4018 (class 0 OID 43896)
 -- Dependencies: 321
 -- Data for Name: apex_objeto_ut_formulario; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -15829,7 +15853,7 @@ sicd	2364	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	100%	\N	\N	\N	0	\N	1	1	0	Agr
 
 
 --
--- TOC entry 4009 (class 0 OID 43784)
+-- TOC entry 4010 (class 0 OID 43784)
 -- Dependencies: 313
 -- Data for Name: apex_objetos_pantalla; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16378,7 +16402,7 @@ sicd	106000004	106000011	0	106000006
 
 
 --
--- TOC entry 3937 (class 0 OID 42915)
+-- TOC entry 3938 (class 0 OID 42915)
 -- Dependencies: 241
 -- Data for Name: apex_pagina_tipo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16399,7 +16423,7 @@ toba_usuarios	toba_usuarios_normal	Pagina con la funcionalidad de logout modific
 
 
 --
--- TOC entry 3949 (class 0 OID 43031)
+-- TOC entry 3950 (class 0 OID 43031)
 -- Dependencies: 253
 -- Data for Name: apex_perfil_datos_set_prueba; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16410,7 +16434,7 @@ toba_editor	test	SELECT * FROM ref_deportes;\r\nSELECT * FROM ref_deportes WHERE
 
 
 --
--- TOC entry 4063 (class 0 OID 44518)
+-- TOC entry 4064 (class 0 OID 44518)
 -- Dependencies: 367
 -- Data for Name: apex_permiso; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16422,7 +16446,7 @@ COPY apex_permiso (permiso, proyecto, nombre, descripcion, mensaje_particular) F
 
 
 --
--- TOC entry 4071 (class 0 OID 44605)
+-- TOC entry 4072 (class 0 OID 44605)
 -- Dependencies: 375
 -- Data for Name: apex_permiso_grupo_acc; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16434,7 +16458,7 @@ toba_referencia	Usuario	13
 
 
 --
--- TOC entry 4223 (class 0 OID 0)
+-- TOC entry 4224 (class 0 OID 0)
 -- Dependencies: 366
 -- Name: apex_permiso_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -16443,7 +16467,7 @@ SELECT pg_catalog.setval('apex_permiso_seq', 106000000, true);
 
 
 --
--- TOC entry 3922 (class 0 OID 42738)
+-- TOC entry 3923 (class 0 OID 42738)
 -- Dependencies: 226
 -- Data for Name: apex_proyecto; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16453,12 +16477,12 @@ toba	NUCLEO TOBA	Nucleo - Toba	cubos	1	\N	\N	\N	\N	\N	milonic	php	/apl	\N	1	0	\N
 toba_editor	Editor Toba	Toba - Editor	v2_azul	1	\N	\N	12	\N	\N	css	php	/apl	\N	0	0	\N	trunk	1	anonimo	Usuario Anónimo	admin,usuario,documentador	\N	\N	1	1	\N	\N	12	sesion_editor	customizacion_toba/sesion_editor.php	12	contexto_ejecucion_editor	customizacion_toba/contexto_ejecucion_editor.php	12	\N	\N	0	0	\N	1000231	33000040	0	3359	1	7	instancia	\N	1.0.2	2006-11-17	SIU-Toba. Ambiente de desarrollo WEB.\r\nDesarrollado por el programa SIU (2003-2006)	www.siu.edu.ar/soluciones/toba	5000	0	\N	f	f
 toba_referencia	Documentación de Referencia de Toba	Toba - Referencia	v2_azul	\N	\N	\N	12000003	\N	\N	css	\N	\N	\N	1	\N	\N	trunk	1	anonimo	Usuario Anónimo	admin	3	\N	2	0	\N	\N	12000003	\N	\N	12000003	contexto_ejecucion	contexto_ejecucion.php	12000003	\N	\N	0	1	\N	3294	33000033	0	\N	1	7	toba_referencia	referencia	\N	\N	\N	\N	1000	0	\N	f	f
 toba_usuarios	Administración de Usuarios Toba	Toba - Usuarios	plastik	1	\N	\N	12000004	\N	\N	css	\N	\N	\N	0	\N	\N	trunk	1	\N	\N	\N	\N	5	1	0	\N	\N	12000004	sesion	extension_toba/sesion.php	12000004	contexto_ejecucion	extension_toba/contexto_ejecucion.php	12000004	\N	\N	0	0	\N	3432	33000037	0	\N	1	7	toba_usuarios	toba_usuarios_normal	\N	\N	\N	\N	5000	0	\N	f	f
-sicd	SICD	Sicd	sicd	1	\N	\N	13	\N	\N	css	\N	\N	\N	1	\N	\N	2.7.9	1	\N	\N	\N	\N	5	1	1	30	\N	13	\N	\N	13	\N	\N	13	\N	\N	0	1	\N	2	3464	0	\N	1	7	sicd	\N	\N	\N	\N	\N	\N	0	\N	t	f
+sicd	SICD	Sicd	sicd	1	\N	\N	13	\N	\N	css	\N	\N	\N	1	\N	\N	2.7.9	1	\N	\N	\N	\N	5	1	0	30	\N	13	\N	\N	13	\N	\N	13	\N	\N	0	1	\N	2	3464	0	\N	1	7	sicd	\N	\N	\N	\N	\N	\N	0	\N	t	f
 \.
 
 
 --
--- TOC entry 3942 (class 0 OID 42960)
+-- TOC entry 3943 (class 0 OID 42960)
 -- Dependencies: 246
 -- Data for Name: apex_ptos_control; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16472,7 +16496,7 @@ toba_referencia	persona	En la ejecucion del item se selecciona una persona
 
 
 --
--- TOC entry 3944 (class 0 OID 42978)
+-- TOC entry 3945 (class 0 OID 42978)
 -- Dependencies: 248
 -- Data for Name: apex_ptos_control_ctrl; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16488,7 +16512,7 @@ toba_referencia	persona	ctrl_persona_2	puntos_de_control/controles/ctrl_persona.
 
 
 --
--- TOC entry 3943 (class 0 OID 42968)
+-- TOC entry 3944 (class 0 OID 42968)
 -- Dependencies: 247
 -- Data for Name: apex_ptos_control_param; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16511,7 +16535,7 @@ toba_referencia	persona	nro_inscripcion
 
 
 --
--- TOC entry 3976 (class 0 OID 43389)
+-- TOC entry 3977 (class 0 OID 43389)
 -- Dependencies: 280
 -- Data for Name: apex_ptos_control_x_evento; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16525,7 +16549,7 @@ toba_referencia	persona	10000073	10000040
 
 
 --
--- TOC entry 3928 (class 0 OID 42793)
+-- TOC entry 3929 (class 0 OID 42793)
 -- Dependencies: 232
 -- Data for Name: apex_puntos_montaje; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16539,7 +16563,7 @@ COPY apex_puntos_montaje (id, etiqueta, proyecto, proyecto_ref, descripcion, pat
 
 
 --
--- TOC entry 4224 (class 0 OID 0)
+-- TOC entry 4225 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: apex_puntos_montaje_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -16548,7 +16572,7 @@ SELECT pg_catalog.setval('apex_puntos_montaje_seq', 106000000, true);
 
 
 --
--- TOC entry 3932 (class 0 OID 42857)
+-- TOC entry 3933 (class 0 OID 42857)
 -- Dependencies: 236
 -- Data for Name: apex_recurso_origen; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16561,7 +16585,7 @@ skin	Skin
 
 
 --
--- TOC entry 3997 (class 0 OID 43637)
+-- TOC entry 3998 (class 0 OID 43637)
 -- Dependencies: 301
 -- Data for Name: apex_relacion_tablas; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16578,7 +16602,7 @@ toba_editor	test	toba_editor	18	ref_deportes	id	ref_persona_deportes	deporte
 
 
 --
--- TOC entry 4225 (class 0 OID 0)
+-- TOC entry 4226 (class 0 OID 0)
 -- Dependencies: 300
 -- Name: apex_relacion_tablas_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -16587,7 +16611,7 @@ SELECT pg_catalog.setval('apex_relacion_tablas_seq', 106000000, true);
 
 
 --
--- TOC entry 4073 (class 0 OID 44622)
+-- TOC entry 4074 (class 0 OID 44622)
 -- Dependencies: 377
 -- Data for Name: apex_restriccion_funcional; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16598,7 +16622,7 @@ toba_referencia	1000001	prueba	1
 
 
 --
--- TOC entry 4079 (class 0 OID 44727)
+-- TOC entry 4080 (class 0 OID 44727)
 -- Dependencies: 383
 -- Data for Name: apex_restriccion_funcional_cols; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16609,7 +16633,7 @@ toba_referencia	1000001	1000214	1310	312	1
 
 
 --
--- TOC entry 4075 (class 0 OID 44647)
+-- TOC entry 4076 (class 0 OID 44647)
 -- Dependencies: 379
 -- Data for Name: apex_restriccion_funcional_ef; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16619,7 +16643,7 @@ COPY apex_restriccion_funcional_ef (proyecto, restriccion_funcional, item, objet
 
 
 --
--- TOC entry 4078 (class 0 OID 44707)
+-- TOC entry 4079 (class 0 OID 44707)
 -- Dependencies: 382
 -- Data for Name: apex_restriccion_funcional_ei; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16629,7 +16653,7 @@ COPY apex_restriccion_funcional_ei (proyecto, restriccion_funcional, item, objet
 
 
 --
--- TOC entry 4077 (class 0 OID 44687)
+-- TOC entry 4078 (class 0 OID 44687)
 -- Dependencies: 381
 -- Data for Name: apex_restriccion_funcional_evt; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16639,7 +16663,7 @@ COPY apex_restriccion_funcional_evt (proyecto, restriccion_funcional, item, even
 
 
 --
--- TOC entry 4080 (class 0 OID 44747)
+-- TOC entry 4081 (class 0 OID 44747)
 -- Dependencies: 384
 -- Data for Name: apex_restriccion_funcional_filtro_cols; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16652,7 +16676,7 @@ toba_referencia	1000001	1000196	4	500	1
 
 
 --
--- TOC entry 4076 (class 0 OID 44667)
+-- TOC entry 4077 (class 0 OID 44667)
 -- Dependencies: 380
 -- Data for Name: apex_restriccion_funcional_pantalla; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16662,7 +16686,7 @@ COPY apex_restriccion_funcional_pantalla (proyecto, restriccion_funcional, item,
 
 
 --
--- TOC entry 4226 (class 0 OID 0)
+-- TOC entry 4227 (class 0 OID 0)
 -- Dependencies: 376
 -- Name: apex_restriccion_funcional_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -16671,7 +16695,7 @@ SELECT pg_catalog.setval('apex_restriccion_funcional_seq', 106000000, true);
 
 
 --
--- TOC entry 3920 (class 0 OID 42725)
+-- TOC entry 3921 (class 0 OID 42725)
 -- Dependencies: 224
 -- Data for Name: apex_revision; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16682,7 +16706,7 @@ DESCONOCIDA	toba	2018-01-09 11:17:09
 
 
 --
--- TOC entry 4086 (class 0 OID 44845)
+-- TOC entry 4087 (class 0 OID 44845)
 -- Dependencies: 390
 -- Data for Name: apex_servicio_web; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16697,7 +16721,7 @@ toba_usuarios	rest_arai_usuarios	\N	rest	\N	0
 
 
 --
--- TOC entry 4087 (class 0 OID 44860)
+-- TOC entry 4088 (class 0 OID 44860)
 -- Dependencies: 391
 -- Data for Name: apex_servicio_web_param; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16709,7 +16733,7 @@ toba_referencia	cli_sin_seguridad	useMTOM	1
 
 
 --
--- TOC entry 3936 (class 0 OID 42902)
+-- TOC entry 3937 (class 0 OID 42902)
 -- Dependencies: 240
 -- Data for Name: apex_solicitud_obs_tipo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16725,7 +16749,7 @@ toba	usr_priv	Información	usuario
 
 
 --
--- TOC entry 3934 (class 0 OID 42873)
+-- TOC entry 3935 (class 0 OID 42873)
 -- Dependencies: 238
 -- Data for Name: apex_solicitud_tipo; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16740,7 +16764,7 @@ web	Aplicación Web	Aplicación Web - Esquema de Componentes	solic_browser.gif
 
 
 --
--- TOC entry 3948 (class 0 OID 43016)
+-- TOC entry 3949 (class 0 OID 43016)
 -- Dependencies: 252
 -- Data for Name: apex_tarea; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16750,7 +16774,7 @@ COPY apex_tarea (proyecto, tarea, nombre, tarea_clase, tarea_objeto, ejecucion_p
 
 
 --
--- TOC entry 4227 (class 0 OID 0)
+-- TOC entry 4228 (class 0 OID 0)
 -- Dependencies: 251
 -- Name: apex_tarea_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -16759,7 +16783,7 @@ SELECT pg_catalog.setval('apex_tarea_seq', 106000000, true);
 
 
 --
--- TOC entry 4032 (class 0 OID 44095)
+-- TOC entry 4033 (class 0 OID 44095)
 -- Dependencies: 336
 -- Data for Name: apex_tipo_datos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16777,7 +16801,7 @@ X	Caracter largo
 
 
 --
--- TOC entry 3951 (class 0 OID 43049)
+-- TOC entry 3952 (class 0 OID 43049)
 -- Dependencies: 255
 -- Data for Name: apex_usuario; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16788,7 +16812,7 @@ toba	$2y$10$lztIYYVZ1O.TjTrOhWW4I.1lOarida6W/PWsQ/GSEV.cttl.1Uzh2	Usuario Admini
 
 
 --
--- TOC entry 4068 (class 0 OID 44566)
+-- TOC entry 4069 (class 0 OID 44566)
 -- Dependencies: 372
 -- Data for Name: apex_usuario_grupo_acc; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -16807,7 +16831,7 @@ sicd	admin	Administrador	0	Accede a toda la funcionalidad	\N	\N	\N	\N	\N	1	\N
 
 
 --
--- TOC entry 4070 (class 0 OID 44590)
+-- TOC entry 4071 (class 0 OID 44590)
 -- Dependencies: 374
 -- Data for Name: apex_usuario_grupo_acc_item; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17281,7 +17305,7 @@ sicd	admin	\N	106000005
 
 
 --
--- TOC entry 4069 (class 0 OID 44575)
+-- TOC entry 4070 (class 0 OID 44575)
 -- Dependencies: 373
 -- Data for Name: apex_usuario_grupo_acc_miembros; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17291,7 +17315,7 @@ COPY apex_usuario_grupo_acc_miembros (proyecto, usuario_grupo_acc, usuario_grupo
 
 
 --
--- TOC entry 4065 (class 0 OID 44531)
+-- TOC entry 4066 (class 0 OID 44531)
 -- Dependencies: 369
 -- Data for Name: apex_usuario_perfil_datos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17304,7 +17328,7 @@ toba_referencia	1000001	Prueba	Perfil de prueba	\N
 
 
 --
--- TOC entry 4067 (class 0 OID 44547)
+-- TOC entry 4068 (class 0 OID 44547)
 -- Dependencies: 371
 -- Data for Name: apex_usuario_perfil_datos_dims; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17318,7 +17342,7 @@ toba_editor	6	12	26	10
 
 
 --
--- TOC entry 4228 (class 0 OID 0)
+-- TOC entry 4229 (class 0 OID 0)
 -- Dependencies: 370
 -- Name: apex_usuario_perfil_datos_dims_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -17327,7 +17351,7 @@ SELECT pg_catalog.setval('apex_usuario_perfil_datos_dims_seq', 106000000, true);
 
 
 --
--- TOC entry 4229 (class 0 OID 0)
+-- TOC entry 4230 (class 0 OID 0)
 -- Dependencies: 368
 -- Name: apex_usuario_perfil_datos_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -17336,7 +17360,7 @@ SELECT pg_catalog.setval('apex_usuario_perfil_datos_seq', 106000000, true);
 
 
 --
--- TOC entry 3954 (class 0 OID 43077)
+-- TOC entry 3955 (class 0 OID 43077)
 -- Dependencies: 258
 -- Data for Name: apex_usuario_pregunta_secreta; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17346,7 +17370,7 @@ COPY apex_usuario_pregunta_secreta (cod_pregunta_secreta, usuario, pregunta, res
 
 
 --
--- TOC entry 4230 (class 0 OID 0)
+-- TOC entry 4231 (class 0 OID 0)
 -- Dependencies: 257
 -- Name: apex_usuario_pregunta_secreta_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -17355,7 +17379,7 @@ SELECT pg_catalog.setval('apex_usuario_pregunta_secreta_seq', 1, false);
 
 
 --
--- TOC entry 4084 (class 0 OID 44812)
+-- TOC entry 4085 (class 0 OID 44812)
 -- Dependencies: 388
 -- Data for Name: apex_usuario_proyecto; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17369,7 +17393,7 @@ toba_usuarios	admin	toba	\N
 
 
 --
--- TOC entry 4004 (class 0 OID 43711)
+-- TOC entry 4005 (class 0 OID 43711)
 -- Dependencies: 308
 -- Data for Name: apex_usuario_proyecto_gadgets; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17379,7 +17403,7 @@ COPY apex_usuario_proyecto_gadgets (usuario, proyecto, gadget, orden, eliminable
 
 
 --
--- TOC entry 4085 (class 0 OID 44830)
+-- TOC entry 4086 (class 0 OID 44830)
 -- Dependencies: 389
 -- Data for Name: apex_usuario_proyecto_perfil_datos; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17389,7 +17413,7 @@ COPY apex_usuario_proyecto_perfil_datos (proyecto, usuario_perfil_datos, usuario
 
 
 --
--- TOC entry 3952 (class 0 OID 43065)
+-- TOC entry 3953 (class 0 OID 43065)
 -- Dependencies: 256
 -- Data for Name: apex_usuario_pwd_reset; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17399,7 +17423,7 @@ COPY apex_usuario_pwd_reset (usuario, random, email, validez, bloqueado) FROM st
 
 
 --
--- TOC entry 3956 (class 0 OID 43094)
+-- TOC entry 3957 (class 0 OID 43094)
 -- Dependencies: 260
 -- Data for Name: apex_usuario_pwd_usados; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17409,7 +17433,7 @@ COPY apex_usuario_pwd_usados (cod_pwd_pasados, usuario, clave, algoritmo, fecha_
 
 
 --
--- TOC entry 4231 (class 0 OID 0)
+-- TOC entry 4232 (class 0 OID 0)
 -- Dependencies: 259
 -- Name: apex_usuario_pwd_usados_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
@@ -17418,7 +17442,7 @@ SELECT pg_catalog.setval('apex_usuario_pwd_usados_seq', 1, false);
 
 
 --
--- TOC entry 3950 (class 0 OID 43044)
+-- TOC entry 3951 (class 0 OID 43044)
 -- Dependencies: 254
 -- Data for Name: apex_usuario_tipodoc; Type: TABLE DATA; Schema: desarrollo; Owner: postgres
 --
@@ -17435,7 +17459,7 @@ COPY apex_usuario_tipodoc (usuario_tipodoc, descripcion) FROM stdin;
 SET search_path = desarrollo_logs, pg_catalog;
 
 --
--- TOC entry 4100 (class 0 OID 45028)
+-- TOC entry 4101 (class 0 OID 45028)
 -- Dependencies: 404
 -- Data for Name: apex_log_error_login; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17445,7 +17469,7 @@ COPY apex_log_error_login (log_error_login, momento, usuario, clave, ip, graveda
 
 
 --
--- TOC entry 4232 (class 0 OID 0)
+-- TOC entry 4233 (class 0 OID 0)
 -- Dependencies: 403
 -- Name: apex_log_error_login_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17454,7 +17478,7 @@ SELECT pg_catalog.setval('apex_log_error_login_seq', 106000000, true);
 
 
 --
--- TOC entry 4101 (class 0 OID 45038)
+-- TOC entry 4102 (class 0 OID 45038)
 -- Dependencies: 405
 -- Data for Name: apex_log_ip_rechazada; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17464,7 +17488,7 @@ COPY apex_log_ip_rechazada (ip, momento) FROM stdin;
 
 
 --
--- TOC entry 4105 (class 0 OID 45057)
+-- TOC entry 4106 (class 0 OID 45057)
 -- Dependencies: 409
 -- Data for Name: apex_log_objeto; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17607,20 +17631,28 @@ COPY apex_log_objeto (log_objeto, momento, usuario, objeto_proyecto, objeto, ite
 106000135	2018-02-27 20:33:55	toba	sicd	106000002	\N	\N
 106000136	2018-02-27 20:34:26	toba	sicd	106000002	\N	\N
 106000137	2018-02-27 21:09:57	toba	sicd	2322	\N	\N
+106000138	2018-03-01 18:38:52	toba	sicd	2331	\N	\N
+106000139	2018-03-01 18:39:18	toba	sicd	2330	\N	\N
+106000140	2018-03-01 18:39:42	toba	sicd	2331	\N	\N
+106000141	2018-03-01 19:41:22	toba	sicd	106000009	\N	\N
+106000142	2018-03-01 19:41:42	toba	sicd	106000009	\N	\N
+106000143	2018-03-01 19:42:00	toba	sicd	106000009	\N	\N
+106000144	2018-03-01 19:42:35	toba	sicd	106000009	\N	\N
+106000145	2018-03-01 19:43:58	toba	sicd	106000009	\N	\N
 \.
 
 
 --
--- TOC entry 4233 (class 0 OID 0)
+-- TOC entry 4234 (class 0 OID 0)
 -- Dependencies: 408
 -- Name: apex_log_objeto_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
 
-SELECT pg_catalog.setval('apex_log_objeto_seq', 106000137, true);
+SELECT pg_catalog.setval('apex_log_objeto_seq', 106000145, true);
 
 
 --
--- TOC entry 4098 (class 0 OID 45016)
+-- TOC entry 4099 (class 0 OID 45016)
 -- Dependencies: 402
 -- Data for Name: apex_log_sistema; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17630,7 +17662,7 @@ COPY apex_log_sistema (log_sistema, momento, usuario, log_sistema_tipo, observac
 
 
 --
--- TOC entry 4234 (class 0 OID 0)
+-- TOC entry 4235 (class 0 OID 0)
 -- Dependencies: 401
 -- Name: apex_log_sistema_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17639,7 +17671,7 @@ SELECT pg_catalog.setval('apex_log_sistema_seq', 106000000, true);
 
 
 --
--- TOC entry 4103 (class 0 OID 45046)
+-- TOC entry 4104 (class 0 OID 45046)
 -- Dependencies: 407
 -- Data for Name: apex_log_tarea; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17649,7 +17681,7 @@ COPY apex_log_tarea (proyecto, log_tarea, tarea, nombre, tarea_clase, tarea_obje
 
 
 --
--- TOC entry 4235 (class 0 OID 0)
+-- TOC entry 4236 (class 0 OID 0)
 -- Dependencies: 406
 -- Name: apex_log_tarea_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17658,7 +17690,7 @@ SELECT pg_catalog.setval('apex_log_tarea_seq', 106000000, true);
 
 
 --
--- TOC entry 4091 (class 0 OID 44947)
+-- TOC entry 4092 (class 0 OID 44947)
 -- Dependencies: 395
 -- Data for Name: apex_sesion_browser; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17699,7 +17731,7 @@ COPY apex_sesion_browser (sesion_browser, proyecto, usuario, ingreso, egreso, ob
 
 
 --
--- TOC entry 4236 (class 0 OID 0)
+-- TOC entry 4237 (class 0 OID 0)
 -- Dependencies: 394
 -- Name: apex_sesion_browser_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
@@ -17708,7 +17740,7 @@ SELECT pg_catalog.setval('apex_sesion_browser_seq', 106000031, true);
 
 
 --
--- TOC entry 4089 (class 0 OID 44938)
+-- TOC entry 4090 (class 0 OID 44938)
 -- Dependencies: 393
 -- Data for Name: apex_solicitud; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -18886,11 +18918,140 @@ sicd	106001925	web	sicd	2	\N	2018-03-01 17:39:11	4.38367819786070001
 sicd	106001928	web	sicd	3480	\N	2018-03-01 17:39:28	0.738201141357419988
 sicd	106001929	web	sicd	3480	\N	2018-03-01 17:39:33	0.351057052612300025
 sicd	106001930	web	sicd	3480	\N	2018-03-01 17:39:36	0.424164056777949994
+sicd	106001937	web	sicd	106000005	\N	2018-03-01 18:07:16	0.341587781906129984
+sicd	106001938	web	sicd	106000005	\N	2018-03-01 18:07:17	0.114794015884399997
+sicd	106001939	web	sicd	106000005	\N	2018-03-01 18:07:18	8.41655611991880015
+sicd	106001940	web	sicd	3466	\N	2018-03-01 18:07:39	0.460203886032099996
+sicd	106001941	web	sicd	3466	\N	2018-03-01 18:07:41	0.47026586532593001
+sicd	106001942	web	sicd	3466	\N	2018-03-01 18:07:43	0.276288986206050025
+sicd	106001943	web	sicd	106000005	\N	2018-03-01 18:08:05	0.14159202575683999
+sicd	106001944	web	sicd	106000005	\N	2018-03-01 18:08:07	0.0998401641845699933
+sicd	106001945	web	sicd	106000005	\N	2018-03-01 18:08:08	0.131360054016110006
+sicd	106001946	web	sicd	106000005	\N	2018-03-01 18:08:10	0.335922002792360008
+sicd	106001947	web	sicd	106000005	\N	2018-03-01 18:08:19	0.115472078323359997
+sicd	106001948	web	sicd	106000005	\N	2018-03-01 18:08:20	0.30882406234741
+sicd	106001949	web	sicd	3466	\N	2018-03-01 18:08:42	0.200955867767329988
+sicd	106001950	web	sicd	3466	\N	2018-03-01 18:08:44	0.234813928604130001
+sicd	106001951	web	sicd	3466	\N	2018-03-01 18:08:48	0.324090003967289986
+sicd	106001952	web	sicd	3466	\N	2018-03-01 18:08:56	0.227420091629030013
+sicd	106001953	web	sicd	3466	\N	2018-03-01 18:08:58	0.261386871337890014
+sicd	106001954	web	sicd	3466	\N	2018-03-01 18:10:27	0.172037124633790006
+sicd	106001955	web	sicd	3466	\N	2018-03-01 18:10:32	0.269515991210939998
+sicd	106001956	web	sicd	3485	\N	2018-03-01 18:10:38	0.143252849578860003
+sicd	106001957	web	sicd	3485	\N	2018-03-01 18:10:42	0.180318117141719997
+sicd	106001958	web	sicd	3466	\N	2018-03-01 18:10:45	0.13785505294799999
+sicd	106001959	web	sicd	3466	\N	2018-03-01 18:10:47	0.297045946121219984
+sicd	106001960	web	sicd	3466	\N	2018-03-01 18:11:14	0.175675153732299999
+sicd	106001961	web	sicd	3466	\N	2018-03-01 18:11:16	0.213671922683720011
+sicd	106001962	web	sicd	3466	\N	2018-03-01 18:11:24	0.22313499450683999
+sicd	106001963	web	sicd	3466	\N	2018-03-01 18:11:38	0.244817972183230009
+sicd	106001964	web	sicd	3466	\N	2018-03-01 18:12:02	0.247367143630980002
+sicd	106001965	web	sicd	3466	\N	2018-03-01 18:31:43	0.223988056182859996
+sicd	106001966	web	sicd	3466	\N	2018-03-01 18:31:56	0.204984903335570012
+sicd	106001967	web	sicd	3466	\N	2018-03-01 18:32:07	0.21626114845276001
+sicd	106001968	web	sicd	3466	\N	2018-03-01 18:32:09	0.20342016220093001
+sicd	106001969	web	sicd	3466	\N	2018-03-01 18:32:16	0.212862014770510005
+sicd	106001970	web	sicd	3491	\N	2018-03-01 18:37:11	0.419230937957760008
+sicd	106001971	web	sicd	3491	\N	2018-03-01 18:37:14	0.238145828247070007
+sicd	106001972	web	sicd	3466	\N	2018-03-01 18:37:36	0.188385963439939991
+sicd	106001973	web	sicd	3466	\N	2018-03-01 18:37:39	0.23989200592040999
+sicd	106001974	web	sicd	3466	\N	2018-03-01 18:37:41	0.213562965393069987
+sicd	106001975	web	sicd	3466	\N	2018-03-01 18:37:44	0.207255840301510008
+sicd	106001978	web	sicd	3466	\N	2018-03-01 18:38:56	0.43889403343201
+sicd	106001981	web	sicd	3466	\N	2018-03-01 18:39:24	0.201918840408329997
+sicd	106001984	web	sicd	3466	\N	2018-03-01 18:40:45	0.221316814422610003
+sicd	106001985	web	sicd	3466	\N	2018-03-01 18:40:56	0.175713062286380006
+sicd	106001986	web	sicd	3466	\N	2018-03-01 18:40:58	0.192067146301270003
+sicd	106001987	web	sicd	3466	\N	2018-03-01 18:40:59	0.197902917861940003
+sicd	106001988	web	sicd	3466	\N	2018-03-01 18:41:02	0.166505098342900004
+sicd	106001989	web	sicd	3466	\N	2018-03-01 18:41:20	0.216045856475829995
+sicd	106001990	web	sicd	3466	\N	2018-03-01 18:41:23	0.229232072830200001
+sicd	106001991	web	sicd	3466	\N	2018-03-01 18:41:29	0.228129148483280003
+sicd	106001992	web	sicd	3491	\N	2018-03-01 18:41:32	0.128927946090699991
+sicd	106001993	web	sicd	3491	\N	2018-03-01 18:41:34	0.364997148513790004
+sicd	106001994	web	sicd	3491	\N	2018-03-01 18:42:29	0.0859749317169190008
+sicd	106001995	web	sicd	3491	\N	2018-03-01 18:42:31	0.242710113525389987
+sicd	106001996	web	sicd	3491	\N	2018-03-01 18:42:32	0.185348033905029991
+sicd	106001997	web	sicd	3491	\N	2018-03-01 18:42:55	0.252097129821780008
+sicd	106001998	web	sicd	3491	\N	2018-03-01 18:42:56	0.225827932357790001
+sicd	106001999	web	sicd	106000005	\N	2018-03-01 18:58:24	0.152348995208740012
+sicd	106002000	web	sicd	106000005	\N	2018-03-01 18:58:25	0.093867063522339006
+sicd	106002001	web	sicd	106000005	\N	2018-03-01 18:58:25	0.234149932861330012
+sicd	106002002	web	sicd	106000001	\N	2018-03-01 19:00:42	0.128517150878909997
+sicd	106002003	web	sicd	106000002	\N	2018-03-01 19:00:46	0.139665842056270001
+sicd	106002004	web	sicd	106000001	\N	2018-03-01 19:00:48	0.0830049514770510033
+sicd	106002005	web	sicd	106000001	\N	2018-03-01 19:00:49	0.720161914825440008
+sicd	106002006	web	sicd	106000001	\N	2018-03-01 19:01:08	0.13653588294982999
+sicd	106002007	web	sicd	106000002	\N	2018-03-01 19:01:10	0.116322040557859996
+sicd	106002008	web	sicd	106000001	\N	2018-03-01 19:01:12	0.108861923217769996
+sicd	106002009	web	sicd	106000001	\N	2018-03-01 19:01:14	0.374481916427609973
+sicd	106002020	web	sicd	106000001	\N	2018-03-01 19:03:07	0.122189998626709997
+sicd	106002021	web	sicd	106000002	\N	2018-03-01 19:03:10	0.12626791000366
+sicd	106002022	web	sicd	106000001	\N	2018-03-01 19:03:12	0.105547904968259998
+sicd	106002023	web	sicd	106000001	\N	2018-03-01 19:03:14	0.299585103988650014
+sicd	106002024	web	sicd	106000001	\N	2018-03-01 19:05:20	0.148777961730960001
+sicd	106002025	web	sicd	106000002	\N	2018-03-01 19:05:23	0.131896018981930013
+sicd	106002026	web	sicd	106000001	\N	2018-03-01 19:05:27	0.110727071762080007
+sicd	106002027	web	sicd	106000001	\N	2018-03-01 19:05:27	0.421255826950070023
+sicd	106002028	web	sicd	106000001	\N	2018-03-01 19:26:36	0.141579866409300009
+sicd	106002029	web	sicd	106000002	\N	2018-03-01 19:26:38	0.122581958770749996
+sicd	106002030	web	sicd	106000001	\N	2018-03-01 19:26:41	0.104986190795900006
+sicd	106002031	web	sicd	106000001	\N	2018-03-01 19:26:42	0.333276987075809994
+sicd	106002032	web	sicd	3466	\N	2018-03-01 19:26:57	0.18507218360901001
+sicd	106002033	web	sicd	3466	\N	2018-03-01 19:27:10	0.213351964950559997
+sicd	106002034	web	sicd	3466	\N	2018-03-01 19:27:12	0.21110701560973999
+sicd	106002035	web	sicd	3466	\N	2018-03-01 19:27:13	0.247221946716310009
+sicd	106002036	web	sicd	3466	\N	2018-03-01 19:27:16	0.204370975494379992
+sicd	106002037	web	sicd	106000001	\N	2018-03-01 19:28:02	0.137907981872560009
+sicd	106002038	web	sicd	106000002	\N	2018-03-01 19:28:05	0.109935045242310001
+sicd	106002039	web	sicd	106000001	\N	2018-03-01 19:28:07	0.133486032485959999
+sicd	106002040	web	sicd	106000001	\N	2018-03-01 19:28:08	0.22103214263915999
+sicd	106002041	web	sicd	106000001	\N	2018-03-01 19:29:51	0.12240314483643
+sicd	106002042	web	sicd	106000002	\N	2018-03-01 19:29:53	0.0983519554138179986
+sicd	106002043	web	sicd	106000001	\N	2018-03-01 19:29:55	0.109092950820920007
+sicd	106002044	web	sicd	106000001	\N	2018-03-01 19:29:56	0.241040945053100003
+sicd	106002045	web	sicd	106000001	\N	2018-03-01 19:31:48	0.12765192985535001
+sicd	106002046	web	sicd	106000002	\N	2018-03-01 19:31:50	0.119638919830320004
+sicd	106002047	web	sicd	106000001	\N	2018-03-01 19:31:51	0.102955102920530006
+sicd	106002048	web	sicd	106000001	\N	2018-03-01 19:31:52	0.238161087036130009
+sicd	106002049	web	sicd	106000002	\N	2018-03-01 19:32:03	0.120106935501100007
+sicd	106002050	web	sicd	106000001	\N	2018-03-01 19:32:05	0.123085021972659997
+sicd	106002051	web	sicd	106000001	\N	2018-03-01 19:32:06	0.341720104217530019
+sicd	106002052	web	sicd	106000001	\N	2018-03-01 19:33:04	0.126302003860469997
+sicd	106002053	web	sicd	106000002	\N	2018-03-01 19:33:06	0.126268863677979987
+sicd	106002054	web	sicd	106000001	\N	2018-03-01 19:33:09	0.120434999465939996
+sicd	106002055	web	sicd	106000001	\N	2018-03-01 19:33:09	0.29593610763549999
+sicd	106002056	web	sicd	3466	\N	2018-03-01 19:33:50	0.181879997253419995
+sicd	106002057	web	sicd	3466	\N	2018-03-01 19:33:53	0.22221899032593001
+sicd	106002058	web	sicd	3466	\N	2018-03-01 19:33:54	0.184331893920899992
+sicd	106002059	web	sicd	3466	\N	2018-03-01 19:33:55	0.218998908996580005
+sicd	106002060	web	sicd	3466	\N	2018-03-01 19:33:57	0.225756168365479987
+sicd	106002061	web	sicd	106000001	\N	2018-03-01 19:34:00	0.116914987564089995
+sicd	106002062	web	sicd	106000002	\N	2018-03-01 19:34:03	0.1873779296875
+sicd	106002063	web	sicd	106000001	\N	2018-03-01 19:34:05	0.0953609943389889941
+sicd	106002064	web	sicd	106000001	\N	2018-03-01 19:34:06	0.22640705108643
+sicd	106002065	web	sicd	106000001	\N	2018-03-01 19:36:11	0.162528991699219999
+sicd	106002066	web	sicd	106000002	\N	2018-03-01 19:36:13	0.130043029785159997
+sicd	106002067	web	sicd	106000001	\N	2018-03-01 19:36:15	0.0940830707550049938
+sicd	106002068	web	sicd	106000001	\N	2018-03-01 19:36:16	0.250293970108030006
+sicd	106002069	web	sicd	106000002	\N	2018-03-01 19:36:34	0.109991073608400006
+sicd	106002070	web	sicd	106000001	\N	2018-03-01 19:36:37	0.0889189243316649974
+sicd	106002071	web	sicd	106000001	\N	2018-03-01 19:36:38	0.320566892623899979
+sicd	106002072	web	sicd	106000005	\N	2018-03-01 19:36:50	0.155684947967529991
+sicd	106002073	web	sicd	106000005	\N	2018-03-01 19:36:52	0.118368148803709994
+sicd	106002074	web	sicd	106000005	\N	2018-03-01 19:36:52	0.236604928970339995
+sicd	106002075	web	sicd	3466	\N	2018-03-01 19:39:06	0.211267948150629992
+sicd	106002076	web	sicd	2	\N	2018-03-01 19:39:07	0.209729909896850003
+sicd	106002095	web	sicd	2	\N	2018-03-01 19:41:24	0.181907892227169993
+sicd	106002097	web	sicd	2	\N	2018-03-01 19:41:44	0.172714948654170003
+sicd	106002099	web	sicd	2	\N	2018-03-01 19:42:03	0.144615173339840003
+sicd	106002102	web	sicd	2	\N	2018-03-01 19:42:37	0.176660060882569997
+sicd	106002107	web	sicd	2	\N	2018-03-01 19:44:01	0.168601989746090003
 \.
 
 
 --
--- TOC entry 4092 (class 0 OID 44957)
+-- TOC entry 4093 (class 0 OID 44957)
 -- Dependencies: 396
 -- Data for Name: apex_solicitud_browser; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -20014,11 +20175,140 @@ sicd	106000031	sicd	106001925	127.0.0.1
 sicd	106000031	sicd	106001928	127.0.0.1
 sicd	106000031	sicd	106001929	127.0.0.1
 sicd	106000031	sicd	106001930	127.0.0.1
+sicd	106000031	sicd	106001937	127.0.0.1
+sicd	106000031	sicd	106001938	127.0.0.1
+sicd	106000031	sicd	106001939	127.0.0.1
+sicd	106000031	sicd	106001940	127.0.0.1
+sicd	106000031	sicd	106001941	127.0.0.1
+sicd	106000031	sicd	106001942	127.0.0.1
+sicd	106000031	sicd	106001943	127.0.0.1
+sicd	106000031	sicd	106001944	127.0.0.1
+sicd	106000031	sicd	106001945	127.0.0.1
+sicd	106000031	sicd	106001946	127.0.0.1
+sicd	106000031	sicd	106001947	127.0.0.1
+sicd	106000031	sicd	106001948	127.0.0.1
+sicd	106000031	sicd	106001949	127.0.0.1
+sicd	106000031	sicd	106001950	127.0.0.1
+sicd	106000031	sicd	106001951	127.0.0.1
+sicd	106000031	sicd	106001952	127.0.0.1
+sicd	106000031	sicd	106001953	127.0.0.1
+sicd	106000031	sicd	106001954	127.0.0.1
+sicd	106000031	sicd	106001955	127.0.0.1
+sicd	106000031	sicd	106001956	127.0.0.1
+sicd	106000031	sicd	106001957	127.0.0.1
+sicd	106000031	sicd	106001958	127.0.0.1
+sicd	106000031	sicd	106001959	127.0.0.1
+sicd	106000031	sicd	106001960	127.0.0.1
+sicd	106000031	sicd	106001961	127.0.0.1
+sicd	106000031	sicd	106001962	127.0.0.1
+sicd	106000031	sicd	106001963	127.0.0.1
+sicd	106000031	sicd	106001964	127.0.0.1
+sicd	106000031	sicd	106001965	127.0.0.1
+sicd	106000031	sicd	106001966	127.0.0.1
+sicd	106000031	sicd	106001967	127.0.0.1
+sicd	106000031	sicd	106001968	127.0.0.1
+sicd	106000031	sicd	106001969	127.0.0.1
+sicd	106000031	sicd	106001970	127.0.0.1
+sicd	106000031	sicd	106001971	127.0.0.1
+sicd	106000031	sicd	106001972	127.0.0.1
+sicd	106000031	sicd	106001973	127.0.0.1
+sicd	106000031	sicd	106001974	127.0.0.1
+sicd	106000031	sicd	106001975	127.0.0.1
+sicd	106000031	sicd	106001978	127.0.0.1
+sicd	106000031	sicd	106001981	127.0.0.1
+sicd	106000031	sicd	106001984	127.0.0.1
+sicd	106000031	sicd	106001985	127.0.0.1
+sicd	106000031	sicd	106001986	127.0.0.1
+sicd	106000031	sicd	106001987	127.0.0.1
+sicd	106000031	sicd	106001988	127.0.0.1
+sicd	106000031	sicd	106001989	127.0.0.1
+sicd	106000031	sicd	106001990	127.0.0.1
+sicd	106000031	sicd	106001991	127.0.0.1
+sicd	106000031	sicd	106001992	127.0.0.1
+sicd	106000031	sicd	106001993	127.0.0.1
+sicd	106000031	sicd	106001994	127.0.0.1
+sicd	106000031	sicd	106001995	127.0.0.1
+sicd	106000031	sicd	106001996	127.0.0.1
+sicd	106000031	sicd	106001997	127.0.0.1
+sicd	106000031	sicd	106001998	127.0.0.1
+sicd	106000031	sicd	106001999	127.0.0.1
+sicd	106000031	sicd	106002000	127.0.0.1
+sicd	106000031	sicd	106002001	127.0.0.1
+sicd	106000031	sicd	106002002	127.0.0.1
+sicd	106000031	sicd	106002003	127.0.0.1
+sicd	106000031	sicd	106002004	127.0.0.1
+sicd	106000031	sicd	106002005	127.0.0.1
+sicd	106000031	sicd	106002006	127.0.0.1
+sicd	106000031	sicd	106002007	127.0.0.1
+sicd	106000031	sicd	106002008	127.0.0.1
+sicd	106000031	sicd	106002009	127.0.0.1
+sicd	106000031	sicd	106002020	127.0.0.1
+sicd	106000031	sicd	106002021	127.0.0.1
+sicd	106000031	sicd	106002022	127.0.0.1
+sicd	106000031	sicd	106002023	127.0.0.1
+sicd	106000031	sicd	106002024	127.0.0.1
+sicd	106000031	sicd	106002025	127.0.0.1
+sicd	106000031	sicd	106002026	127.0.0.1
+sicd	106000031	sicd	106002027	127.0.0.1
+sicd	106000031	sicd	106002028	127.0.0.1
+sicd	106000031	sicd	106002029	127.0.0.1
+sicd	106000031	sicd	106002030	127.0.0.1
+sicd	106000031	sicd	106002031	127.0.0.1
+sicd	106000031	sicd	106002032	127.0.0.1
+sicd	106000031	sicd	106002033	127.0.0.1
+sicd	106000031	sicd	106002034	127.0.0.1
+sicd	106000031	sicd	106002035	127.0.0.1
+sicd	106000031	sicd	106002036	127.0.0.1
+sicd	106000031	sicd	106002037	127.0.0.1
+sicd	106000031	sicd	106002038	127.0.0.1
+sicd	106000031	sicd	106002039	127.0.0.1
+sicd	106000031	sicd	106002040	127.0.0.1
+sicd	106000031	sicd	106002041	127.0.0.1
+sicd	106000031	sicd	106002042	127.0.0.1
+sicd	106000031	sicd	106002043	127.0.0.1
+sicd	106000031	sicd	106002044	127.0.0.1
+sicd	106000031	sicd	106002045	127.0.0.1
+sicd	106000031	sicd	106002046	127.0.0.1
+sicd	106000031	sicd	106002047	127.0.0.1
+sicd	106000031	sicd	106002048	127.0.0.1
+sicd	106000031	sicd	106002049	127.0.0.1
+sicd	106000031	sicd	106002050	127.0.0.1
+sicd	106000031	sicd	106002051	127.0.0.1
+sicd	106000031	sicd	106002052	127.0.0.1
+sicd	106000031	sicd	106002053	127.0.0.1
+sicd	106000031	sicd	106002054	127.0.0.1
+sicd	106000031	sicd	106002055	127.0.0.1
+sicd	106000031	sicd	106002056	127.0.0.1
+sicd	106000031	sicd	106002057	127.0.0.1
+sicd	106000031	sicd	106002058	127.0.0.1
+sicd	106000031	sicd	106002059	127.0.0.1
+sicd	106000031	sicd	106002060	127.0.0.1
+sicd	106000031	sicd	106002061	127.0.0.1
+sicd	106000031	sicd	106002062	127.0.0.1
+sicd	106000031	sicd	106002063	127.0.0.1
+sicd	106000031	sicd	106002064	127.0.0.1
+sicd	106000031	sicd	106002065	127.0.0.1
+sicd	106000031	sicd	106002066	127.0.0.1
+sicd	106000031	sicd	106002067	127.0.0.1
+sicd	106000031	sicd	106002068	127.0.0.1
+sicd	106000031	sicd	106002069	127.0.0.1
+sicd	106000031	sicd	106002070	127.0.0.1
+sicd	106000031	sicd	106002071	127.0.0.1
+sicd	106000031	sicd	106002072	127.0.0.1
+sicd	106000031	sicd	106002073	127.0.0.1
+sicd	106000031	sicd	106002074	127.0.0.1
+sicd	106000031	sicd	106002075	127.0.0.1
+sicd	106000031	sicd	106002076	127.0.0.1
+sicd	106000031	sicd	106002095	127.0.0.1
+sicd	106000031	sicd	106002097	127.0.0.1
+sicd	106000031	sicd	106002099	127.0.0.1
+sicd	106000031	sicd	106002102	127.0.0.1
+sicd	106000031	sicd	106002107	127.0.0.1
 \.
 
 
 --
--- TOC entry 4093 (class 0 OID 44972)
+-- TOC entry 4094 (class 0 OID 44972)
 -- Dependencies: 397
 -- Data for Name: apex_solicitud_consola; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -20028,7 +20318,7 @@ COPY apex_solicitud_consola (proyecto, solicitud_consola, usuario, ip, llamada, 
 
 
 --
--- TOC entry 4094 (class 0 OID 44985)
+-- TOC entry 4095 (class 0 OID 44985)
 -- Dependencies: 398
 -- Data for Name: apex_solicitud_cronometro; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -25025,11 +25315,613 @@ sicd	106001930	3	item	Procesando Servicio	1519936776.61710405
 sicd	106001930	4	item	Resumen toba_editor	1519936776.63605809
 sicd	106001930	5	item	Finalizando Solicitud	1519936776.638978
 sicd	106001930	6	item	Fin medición	1519936776.68351698
+sicd	106001937	0	item	Inicio medición	1519938435.64014912
+sicd	106001937	1	item	Inicio Solicitud	1519938435.6973269
+sicd	106001937	2	item	Procesando Eventos	1519938435.82115889
+sicd	106001937	3	item	Procesando Servicio	1519938435.82119799
+sicd	106001937	4	item	Resumen toba_editor	1519938435.97460508
+sicd	106001937	5	item	Finalizando Solicitud	1519938435.9817369
+sicd	106001937	6	item	Fin medición	1519938436.00519609
+sicd	106001940	0	item	Inicio medición	1519938458.84352803
+sicd	106001940	1	item	Inicio Solicitud	1519938458.89569092
+sicd	106001940	2	item	Procesando Eventos	1519938459.02879691
+sicd	106001940	3	item	Procesando Servicio	1519938459.02882409
+sicd	106001940	4	item	Resumen toba_editor	1519938459.29972005
+sicd	106001940	5	item	Finalizando Solicitud	1519938459.30373192
+sicd	106001940	6	item	Fin medición	1519938459.37107706
+sicd	106001941	0	item	Inicio medición	1519938461.20451307
+sicd	106001941	1	item	Inicio Solicitud	1519938461.25814295
+sicd	106001941	2	item	Procesando Eventos	1519938461.45012999
+sicd	106001941	3	item	Procesando Servicio	1519938461.50241399
+sicd	106001941	4	item	Resumen toba_editor	1519938461.67069006
+sicd	106001941	5	item	Finalizando Solicitud	1519938461.67477894
+sicd	106001941	6	item	Fin medición	1519938461.69699788
+sicd	106001942	0	item	Inicio medición	1519938462.86843896
+sicd	106001942	1	item	Inicio Solicitud	1519938462.91451597
+sicd	106001942	2	item	Procesando Eventos	1519938463.01338696
+sicd	106001942	3	item	Procesando Servicio	1519938463.04833198
+sicd	106001942	4	item	Resumen toba_editor	1519938463.14046311
+sicd	106001942	5	item	Finalizando Solicitud	1519938463.14472795
+sicd	106001942	6	item	Fin medición	1519938463.17219305
+sicd	106001943	0	item	Inicio medición	1519938485.0588429
+sicd	106001943	1	item	Inicio Solicitud	1519938485.10444808
+sicd	106001943	2	item	Procesando Eventos	1519938485.16522789
+sicd	106001943	3	item	Procesando Servicio	1519938485.16537189
+sicd	106001943	4	item	Resumen toba_editor	1519938485.19531393
+sicd	106001943	5	item	Finalizando Solicitud	1519938485.20043492
+sicd	106001943	6	item	Fin medición	1519938485.21838593
+sicd	106001949	0	item	Inicio medición	1519938521.69079208
+sicd	106001949	1	item	Inicio Solicitud	1519938521.73789907
+sicd	106001949	2	item	Procesando Eventos	1519938521.85972095
+sicd	106001949	3	item	Procesando Servicio	1519938521.85976195
+sicd	106001949	4	item	Resumen toba_editor	1519938521.88832092
+sicd	106001949	5	item	Finalizando Solicitud	1519938521.89174795
+sicd	106001949	6	item	Fin medición	1519938521.91109896
+sicd	106001950	0	item	Inicio medición	1519938524.1551621
+sicd	106001950	1	item	Inicio Solicitud	1519938524.19555306
+sicd	106001950	2	item	Procesando Eventos	1519938524.30861306
+sicd	106001950	3	item	Procesando Servicio	1519938524.336128
+sicd	106001950	4	item	Resumen toba_editor	1519938524.38695002
+sicd	106001950	5	item	Finalizando Solicitud	1519938524.38997602
+sicd	106001950	6	item	Fin medición	1519938524.4084239
+sicd	106001951	0	item	Inicio medición	1519938527.67273593
+sicd	106001951	1	item	Inicio Solicitud	1519938527.72237492
+sicd	106001951	2	item	Procesando Eventos	1519938527.87288308
+sicd	106001951	3	item	Procesando Servicio	1519938527.91065311
+sicd	106001951	4	item	Resumen toba_editor	1519938527.99323797
+sicd	106001951	5	item	Finalizando Solicitud	1519938527.99682593
+sicd	106001951	6	item	Fin medición	1519938528.01890898
+sicd	106001952	0	item	Inicio medición	1519938535.82468891
+sicd	106001952	1	item	Inicio Solicitud	1519938535.87606311
+sicd	106001952	2	item	Procesando Eventos	1519938536.00766802
+sicd	106001952	3	item	Procesando Servicio	1519938536.00769496
+sicd	106001952	4	item	Resumen toba_editor	1519938536.04681611
+sicd	106001952	5	item	Finalizando Solicitud	1519938536.052109
+sicd	106001952	6	item	Fin medición	1519938536.07522202
+sicd	106001953	0	item	Inicio medición	1519938537.64923906
+sicd	106001953	1	item	Inicio Solicitud	1519938537.69885802
+sicd	106001953	2	item	Procesando Eventos	1519938537.85918403
+sicd	106001953	3	item	Procesando Servicio	1519938537.86006188
+sicd	106001953	4	item	Resumen toba_editor	1519938537.90752196
+sicd	106001953	5	item	Finalizando Solicitud	1519938537.91062593
+sicd	106001953	6	item	Fin medición	1519938537.93077993
+sicd	106001955	0	item	Inicio medición	1519938632.03448105
+sicd	106001955	1	item	Inicio Solicitud	1519938632.07108212
+sicd	106001955	2	item	Procesando Eventos	1519938632.21786904
+sicd	106001955	3	item	Procesando Servicio	1519938632.28906298
+sicd	106001955	4	item	Resumen toba_editor	1519938632.3010819
+sicd	106001955	5	item	Finalizando Solicitud	1519938632.30399704
+sicd	106001955	6	item	Fin medición	1519938632.32298803
+sicd	106001956	0	item	Inicio medición	1519938638.00020003
+sicd	106001956	1	item	Inicio Solicitud	1519938638.03997993
+sicd	106001956	2	item	Procesando Eventos	1519938638.13164091
+sicd	106001956	3	item	Procesando Servicio	1519938638.13166904
+sicd	106001956	4	item	Resumen toba_editor	1519938638.140553
+sicd	106001956	5	item	Finalizando Solicitud	1519938638.14345288
+sicd	106001956	6	item	Fin medición	1519938638.16711402
+sicd	106001957	0	item	Inicio medición	1519938641.88457394
+sicd	106001957	1	item	Inicio Solicitud	1519938641.91620111
+sicd	106001957	2	item	Procesando Eventos	1519938642.00498009
+sicd	106001957	3	item	Procesando Servicio	1519938642.05567789
+sicd	106001957	4	item	Resumen toba_editor	1519938642.0587709
+sicd	106001957	5	item	Finalizando Solicitud	1519938642.06489205
+sicd	106001957	6	item	Fin medición	1519938642.08924198
+sicd	106001958	0	item	Inicio medición	1519938645.33973193
+sicd	106001958	1	item	Inicio Solicitud	1519938645.37390494
+sicd	106001958	2	item	Procesando Eventos	1519938645.45280194
+sicd	106001958	3	item	Procesando Servicio	1519938645.45283389
+sicd	106001958	4	item	Resumen toba_editor	1519938645.47437596
+sicd	106001958	5	item	Finalizando Solicitud	1519938645.47758698
+sicd	106001958	6	item	Fin medición	1519938645.50072098
+sicd	106001959	0	item	Inicio medición	1519938646.83554101
+sicd	106001959	1	item	Inicio Solicitud	1519938646.87270594
+sicd	106001959	2	item	Procesando Eventos	1519938647.07983303
+sicd	106001959	3	item	Procesando Servicio	1519938647.10026312
+sicd	106001959	4	item	Resumen toba_editor	1519938647.12963891
+sicd	106001959	5	item	Finalizando Solicitud	1519938647.13258696
+sicd	106001959	6	item	Fin medición	1519938647.15572691
+sicd	106001960	0	item	Inicio medición	1519938674.16893291
+sicd	106001960	1	item	Inicio Solicitud	1519938674.20072603
+sicd	106001960	2	item	Procesando Eventos	1519938674.28840494
+sicd	106001960	3	item	Procesando Servicio	1519938674.30854106
+sicd	106001960	4	item	Resumen toba_editor	1519938674.34088993
+sicd	106001960	5	item	Finalizando Solicitud	1519938674.34460807
+sicd	106001960	6	item	Fin medición	1519938674.36871099
+sicd	106001961	0	item	Inicio medición	1519938675.67244196
+sicd	106001961	1	item	Inicio Solicitud	1519938675.70694208
+sicd	106001961	2	item	Procesando Eventos	1519938675.78776193
+sicd	106001961	3	item	Procesando Servicio	1519938675.80248499
+sicd	106001961	4	item	Resumen toba_editor	1519938675.8828361
+sicd	106001961	5	item	Finalizando Solicitud	1519938675.88611388
+sicd	106001961	6	item	Fin medición	1519938675.91333008
+sicd	106001962	0	item	Inicio medición	1519938683.58655405
+sicd	106001962	1	item	Inicio Solicitud	1519938683.62058592
+sicd	106001962	2	item	Procesando Eventos	1519938683.73023605
+sicd	106001962	3	item	Procesando Servicio	1519938683.77842903
+sicd	106001962	4	item	Resumen toba_editor	1519938683.80591011
+sicd	106001962	5	item	Finalizando Solicitud	1519938683.80968904
+sicd	106001962	6	item	Fin medición	1519938683.83442903
+sicd	106001963	0	item	Inicio medición	1519938697.63564706
+sicd	106001963	1	item	Inicio Solicitud	1519938697.66751909
+sicd	106001963	2	item	Procesando Eventos	1519938697.81393909
+sicd	106001963	3	item	Procesando Servicio	1519938697.84662008
+sicd	106001963	4	item	Resumen toba_editor	1519938697.876616
+sicd	106001963	5	item	Finalizando Solicitud	1519938697.88046503
+sicd	106001963	6	item	Fin medición	1519938697.90237808
+sicd	106001964	0	item	Inicio medición	1519938721.59907389
+sicd	106001964	1	item	Inicio Solicitud	1519938721.63098693
+sicd	106001964	2	item	Procesando Eventos	1519938721.74455404
+sicd	106001964	3	item	Procesando Servicio	1519938721.81303406
+sicd	106001964	4	item	Resumen toba_editor	1519938721.8418839
+sicd	106001964	5	item	Finalizando Solicitud	1519938721.84644103
+sicd	106001964	6	item	Fin medición	1519938721.86922407
+sicd	106001965	0	item	Inicio medición	1519939902.65472388
+sicd	106001965	1	item	Inicio Solicitud	1519939902.71819901
+sicd	106001965	2	item	Procesando Eventos	1519939902.81082702
+sicd	106001965	3	item	Procesando Servicio	1519939902.84147811
+sicd	106001965	4	item	Resumen toba_editor	1519939902.87540007
+sicd	106001965	5	item	Finalizando Solicitud	1519939902.87871194
+sicd	106001965	6	item	Fin medición	1519939902.91071796
+sicd	106001966	0	item	Inicio medición	1519939915.528162
+sicd	106001966	1	item	Inicio Solicitud	1519939915.56157398
+sicd	106001966	2	item	Procesando Eventos	1519939915.66929793
+sicd	106001966	3	item	Procesando Servicio	1519939915.69778991
+sicd	106001966	4	item	Resumen toba_editor	1519939915.73002696
+sicd	106001966	5	item	Finalizando Solicitud	1519939915.73314691
+sicd	106001966	6	item	Fin medición	1519939915.75628805
+sicd	106001967	0	item	Inicio medición	1519939927.02840495
+sicd	106001967	1	item	Inicio Solicitud	1519939927.06089306
+sicd	106001967	2	item	Procesando Eventos	1519939927.16375899
+sicd	106001967	3	item	Procesando Servicio	1519939927.21132588
+sicd	106001967	4	item	Resumen toba_editor	1519939927.24124098
+sicd	106001967	5	item	Finalizando Solicitud	1519939927.2446661
+sicd	106001967	6	item	Fin medición	1519939927.2673769
+sicd	106001968	0	item	Inicio medición	1519939929.2139709
+sicd	106001968	1	item	Inicio Solicitud	1519939929.24684405
+sicd	106001968	2	item	Procesando Eventos	1519939929.35201192
+sicd	106001968	3	item	Procesando Servicio	1519939929.38262391
+sicd	106001968	4	item	Resumen toba_editor	1519939929.41438699
+sicd	106001968	5	item	Finalizando Solicitud	1519939929.41739106
+sicd	106001968	6	item	Fin medición	1519939929.43482208
+sicd	106001969	0	item	Inicio medición	1519939935.721457
+sicd	106001969	1	item	Inicio Solicitud	1519939935.752666
+sicd	106001969	2	item	Procesando Eventos	1519939935.85044098
+sicd	106001969	3	item	Procesando Servicio	1519939935.90063596
+sicd	106001969	4	item	Resumen toba_editor	1519939935.93101406
+sicd	106001969	5	item	Finalizando Solicitud	1519939935.93431902
+sicd	106001969	6	item	Fin medición	1519939935.95653892
+sicd	106001970	0	item	Inicio medición	1519940231.38565207
+sicd	106001970	1	item	Inicio Solicitud	1519940231.42013597
+sicd	106001970	2	item	Procesando Eventos	1519940231.62589002
+sicd	106001970	3	item	Procesando Servicio	1519940231.625916
+sicd	106001970	4	item	Resumen toba_editor	1519940231.80186701
+sicd	106001970	5	item	Finalizando Solicitud	1519940231.804883
+sicd	106001970	6	item	Fin medición	1519940231.86600494
+sicd	106001972	0	item	Inicio medición	1519940256.41473007
+sicd	106001972	1	item	Inicio Solicitud	1519940256.49081397
+sicd	106001972	2	item	Procesando Eventos	1519940256.57586002
+sicd	106001972	3	item	Procesando Servicio	1519940256.57589102
+sicd	106001972	4	item	Resumen toba_editor	1519940256.59985304
+sicd	106001972	5	item	Finalizando Solicitud	1519940256.60311604
+sicd	106001972	6	item	Fin medición	1519940256.62318993
+sicd	106001973	0	item	Inicio medición	1519940259.2576139
+sicd	106001973	1	item	Inicio Solicitud	1519940259.29041004
+sicd	106001973	2	item	Procesando Eventos	1519940259.44367909
+sicd	106001973	3	item	Procesando Servicio	1519940259.46621895
+sicd	106001973	4	item	Resumen toba_editor	1519940259.49459004
+sicd	106001973	5	item	Finalizando Solicitud	1519940259.4975059
+sicd	106001973	6	item	Fin medición	1519940259.51162004
+sicd	106001974	0	item	Inicio medición	1519940261.31252599
+sicd	106001974	1	item	Inicio Solicitud	1519940261.34424996
+sicd	106001974	2	item	Procesando Eventos	1519940261.45008397
+sicd	106001974	3	item	Procesando Servicio	1519940261.47646594
+sicd	106001974	4	item	Resumen toba_editor	1519940261.52216911
+sicd	106001974	5	item	Finalizando Solicitud	1519940261.52608895
+sicd	106001974	6	item	Fin medición	1519940261.544554
+sicd	106001975	0	item	Inicio medición	1519940263.70423508
+sicd	106001975	1	item	Inicio Solicitud	1519940263.74127889
+sicd	106001975	2	item	Procesando Eventos	1519940263.84409094
+sicd	106001975	3	item	Procesando Servicio	1519940263.87692595
+sicd	106001975	4	item	Resumen toba_editor	1519940263.90860701
+sicd	106001975	5	item	Finalizando Solicitud	1519940263.91149092
+sicd	106001975	6	item	Fin medición	1519940263.93393111
+sicd	106001978	0	item	Inicio medición	1519940336.3136549
+sicd	106001978	1	item	Inicio Solicitud	1519940336.487993
+sicd	106001978	2	item	Procesando Eventos	1519940336.6504221
+sicd	106001978	3	item	Procesando Servicio	1519940336.66830802
+sicd	106001978	4	item	Resumen toba_editor	1519940336.74935699
+sicd	106001978	5	item	Finalizando Solicitud	1519940336.75254893
+sicd	106001978	6	item	Fin medición	1519940336.78042006
+sicd	106001981	0	item	Inicio medición	1519940363.58240509
+sicd	106001981	1	item	Inicio Solicitud	1519940363.61668491
+sicd	106001981	2	item	Procesando Eventos	1519940363.72564602
+sicd	106001981	3	item	Procesando Servicio	1519940363.75284505
+sicd	106001981	4	item	Resumen toba_editor	1519940363.78141308
+sicd	106001981	5	item	Finalizando Solicitud	1519940363.78432393
+sicd	106001981	6	item	Fin medición	1519940363.80517197
+sicd	106001984	0	item	Inicio medición	1519940444.5347271
+sicd	106001984	1	item	Inicio Solicitud	1519940444.56955099
+sicd	106001984	2	item	Procesando Eventos	1519940444.66656995
+sicd	106001984	3	item	Procesando Servicio	1519940444.71698904
+sicd	106001984	4	item	Resumen toba_editor	1519940444.7527349
+sicd	106001984	5	item	Finalizando Solicitud	1519940444.75604391
+sicd	106001984	6	item	Fin medición	1519940444.77315998
+sicd	106001985	0	item	Inicio medición	1519940455.55527401
+sicd	106001985	1	item	Inicio Solicitud	1519940455.5904479
+sicd	106001985	2	item	Procesando Eventos	1519940455.70096993
+sicd	106001985	3	item	Procesando Servicio	1519940455.70099807
+sicd	106001985	4	item	Resumen toba_editor	1519940455.72764993
+sicd	106001985	5	item	Finalizando Solicitud	1519940455.73098707
+sicd	106001985	6	item	Fin medición	1519940455.82963896
+sicd	106001986	0	item	Inicio medición	1519940457.46541595
+sicd	106001986	1	item	Inicio Solicitud	1519940457.50195289
+sicd	106001986	2	item	Procesando Eventos	1519940457.60430408
+sicd	106001986	3	item	Procesando Servicio	1519940457.62635493
+sicd	106001986	4	item	Resumen toba_editor	1519940457.65404296
+sicd	106001986	5	item	Finalizando Solicitud	1519940457.6574831
+sicd	106001986	6	item	Fin medición	1519940457.67314196
+sicd	106001987	0	item	Inicio medición	1519940459.32283497
+sicd	106001987	1	item	Inicio Solicitud	1519940459.35495901
+sicd	106001987	2	item	Procesando Eventos	1519940459.45845199
+sicd	106001987	3	item	Procesando Servicio	1519940459.47891307
+sicd	106001987	4	item	Resumen toba_editor	1519940459.51764488
+sicd	106001987	5	item	Finalizando Solicitud	1519940459.52073789
+sicd	106001987	6	item	Fin medición	1519940459.54159498
+sicd	106001988	0	item	Inicio medición	1519940462.20496202
+sicd	106001988	1	item	Inicio Solicitud	1519940462.23743105
+sicd	106001988	2	item	Procesando Eventos	1519940462.31243896
+sicd	106001988	3	item	Procesando Servicio	1519940462.34128904
+sicd	106001988	4	item	Resumen toba_editor	1519940462.36827707
+sicd	106001988	5	item	Finalizando Solicitud	1519940462.37146711
+sicd	106001988	6	item	Fin medición	1519940462.39651108
+sicd	106001989	0	item	Inicio medición	1519940480.41215205
+sicd	106001989	1	item	Inicio Solicitud	1519940480.44513702
+sicd	106001989	2	item	Procesando Eventos	1519940480.55191398
+sicd	106001989	3	item	Procesando Servicio	1519940480.59612799
+sicd	106001989	4	item	Resumen toba_editor	1519940480.62477994
+sicd	106001989	5	item	Finalizando Solicitud	1519940480.62819791
+sicd	106001989	6	item	Fin medición	1519940480.65206504
+sicd	106001990	0	item	Inicio medición	1519940483.23885298
+sicd	106001990	1	item	Inicio Solicitud	1519940483.27282906
+sicd	106001990	2	item	Procesando Eventos	1519940483.40370488
+sicd	106001990	3	item	Procesando Servicio	1519940483.43408298
+sicd	106001990	4	item	Resumen toba_editor	1519940483.46477294
+sicd	106001990	5	item	Finalizando Solicitud	1519940483.46808505
+sicd	106001990	6	item	Fin medición	1519940483.48574901
+sicd	106001991	0	item	Inicio medición	1519940488.69439793
+sicd	106001991	1	item	Inicio Solicitud	1519940488.72727799
+sicd	106001991	2	item	Procesando Eventos	1519940488.83248091
+sicd	106001991	3	item	Procesando Servicio	1519940488.88624692
+sicd	106001991	4	item	Resumen toba_editor	1519940488.91933894
+sicd	106001991	5	item	Finalizando Solicitud	1519940488.92252707
+sicd	106001991	6	item	Fin medición	1519940488.94240999
+sicd	106001992	0	item	Inicio medición	1519940492.45980406
+sicd	106001992	1	item	Inicio Solicitud	1519940492.49625206
+sicd	106001992	2	item	Procesando Eventos	1519940492.55869293
+sicd	106001992	3	item	Procesando Servicio	1519940492.55871797
+sicd	106001992	4	item	Resumen toba_editor	1519940492.58610511
+sicd	106001992	5	item	Finalizando Solicitud	1519940492.588732
+sicd	106001992	6	item	Fin medición	1519940492.61855793
+sicd	106001994	0	item	Inicio medición	1519940548.81263304
+sicd	106001994	1	item	Inicio Solicitud	1519940548.84792805
+sicd	106001994	2	item	Procesando Eventos	1519940548.88156796
+sicd	106001994	3	item	Procesando Servicio	1519940548.88159299
+sicd	106001994	4	item	Resumen toba_editor	1519940548.8958571
+sicd	106001994	5	item	Finalizando Solicitud	1519940548.89860797
+sicd	106001994	6	item	Fin medición	1519940548.92063189
+sicd	106001997	0	item	Inicio medición	1519940574.48601699
+sicd	106001997	1	item	Inicio Solicitud	1519940574.52055502
+sicd	106001997	2	item	Procesando Eventos	1519940574.7212491
+sicd	106001997	3	item	Procesando Servicio	1519940574.72127604
+sicd	106001997	4	item	Resumen toba_editor	1519940574.73537898
+sicd	106001997	5	item	Finalizando Solicitud	1519940574.73811412
+sicd	106001997	6	item	Fin medición	1519940574.76695704
+sicd	106001999	0	item	Inicio medición	1519941503.79323506
+sicd	106001999	1	item	Inicio Solicitud	1519941503.8275249
+sicd	106001999	2	item	Procesando Eventos	1519941503.92859507
+sicd	106001999	3	item	Procesando Servicio	1519941503.92863607
+sicd	106001999	4	item	Resumen toba_editor	1519941503.94232607
+sicd	106001999	5	item	Finalizando Solicitud	1519941503.94558406
+sicd	106001999	6	item	Fin medición	1519941503.96939397
+sicd	106002002	0	item	Inicio medición	1519941642.41113591
+sicd	106002002	1	item	Inicio Solicitud	1519941642.44691992
+sicd	106002002	2	item	Procesando Eventos	1519941642.52432609
+sicd	106002002	3	item	Procesando Servicio	1519941642.52435493
+sicd	106002002	4	item	Resumen toba_editor	1519941642.53577209
+sicd	106002002	5	item	Finalizando Solicitud	1519941642.53965306
+sicd	106002002	6	item	Fin medición	1519941642.60532808
+sicd	106002003	0	item	Inicio medición	1519941645.74326706
+sicd	106002003	1	item	Inicio Solicitud	1519941645.77941608
+sicd	106002003	2	item	Procesando Eventos	1519941645.84139204
+sicd	106002003	3	item	Procesando Servicio	1519941645.84141994
+sicd	106002003	4	item	Resumen toba_editor	1519941645.87997007
+sicd	106002003	5	item	Finalizando Solicitud	1519941645.8829329
+sicd	106002003	6	item	Fin medición	1519941645.90638089
+sicd	106002006	0	item	Inicio medición	1519941667.55893803
+sicd	106002006	1	item	Inicio Solicitud	1519941667.59361601
+sicd	106002006	2	item	Procesando Eventos	1519941667.68426108
+sicd	106002006	3	item	Procesando Servicio	1519941667.68428493
+sicd	106002006	4	item	Resumen toba_editor	1519941667.69221997
+sicd	106002006	5	item	Finalizando Solicitud	1519941667.69547391
+sicd	106002006	6	item	Fin medición	1519941667.718153
+sicd	106002007	0	item	Inicio medición	1519941670.40657306
+sicd	106002007	1	item	Inicio Solicitud	1519941670.44713593
+sicd	106002007	2	item	Procesando Eventos	1519941670.49832392
+sicd	106002007	3	item	Procesando Servicio	1519941670.49835205
+sicd	106002007	4	item	Resumen toba_editor	1519941670.52014089
+sicd	106002007	5	item	Finalizando Solicitud	1519941670.5228951
+sicd	106002007	6	item	Fin medición	1519941670.54025507
+sicd	106002020	0	item	Inicio medición	1519941787.17193389
+sicd	106002020	1	item	Inicio Solicitud	1519941787.20488405
+sicd	106002020	2	item	Procesando Eventos	1519941787.2830689
+sicd	106002020	3	item	Procesando Servicio	1519941787.2831111
+sicd	106002020	4	item	Resumen toba_editor	1519941787.29122996
+sicd	106002020	5	item	Finalizando Solicitud	1519941787.29412389
+sicd	106002020	6	item	Fin medición	1519941787.3093729
+sicd	106002021	0	item	Inicio medición	1519941790.1822691
+sicd	106002021	1	item	Inicio Solicitud	1519941790.22727895
+sicd	106002021	2	item	Procesando Eventos	1519941790.27922106
+sicd	106002021	3	item	Procesando Servicio	1519941790.2792871
+sicd	106002021	4	item	Resumen toba_editor	1519941790.30570793
+sicd	106002021	5	item	Finalizando Solicitud	1519941790.30853701
+sicd	106002021	6	item	Fin medición	1519941790.33263206
+sicd	106002024	0	item	Inicio medición	1519941920.39235711
+sicd	106002024	1	item	Inicio Solicitud	1519941920.49359202
+sicd	106002024	2	item	Procesando Eventos	1519941920.52956295
+sicd	106002024	3	item	Procesando Servicio	1519941920.52958703
+sicd	106002024	4	item	Resumen toba_editor	1519941920.53835893
+sicd	106002024	5	item	Finalizando Solicitud	1519941920.54113507
+sicd	106002024	6	item	Fin medición	1519941920.55697107
+sicd	106002025	0	item	Inicio medición	1519941922.69628191
+sicd	106002025	1	item	Inicio Solicitud	1519941922.74228501
+sicd	106002025	2	item	Procesando Eventos	1519941922.80416489
+sicd	106002025	3	item	Procesando Servicio	1519941922.80419207
+sicd	106002025	4	item	Resumen toba_editor	1519941922.82578802
+sicd	106002025	5	item	Finalizando Solicitud	1519941922.82817793
+sicd	106002025	6	item	Fin medición	1519941922.9672091
+sicd	106002028	0	item	Inicio medición	1519943195.51975703
+sicd	106002028	1	item	Inicio Solicitud	1519943195.58609104
+sicd	106002028	2	item	Procesando Eventos	1519943195.64027095
+sicd	106002028	3	item	Procesando Servicio	1519943195.64030695
+sicd	106002028	4	item	Resumen toba_editor	1519943195.65580893
+sicd	106002028	5	item	Finalizando Solicitud	1519943195.6613369
+sicd	106002028	6	item	Fin medición	1519943195.67544889
+sicd	106002029	0	item	Inicio medición	1519943197.83947396
+sicd	106002029	1	item	Inicio Solicitud	1519943197.88139391
+sicd	106002029	2	item	Procesando Eventos	1519943197.92922091
+sicd	106002029	3	item	Procesando Servicio	1519943197.92924809
+sicd	106002029	4	item	Resumen toba_editor	1519943197.958565
+sicd	106002029	5	item	Finalizando Solicitud	1519943197.96205592
+sicd	106002029	6	item	Fin medición	1519943197.98601604
+sicd	106002032	0	item	Inicio medición	1519943217.45669889
+sicd	106002032	1	item	Inicio Solicitud	1519943217.49373889
+sicd	106002032	2	item	Procesando Eventos	1519943217.59731603
+sicd	106002032	3	item	Procesando Servicio	1519943217.59734702
+sicd	106002032	4	item	Resumen toba_editor	1519943217.63856292
+sicd	106002032	5	item	Finalizando Solicitud	1519943217.64177108
+sicd	106002032	6	item	Fin medición	1519943217.67666507
+sicd	106002033	0	item	Inicio medición	1519943230.29792809
+sicd	106002033	1	item	Inicio Solicitud	1519943230.34080505
+sicd	106002033	2	item	Procesando Eventos	1519943230.45258403
+sicd	106002033	3	item	Procesando Servicio	1519943230.47365999
+sicd	106002033	4	item	Resumen toba_editor	1519943230.50841808
+sicd	106002033	5	item	Finalizando Solicitud	1519943230.51128006
+sicd	106002033	6	item	Fin medición	1519943230.53269196
+sicd	106002034	0	item	Inicio medición	1519943232.1793201
+sicd	106002034	1	item	Inicio Solicitud	1519943232.2111299
+sicd	106002034	2	item	Procesando Eventos	1519943232.3085041
+sicd	106002034	3	item	Procesando Servicio	1519943232.331429
+sicd	106002034	4	item	Resumen toba_editor	1519943232.38688588
+sicd	106002034	5	item	Finalizando Solicitud	1519943232.39042711
+sicd	106002034	6	item	Fin medición	1519943232.41081691
+sicd	106002035	0	item	Inicio medición	1519943233.25459909
+sicd	106002035	1	item	Inicio Solicitud	1519943233.2870419
+sicd	106002035	2	item	Procesando Eventos	1519943233.41461396
+sicd	106002035	3	item	Procesando Servicio	1519943233.44431901
+sicd	106002035	4	item	Resumen toba_editor	1519943233.49830294
+sicd	106002035	5	item	Finalizando Solicitud	1519943233.50182104
+sicd	106002035	6	item	Fin medición	1519943233.75746202
+sicd	106002036	0	item	Inicio medición	1519943236.00643396
+sicd	106002036	1	item	Inicio Solicitud	1519943236.03879595
+sicd	106002036	2	item	Procesando Eventos	1519943236.13890409
+sicd	106002036	3	item	Procesando Servicio	1519943236.16954207
+sicd	106002036	4	item	Resumen toba_editor	1519943236.20763612
+sicd	106002036	5	item	Finalizando Solicitud	1519943236.21080494
+sicd	106002036	6	item	Fin medición	1519943236.23221111
+sicd	106002037	0	item	Inicio medición	1519943282.26859093
+sicd	106002037	1	item	Inicio Solicitud	1519943282.3065331
+sicd	106002037	2	item	Procesando Eventos	1519943282.39532399
+sicd	106002037	3	item	Procesando Servicio	1519943282.39535189
+sicd	106002037	4	item	Resumen toba_editor	1519943282.40338302
+sicd	106002037	5	item	Finalizando Solicitud	1519943282.40649891
+sicd	106002037	6	item	Fin medición	1519943282.52247906
+sicd	106002038	0	item	Inicio medición	1519943284.52398491
+sicd	106002038	1	item	Inicio Solicitud	1519943284.56248403
+sicd	106002038	2	item	Procesando Eventos	1519943284.60158205
+sicd	106002038	3	item	Procesando Servicio	1519943284.6016171
+sicd	106002038	4	item	Resumen toba_editor	1519943284.63091207
+sicd	106002038	5	item	Finalizando Solicitud	1519943284.63391995
+sicd	106002038	6	item	Fin medición	1519943284.6573329
+sicd	106002041	0	item	Inicio medición	1519943391.07240796
+sicd	106002041	1	item	Inicio Solicitud	1519943391.10932589
+sicd	106002041	2	item	Procesando Eventos	1519943391.17593694
+sicd	106002041	3	item	Procesando Servicio	1519943391.17596698
+sicd	106002041	4	item	Resumen toba_editor	1519943391.19088411
+sicd	106002041	5	item	Finalizando Solicitud	1519943391.19481111
+sicd	106002041	6	item	Fin medición	1519943391.21524692
+sicd	106002042	0	item	Inicio medición	1519943392.64116502
+sicd	106002042	1	item	Inicio Solicitud	1519943392.67683911
+sicd	106002042	2	item	Procesando Eventos	1519943392.71174097
+sicd	106002042	3	item	Procesando Servicio	1519943392.71177793
+sicd	106002042	4	item	Resumen toba_editor	1519943392.73679805
+sicd	106002042	5	item	Finalizando Solicitud	1519943392.73951697
+sicd	106002042	6	item	Fin medición	1519943392.75949407
+sicd	106002045	0	item	Inicio medición	1519943507.69310999
+sicd	106002045	1	item	Inicio Solicitud	1519943507.72829103
+sicd	106002045	2	item	Procesando Eventos	1519943507.80712295
+sicd	106002045	3	item	Procesando Servicio	1519943507.80714893
+sicd	106002045	4	item	Resumen toba_editor	1519943507.81777096
+sicd	106002045	5	item	Finalizando Solicitud	1519943507.82076192
+sicd	106002045	6	item	Fin medición	1519943507.84078503
+sicd	106002046	0	item	Inicio medición	1519943509.50323796
+sicd	106002046	1	item	Inicio Solicitud	1519943509.5428741
+sicd	106002046	2	item	Procesando Eventos	1519943509.59820199
+sicd	106002046	3	item	Procesando Servicio	1519943509.59822798
+sicd	106002046	4	item	Resumen toba_editor	1519943509.62020111
+sicd	106002046	5	item	Finalizando Solicitud	1519943509.62287688
+sicd	106002046	6	item	Fin medición	1519943509.64154196
+sicd	106002049	0	item	Inicio medición	1519943522.96666503
+sicd	106002049	1	item	Inicio Solicitud	1519943523.02053308
+sicd	106002049	2	item	Procesando Eventos	1519943523.05971003
+sicd	106002049	3	item	Procesando Servicio	1519943523.05973792
+sicd	106002049	4	item	Resumen toba_editor	1519943523.08424807
+sicd	106002049	5	item	Finalizando Solicitud	1519943523.08677197
+sicd	106002049	6	item	Fin medición	1519943523.10953498
+sicd	106002052	0	item	Inicio medición	1519943584.27492809
+sicd	106002052	1	item	Inicio Solicitud	1519943584.3117609
+sicd	106002052	2	item	Procesando Eventos	1519943584.38923097
+sicd	106002052	3	item	Procesando Servicio	1519943584.38925695
+sicd	106002052	4	item	Resumen toba_editor	1519943584.3978591
+sicd	106002052	5	item	Finalizando Solicitud	1519943584.4012301
+sicd	106002052	6	item	Fin medición	1519943584.4221561
+sicd	106002053	0	item	Inicio medición	1519943586.26639104
+sicd	106002053	1	item	Inicio Solicitud	1519943586.3081789
+sicd	106002053	2	item	Procesando Eventos	1519943586.36776805
+sicd	106002053	3	item	Procesando Servicio	1519943586.36779189
+sicd	106002053	4	item	Resumen toba_editor	1519943586.38978004
+sicd	106002053	5	item	Finalizando Solicitud	1519943586.3926599
+sicd	106002053	6	item	Fin medición	1519943586.41026711
+sicd	106002056	0	item	Inicio medición	1519943630.38195205
+sicd	106002056	1	item	Inicio Solicitud	1519943630.42525506
+sicd	106002056	2	item	Procesando Eventos	1519943630.53657389
+sicd	106002056	3	item	Procesando Servicio	1519943630.53660202
+sicd	106002056	4	item	Resumen toba_editor	1519943630.56040907
+sicd	106002056	5	item	Finalizando Solicitud	1519943630.56383204
+sicd	106002056	6	item	Fin medición	1519943630.59084606
+sicd	106002057	0	item	Inicio medición	1519943632.92701697
+sicd	106002057	1	item	Inicio Solicitud	1519943632.96553993
+sicd	106002057	2	item	Procesando Eventos	1519943633.09562898
+sicd	106002057	3	item	Procesando Servicio	1519943633.11812091
+sicd	106002057	4	item	Resumen toba_editor	1519943633.14654493
+sicd	106002057	5	item	Finalizando Solicitud	1519943633.14923596
+sicd	106002057	6	item	Fin medición	1519943633.17928505
+sicd	106002058	0	item	Inicio medición	1519943634.009902
+sicd	106002058	1	item	Inicio Solicitud	1519943634.04198599
+sicd	106002058	2	item	Procesando Eventos	1519943634.14062405
+sicd	106002058	3	item	Procesando Servicio	1519943634.16048002
+sicd	106002058	4	item	Resumen toba_editor	1519943634.19121408
+sicd	106002058	5	item	Finalizando Solicitud	1519943634.19423389
+sicd	106002058	6	item	Fin medición	1519943634.21228909
+sicd	106002059	0	item	Inicio medición	1519943635.22300911
+sicd	106002059	1	item	Inicio Solicitud	1519943635.25362396
+sicd	106002059	2	item	Procesando Eventos	1519943635.37387896
+sicd	106002059	3	item	Procesando Servicio	1519943635.40298009
+sicd	106002059	4	item	Resumen toba_editor	1519943635.438833
+sicd	106002059	5	item	Finalizando Solicitud	1519943635.44200802
+sicd	106002059	6	item	Fin medición	1519943635.55669594
+sicd	106002060	0	item	Inicio medición	1519943636.71351695
+sicd	106002060	1	item	Inicio Solicitud	1519943636.74394298
+sicd	106002060	2	item	Procesando Eventos	1519943636.87593389
+sicd	106002060	3	item	Procesando Servicio	1519943636.91145802
+sicd	106002060	4	item	Resumen toba_editor	1519943636.93645
+sicd	106002060	5	item	Finalizando Solicitud	1519943636.93927312
+sicd	106002060	6	item	Fin medición	1519943636.95708609
+sicd	106002061	0	item	Inicio medición	1519943640.20511794
+sicd	106002061	1	item	Inicio Solicitud	1519943640.24328089
+sicd	106002061	2	item	Procesando Eventos	1519943640.31109691
+sicd	106002061	3	item	Procesando Servicio	1519943640.31112695
+sicd	106002061	4	item	Resumen toba_editor	1519943640.31919408
+sicd	106002061	5	item	Finalizando Solicitud	1519943640.32203293
+sicd	106002061	6	item	Fin medición	1519943640.34577203
+sicd	106002062	0	item	Inicio medición	1519943642.67574501
+sicd	106002062	1	item	Inicio Solicitud	1519943642.7070961
+sicd	106002062	2	item	Procesando Eventos	1519943642.82847095
+sicd	106002062	3	item	Procesando Servicio	1519943642.828511
+sicd	106002062	4	item	Resumen toba_editor	1519943642.85959411
+sicd	106002062	5	item	Finalizando Solicitud	1519943642.86312294
+sicd	106002062	6	item	Fin medición	1519943642.87905192
+sicd	106002065	0	item	Inicio medición	1519943770.98872209
+sicd	106002065	1	item	Inicio Solicitud	1519943771.02067804
+sicd	106002065	2	item	Procesando Eventos	1519943771.13592696
+sicd	106002065	3	item	Procesando Servicio	1519943771.13596296
+sicd	106002065	4	item	Resumen toba_editor	1519943771.1474061
+sicd	106002065	5	item	Finalizando Solicitud	1519943771.15125108
+sicd	106002065	6	item	Fin medición	1519943771.1738739
+sicd	106002066	0	item	Inicio medición	1519943772.99381495
+sicd	106002066	1	item	Inicio Solicitud	1519943773.04248405
+sicd	106002066	2	item	Procesando Eventos	1519943773.09856105
+sicd	106002066	3	item	Procesando Servicio	1519943773.09858608
+sicd	106002066	4	item	Resumen toba_editor	1519943773.12027311
+sicd	106002066	5	item	Finalizando Solicitud	1519943773.12385798
+sicd	106002066	6	item	Fin medición	1519943773.13998795
+sicd	106002069	0	item	Inicio medición	1519943793.85756898
+sicd	106002069	1	item	Inicio Solicitud	1519943793.89736891
+sicd	106002069	2	item	Procesando Eventos	1519943793.93665504
+sicd	106002069	3	item	Procesando Servicio	1519943793.93668008
+sicd	106002069	4	item	Resumen toba_editor	1519943793.96451592
+sicd	106002069	5	item	Finalizando Solicitud	1519943793.96756005
+sicd	106002069	6	item	Fin medición	1519943793.98394799
+sicd	106002072	0	item	Inicio medición	1519943809.79495502
+sicd	106002072	1	item	Inicio Solicitud	1519943809.83239198
+sicd	106002072	2	item	Procesando Eventos	1519943809.93140507
+sicd	106002072	3	item	Procesando Servicio	1519943809.9314611
+sicd	106002072	4	item	Resumen toba_editor	1519943809.947469
+sicd	106002072	5	item	Finalizando Solicitud	1519943809.95063996
+sicd	106002072	6	item	Fin medición	1519943809.97515512
+sicd	106002075	0	item	Inicio medición	1519943946.26277804
+sicd	106002075	1	item	Inicio Solicitud	1519943946.30286694
+sicd	106002075	2	item	Procesando Eventos	1519943946.4469161
+sicd	106002075	3	item	Procesando Servicio	1519943946.446944
+sicd	106002075	4	item	Resumen toba_editor	1519943946.47068596
+sicd	106002075	5	item	Finalizando Solicitud	1519943946.47404599
+sicd	106002075	6	item	Fin medición	1519943946.4915731
+sicd	106002076	0	item	Inicio medición	1519943947.1266861
+sicd	106002076	1	item	Inicio Solicitud	1519943947.155756
+sicd	106002076	2	item	Procesando Eventos	1519943947.29773092
+sicd	106002076	3	item	Procesando Servicio	1519943947.29775596
+sicd	106002076	4	item	Resumen toba_editor	1519943947.33362389
+sicd	106002076	5	item	Finalizando Solicitud	1519943947.33641601
+sicd	106002076	6	item	Fin medición	1519943947.38091993
+sicd	106002095	0	item	Inicio medición	1519944083.77736902
+sicd	106002095	1	item	Inicio Solicitud	1519944083.81651306
+sicd	106002095	2	item	Procesando Eventos	1519944083.91529989
+sicd	106002095	3	item	Procesando Servicio	1519944083.91533208
+sicd	106002095	4	item	Resumen toba_editor	1519944083.95624399
+sicd	106002095	5	item	Finalizando Solicitud	1519944083.95927691
+sicd	106002095	6	item	Fin medición	1519944083.97383308
+sicd	106002097	0	item	Inicio medición	1519944103.48446608
+sicd	106002097	1	item	Inicio Solicitud	1519944103.52910805
+sicd	106002097	2	item	Procesando Eventos	1519944103.61480904
+sicd	106002097	3	item	Procesando Servicio	1519944103.61483693
+sicd	106002097	4	item	Resumen toba_editor	1519944103.6541791
+sicd	106002097	5	item	Finalizando Solicitud	1519944103.65718102
+sicd	106002097	6	item	Fin medición	1519944103.67360902
+sicd	106002099	0	item	Inicio medición	1519944122.47474289
+sicd	106002099	1	item	Inicio Solicitud	1519944122.51231098
+sicd	106002099	2	item	Procesando Eventos	1519944122.57511711
+sicd	106002099	3	item	Procesando Servicio	1519944122.57514501
+sicd	106002099	4	item	Resumen toba_editor	1519944122.6163919
+sicd	106002099	5	item	Finalizando Solicitud	1519944122.61935806
+sicd	106002099	6	item	Fin medición	1519944122.64055896
+sicd	106002102	0	item	Inicio medición	1519944157.17868304
+sicd	106002102	1	item	Inicio Solicitud	1519944157.21427202
+sicd	106002102	2	item	Procesando Eventos	1519944157.29892898
+sicd	106002102	3	item	Procesando Servicio	1519944157.29896402
+sicd	106002102	4	item	Resumen toba_editor	1519944157.35240293
+sicd	106002102	5	item	Finalizando Solicitud	1519944157.3553431
+sicd	106002102	6	item	Fin medición	1519944157.375319
+sicd	106002107	0	item	Inicio medición	1519944240.92266011
+sicd	106002107	1	item	Inicio Solicitud	1519944240.96137309
+sicd	106002107	2	item	Procesando Eventos	1519944241.02983594
+sicd	106002107	3	item	Procesando Servicio	1519944241.02987409
+sicd	106002107	4	item	Resumen toba_editor	1519944241.08831906
+sicd	106002107	5	item	Finalizando Solicitud	1519944241.0912621
+sicd	106002107	6	item	Fin medición	1519944241.1124599
 \.
 
 
 --
--- TOC entry 4096 (class 0 OID 45000)
+-- TOC entry 4097 (class 0 OID 45000)
 -- Dependencies: 400
 -- Data for Name: apex_solicitud_observacion; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -25039,7 +25931,7 @@ COPY apex_solicitud_observacion (proyecto, solicitud, solicitud_observacion, sol
 
 
 --
--- TOC entry 4237 (class 0 OID 0)
+-- TOC entry 4238 (class 0 OID 0)
 -- Dependencies: 399
 -- Name: apex_solicitud_observacion_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
@@ -25048,16 +25940,16 @@ SELECT pg_catalog.setval('apex_solicitud_observacion_seq', 106000000, true);
 
 
 --
--- TOC entry 4238 (class 0 OID 0)
+-- TOC entry 4239 (class 0 OID 0)
 -- Dependencies: 392
 -- Name: apex_solicitud_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
 
-SELECT pg_catalog.setval('apex_solicitud_seq', 106001930, true);
+SELECT pg_catalog.setval('apex_solicitud_seq', 106002107, true);
 
 
 --
--- TOC entry 4106 (class 0 OID 45067)
+-- TOC entry 4107 (class 0 OID 45067)
 -- Dependencies: 410
 -- Data for Name: apex_solicitud_web_service; Type: TABLE DATA; Schema: desarrollo_logs; Owner: postgres
 --
@@ -25069,7 +25961,7 @@ COPY apex_solicitud_web_service (proyecto, solicitud, metodo, ip) FROM stdin;
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 3916 (class 0 OID 31515)
+-- TOC entry 3917 (class 0 OID 31515)
 -- Dependencies: 220
 -- Data for Name: cabecera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25080,7 +25972,7 @@ COPY cabecera (logo1, logo2, nombre, descripcion) FROM stdin;
 
 
 --
--- TOC entry 3907 (class 0 OID 30174)
+-- TOC entry 3908 (class 0 OID 30174)
 -- Dependencies: 211
 -- Data for Name: cargo_por_persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25103,7 +25995,7 @@ COPY cargo_por_persona (idpersona, identidad, idtipo_cargo, cantidad_horas, fech
 
 
 --
--- TOC entry 4239 (class 0 OID 0)
+-- TOC entry 4240 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: cargo_por_persona_idcargo_por_persona_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25112,18 +26004,18 @@ SELECT pg_catalog.setval('cargo_por_persona_idcargo_por_persona_seq', 17, true);
 
 
 --
--- TOC entry 3882 (class 0 OID 30024)
+-- TOC entry 3883 (class 0 OID 30024)
 -- Dependencies: 186
 -- Data for Name: configuracion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY configuracion (cantidad_max_dias_viatico_mensual, cantidad_max_hs_bloque) FROM stdin;
-20	21
+15	21
 \.
 
 
 --
--- TOC entry 3911 (class 0 OID 31345)
+-- TOC entry 3912 (class 0 OID 31345)
 -- Dependencies: 215
 -- Data for Name: detalle_dias_viatico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25144,16 +26036,16 @@ COPY detalle_dias_viatico (iddetalle_dias_viatico, fecha_desde, fecha_hasta, can
 
 
 --
--- TOC entry 4240 (class 0 OID 0)
+-- TOC entry 4241 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: detalle_dias_viatico_iddetalle_dias_viatico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('detalle_dias_viatico_iddetalle_dias_viatico_seq', 18, true);
+SELECT pg_catalog.setval('detalle_dias_viatico_iddetalle_dias_viatico_seq', 20, true);
 
 
 --
--- TOC entry 3909 (class 0 OID 30197)
+-- TOC entry 3910 (class 0 OID 30197)
 -- Dependencies: 213
 -- Data for Name: detalle_viatico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25166,7 +26058,7 @@ COPY detalle_viatico (iddetalle_viatico, monto, descripcion, idtipo_detalle_viat
 
 
 --
--- TOC entry 4241 (class 0 OID 0)
+-- TOC entry 4242 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: detalle_viatico_iddetalle_viatico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25175,7 +26067,7 @@ SELECT pg_catalog.setval('detalle_viatico_iddetalle_viatico_seq', 2, true);
 
 
 --
--- TOC entry 3896 (class 0 OID 30082)
+-- TOC entry 3897 (class 0 OID 30082)
 -- Dependencies: 200
 -- Data for Name: entidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25195,7 +26087,7 @@ COPY entidad (identidad, sigla, nombre, idlocalidad, calle, altura, piso, depto)
 
 
 --
--- TOC entry 4242 (class 0 OID 0)
+-- TOC entry 4243 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: entidad_identidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25204,7 +26096,7 @@ SELECT pg_catalog.setval('entidad_identidad_seq', 11, true);
 
 
 --
--- TOC entry 3898 (class 0 OID 30090)
+-- TOC entry 3899 (class 0 OID 30090)
 -- Dependencies: 202
 -- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25219,7 +26111,7 @@ COPY estado_civil (idestado_civil, descripcion) FROM stdin;
 
 
 --
--- TOC entry 4243 (class 0 OID 0)
+-- TOC entry 4244 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: estado_civil_idestado_civil_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25228,7 +26120,7 @@ SELECT pg_catalog.setval('estado_civil_idestado_civil_seq', 9, true);
 
 
 --
--- TOC entry 3913 (class 0 OID 31371)
+-- TOC entry 3914 (class 0 OID 31371)
 -- Dependencies: 217
 -- Data for Name: estudio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25240,7 +26132,7 @@ ANALISTA SISTEMAS DE COMPUTACION                                                
 
 
 --
--- TOC entry 4244 (class 0 OID 0)
+-- TOC entry 4245 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: estudio_idestudio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25249,7 +26141,7 @@ SELECT pg_catalog.setval('estudio_idestudio_seq', 3, true);
 
 
 --
--- TOC entry 3915 (class 0 OID 31395)
+-- TOC entry 3916 (class 0 OID 31395)
 -- Dependencies: 219
 -- Data for Name: estudio_por_persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25265,7 +26157,7 @@ COPY estudio_por_persona (idestudio, idnivel_estudio, idpersona, identidad, ober
 
 
 --
--- TOC entry 3886 (class 0 OID 30037)
+-- TOC entry 3887 (class 0 OID 30037)
 -- Dependencies: 190
 -- Data for Name: funcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25276,7 +26168,7 @@ COPY funcion (idfuncion, descripcion, maximo_horas, cantidad_permitida) FROM std
 
 
 --
--- TOC entry 4245 (class 0 OID 0)
+-- TOC entry 4246 (class 0 OID 0)
 -- Dependencies: 189
 -- Name: funcion_idfuncion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25285,7 +26177,7 @@ SELECT pg_catalog.setval('funcion_idfuncion_seq', 1, true);
 
 
 --
--- TOC entry 3894 (class 0 OID 30074)
+-- TOC entry 3895 (class 0 OID 30074)
 -- Dependencies: 198
 -- Data for Name: localidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25405,7 +26297,7 @@ COPY localidad (idlocalidad, idprovincia, descripcion) FROM stdin;
 
 
 --
--- TOC entry 4246 (class 0 OID 0)
+-- TOC entry 4247 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: localidad_idlocalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25414,7 +26306,7 @@ SELECT pg_catalog.setval('localidad_idlocalidad_seq', 450, true);
 
 
 --
--- TOC entry 3881 (class 0 OID 30018)
+-- TOC entry 3882 (class 0 OID 30018)
 -- Dependencies: 185
 -- Data for Name: nivel_estudio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25427,7 +26319,7 @@ COPY nivel_estudio (idnivel_estudio, descripcion, maximo_horas, orden, nivel) FR
 
 
 --
--- TOC entry 4247 (class 0 OID 0)
+-- TOC entry 4248 (class 0 OID 0)
 -- Dependencies: 184
 -- Name: nivel_estudio_idnivel_estudio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25436,7 +26328,7 @@ SELECT pg_catalog.setval('nivel_estudio_idnivel_estudio_seq', 7, true);
 
 
 --
--- TOC entry 3890 (class 0 OID 30058)
+-- TOC entry 3891 (class 0 OID 30058)
 -- Dependencies: 194
 -- Data for Name: pais; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25448,7 +26340,7 @@ COPY pais (idpais, descripcion) FROM stdin;
 
 
 --
--- TOC entry 4248 (class 0 OID 0)
+-- TOC entry 4249 (class 0 OID 0)
 -- Dependencies: 193
 -- Name: pais_idpais_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25457,7 +26349,7 @@ SELECT pg_catalog.setval('pais_idpais_seq', 20, true);
 
 
 --
--- TOC entry 3904 (class 0 OID 30114)
+-- TOC entry 3905 (class 0 OID 30114)
 -- Dependencies: 208
 -- Data for Name: persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25466,20 +26358,21 @@ COPY persona (idpersona, nombres, apellido, idtipo_documento, nro_documento, mat
 4	FACUNDO	PIOTROSKI	7	30475293	\N	\N	20304752190	\N	1984-10-01	m	218	CALLE	1	\N	\N	\N	t	\N	f
 1	GUSTAVO	ESCALANTE	7	30047529	644	6	20304752190	escalantegc@gmail.com	1983-09-13	m	218	CALLEA	1538	22	1	QA	f	\N	f
 5	BMB	MH	1	30047529	\N	\N	20304752190	\N	\N	m	218	CALLE	5454	\N	\N	\N	t	\N	f
+6	ROMINA	RIVERO	7	30361545	\N	\N	20304752190	\N	2018-03-01	f	194	CALLE	1538	\N	\N	\N	t	\N	f
 \.
 
 
 --
--- TOC entry 4249 (class 0 OID 0)
+-- TOC entry 4250 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: persona_idpersona_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('persona_idpersona_seq', 5, true);
+SELECT pg_catalog.setval('persona_idpersona_seq', 6, true);
 
 
 --
--- TOC entry 3892 (class 0 OID 30066)
+-- TOC entry 3893 (class 0 OID 30066)
 -- Dependencies: 196
 -- Data for Name: provincia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25522,7 +26415,7 @@ COPY provincia (idprovincia, idpais, descripcion) FROM stdin;
 
 
 --
--- TOC entry 4250 (class 0 OID 0)
+-- TOC entry 4251 (class 0 OID 0)
 -- Dependencies: 195
 -- Name: provincia_idprovincia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25531,7 +26424,7 @@ SELECT pg_catalog.setval('provincia_idprovincia_seq', 64, true);
 
 
 --
--- TOC entry 3910 (class 0 OID 30219)
+-- TOC entry 3911 (class 0 OID 30219)
 -- Dependencies: 214
 -- Data for Name: telefono_por_persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25545,7 +26438,7 @@ COPY telefono_por_persona (idtipo_telefono, idpersona, numero) FROM stdin;
 
 
 --
--- TOC entry 3900 (class 0 OID 30098)
+-- TOC entry 3901 (class 0 OID 30098)
 -- Dependencies: 204
 -- Data for Name: tipo_cargo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25559,7 +26452,7 @@ COPY tipo_cargo (idtipo_cargo, descripcion, cantidad_cargos, jerarquico) FROM st
 
 
 --
--- TOC entry 4251 (class 0 OID 0)
+-- TOC entry 4252 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: tipo_cargo_idtipo_cargo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25568,7 +26461,7 @@ SELECT pg_catalog.setval('tipo_cargo_idtipo_cargo_seq', 7, true);
 
 
 --
--- TOC entry 3884 (class 0 OID 30029)
+-- TOC entry 3885 (class 0 OID 30029)
 -- Dependencies: 188
 -- Data for Name: tipo_detalle_viatico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25581,7 +26474,7 @@ COPY tipo_detalle_viatico (idtipo_detalle_viatico, descripcion) FROM stdin;
 
 
 --
--- TOC entry 4252 (class 0 OID 0)
+-- TOC entry 4253 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: tipo_detalle_viatico_idtipo_detalle_viatico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25590,7 +26483,7 @@ SELECT pg_catalog.setval('tipo_detalle_viatico_idtipo_detalle_viatico_seq', 3, t
 
 
 --
--- TOC entry 3902 (class 0 OID 30106)
+-- TOC entry 3903 (class 0 OID 30106)
 -- Dependencies: 206
 -- Data for Name: tipo_documento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25605,7 +26498,7 @@ COPY tipo_documento (idtipo_documento, sigla, descripcion) FROM stdin;
 
 
 --
--- TOC entry 4253 (class 0 OID 0)
+-- TOC entry 4254 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: tipo_documento_idtipo_documento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25614,7 +26507,7 @@ SELECT pg_catalog.setval('tipo_documento_idtipo_documento_seq', 8, true);
 
 
 --
--- TOC entry 3917 (class 0 OID 42562)
+-- TOC entry 3918 (class 0 OID 42562)
 -- Dependencies: 221
 -- Data for Name: tipo_hora; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25626,7 +26519,7 @@ COPY tipo_hora (idtipo_hora, descripcion, max_hs_nivel_medio, max_hs_nivel_super
 
 
 --
--- TOC entry 4254 (class 0 OID 0)
+-- TOC entry 4255 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: tipo_hora_idtipo_hora_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25635,7 +26528,7 @@ SELECT pg_catalog.setval('tipo_hora_idtipo_hora_seq', 3, true);
 
 
 --
--- TOC entry 3888 (class 0 OID 30050)
+-- TOC entry 3889 (class 0 OID 30050)
 -- Dependencies: 192
 -- Data for Name: tipo_telefono; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25649,7 +26542,7 @@ COPY tipo_telefono (idtipo_telefono, descripcion) FROM stdin;
 
 
 --
--- TOC entry 4255 (class 0 OID 0)
+-- TOC entry 4256 (class 0 OID 0)
 -- Dependencies: 191
 -- Name: tipo_telefono_idtipo_telefono_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -25658,7 +26551,7 @@ SELECT pg_catalog.setval('tipo_telefono_idtipo_telefono_seq', 4, true);
 
 
 --
--- TOC entry 3906 (class 0 OID 30125)
+-- TOC entry 3907 (class 0 OID 30125)
 -- Dependencies: 210
 -- Data for Name: viatico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -25675,25 +26568,26 @@ COPY viatico (idviatico, fecha_desde, nro_expediente, fecha_hasta, idpersona, id
 9	\N	164	\N	1	\N	\N	15	10	0	12	3
 16	\N	2146	\N	1	\N	\N	15	1 	0	15	0
 17	\N	9547	\N	1	\N	\N	15	1 	0	13	2
-15	\N	7987	\N	1	\N	\N	15	1 	0	15	2
 18	\N	647	\N	4	\N	\N	15	1 	0	15	0
 8	\N	989	\N	1	\N	\N	10	1 	0	9	1
+15	\N	7987	\N	1	\N	\N	15	1 	0	15	0
+19	\N	46511	\N	6	\N	\N	15	1 	0	15	0
 \.
 
 
 --
--- TOC entry 4256 (class 0 OID 0)
+-- TOC entry 4257 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: viatico_idviatico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('viatico_idviatico_seq', 18, true);
+SELECT pg_catalog.setval('viatico_idviatico_seq', 19, true);
 
 
 SET search_path = referencia, pg_catalog;
 
 --
--- TOC entry 4119 (class 0 OID 45123)
+-- TOC entry 4120 (class 0 OID 45123)
 -- Dependencies: 423
 -- Data for Name: iso_countries; Type: TABLE DATA; Schema: referencia; Owner: postgres
 --
@@ -25989,7 +26883,7 @@ COPY iso_countries (rowid, countryid, locale, countrycode, countryname, phonepre
 
 
 --
--- TOC entry 4108 (class 0 OID 45083)
+-- TOC entry 4109 (class 0 OID 45083)
 -- Dependencies: 412
 -- Data for Name: ref_deportes; Type: TABLE DATA; Schema: referencia; Owner: postgres
 --
@@ -26005,7 +26899,7 @@ COPY ref_deportes (id, nombre, descripcion, fecha_inicio) FROM stdin;
 
 
 --
--- TOC entry 4257 (class 0 OID 0)
+-- TOC entry 4258 (class 0 OID 0)
 -- Dependencies: 411
 -- Name: ref_deportes_id_seq; Type: SEQUENCE SET; Schema: referencia; Owner: postgres
 --
@@ -26014,7 +26908,7 @@ SELECT pg_catalog.setval('ref_deportes_id_seq', 8, true);
 
 
 --
--- TOC entry 4110 (class 0 OID 45089)
+-- TOC entry 4111 (class 0 OID 45089)
 -- Dependencies: 414
 -- Data for Name: ref_juegos; Type: TABLE DATA; Schema: referencia; Owner: postgres
 --
@@ -26031,7 +26925,7 @@ COPY ref_juegos (id, nombre, descripcion, de_mesa) FROM stdin;
 
 
 --
--- TOC entry 4258 (class 0 OID 0)
+-- TOC entry 4259 (class 0 OID 0)
 -- Dependencies: 413
 -- Name: ref_juegos_id_seq; Type: SEQUENCE SET; Schema: referencia; Owner: postgres
 --
@@ -26040,7 +26934,7 @@ SELECT pg_catalog.setval('ref_juegos_id_seq', 5, true);
 
 
 --
--- TOC entry 4112 (class 0 OID 45096)
+-- TOC entry 4113 (class 0 OID 45096)
 -- Dependencies: 416
 -- Data for Name: ref_juegos_oferta; Type: TABLE DATA; Schema: referencia; Owner: postgres
 --
@@ -26050,7 +26944,7 @@ COPY ref_juegos_oferta (id, juego, jugador, publicacion) FROM stdin;
 
 
 --
--- TOC entry 4259 (class 0 OID 0)
+-- TOC entry 4260 (class 0 OID 0)
 -- Dependencies: 415
 -- Name: ref_juegos_oferta_id_seq; Type: SEQUENCE SET; Schema: referencia; Owner: postgres
 --
@@ -26059,7 +26953,7 @@ SELECT pg_catalog.setval('ref_juegos_oferta_id_seq', 1, false);
 
 
 --
--- TOC entry 4114 (class 0 OID 45103)
+-- TOC entry 4115 (class 0 OID 45103)
 -- Dependencies: 418
 -- Data for Name: ref_persona; Type: TABLE DATA; Schema: referencia; Owner: postgres
 --
@@ -26071,7 +26965,7 @@ COPY ref_persona (id, nombre, fecha_nac, imagen, planilla_pdf, planilla_pdf_firm
 
 
 --
--- TOC entry 4116 (class 0 OID 45113)
+-- TOC entry 4117 (class 0 OID 45113)
 -- Dependencies: 420
 -- Data for Name: ref_persona_deportes; Type: TABLE DATA; Schema: referencia; Owner: postgres
 --
@@ -26084,7 +26978,7 @@ COPY ref_persona_deportes (id, persona, deporte, dia_semana, hora_inicio, hora_f
 
 
 --
--- TOC entry 4260 (class 0 OID 0)
+-- TOC entry 4261 (class 0 OID 0)
 -- Dependencies: 419
 -- Name: ref_persona_deportes_id_seq; Type: SEQUENCE SET; Schema: referencia; Owner: postgres
 --
@@ -26093,7 +26987,7 @@ SELECT pg_catalog.setval('ref_persona_deportes_id_seq', 3, true);
 
 
 --
--- TOC entry 4261 (class 0 OID 0)
+-- TOC entry 4262 (class 0 OID 0)
 -- Dependencies: 417
 -- Name: ref_persona_id_seq; Type: SEQUENCE SET; Schema: referencia; Owner: postgres
 --
@@ -26102,7 +26996,7 @@ SELECT pg_catalog.setval('ref_persona_id_seq', 2, true);
 
 
 --
--- TOC entry 4118 (class 0 OID 45119)
+-- TOC entry 4119 (class 0 OID 45119)
 -- Dependencies: 422
 -- Data for Name: ref_persona_juegos; Type: TABLE DATA; Schema: referencia; Owner: postgres
 --
@@ -26119,7 +27013,7 @@ COPY ref_persona_juegos (id, persona, juego, dia_semana, hora_inicio, hora_fin) 
 
 
 --
--- TOC entry 4262 (class 0 OID 0)
+-- TOC entry 4263 (class 0 OID 0)
 -- Dependencies: 421
 -- Name: ref_persona_juegos_id_seq; Type: SEQUENCE SET; Schema: referencia; Owner: postgres
 --
@@ -26130,7 +27024,7 @@ SELECT pg_catalog.setval('ref_persona_juegos_id_seq', 3, true);
 SET search_path = desarrollo, pg_catalog;
 
 --
--- TOC entry 3298 (class 2606 OID 43439)
+-- TOC entry 3299 (class 2606 OID 43439)
 -- Name: apex_admin_album_fotos_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26139,7 +27033,7 @@ ALTER TABLE ONLY apex_admin_album_fotos
 
 
 --
--- TOC entry 3300 (class 2606 OID 43447)
+-- TOC entry 3301 (class 2606 OID 43447)
 -- Name: apex_admin_param_prev_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26148,7 +27042,7 @@ ALTER TABLE ONLY apex_admin_param_previsualizazion
 
 
 --
--- TOC entry 3378 (class 2606 OID 44094)
+-- TOC entry 3379 (class 2606 OID 44094)
 -- Name: apex_admin_persistencia_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26157,7 +27051,7 @@ ALTER TABLE ONLY apex_admin_persistencia
 
 
 --
--- TOC entry 3296 (class 2606 OID 43431)
+-- TOC entry 3297 (class 2606 OID 43431)
 -- Name: apex_arbol_items_fotos_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26166,7 +27060,7 @@ ALTER TABLE ONLY apex_arbol_items_fotos
 
 
 --
--- TOC entry 3199 (class 2606 OID 42755)
+-- TOC entry 3200 (class 2606 OID 42755)
 -- Name: apex_checksum_proyectos_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26175,7 +27069,7 @@ ALTER TABLE ONLY apex_checksum_proyectos
 
 
 --
--- TOC entry 3268 (class 2606 OID 43233)
+-- TOC entry 3269 (class 2606 OID 43233)
 -- Name: apex_clase_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26184,7 +27078,7 @@ ALTER TABLE ONLY apex_clase
 
 
 --
--- TOC entry 3272 (class 2606 OID 43253)
+-- TOC entry 3273 (class 2606 OID 43253)
 -- Name: apex_clase_rel_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26193,7 +27087,7 @@ ALTER TABLE ONLY apex_clase_relacion
 
 
 --
--- TOC entry 3266 (class 2606 OID 43225)
+-- TOC entry 3267 (class 2606 OID 43225)
 -- Name: apex_clase_tipo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26202,7 +27096,7 @@ ALTER TABLE ONLY apex_clase_tipo
 
 
 --
--- TOC entry 3270 (class 2606 OID 43235)
+-- TOC entry 3271 (class 2606 OID 43235)
 -- Name: apex_clase_uq; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26211,7 +27105,7 @@ ALTER TABLE ONLY apex_clase
 
 
 --
--- TOC entry 3229 (class 2606 OID 42943)
+-- TOC entry 3230 (class 2606 OID 42943)
 -- Name: apex_columna_estilo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26220,7 +27114,7 @@ ALTER TABLE ONLY apex_columna_estilo
 
 
 --
--- TOC entry 3231 (class 2606 OID 42954)
+-- TOC entry 3232 (class 2606 OID 42954)
 -- Name: apex_columna_formato_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26229,7 +27123,7 @@ ALTER TABLE ONLY apex_columna_formato
 
 
 --
--- TOC entry 3239 (class 2606 OID 43003)
+-- TOC entry 3240 (class 2606 OID 43003)
 -- Name: apex_consulta_php_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26238,7 +27132,7 @@ ALTER TABLE ONLY apex_consulta_php
 
 
 --
--- TOC entry 3302 (class 2606 OID 43452)
+-- TOC entry 3303 (class 2606 OID 43452)
 -- Name: apex_conversion_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26247,7 +27141,7 @@ ALTER TABLE ONLY apex_conversion
 
 
 --
--- TOC entry 3326 (class 2606 OID 43687)
+-- TOC entry 3327 (class 2606 OID 43687)
 -- Name: apex_dimension_gatillo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26256,7 +27150,7 @@ ALTER TABLE ONLY apex_dimension_gatillo
 
 
 --
--- TOC entry 3328 (class 2606 OID 43689)
+-- TOC entry 3329 (class 2606 OID 43689)
 -- Name: apex_dimension_gatillo_uq_tabla; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26265,7 +27159,7 @@ ALTER TABLE ONLY apex_dimension_gatillo
 
 
 --
--- TOC entry 3324 (class 2606 OID 43666)
+-- TOC entry 3325 (class 2606 OID 43666)
 -- Name: apex_dimension_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26274,7 +27168,7 @@ ALTER TABLE ONLY apex_dimension
 
 
 --
--- TOC entry 3358 (class 2606 OID 43926)
+-- TOC entry 3359 (class 2606 OID 43926)
 -- Name: apex_ei_f_ef_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26283,7 +27177,7 @@ ALTER TABLE ONLY apex_objeto_ei_formulario_ef
 
 
 --
--- TOC entry 3366 (class 2606 OID 44005)
+-- TOC entry 3367 (class 2606 OID 44005)
 -- Name: apex_ei_filtro_col_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26292,7 +27186,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro_col
 
 
 --
--- TOC entry 3364 (class 2606 OID 43985)
+-- TOC entry 3365 (class 2606 OID 43985)
 -- Name: apex_ei_filtro_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26301,7 +27195,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro
 
 
 --
--- TOC entry 3362 (class 2606 OID 43975)
+-- TOC entry 3363 (class 2606 OID 43975)
 -- Name: apex_ei_filtro_tipo_col_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26310,7 +27204,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro_tipo_col
 
 
 --
--- TOC entry 3223 (class 2606 OID 42891)
+-- TOC entry 3224 (class 2606 OID 42891)
 -- Name: apex_elform_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26319,7 +27213,7 @@ ALTER TABLE ONLY apex_elemento_formulario
 
 
 --
--- TOC entry 3203 (class 2606 OID 42777)
+-- TOC entry 3204 (class 2606 OID 42777)
 -- Name: apex_estilo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26328,7 +27222,7 @@ ALTER TABLE ONLY apex_estilo
 
 
 --
--- TOC entry 3344 (class 2606 OID 43803)
+-- TOC entry 3345 (class 2606 OID 43803)
 -- Name: apex_eventos_pantalla_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26337,7 +27231,7 @@ ALTER TABLE ONLY apex_eventos_pantalla
 
 
 --
--- TOC entry 3211 (class 2606 OID 42816)
+-- TOC entry 3212 (class 2606 OID 42816)
 -- Name: apex_fuente_datos_motor_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26346,7 +27240,7 @@ ALTER TABLE ONLY apex_fuente_datos_motor
 
 
 --
--- TOC entry 3213 (class 2606 OID 42827)
+-- TOC entry 3214 (class 2606 OID 42827)
 -- Name: apex_fuente_datos_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26355,7 +27249,7 @@ ALTER TABLE ONLY apex_fuente_datos
 
 
 --
--- TOC entry 3215 (class 2606 OID 42851)
+-- TOC entry 3216 (class 2606 OID 42851)
 -- Name: apex_fuente_datos_schemas_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26364,7 +27258,7 @@ ALTER TABLE ONLY apex_fuente_datos_schemas
 
 
 --
--- TOC entry 3330 (class 2606 OID 43705)
+-- TOC entry 3331 (class 2606 OID 43705)
 -- Name: apex_gadget_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26373,7 +27267,7 @@ ALTER TABLE ONLY apex_gadgets
 
 
 --
--- TOC entry 3444 (class 2606 OID 44641)
+-- TOC entry 3445 (class 2606 OID 44641)
 -- Name: apex_grupo_acc_restriccion_funcional_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26382,7 +27276,7 @@ ALTER TABLE ONLY apex_grupo_acc_restriccion_funcional
 
 
 --
--- TOC entry 3195 (class 2606 OID 42737)
+-- TOC entry 3196 (class 2606 OID 42737)
 -- Name: apex_instancia_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26391,7 +27285,7 @@ ALTER TABLE ONLY apex_instancia
 
 
 --
--- TOC entry 3294 (class 2606 OID 43413)
+-- TOC entry 3295 (class 2606 OID 43413)
 -- Name: apex_item_consumo_obj_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26400,7 +27294,7 @@ ALTER TABLE ONLY apex_item_objeto
 
 
 --
--- TOC entry 3262 (class 2606 OID 43191)
+-- TOC entry 3263 (class 2606 OID 43191)
 -- Name: apex_item_info_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26409,7 +27303,7 @@ ALTER TABLE ONLY apex_item_info
 
 
 --
--- TOC entry 3308 (class 2606 OID 43497)
+-- TOC entry 3309 (class 2606 OID 43497)
 -- Name: apex_item_msg_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26418,7 +27312,7 @@ ALTER TABLE ONLY apex_item_msg
 
 
 --
--- TOC entry 3310 (class 2606 OID 43499)
+-- TOC entry 3311 (class 2606 OID 43499)
 -- Name: apex_item_msg_uk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26427,7 +27321,7 @@ ALTER TABLE ONLY apex_item_msg
 
 
 --
--- TOC entry 3318 (class 2606 OID 43582)
+-- TOC entry 3319 (class 2606 OID 43582)
 -- Name: apex_item_nota_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26436,7 +27330,7 @@ ALTER TABLE ONLY apex_item_nota
 
 
 --
--- TOC entry 3264 (class 2606 OID 43204)
+-- TOC entry 3265 (class 2606 OID 43204)
 -- Name: apex_item_permisos_tablas_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26445,7 +27339,7 @@ ALTER TABLE ONLY apex_item_permisos_tablas
 
 
 --
--- TOC entry 3260 (class 2606 OID 43138)
+-- TOC entry 3261 (class 2606 OID 43138)
 -- Name: apex_item_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26454,7 +27348,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3258 (class 2606 OID 43115)
+-- TOC entry 3259 (class 2606 OID 43115)
 -- Name: apex_item_zona_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26463,7 +27357,7 @@ ALTER TABLE ONLY apex_item_zona
 
 
 --
--- TOC entry 3205 (class 2606 OID 42790)
+-- TOC entry 3206 (class 2606 OID 42790)
 -- Name: apex_log_sistema_tipo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26472,7 +27366,7 @@ ALTER TABLE ONLY apex_log_sistema_tipo
 
 
 --
--- TOC entry 3460 (class 2606 OID 44796)
+-- TOC entry 3461 (class 2606 OID 44796)
 -- Name: apex_menu_operaciones_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26481,7 +27375,7 @@ ALTER TABLE ONLY apex_menu_operaciones
 
 
 --
--- TOC entry 3458 (class 2606 OID 44774)
+-- TOC entry 3459 (class 2606 OID 44774)
 -- Name: apex_menu_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26490,7 +27384,7 @@ ALTER TABLE ONLY apex_menu
 
 
 --
--- TOC entry 3201 (class 2606 OID 42768)
+-- TOC entry 3202 (class 2606 OID 42768)
 -- Name: apex_menu_tipos_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26499,7 +27393,7 @@ ALTER TABLE ONLY apex_menu_tipos
 
 
 --
--- TOC entry 3404 (class 2606 OID 44319)
+-- TOC entry 3405 (class 2606 OID 44319)
 -- Name: apex_molde_opciones_generacion_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26508,7 +27402,7 @@ ALTER TABLE ONLY apex_molde_opciones_generacion
 
 
 --
--- TOC entry 3420 (class 2606 OID 44468)
+-- TOC entry 3421 (class 2606 OID 44468)
 -- Name: apex_molde_operacion_abms_fila_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26517,7 +27411,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms_fila
 
 
 --
--- TOC entry 3422 (class 2606 OID 44470)
+-- TOC entry 3423 (class 2606 OID 44470)
 -- Name: apex_molde_operacion_abms_fila_uq; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26526,7 +27420,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms_fila
 
 
 --
--- TOC entry 3418 (class 2606 OID 44447)
+-- TOC entry 3419 (class 2606 OID 44447)
 -- Name: apex_molde_operacion_abms_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26535,7 +27429,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms
 
 
 --
--- TOC entry 3424 (class 2606 OID 44510)
+-- TOC entry 3425 (class 2606 OID 44510)
 -- Name: apex_molde_operacion_imp_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26544,7 +27438,7 @@ ALTER TABLE ONLY apex_molde_operacion_importacion
 
 
 --
--- TOC entry 3410 (class 2606 OID 44384)
+-- TOC entry 3411 (class 2606 OID 44384)
 -- Name: apex_molde_operacion_item; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26553,7 +27447,7 @@ ALTER TABLE ONLY apex_molde_operacion
 
 
 --
--- TOC entry 3416 (class 2606 OID 44434)
+-- TOC entry 3417 (class 2606 OID 44434)
 -- Name: apex_molde_operacion_log_e_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26562,7 +27456,7 @@ ALTER TABLE ONLY apex_molde_operacion_log_elementos
 
 
 --
--- TOC entry 3414 (class 2606 OID 44418)
+-- TOC entry 3415 (class 2606 OID 44418)
 -- Name: apex_molde_operacion_log_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26571,7 +27465,7 @@ ALTER TABLE ONLY apex_molde_operacion_log
 
 
 --
--- TOC entry 3412 (class 2606 OID 44382)
+-- TOC entry 3413 (class 2606 OID 44382)
 -- Name: apex_molde_operacion_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26580,7 +27474,7 @@ ALTER TABLE ONLY apex_molde_operacion
 
 
 --
--- TOC entry 3408 (class 2606 OID 44351)
+-- TOC entry 3409 (class 2606 OID 44351)
 -- Name: apex_molde_operacion_tipo_dato_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26589,7 +27483,7 @@ ALTER TABLE ONLY apex_molde_operacion_tipo_dato
 
 
 --
--- TOC entry 3406 (class 2606 OID 44340)
+-- TOC entry 3407 (class 2606 OID 44340)
 -- Name: apex_molde_operacion_tipo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26598,7 +27492,7 @@ ALTER TABLE ONLY apex_molde_operacion_tipo
 
 
 --
--- TOC entry 3306 (class 2606 OID 43476)
+-- TOC entry 3307 (class 2606 OID 43476)
 -- Name: apex_msg_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26607,7 +27501,7 @@ ALTER TABLE ONLY apex_msg
 
 
 --
--- TOC entry 3304 (class 2606 OID 43465)
+-- TOC entry 3305 (class 2606 OID 43465)
 -- Name: apex_msg_tipo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26616,7 +27510,7 @@ ALTER TABLE ONLY apex_msg_tipo
 
 
 --
--- TOC entry 3219 (class 2606 OID 42872)
+-- TOC entry 3220 (class 2606 OID 42872)
 -- Name: apex_nivel_acceso_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26625,7 +27519,7 @@ ALTER TABLE ONLY apex_nivel_acceso
 
 
 --
--- TOC entry 3316 (class 2606 OID 43550)
+-- TOC entry 3317 (class 2606 OID 43550)
 -- Name: apex_nota_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26634,7 +27528,7 @@ ALTER TABLE ONLY apex_nota
 
 
 --
--- TOC entry 3314 (class 2606 OID 43538)
+-- TOC entry 3315 (class 2606 OID 43538)
 -- Name: apex_nota_tipo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26643,7 +27537,7 @@ ALTER TABLE ONLY apex_nota_tipo
 
 
 --
--- TOC entry 3338 (class 2606 OID 43766)
+-- TOC entry 3339 (class 2606 OID 43766)
 -- Name: apex_obj_ci_pan__pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26652,7 +27546,7 @@ ALTER TABLE ONLY apex_objeto_ci_pantalla
 
 
 --
--- TOC entry 3340 (class 2606 OID 43768)
+-- TOC entry 3341 (class 2606 OID 43768)
 -- Name: apex_obj_ci_pan__uk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26661,7 +27555,7 @@ ALTER TABLE ONLY apex_objeto_ci_pantalla
 
 
 --
--- TOC entry 3348 (class 2606 OID 43840)
+-- TOC entry 3349 (class 2606 OID 43840)
 -- Name: apex_obj_cuadro_cc_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26670,7 +27564,7 @@ ALTER TABLE ONLY apex_objeto_cuadro_cc
 
 
 --
--- TOC entry 3350 (class 2606 OID 43842)
+-- TOC entry 3351 (class 2606 OID 43842)
 -- Name: apex_obj_cuadro_cc_uq; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26679,7 +27573,7 @@ ALTER TABLE ONLY apex_objeto_cuadro_cc
 
 
 --
--- TOC entry 3400 (class 2606 OID 44276)
+-- TOC entry 3401 (class 2606 OID 44276)
 -- Name: apex_obj_datos_rel_asoc_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26688,7 +27582,7 @@ ALTER TABLE ONLY apex_objeto_datos_rel_asoc
 
 
 --
--- TOC entry 3390 (class 2606 OID 44169)
+-- TOC entry 3391 (class 2606 OID 44169)
 -- Name: apex_obj_db_col_fks_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26697,7 +27591,7 @@ ALTER TABLE ONLY apex_objeto_db_columna_fks
 
 
 --
--- TOC entry 3386 (class 2606 OID 44146)
+-- TOC entry 3387 (class 2606 OID 44146)
 -- Name: apex_obj_dbr_col_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26706,7 +27600,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_col
 
 
 --
--- TOC entry 3394 (class 2606 OID 44212)
+-- TOC entry 3395 (class 2606 OID 44212)
 -- Name: apex_obj_dbr_ext_col_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26715,7 +27609,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_ext_col
 
 
 --
--- TOC entry 3392 (class 2606 OID 44187)
+-- TOC entry 3393 (class 2606 OID 44187)
 -- Name: apex_obj_dbr_ext_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26724,7 +27618,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_ext
 
 
 --
--- TOC entry 3396 (class 2606 OID 44233)
+-- TOC entry 3397 (class 2606 OID 44233)
 -- Name: apex_obj_dbr_uniq_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26733,7 +27627,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_uniq
 
 
 --
--- TOC entry 3388 (class 2606 OID 44148)
+-- TOC entry 3389 (class 2606 OID 44148)
 -- Name: apex_obj_dbr_uq_col; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26742,7 +27636,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_col
 
 
 --
--- TOC entry 3352 (class 2606 OID 43859)
+-- TOC entry 3353 (class 2606 OID 43859)
 -- Name: apex_obj_ei_cuadro_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26751,7 +27645,7 @@ ALTER TABLE ONLY apex_objeto_ei_cuadro_columna
 
 
 --
--- TOC entry 3374 (class 2606 OID 44068)
+-- TOC entry 3375 (class 2606 OID 44068)
 -- Name: apex_objeto_codigo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26760,7 +27654,7 @@ ALTER TABLE ONLY apex_objeto_codigo
 
 
 --
--- TOC entry 3284 (class 2606 OID 43344)
+-- TOC entry 3285 (class 2606 OID 43344)
 -- Name: apex_objeto_consumo_depen_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26769,7 +27663,7 @@ ALTER TABLE ONLY apex_objeto_dep_consumo
 
 
 --
--- TOC entry 3286 (class 2606 OID 43346)
+-- TOC entry 3287 (class 2606 OID 43346)
 -- Name: apex_objeto_consumo_depen_uq; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26778,7 +27672,7 @@ ALTER TABLE ONLY apex_objeto_dep_consumo
 
 
 --
--- TOC entry 3354 (class 2606 OID 43885)
+-- TOC entry 3355 (class 2606 OID 43885)
 -- Name: apex_objeto_cuadro_col_cc_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26787,7 +27681,7 @@ ALTER TABLE ONLY apex_objeto_cuadro_col_cc
 
 
 --
--- TOC entry 3346 (class 2606 OID 43823)
+-- TOC entry 3347 (class 2606 OID 43823)
 -- Name: apex_objeto_cuadro_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26796,7 +27690,7 @@ ALTER TABLE ONLY apex_objeto_cuadro
 
 
 --
--- TOC entry 3398 (class 2606 OID 44250)
+-- TOC entry 3399 (class 2606 OID 44250)
 -- Name: apex_objeto_datos_rel_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26805,7 +27699,7 @@ ALTER TABLE ONLY apex_objeto_datos_rel
 
 
 --
--- TOC entry 3382 (class 2606 OID 44108)
+-- TOC entry 3383 (class 2606 OID 44108)
 -- Name: apex_objeto_dbr_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26814,7 +27708,7 @@ ALTER TABLE ONLY apex_objeto_db_registros
 
 
 --
--- TOC entry 3384 (class 2606 OID 44110)
+-- TOC entry 3385 (class 2606 OID 44110)
 -- Name: apex_objeto_dbr_uq_tabla; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26823,7 +27717,7 @@ ALTER TABLE ONLY apex_objeto_db_registros
 
 
 --
--- TOC entry 3280 (class 2606 OID 43321)
+-- TOC entry 3281 (class 2606 OID 43321)
 -- Name: apex_objeto_depen_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26832,7 +27726,7 @@ ALTER TABLE ONLY apex_objeto_dependencias
 
 
 --
--- TOC entry 3282 (class 2606 OID 43323)
+-- TOC entry 3283 (class 2606 OID 43323)
 -- Name: apex_objeto_depen_uq; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26841,7 +27735,7 @@ ALTER TABLE ONLY apex_objeto_dependencias
 
 
 --
--- TOC entry 3376 (class 2606 OID 44078)
+-- TOC entry 3377 (class 2606 OID 44078)
 -- Name: apex_objeto_ei_firma_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26850,7 +27744,7 @@ ALTER TABLE ONLY apex_objeto_ei_firma
 
 
 --
--- TOC entry 3360 (class 2606 OID 43965)
+-- TOC entry 3361 (class 2606 OID 43965)
 -- Name: apex_objeto_esquema_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26859,7 +27753,7 @@ ALTER TABLE ONLY apex_objeto_esquema
 
 
 --
--- TOC entry 3288 (class 2606 OID 43371)
+-- TOC entry 3289 (class 2606 OID 43371)
 -- Name: apex_objeto_eventos_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26868,7 +27762,7 @@ ALTER TABLE ONLY apex_objeto_eventos
 
 
 --
--- TOC entry 3290 (class 2606 OID 43373)
+-- TOC entry 3291 (class 2606 OID 43373)
 -- Name: apex_objeto_eventos_uq; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26877,7 +27771,7 @@ ALTER TABLE ONLY apex_objeto_eventos
 
 
 --
--- TOC entry 3372 (class 2606 OID 44053)
+-- TOC entry 3373 (class 2606 OID 44053)
 -- Name: apex_objeto_grafico_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26886,7 +27780,7 @@ ALTER TABLE ONLY apex_objeto_grafico
 
 
 --
--- TOC entry 3274 (class 2606 OID 43277)
+-- TOC entry 3275 (class 2606 OID 43277)
 -- Name: apex_objeto_identificador_uq; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26895,7 +27789,7 @@ ALTER TABLE ONLY apex_objeto
 
 
 --
--- TOC entry 3278 (class 2606 OID 43305)
+-- TOC entry 3279 (class 2606 OID 43305)
 -- Name: apex_objeto_info_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26904,7 +27798,7 @@ ALTER TABLE ONLY apex_objeto_info
 
 
 --
--- TOC entry 3368 (class 2606 OID 44035)
+-- TOC entry 3369 (class 2606 OID 44035)
 -- Name: apex_objeto_mapa_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26913,7 +27807,7 @@ ALTER TABLE ONLY apex_objeto_mapa
 
 
 --
--- TOC entry 3312 (class 2606 OID 43520)
+-- TOC entry 3313 (class 2606 OID 43520)
 -- Name: apex_objeto_msg_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26922,7 +27816,7 @@ ALTER TABLE ONLY apex_objeto_msg
 
 
 --
--- TOC entry 3336 (class 2606 OID 43745)
+-- TOC entry 3337 (class 2606 OID 43745)
 -- Name: apex_objeto_mt_me_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26931,7 +27825,7 @@ ALTER TABLE ONLY apex_objeto_mt_me
 
 
 --
--- TOC entry 3334 (class 2606 OID 43737)
+-- TOC entry 3335 (class 2606 OID 43737)
 -- Name: apex_objeto_mt_me_tn_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26940,7 +27834,7 @@ ALTER TABLE ONLY apex_objeto_mt_me_tipo_nav
 
 
 --
--- TOC entry 3320 (class 2606 OID 43614)
+-- TOC entry 3321 (class 2606 OID 43614)
 -- Name: apex_objeto_nota_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26949,7 +27843,7 @@ ALTER TABLE ONLY apex_objeto_nota
 
 
 --
--- TOC entry 3276 (class 2606 OID 43275)
+-- TOC entry 3277 (class 2606 OID 43275)
 -- Name: apex_objeto_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26958,7 +27852,7 @@ ALTER TABLE ONLY apex_objeto
 
 
 --
--- TOC entry 3402 (class 2606 OID 44296)
+-- TOC entry 3403 (class 2606 OID 44296)
 -- Name: apex_objeto_rel_columnas_asoc_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26967,7 +27861,7 @@ ALTER TABLE ONLY apex_objeto_rel_columnas_asoc
 
 
 --
--- TOC entry 3356 (class 2606 OID 43907)
+-- TOC entry 3357 (class 2606 OID 43907)
 -- Name: apex_objeto_ut_f_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26976,7 +27870,7 @@ ALTER TABLE ONLY apex_objeto_ut_formulario
 
 
 --
--- TOC entry 3342 (class 2606 OID 43788)
+-- TOC entry 3343 (class 2606 OID 43788)
 -- Name: apex_objetos_pantalla_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26985,7 +27879,7 @@ ALTER TABLE ONLY apex_objetos_pantalla
 
 
 --
--- TOC entry 3227 (class 2606 OID 42922)
+-- TOC entry 3228 (class 2606 OID 42922)
 -- Name: apex_pagina_tipo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -26994,7 +27888,7 @@ ALTER TABLE ONLY apex_pagina_tipo
 
 
 --
--- TOC entry 3440 (class 2606 OID 44609)
+-- TOC entry 3441 (class 2606 OID 44609)
 -- Name: apex_per_grupo_acc_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27003,7 +27897,7 @@ ALTER TABLE ONLY apex_permiso_grupo_acc
 
 
 --
--- TOC entry 3426 (class 2606 OID 44526)
+-- TOC entry 3427 (class 2606 OID 44526)
 -- Name: apex_per_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27012,7 +27906,7 @@ ALTER TABLE ONLY apex_permiso
 
 
 --
--- TOC entry 3428 (class 2606 OID 44528)
+-- TOC entry 3429 (class 2606 OID 44528)
 -- Name: apex_per_uq_nombre; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27021,7 +27915,7 @@ ALTER TABLE ONLY apex_permiso
 
 
 --
--- TOC entry 3244 (class 2606 OID 43038)
+-- TOC entry 3245 (class 2606 OID 43038)
 -- Name: apex_perfil_datos_set_prueba_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27030,7 +27924,7 @@ ALTER TABLE ONLY apex_perfil_datos_set_prueba
 
 
 --
--- TOC entry 3197 (class 2606 OID 42750)
+-- TOC entry 3198 (class 2606 OID 42750)
 -- Name: apex_proyecto_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27039,7 +27933,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3233 (class 2606 OID 42967)
+-- TOC entry 3234 (class 2606 OID 42967)
 -- Name: apex_ptos_control__pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27048,7 +27942,7 @@ ALTER TABLE ONLY apex_ptos_control
 
 
 --
--- TOC entry 3237 (class 2606 OID 42987)
+-- TOC entry 3238 (class 2606 OID 42987)
 -- Name: apex_ptos_ctrl_ctrl__pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27057,7 +27951,7 @@ ALTER TABLE ONLY apex_ptos_control_ctrl
 
 
 --
--- TOC entry 3235 (class 2606 OID 42972)
+-- TOC entry 3236 (class 2606 OID 42972)
 -- Name: apex_ptos_ctrl_param__pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27066,7 +27960,7 @@ ALTER TABLE ONLY apex_ptos_control_param
 
 
 --
--- TOC entry 3292 (class 2606 OID 43393)
+-- TOC entry 3293 (class 2606 OID 43393)
 -- Name: apex_ptos_ctrl_x_evt__pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27075,7 +27969,7 @@ ALTER TABLE ONLY apex_ptos_control_x_evento
 
 
 --
--- TOC entry 3207 (class 2606 OID 42801)
+-- TOC entry 3208 (class 2606 OID 42801)
 -- Name: apex_punto_montaje_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27084,7 +27978,7 @@ ALTER TABLE ONLY apex_puntos_montaje
 
 
 --
--- TOC entry 3209 (class 2606 OID 42803)
+-- TOC entry 3210 (class 2606 OID 42803)
 -- Name: apex_puntos_montaje_etiqueta_proyecto_key; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27093,7 +27987,7 @@ ALTER TABLE ONLY apex_puntos_montaje
 
 
 --
--- TOC entry 3217 (class 2606 OID 42864)
+-- TOC entry 3218 (class 2606 OID 42864)
 -- Name: apex_rec_origen_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27102,7 +27996,7 @@ ALTER TABLE ONLY apex_recurso_origen
 
 
 --
--- TOC entry 3322 (class 2606 OID 43645)
+-- TOC entry 3323 (class 2606 OID 43645)
 -- Name: apex_relacion_tablas_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27111,7 +28005,7 @@ ALTER TABLE ONLY apex_relacion_tablas
 
 
 --
--- TOC entry 3454 (class 2606 OID 44731)
+-- TOC entry 3455 (class 2606 OID 44731)
 -- Name: apex_restriccion_funcional_cols_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27120,7 +28014,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_cols
 
 
 --
--- TOC entry 3446 (class 2606 OID 44651)
+-- TOC entry 3447 (class 2606 OID 44651)
 -- Name: apex_restriccion_funcional_ef_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27129,7 +28023,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_ef
 
 
 --
--- TOC entry 3452 (class 2606 OID 44711)
+-- TOC entry 3453 (class 2606 OID 44711)
 -- Name: apex_restriccion_funcional_ei_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27138,7 +28032,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_ei
 
 
 --
--- TOC entry 3450 (class 2606 OID 44691)
+-- TOC entry 3451 (class 2606 OID 44691)
 -- Name: apex_restriccion_funcional_evt_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27147,7 +28041,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_evt
 
 
 --
--- TOC entry 3456 (class 2606 OID 44751)
+-- TOC entry 3457 (class 2606 OID 44751)
 -- Name: apex_restriccion_funcional_filtro_col_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27156,7 +28050,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_filtro_cols
 
 
 --
--- TOC entry 3448 (class 2606 OID 44671)
+-- TOC entry 3449 (class 2606 OID 44671)
 -- Name: apex_restriccion_funcional_pantalla_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27165,7 +28059,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_pantalla
 
 
 --
--- TOC entry 3468 (class 2606 OID 44867)
+-- TOC entry 3469 (class 2606 OID 44867)
 -- Name: apex_servicio_web_param_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27174,7 +28068,7 @@ ALTER TABLE ONLY apex_servicio_web_param
 
 
 --
--- TOC entry 3466 (class 2606 OID 44854)
+-- TOC entry 3467 (class 2606 OID 44854)
 -- Name: apex_servicio_web_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27183,7 +28077,7 @@ ALTER TABLE ONLY apex_servicio_web
 
 
 --
--- TOC entry 3225 (class 2606 OID 42909)
+-- TOC entry 3226 (class 2606 OID 42909)
 -- Name: apex_sol_obs_tipo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27192,7 +28086,7 @@ ALTER TABLE ONLY apex_solicitud_obs_tipo
 
 
 --
--- TOC entry 3221 (class 2606 OID 42880)
+-- TOC entry 3222 (class 2606 OID 42880)
 -- Name: apex_sol_tipo_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27201,7 +28095,7 @@ ALTER TABLE ONLY apex_solicitud_tipo
 
 
 --
--- TOC entry 3241 (class 2606 OID 43024)
+-- TOC entry 3242 (class 2606 OID 43024)
 -- Name: apex_tarea_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27210,7 +28104,7 @@ ALTER TABLE ONLY apex_tarea
 
 
 --
--- TOC entry 3380 (class 2606 OID 44099)
+-- TOC entry 3381 (class 2606 OID 44099)
 -- Name: apex_tipo_datos_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27219,7 +28113,7 @@ ALTER TABLE ONLY apex_tipo_datos
 
 
 --
--- TOC entry 3370 (class 2606 OID 44048)
+-- TOC entry 3371 (class 2606 OID 44048)
 -- Name: apex_tipo_grafico_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27228,7 +28122,7 @@ ALTER TABLE ONLY apex_grafico
 
 
 --
--- TOC entry 3436 (class 2606 OID 44579)
+-- TOC entry 3437 (class 2606 OID 44579)
 -- Name: apex_usu_g_acc_miembros_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27237,7 +28131,7 @@ ALTER TABLE ONLY apex_usuario_grupo_acc_miembros
 
 
 --
--- TOC entry 3434 (class 2606 OID 44574)
+-- TOC entry 3435 (class 2606 OID 44574)
 -- Name: apex_usu_g_acc_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27246,7 +28140,7 @@ ALTER TABLE ONLY apex_usuario_grupo_acc
 
 
 --
--- TOC entry 3438 (class 2606 OID 44594)
+-- TOC entry 3439 (class 2606 OID 44594)
 -- Name: apex_usu_item_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27255,7 +28149,7 @@ ALTER TABLE ONLY apex_usuario_grupo_acc_item
 
 
 --
--- TOC entry 3464 (class 2606 OID 44834)
+-- TOC entry 3465 (class 2606 OID 44834)
 -- Name: apex_usu_proy_pd_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27264,7 +28158,7 @@ ALTER TABLE ONLY apex_usuario_proyecto_perfil_datos
 
 
 --
--- TOC entry 3462 (class 2606 OID 44819)
+-- TOC entry 3463 (class 2606 OID 44819)
 -- Name: apex_usu_proy_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27273,7 +28167,7 @@ ALTER TABLE ONLY apex_usuario_proyecto
 
 
 --
--- TOC entry 3432 (class 2606 OID 44555)
+-- TOC entry 3433 (class 2606 OID 44555)
 -- Name: apex_usuario_perfil_datos_dims_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27282,7 +28176,7 @@ ALTER TABLE ONLY apex_usuario_perfil_datos_dims
 
 
 --
--- TOC entry 3430 (class 2606 OID 44539)
+-- TOC entry 3431 (class 2606 OID 44539)
 -- Name: apex_usuario_perfil_datos_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27291,7 +28185,7 @@ ALTER TABLE ONLY apex_usuario_perfil_datos
 
 
 --
--- TOC entry 3248 (class 2606 OID 43059)
+-- TOC entry 3249 (class 2606 OID 43059)
 -- Name: apex_usuario_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27300,7 +28194,7 @@ ALTER TABLE ONLY apex_usuario
 
 
 --
--- TOC entry 3252 (class 2606 OID 43086)
+-- TOC entry 3253 (class 2606 OID 43086)
 -- Name: apex_usuario_pregunta_secreta_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27309,7 +28203,7 @@ ALTER TABLE ONLY apex_usuario_pregunta_secreta
 
 
 --
--- TOC entry 3332 (class 2606 OID 43717)
+-- TOC entry 3333 (class 2606 OID 43717)
 -- Name: apex_usuario_proyecto_gadgets_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27318,7 +28212,7 @@ ALTER TABLE ONLY apex_usuario_proyecto_gadgets
 
 
 --
--- TOC entry 3250 (class 2606 OID 43074)
+-- TOC entry 3251 (class 2606 OID 43074)
 -- Name: apex_usuario_pwd_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27327,7 +28221,7 @@ ALTER TABLE ONLY apex_usuario_pwd_reset
 
 
 --
--- TOC entry 3254 (class 2606 OID 43100)
+-- TOC entry 3255 (class 2606 OID 43100)
 -- Name: apex_usuario_pwd_usados_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27336,7 +28230,7 @@ ALTER TABLE ONLY apex_usuario_pwd_usados
 
 
 --
--- TOC entry 3256 (class 2606 OID 43102)
+-- TOC entry 3257 (class 2606 OID 43102)
 -- Name: apex_usuario_pwd_usados_uk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27345,7 +28239,7 @@ ALTER TABLE ONLY apex_usuario_pwd_usados
 
 
 --
--- TOC entry 3246 (class 2606 OID 43048)
+-- TOC entry 3247 (class 2606 OID 43048)
 -- Name: apex_usuario_tipodoc_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27354,7 +28248,7 @@ ALTER TABLE ONLY apex_usuario_tipodoc
 
 
 --
--- TOC entry 3442 (class 2606 OID 44631)
+-- TOC entry 3443 (class 2606 OID 44631)
 -- Name: restriccion_funcional_pk; Type: CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27365,7 +28259,7 @@ ALTER TABLE ONLY apex_restriccion_funcional
 SET search_path = desarrollo_logs, pg_catalog;
 
 --
--- TOC entry 3486 (class 2606 OID 45043)
+-- TOC entry 3487 (class 2606 OID 45043)
 -- Name: apex_ip_rechazada_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27374,7 +28268,7 @@ ALTER TABLE ONLY apex_log_ip_rechazada
 
 
 --
--- TOC entry 3484 (class 2606 OID 45037)
+-- TOC entry 3485 (class 2606 OID 45037)
 -- Name: apex_log_error_login_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27383,7 +28277,7 @@ ALTER TABLE ONLY apex_log_error_login
 
 
 --
--- TOC entry 3490 (class 2606 OID 45066)
+-- TOC entry 3491 (class 2606 OID 45066)
 -- Name: apex_log_objeto_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27392,7 +28286,7 @@ ALTER TABLE ONLY apex_log_objeto
 
 
 --
--- TOC entry 3482 (class 2606 OID 45025)
+-- TOC entry 3483 (class 2606 OID 45025)
 -- Name: apex_log_sis_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27401,7 +28295,7 @@ ALTER TABLE ONLY apex_log_sistema
 
 
 --
--- TOC entry 3470 (class 2606 OID 44944)
+-- TOC entry 3471 (class 2606 OID 44944)
 -- Name: apex_log_sol_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27410,7 +28304,7 @@ ALTER TABLE ONLY apex_solicitud
 
 
 --
--- TOC entry 3488 (class 2606 OID 45054)
+-- TOC entry 3489 (class 2606 OID 45054)
 -- Name: apex_log_tarea_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27419,7 +28313,7 @@ ALTER TABLE ONLY apex_log_tarea
 
 
 --
--- TOC entry 3472 (class 2606 OID 44956)
+-- TOC entry 3473 (class 2606 OID 44956)
 -- Name: apex_ses_brw_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27428,7 +28322,7 @@ ALTER TABLE ONLY apex_sesion_browser
 
 
 --
--- TOC entry 3474 (class 2606 OID 44961)
+-- TOC entry 3475 (class 2606 OID 44961)
 -- Name: apex_sol_brw_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27437,7 +28331,7 @@ ALTER TABLE ONLY apex_solicitud_browser
 
 
 --
--- TOC entry 3476 (class 2606 OID 44979)
+-- TOC entry 3477 (class 2606 OID 44979)
 -- Name: apex_sol_consola_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27446,7 +28340,7 @@ ALTER TABLE ONLY apex_solicitud_consola
 
 
 --
--- TOC entry 3478 (class 2606 OID 44992)
+-- TOC entry 3479 (class 2606 OID 44992)
 -- Name: apex_sol_cron_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27455,7 +28349,7 @@ ALTER TABLE ONLY apex_solicitud_cronometro
 
 
 --
--- TOC entry 3480 (class 2606 OID 45008)
+-- TOC entry 3481 (class 2606 OID 45008)
 -- Name: apex_sol_obs_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27464,7 +28358,7 @@ ALTER TABLE ONLY apex_solicitud_observacion
 
 
 --
--- TOC entry 3492 (class 2606 OID 45074)
+-- TOC entry 3493 (class 2606 OID 45074)
 -- Name: apex_solicitud_web_service_pk; Type: CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -27475,7 +28369,7 @@ ALTER TABLE ONLY apex_solicitud_web_service
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 3183 (class 2606 OID 42590)
+-- TOC entry 3184 (class 2606 OID 42590)
 -- Name: cargo_por_persona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27484,7 +28378,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 3185 (class 2606 OID 31370)
+-- TOC entry 3186 (class 2606 OID 31370)
 -- Name: detalle_dias_viatico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27493,7 +28387,7 @@ ALTER TABLE ONLY detalle_dias_viatico
 
 
 --
--- TOC entry 3187 (class 2606 OID 31389)
+-- TOC entry 3188 (class 2606 OID 31389)
 -- Name: estudio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27502,7 +28396,7 @@ ALTER TABLE ONLY estudio
 
 
 --
--- TOC entry 3190 (class 2606 OID 31497)
+-- TOC entry 3191 (class 2606 OID 31497)
 -- Name: estudio_por_persona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27511,7 +28405,7 @@ ALTER TABLE ONLY estudio_por_persona
 
 
 --
--- TOC entry 3177 (class 2606 OID 30120)
+-- TOC entry 3178 (class 2606 OID 30120)
 -- Name: id_persona; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27520,7 +28414,7 @@ ALTER TABLE ONLY persona
 
 
 --
--- TOC entry 3165 (class 2606 OID 30087)
+-- TOC entry 3166 (class 2606 OID 30087)
 -- Name: identidad; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27529,7 +28423,7 @@ ALTER TABLE ONLY entidad
 
 
 --
--- TOC entry 3168 (class 2606 OID 30095)
+-- TOC entry 3169 (class 2606 OID 30095)
 -- Name: idestado_civil; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27538,7 +28432,7 @@ ALTER TABLE ONLY estado_civil
 
 
 --
--- TOC entry 3149 (class 2606 OID 30045)
+-- TOC entry 3150 (class 2606 OID 30045)
 -- Name: idfuncion; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27547,7 +28441,7 @@ ALTER TABLE ONLY funcion
 
 
 --
--- TOC entry 3160 (class 2606 OID 30079)
+-- TOC entry 3161 (class 2606 OID 30079)
 -- Name: idlocalidad; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27556,7 +28450,7 @@ ALTER TABLE ONLY localidad
 
 
 --
--- TOC entry 3142 (class 2606 OID 30023)
+-- TOC entry 3143 (class 2606 OID 30023)
 -- Name: idnivel_estudio; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27565,7 +28459,7 @@ ALTER TABLE ONLY nivel_estudio
 
 
 --
--- TOC entry 3154 (class 2606 OID 30063)
+-- TOC entry 3155 (class 2606 OID 30063)
 -- Name: idpais; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27574,7 +28468,7 @@ ALTER TABLE ONLY pais
 
 
 --
--- TOC entry 3157 (class 2606 OID 30071)
+-- TOC entry 3158 (class 2606 OID 30071)
 -- Name: idprovincia; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27583,7 +28477,7 @@ ALTER TABLE ONLY provincia
 
 
 --
--- TOC entry 3170 (class 2606 OID 30103)
+-- TOC entry 3171 (class 2606 OID 30103)
 -- Name: idtipo_cargo; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27592,7 +28486,7 @@ ALTER TABLE ONLY tipo_cargo
 
 
 --
--- TOC entry 3145 (class 2606 OID 30034)
+-- TOC entry 3146 (class 2606 OID 30034)
 -- Name: idtipo_detalle_viatico; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27601,7 +28495,7 @@ ALTER TABLE ONLY tipo_detalle_viatico
 
 
 --
--- TOC entry 3173 (class 2606 OID 30111)
+-- TOC entry 3174 (class 2606 OID 30111)
 -- Name: idtipo_documento; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27610,7 +28504,7 @@ ALTER TABLE ONLY tipo_documento
 
 
 --
--- TOC entry 3151 (class 2606 OID 30055)
+-- TOC entry 3152 (class 2606 OID 30055)
 -- Name: idtipo_telefono; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27619,7 +28513,7 @@ ALTER TABLE ONLY tipo_telefono
 
 
 --
--- TOC entry 3180 (class 2606 OID 30130)
+-- TOC entry 3181 (class 2606 OID 30130)
 -- Name: idviatico; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27628,7 +28522,7 @@ ALTER TABLE ONLY viatico
 
 
 --
--- TOC entry 3193 (class 2606 OID 42572)
+-- TOC entry 3194 (class 2606 OID 42572)
 -- Name: tipo_hora_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -27639,7 +28533,7 @@ ALTER TABLE ONLY tipo_hora
 SET search_path = referencia, pg_catalog;
 
 --
--- TOC entry 3508 (class 2606 OID 45130)
+-- TOC entry 3509 (class 2606 OID 45130)
 -- Name: iso_countries_pkey; Type: CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -27648,7 +28542,7 @@ ALTER TABLE ONLY iso_countries
 
 
 --
--- TOC entry 3494 (class 2606 OID 45132)
+-- TOC entry 3495 (class 2606 OID 45132)
 -- Name: ref_deportes_pkey; Type: CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -27657,7 +28551,7 @@ ALTER TABLE ONLY ref_deportes
 
 
 --
--- TOC entry 3498 (class 2606 OID 45134)
+-- TOC entry 3499 (class 2606 OID 45134)
 -- Name: ref_juegos_oferta_pkey; Type: CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -27666,7 +28560,7 @@ ALTER TABLE ONLY ref_juegos_oferta
 
 
 --
--- TOC entry 3496 (class 2606 OID 45136)
+-- TOC entry 3497 (class 2606 OID 45136)
 -- Name: ref_juegos_pkey; Type: CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -27675,7 +28569,7 @@ ALTER TABLE ONLY ref_juegos
 
 
 --
--- TOC entry 3503 (class 2606 OID 45138)
+-- TOC entry 3504 (class 2606 OID 45138)
 -- Name: ref_persona_deportes_pkey; Type: CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -27684,7 +28578,7 @@ ALTER TABLE ONLY ref_persona_deportes
 
 
 --
--- TOC entry 3506 (class 2606 OID 45140)
+-- TOC entry 3507 (class 2606 OID 45140)
 -- Name: ref_persona_juegos_pkey; Type: CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -27693,7 +28587,7 @@ ALTER TABLE ONLY ref_persona_juegos
 
 
 --
--- TOC entry 3500 (class 2606 OID 45142)
+-- TOC entry 3501 (class 2606 OID 45142)
 -- Name: ref_persona_pkey; Type: CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -27704,7 +28598,7 @@ ALTER TABLE ONLY ref_persona
 SET search_path = desarrollo, pg_catalog;
 
 --
--- TOC entry 3242 (class 1259 OID 43030)
+-- TOC entry 3243 (class 1259 OID 43030)
 -- Name: index_apex_tarea_proxima_ejecucion; Type: INDEX; Schema: desarrollo; Owner: postgres
 --
 
@@ -27714,7 +28608,7 @@ CREATE INDEX index_apex_tarea_proxima_ejecucion ON apex_tarea USING btree (ejecu
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 3162 (class 1259 OID 31477)
+-- TOC entry 3163 (class 1259 OID 31477)
 -- Name: entidad_nombre_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27722,7 +28616,7 @@ CREATE UNIQUE INDEX entidad_nombre_idx ON entidad USING btree (nombre);
 
 
 --
--- TOC entry 3163 (class 1259 OID 31478)
+-- TOC entry 3164 (class 1259 OID 31478)
 -- Name: entidad_sigla_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27730,7 +28624,7 @@ CREATE UNIQUE INDEX entidad_sigla_idx ON entidad USING btree (sigla);
 
 
 --
--- TOC entry 3166 (class 1259 OID 31479)
+-- TOC entry 3167 (class 1259 OID 31479)
 -- Name: estado_civil_descripcion_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27738,7 +28632,7 @@ CREATE UNIQUE INDEX estado_civil_descripcion_idx ON estado_civil USING btree (de
 
 
 --
--- TOC entry 3188 (class 1259 OID 31475)
+-- TOC entry 3189 (class 1259 OID 31475)
 -- Name: estudio_titulo_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27746,7 +28640,7 @@ CREATE UNIQUE INDEX estudio_titulo_idx ON estudio USING btree (titulo);
 
 
 --
--- TOC entry 3147 (class 1259 OID 39793)
+-- TOC entry 3148 (class 1259 OID 39793)
 -- Name: funcion_descripcion_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27754,7 +28648,7 @@ CREATE UNIQUE INDEX funcion_descripcion_idx ON funcion USING btree (descripcion)
 
 
 --
--- TOC entry 3191 (class 1259 OID 42578)
+-- TOC entry 3192 (class 1259 OID 42578)
 -- Name: idx_descripcion; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27762,7 +28656,7 @@ CREATE UNIQUE INDEX idx_descripcion ON tipo_hora USING btree (descripcion);
 
 
 --
--- TOC entry 3161 (class 1259 OID 31481)
+-- TOC entry 3162 (class 1259 OID 31481)
 -- Name: localidad_descripcion_idprovincia_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27770,7 +28664,7 @@ CREATE UNIQUE INDEX localidad_descripcion_idprovincia_idx ON localidad USING btr
 
 
 --
--- TOC entry 3143 (class 1259 OID 31474)
+-- TOC entry 3144 (class 1259 OID 31474)
 -- Name: nivel_estudio_descripcion_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27778,7 +28672,7 @@ CREATE UNIQUE INDEX nivel_estudio_descripcion_idx ON nivel_estudio USING btree (
 
 
 --
--- TOC entry 3155 (class 1259 OID 31469)
+-- TOC entry 3156 (class 1259 OID 31469)
 -- Name: pais_descripcion_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27786,7 +28680,7 @@ CREATE UNIQUE INDEX pais_descripcion_idx ON pais USING btree (descripcion);
 
 
 --
--- TOC entry 3178 (class 1259 OID 30121)
+-- TOC entry 3179 (class 1259 OID 30121)
 -- Name: persona_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27794,7 +28688,7 @@ CREATE UNIQUE INDEX persona_idx ON persona USING btree (idtipo_documento, nro_do
 
 
 --
--- TOC entry 3158 (class 1259 OID 31482)
+-- TOC entry 3159 (class 1259 OID 31482)
 -- Name: provincia_descripcion_idpais_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27802,7 +28696,7 @@ CREATE UNIQUE INDEX provincia_descripcion_idpais_idx ON provincia USING btree (d
 
 
 --
--- TOC entry 3171 (class 1259 OID 31473)
+-- TOC entry 3172 (class 1259 OID 31473)
 -- Name: tipo_cargo_descripcion_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27810,7 +28704,7 @@ CREATE UNIQUE INDEX tipo_cargo_descripcion_idx ON tipo_cargo USING btree (descri
 
 
 --
--- TOC entry 3146 (class 1259 OID 31472)
+-- TOC entry 3147 (class 1259 OID 31472)
 -- Name: tipo_detalle_viatico_descripcion_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27818,7 +28712,7 @@ CREATE UNIQUE INDEX tipo_detalle_viatico_descripcion_idx ON tipo_detalle_viatico
 
 
 --
--- TOC entry 3174 (class 1259 OID 31338)
+-- TOC entry 3175 (class 1259 OID 31338)
 -- Name: tipo_documento_descripcion_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27826,7 +28720,7 @@ CREATE UNIQUE INDEX tipo_documento_descripcion_idx ON tipo_documento USING btree
 
 
 --
--- TOC entry 3175 (class 1259 OID 31337)
+-- TOC entry 3176 (class 1259 OID 31337)
 -- Name: tipo_documento_sigla_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27834,7 +28728,7 @@ CREATE INDEX tipo_documento_sigla_idx ON tipo_documento USING btree (sigla);
 
 
 --
--- TOC entry 3152 (class 1259 OID 31471)
+-- TOC entry 3153 (class 1259 OID 31471)
 -- Name: tipo_telefono_descripcion_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27842,7 +28736,7 @@ CREATE UNIQUE INDEX tipo_telefono_descripcion_idx ON tipo_telefono USING btree (
 
 
 --
--- TOC entry 3181 (class 1259 OID 42715)
+-- TOC entry 3182 (class 1259 OID 42715)
 -- Name: viatico_nro_expediente_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -27852,7 +28746,7 @@ CREATE UNIQUE INDEX viatico_nro_expediente_idx ON viatico USING btree (nro_exped
 SET search_path = referencia, pg_catalog;
 
 --
--- TOC entry 3501 (class 1259 OID 45143)
+-- TOC entry 3502 (class 1259 OID 45143)
 -- Name: new_index; Type: INDEX; Schema: referencia; Owner: postgres
 --
 
@@ -27860,7 +28754,7 @@ CREATE UNIQUE INDEX new_index ON ref_persona_deportes USING btree (persona, depo
 
 
 --
--- TOC entry 3504 (class 1259 OID 45144)
+-- TOC entry 3505 (class 1259 OID 45144)
 -- Name: ref_persona_juegos_persona_juego_key; Type: INDEX; Schema: referencia; Owner: postgres
 --
 
@@ -27870,7 +28764,7 @@ CREATE UNIQUE INDEX ref_persona_juegos_persona_juego_key ON ref_persona_juegos U
 SET search_path = desarrollo, pg_catalog;
 
 --
--- TOC entry 3765 (class 2620 OID 44934)
+-- TOC entry 3766 (class 2620 OID 44934)
 -- Name: tusuario_pwd_pasados; Type: TRIGGER; Schema: desarrollo; Owner: postgres
 --
 
@@ -27878,7 +28772,7 @@ CREATE TRIGGER tusuario_pwd_pasados AFTER UPDATE ON apex_usuario FOR EACH ROW EX
 
 
 --
--- TOC entry 3652 (class 2606 OID 43976)
+-- TOC entry 3653 (class 2606 OID 43976)
 -- Name: apex__ei_filtro_tipo_col_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27887,7 +28781,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro_tipo_col
 
 
 --
--- TOC entry 3542 (class 2606 OID 42756)
+-- TOC entry 3543 (class 2606 OID 42756)
 -- Name: apex_checksum_proyectos_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27896,7 +28790,7 @@ ALTER TABLE ONLY apex_checksum_proyectos
 
 
 --
--- TOC entry 3579 (class 2606 OID 43236)
+-- TOC entry 3580 (class 2606 OID 43236)
 -- Name: apex_clase_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27905,7 +28799,7 @@ ALTER TABLE ONLY apex_clase
 
 
 --
--- TOC entry 3578 (class 2606 OID 43241)
+-- TOC entry 3579 (class 2606 OID 43241)
 -- Name: apex_clase_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27914,7 +28808,7 @@ ALTER TABLE ONLY apex_clase
 
 
 --
--- TOC entry 3580 (class 2606 OID 43259)
+-- TOC entry 3581 (class 2606 OID 43259)
 -- Name: apex_clase_rel_fk_clase_hijo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27923,7 +28817,7 @@ ALTER TABLE ONLY apex_clase_relacion
 
 
 --
--- TOC entry 3581 (class 2606 OID 43254)
+-- TOC entry 3582 (class 2606 OID 43254)
 -- Name: apex_clase_rel_fk_clase_padre; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27932,7 +28826,7 @@ ALTER TABLE ONLY apex_clase_relacion
 
 
 --
--- TOC entry 3638 (class 2606 OID 43875)
+-- TOC entry 3639 (class 2606 OID 43875)
 -- Name: apex_col_cuadro_evento_asoc_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27941,7 +28835,7 @@ ALTER TABLE ONLY apex_objeto_ei_cuadro_columna
 
 
 --
--- TOC entry 3554 (class 2606 OID 42955)
+-- TOC entry 3555 (class 2606 OID 42955)
 -- Name: apex_columna_formato_fk_estilo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27950,7 +28844,7 @@ ALTER TABLE ONLY apex_columna_formato
 
 
 --
--- TOC entry 3687 (class 2606 OID 44297)
+-- TOC entry 3688 (class 2606 OID 44297)
 -- Name: apex_columna_objeto_hijo_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27959,7 +28853,7 @@ ALTER TABLE ONLY apex_objeto_rel_columnas_asoc
 
 
 --
--- TOC entry 3686 (class 2606 OID 44302)
+-- TOC entry 3687 (class 2606 OID 44302)
 -- Name: apex_columna_objeto_padre_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27968,7 +28862,7 @@ ALTER TABLE ONLY apex_objeto_rel_columnas_asoc
 
 
 --
--- TOC entry 3558 (class 2606 OID 43004)
+-- TOC entry 3559 (class 2606 OID 43004)
 -- Name: apex_consulta_php_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27977,7 +28871,7 @@ ALTER TABLE ONLY apex_consulta_php
 
 
 --
--- TOC entry 3599 (class 2606 OID 43453)
+-- TOC entry 3600 (class 2606 OID 43453)
 -- Name: apex_conversion_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27986,7 +28880,7 @@ ALTER TABLE ONLY apex_conversion
 
 
 --
--- TOC entry 3620 (class 2606 OID 43672)
+-- TOC entry 3621 (class 2606 OID 43672)
 -- Name: apex_dimension_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -27995,7 +28889,7 @@ ALTER TABLE ONLY apex_dimension
 
 
 --
--- TOC entry 3622 (class 2606 OID 43690)
+-- TOC entry 3623 (class 2606 OID 43690)
 -- Name: apex_dimension_gatillo_fk_dim; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28004,7 +28898,7 @@ ALTER TABLE ONLY apex_dimension_gatillo
 
 
 --
--- TOC entry 3646 (class 2606 OID 43947)
+-- TOC entry 3647 (class 2606 OID 43947)
 -- Name: apex_ei_f_ef_fk_accion_vinculo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28013,7 +28907,7 @@ ALTER TABLE ONLY apex_objeto_ei_formulario_ef
 
 
 --
--- TOC entry 3647 (class 2606 OID 43942)
+-- TOC entry 3648 (class 2606 OID 43942)
 -- Name: apex_ei_f_ef_fk_consulta_php; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28022,7 +28916,7 @@ ALTER TABLE ONLY apex_objeto_ei_formulario_ef
 
 
 --
--- TOC entry 3648 (class 2606 OID 43937)
+-- TOC entry 3649 (class 2606 OID 43937)
 -- Name: apex_ei_f_ef_fk_datos_tabla; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28031,7 +28925,7 @@ ALTER TABLE ONLY apex_objeto_ei_formulario_ef
 
 
 --
--- TOC entry 3649 (class 2606 OID 43932)
+-- TOC entry 3650 (class 2606 OID 43932)
 -- Name: apex_ei_f_ef_fk_ef; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28040,7 +28934,7 @@ ALTER TABLE ONLY apex_objeto_ei_formulario_ef
 
 
 --
--- TOC entry 3650 (class 2606 OID 43927)
+-- TOC entry 3651 (class 2606 OID 43927)
 -- Name: apex_ei_f_ef_fk_padre; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28049,7 +28943,7 @@ ALTER TABLE ONLY apex_objeto_ei_formulario_ef
 
 
 --
--- TOC entry 3655 (class 2606 OID 44021)
+-- TOC entry 3656 (class 2606 OID 44021)
 -- Name: apex_ei_filtro_col_fk_accion_vinculo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28058,7 +28952,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro_col
 
 
 --
--- TOC entry 3656 (class 2606 OID 44016)
+-- TOC entry 3657 (class 2606 OID 44016)
 -- Name: apex_ei_filtro_col_fk_ef; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28067,7 +28961,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro_col
 
 
 --
--- TOC entry 3658 (class 2606 OID 44006)
+-- TOC entry 3659 (class 2606 OID 44006)
 -- Name: apex_ei_filtro_col_fk_padre; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28076,7 +28970,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro_col
 
 
 --
--- TOC entry 3654 (class 2606 OID 44026)
+-- TOC entry 3655 (class 2606 OID 44026)
 -- Name: apex_ei_filtro_col_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28085,7 +28979,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro_col
 
 
 --
--- TOC entry 3657 (class 2606 OID 44011)
+-- TOC entry 3658 (class 2606 OID 44011)
 -- Name: apex_ei_filtro_col_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28094,7 +28988,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro_col
 
 
 --
--- TOC entry 3653 (class 2606 OID 43986)
+-- TOC entry 3654 (class 2606 OID 43986)
 -- Name: apex_ei_filtro_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28103,7 +28997,7 @@ ALTER TABLE ONLY apex_objeto_ei_filtro
 
 
 --
--- TOC entry 3550 (class 2606 OID 42892)
+-- TOC entry 3551 (class 2606 OID 42892)
 -- Name: apex_elform_fk_padre; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28112,7 +29006,7 @@ ALTER TABLE ONLY apex_elemento_formulario
 
 
 --
--- TOC entry 3549 (class 2606 OID 42897)
+-- TOC entry 3550 (class 2606 OID 42897)
 -- Name: apex_elform_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28121,7 +29015,7 @@ ALTER TABLE ONLY apex_elemento_formulario
 
 
 --
--- TOC entry 3543 (class 2606 OID 42778)
+-- TOC entry 3544 (class 2606 OID 42778)
 -- Name: apex_estilo_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28130,7 +29024,7 @@ ALTER TABLE ONLY apex_estilo
 
 
 --
--- TOC entry 3635 (class 2606 OID 43804)
+-- TOC entry 3636 (class 2606 OID 43804)
 -- Name: apex_eventos_pantalla_apex_objeto_ci_pantalla_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28139,7 +29033,7 @@ ALTER TABLE ONLY apex_eventos_pantalla
 
 
 --
--- TOC entry 3634 (class 2606 OID 43809)
+-- TOC entry 3635 (class 2606 OID 43809)
 -- Name: apex_eventos_pantalla_apex_objeto_eventos_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28148,7 +29042,7 @@ ALTER TABLE ONLY apex_eventos_pantalla
 
 
 --
--- TOC entry 3547 (class 2606 OID 42828)
+-- TOC entry 3548 (class 2606 OID 42828)
 -- Name: apex_fuente_datos_fk_motor; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28157,7 +29051,7 @@ ALTER TABLE ONLY apex_fuente_datos
 
 
 --
--- TOC entry 3546 (class 2606 OID 42833)
+-- TOC entry 3547 (class 2606 OID 42833)
 -- Name: apex_fuente_datos_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28166,7 +29060,7 @@ ALTER TABLE ONLY apex_fuente_datos
 
 
 --
--- TOC entry 3545 (class 2606 OID 42838)
+-- TOC entry 3546 (class 2606 OID 42838)
 -- Name: apex_fuente_datos_fk_punto_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28175,7 +29069,7 @@ ALTER TABLE ONLY apex_fuente_datos
 
 
 --
--- TOC entry 3548 (class 2606 OID 42852)
+-- TOC entry 3549 (class 2606 OID 42852)
 -- Name: apex_fuente_datos_schemas_fk_fuente; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28184,7 +29078,7 @@ ALTER TABLE ONLY apex_fuente_datos_schemas
 
 
 --
--- TOC entry 3723 (class 2606 OID 44642)
+-- TOC entry 3724 (class 2606 OID 44642)
 -- Name: apex_grupo_acc_restriccion_funcional_rf_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28193,7 +29087,7 @@ ALTER TABLE ONLY apex_grupo_acc_restriccion_funcional
 
 
 --
--- TOC entry 3598 (class 2606 OID 43414)
+-- TOC entry 3599 (class 2606 OID 43414)
 -- Name: apex_item_consumo_obj_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28202,7 +29096,7 @@ ALTER TABLE ONLY apex_item_objeto
 
 
 --
--- TOC entry 3597 (class 2606 OID 43419)
+-- TOC entry 3598 (class 2606 OID 43419)
 -- Name: apex_item_consumo_obj_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28211,7 +29105,7 @@ ALTER TABLE ONLY apex_item_objeto
 
 
 --
--- TOC entry 3570 (class 2606 OID 43159)
+-- TOC entry 3571 (class 2606 OID 43159)
 -- Name: apex_item_fk_niv_acc; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28220,7 +29114,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3567 (class 2606 OID 43144)
+-- TOC entry 3568 (class 2606 OID 43144)
 -- Name: apex_item_fk_padre; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28229,7 +29123,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3571 (class 2606 OID 43164)
+-- TOC entry 3572 (class 2606 OID 43164)
 -- Name: apex_item_fk_pag_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28238,7 +29132,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3566 (class 2606 OID 43139)
+-- TOC entry 3567 (class 2606 OID 43139)
 -- Name: apex_item_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28247,7 +29141,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3573 (class 2606 OID 43174)
+-- TOC entry 3574 (class 2606 OID 43174)
 -- Name: apex_item_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28256,7 +29150,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3574 (class 2606 OID 43179)
+-- TOC entry 3575 (class 2606 OID 43179)
 -- Name: apex_item_fk_rec_orig; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28265,7 +29159,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3569 (class 2606 OID 43154)
+-- TOC entry 3570 (class 2606 OID 43154)
 -- Name: apex_item_fk_solic_ot; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28274,7 +29168,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3568 (class 2606 OID 43149)
+-- TOC entry 3569 (class 2606 OID 43149)
 -- Name: apex_item_fk_solic_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28283,7 +29177,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3572 (class 2606 OID 43169)
+-- TOC entry 3573 (class 2606 OID 43169)
 -- Name: apex_item_fk_zona; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28292,7 +29186,7 @@ ALTER TABLE ONLY apex_item
 
 
 --
--- TOC entry 3575 (class 2606 OID 43192)
+-- TOC entry 3576 (class 2606 OID 43192)
 -- Name: apex_item_info_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28301,7 +29195,7 @@ ALTER TABLE ONLY apex_item_info
 
 
 --
--- TOC entry 3603 (class 2606 OID 43500)
+-- TOC entry 3604 (class 2606 OID 43500)
 -- Name: apex_item_msg_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28310,7 +29204,7 @@ ALTER TABLE ONLY apex_item_msg
 
 
 --
--- TOC entry 3602 (class 2606 OID 43505)
+-- TOC entry 3603 (class 2606 OID 43505)
 -- Name: apex_item_msg_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28319,7 +29213,7 @@ ALTER TABLE ONLY apex_item_msg
 
 
 --
--- TOC entry 3611 (class 2606 OID 43593)
+-- TOC entry 3612 (class 2606 OID 43593)
 -- Name: apex_item_nota_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28328,7 +29222,7 @@ ALTER TABLE ONLY apex_item_nota
 
 
 --
--- TOC entry 3610 (class 2606 OID 43598)
+-- TOC entry 3611 (class 2606 OID 43598)
 -- Name: apex_item_nota_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28337,7 +29231,7 @@ ALTER TABLE ONLY apex_item_nota
 
 
 --
--- TOC entry 3612 (class 2606 OID 43588)
+-- TOC entry 3613 (class 2606 OID 43588)
 -- Name: apex_item_nota_fk_usud; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28346,7 +29240,7 @@ ALTER TABLE ONLY apex_item_nota
 
 
 --
--- TOC entry 3613 (class 2606 OID 43583)
+-- TOC entry 3614 (class 2606 OID 43583)
 -- Name: apex_item_nota_fk_usuo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28355,7 +29249,7 @@ ALTER TABLE ONLY apex_item_nota
 
 
 --
--- TOC entry 3576 (class 2606 OID 43210)
+-- TOC entry 3577 (class 2606 OID 43210)
 -- Name: apex_item_permisos_tablas_fuente; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28364,7 +29258,7 @@ ALTER TABLE ONLY apex_item_permisos_tablas
 
 
 --
--- TOC entry 3577 (class 2606 OID 43205)
+-- TOC entry 3578 (class 2606 OID 43205)
 -- Name: apex_item_permisos_tablas_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28373,7 +29267,7 @@ ALTER TABLE ONLY apex_item_permisos_tablas
 
 
 --
--- TOC entry 3565 (class 2606 OID 43116)
+-- TOC entry 3566 (class 2606 OID 43116)
 -- Name: apex_item_zona_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28382,7 +29276,7 @@ ALTER TABLE ONLY apex_item_zona
 
 
 --
--- TOC entry 3742 (class 2606 OID 44780)
+-- TOC entry 3743 (class 2606 OID 44780)
 -- Name: apex_menu_menu_tipos_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28391,7 +29285,7 @@ ALTER TABLE ONLY apex_menu
 
 
 --
--- TOC entry 3746 (class 2606 OID 44797)
+-- TOC entry 3747 (class 2606 OID 44797)
 -- Name: apex_menu_operaciones_apex_proyecto_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28400,7 +29294,7 @@ ALTER TABLE ONLY apex_menu_operaciones
 
 
 --
--- TOC entry 3744 (class 2606 OID 44807)
+-- TOC entry 3745 (class 2606 OID 44807)
 -- Name: apex_menu_operaciones_auto_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28409,7 +29303,7 @@ ALTER TABLE ONLY apex_menu_operaciones
 
 
 --
--- TOC entry 3745 (class 2606 OID 44802)
+-- TOC entry 3746 (class 2606 OID 44802)
 -- Name: apex_menu_operaciones_item_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28418,7 +29312,7 @@ ALTER TABLE ONLY apex_menu_operaciones
 
 
 --
--- TOC entry 3743 (class 2606 OID 44775)
+-- TOC entry 3744 (class 2606 OID 44775)
 -- Name: apex_menu_proyecto_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28427,7 +29321,7 @@ ALTER TABLE ONLY apex_menu
 
 
 --
--- TOC entry 3689 (class 2606 OID 44320)
+-- TOC entry 3690 (class 2606 OID 44320)
 -- Name: apex_molde_opciones_generacion_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28436,7 +29330,7 @@ ALTER TABLE ONLY apex_molde_opciones_generacion
 
 
 --
--- TOC entry 3688 (class 2606 OID 44325)
+-- TOC entry 3689 (class 2606 OID 44325)
 -- Name: apex_molde_opciones_generacion_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28445,7 +29339,7 @@ ALTER TABLE ONLY apex_molde_opciones_generacion
 
 
 --
--- TOC entry 3708 (class 2606 OID 44476)
+-- TOC entry 3709 (class 2606 OID 44476)
 -- Name: apex_molde_operacion_abms_fila; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28454,7 +29348,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms_fila
 
 
 --
--- TOC entry 3707 (class 2606 OID 44481)
+-- TOC entry 3708 (class 2606 OID 44481)
 -- Name: apex_molde_operacion_abms_fila_fk_ef; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28463,7 +29357,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms_fila
 
 
 --
--- TOC entry 3706 (class 2606 OID 44486)
+-- TOC entry 3707 (class 2606 OID 44486)
 -- Name: apex_molde_operacion_abms_fila_fk_estilo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28472,7 +29366,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms_fila
 
 
 --
--- TOC entry 3705 (class 2606 OID 44491)
+-- TOC entry 3706 (class 2606 OID 44491)
 -- Name: apex_molde_operacion_abms_fila_fk_formato; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28481,7 +29375,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms_fila
 
 
 --
--- TOC entry 3709 (class 2606 OID 44471)
+-- TOC entry 3710 (class 2606 OID 44471)
 -- Name: apex_molde_operacion_abms_fila_fk_molde; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28490,7 +29384,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms_fila
 
 
 --
--- TOC entry 3703 (class 2606 OID 44501)
+-- TOC entry 3704 (class 2606 OID 44501)
 -- Name: apex_molde_operacion_abms_fila_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28499,7 +29393,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms_fila
 
 
 --
--- TOC entry 3704 (class 2606 OID 44496)
+-- TOC entry 3705 (class 2606 OID 44496)
 -- Name: apex_molde_operacion_abms_fila_fk_tipo_datos; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28508,7 +29402,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms_fila
 
 
 --
--- TOC entry 3695 (class 2606 OID 44400)
+-- TOC entry 3696 (class 2606 OID 44400)
 -- Name: apex_molde_operacion_abms_fk_fuente; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28517,7 +29411,7 @@ ALTER TABLE ONLY apex_molde_operacion
 
 
 --
--- TOC entry 3702 (class 2606 OID 44448)
+-- TOC entry 3703 (class 2606 OID 44448)
 -- Name: apex_molde_operacion_abms_fk_molde; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28526,7 +29420,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms
 
 
 --
--- TOC entry 3701 (class 2606 OID 44453)
+-- TOC entry 3702 (class 2606 OID 44453)
 -- Name: apex_molde_operacion_abms_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28535,7 +29429,7 @@ ALTER TABLE ONLY apex_molde_operacion_abms
 
 
 --
--- TOC entry 3697 (class 2606 OID 44390)
+-- TOC entry 3698 (class 2606 OID 44390)
 -- Name: apex_molde_operacion_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28544,7 +29438,7 @@ ALTER TABLE ONLY apex_molde_operacion
 
 
 --
--- TOC entry 3694 (class 2606 OID 44405)
+-- TOC entry 3695 (class 2606 OID 44405)
 -- Name: apex_molde_operacion_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28553,7 +29447,7 @@ ALTER TABLE ONLY apex_molde_operacion
 
 
 --
--- TOC entry 3696 (class 2606 OID 44395)
+-- TOC entry 3697 (class 2606 OID 44395)
 -- Name: apex_molde_operacion_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28562,7 +29456,7 @@ ALTER TABLE ONLY apex_molde_operacion
 
 
 --
--- TOC entry 3710 (class 2606 OID 44511)
+-- TOC entry 3711 (class 2606 OID 44511)
 -- Name: apex_molde_operacion_imp_fk_molde; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28571,7 +29465,7 @@ ALTER TABLE ONLY apex_molde_operacion_importacion
 
 
 --
--- TOC entry 3700 (class 2606 OID 44435)
+-- TOC entry 3701 (class 2606 OID 44435)
 -- Name: apex_molde_operacion_log_e_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28580,7 +29474,7 @@ ALTER TABLE ONLY apex_molde_operacion_log_elementos
 
 
 --
--- TOC entry 3699 (class 2606 OID 44419)
+-- TOC entry 3700 (class 2606 OID 44419)
 -- Name: apex_molde_operacion_log_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28589,7 +29483,7 @@ ALTER TABLE ONLY apex_molde_operacion_log
 
 
 --
--- TOC entry 3698 (class 2606 OID 44385)
+-- TOC entry 3699 (class 2606 OID 44385)
 -- Name: apex_molde_operacion_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28598,7 +29492,7 @@ ALTER TABLE ONLY apex_molde_operacion
 
 
 --
--- TOC entry 3693 (class 2606 OID 44352)
+-- TOC entry 3694 (class 2606 OID 44352)
 -- Name: apex_molde_operacion_tipo_dato_fk_ef; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28607,7 +29501,7 @@ ALTER TABLE ONLY apex_molde_operacion_tipo_dato
 
 
 --
--- TOC entry 3692 (class 2606 OID 44357)
+-- TOC entry 3693 (class 2606 OID 44357)
 -- Name: apex_molde_operacion_tipo_dato_fk_estilo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28616,7 +29510,7 @@ ALTER TABLE ONLY apex_molde_operacion_tipo_dato
 
 
 --
--- TOC entry 3691 (class 2606 OID 44362)
+-- TOC entry 3692 (class 2606 OID 44362)
 -- Name: apex_molde_operacion_tipo_dato_fk_formato; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28625,7 +29519,7 @@ ALTER TABLE ONLY apex_molde_operacion_tipo_dato
 
 
 --
--- TOC entry 3690 (class 2606 OID 44367)
+-- TOC entry 3691 (class 2606 OID 44367)
 -- Name: apex_molde_operacion_tipo_dato_fk_tipo_datos; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28634,7 +29528,7 @@ ALTER TABLE ONLY apex_molde_operacion_tipo_dato
 
 
 --
--- TOC entry 3601 (class 2606 OID 43477)
+-- TOC entry 3602 (class 2606 OID 43477)
 -- Name: apex_msg_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28643,7 +29537,7 @@ ALTER TABLE ONLY apex_msg
 
 
 --
--- TOC entry 3600 (class 2606 OID 43482)
+-- TOC entry 3601 (class 2606 OID 43482)
 -- Name: apex_msg_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28652,7 +29546,7 @@ ALTER TABLE ONLY apex_msg
 
 
 --
--- TOC entry 3607 (class 2606 OID 43561)
+-- TOC entry 3608 (class 2606 OID 43561)
 -- Name: apex_nota_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28661,7 +29555,7 @@ ALTER TABLE ONLY apex_nota
 
 
 --
--- TOC entry 3606 (class 2606 OID 43566)
+-- TOC entry 3607 (class 2606 OID 43566)
 -- Name: apex_nota_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28670,7 +29564,7 @@ ALTER TABLE ONLY apex_nota
 
 
 --
--- TOC entry 3608 (class 2606 OID 43556)
+-- TOC entry 3609 (class 2606 OID 43556)
 -- Name: apex_nota_fk_usud; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28679,7 +29573,7 @@ ALTER TABLE ONLY apex_nota
 
 
 --
--- TOC entry 3609 (class 2606 OID 43551)
+-- TOC entry 3610 (class 2606 OID 43551)
 -- Name: apex_nota_fk_usuo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28688,7 +29582,7 @@ ALTER TABLE ONLY apex_nota
 
 
 --
--- TOC entry 3631 (class 2606 OID 43769)
+-- TOC entry 3632 (class 2606 OID 43769)
 -- Name: apex_obj_ci_pan__fk_padre; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28697,7 +29591,7 @@ ALTER TABLE ONLY apex_objeto_ci_pantalla
 
 
 --
--- TOC entry 3630 (class 2606 OID 43774)
+-- TOC entry 3631 (class 2606 OID 43774)
 -- Name: apex_obj_ci_pan_fk_rec_orig; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28706,7 +29600,7 @@ ALTER TABLE ONLY apex_objeto_ci_pantalla
 
 
 --
--- TOC entry 3637 (class 2606 OID 43843)
+-- TOC entry 3638 (class 2606 OID 43843)
 -- Name: apex_obj_cuadro_cc_fk_objeto_cuadro; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28715,7 +29609,7 @@ ALTER TABLE ONLY apex_objeto_cuadro_cc
 
 
 --
--- TOC entry 3685 (class 2606 OID 44307)
+-- TOC entry 3686 (class 2606 OID 44307)
 -- Name: apex_obj_datos_rel_asoc_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28724,7 +29618,7 @@ ALTER TABLE ONLY apex_objeto_rel_columnas_asoc
 
 
 --
--- TOC entry 3682 (class 2606 OID 44287)
+-- TOC entry 3683 (class 2606 OID 44287)
 -- Name: apex_obj_datos_rel_asoc_fk_hijo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28733,7 +29627,7 @@ ALTER TABLE ONLY apex_objeto_datos_rel_asoc
 
 
 --
--- TOC entry 3684 (class 2606 OID 44277)
+-- TOC entry 3685 (class 2606 OID 44277)
 -- Name: apex_obj_datos_rel_asoc_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28742,7 +29636,7 @@ ALTER TABLE ONLY apex_objeto_datos_rel_asoc
 
 
 --
--- TOC entry 3683 (class 2606 OID 44282)
+-- TOC entry 3684 (class 2606 OID 44282)
 -- Name: apex_obj_datos_rel_asoc_fk_padre; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28751,7 +29645,7 @@ ALTER TABLE ONLY apex_objeto_datos_rel_asoc
 
 
 --
--- TOC entry 3671 (class 2606 OID 44170)
+-- TOC entry 3672 (class 2606 OID 44170)
 -- Name: apex_obj_db_col_fks_reg; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28760,7 +29654,7 @@ ALTER TABLE ONLY apex_objeto_db_columna_fks
 
 
 --
--- TOC entry 3669 (class 2606 OID 44154)
+-- TOC entry 3670 (class 2606 OID 44154)
 -- Name: apex_obj_dbr_col_fk_objeto_dbr; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28769,7 +29663,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_col
 
 
 --
--- TOC entry 3670 (class 2606 OID 44149)
+-- TOC entry 3671 (class 2606 OID 44149)
 -- Name: apex_obj_dbr_col_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28778,7 +29672,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_col
 
 
 --
--- TOC entry 3676 (class 2606 OID 44218)
+-- TOC entry 3677 (class 2606 OID 44218)
 -- Name: apex_obj_dbr_ext_col_fk_col; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28787,7 +29681,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_ext_col
 
 
 --
--- TOC entry 3677 (class 2606 OID 44213)
+-- TOC entry 3678 (class 2606 OID 44213)
 -- Name: apex_obj_dbr_ext_col_fk_ext; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28796,7 +29690,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_ext_col
 
 
 --
--- TOC entry 3673 (class 2606 OID 44198)
+-- TOC entry 3674 (class 2606 OID 44198)
 -- Name: apex_obj_dbr_ext_fk_consulta_php; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28805,7 +29699,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_ext
 
 
 --
--- TOC entry 3674 (class 2606 OID 44193)
+-- TOC entry 3675 (class 2606 OID 44193)
 -- Name: apex_obj_dbr_ext_fk_datos_tabla; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28814,7 +29708,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_ext
 
 
 --
--- TOC entry 3675 (class 2606 OID 44188)
+-- TOC entry 3676 (class 2606 OID 44188)
 -- Name: apex_obj_dbr_ext_fk_objeto_dbr; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28823,7 +29717,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_ext
 
 
 --
--- TOC entry 3672 (class 2606 OID 44203)
+-- TOC entry 3673 (class 2606 OID 44203)
 -- Name: apex_obj_dbr_ext_fk_punto_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28832,7 +29726,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_ext
 
 
 --
--- TOC entry 3678 (class 2606 OID 44234)
+-- TOC entry 3679 (class 2606 OID 44234)
 -- Name: apex_obj_dbr_uniq_fk_objeto_dbr; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28841,7 +29735,7 @@ ALTER TABLE ONLY apex_objeto_db_registros_uniq
 
 
 --
--- TOC entry 3639 (class 2606 OID 43870)
+-- TOC entry 3640 (class 2606 OID 43870)
 -- Name: apex_obj_ei_cuadro_fk_accion_vinculo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28850,7 +29744,7 @@ ALTER TABLE ONLY apex_objeto_ei_cuadro_columna
 
 
 --
--- TOC entry 3640 (class 2606 OID 43865)
+-- TOC entry 3641 (class 2606 OID 43865)
 -- Name: apex_obj_ei_cuadro_fk_formato; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28859,7 +29753,7 @@ ALTER TABLE ONLY apex_objeto_ei_cuadro_columna
 
 
 --
--- TOC entry 3641 (class 2606 OID 43860)
+-- TOC entry 3642 (class 2606 OID 43860)
 -- Name: apex_obj_ei_cuadro_fk_objeto_cuadro; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28868,7 +29762,7 @@ ALTER TABLE ONLY apex_objeto_ei_cuadro_columna
 
 
 --
--- TOC entry 3662 (class 2606 OID 44069)
+-- TOC entry 3663 (class 2606 OID 44069)
 -- Name: apex_objeto_codigo_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28877,7 +29771,7 @@ ALTER TABLE ONLY apex_objeto_codigo
 
 
 --
--- TOC entry 3590 (class 2606 OID 43347)
+-- TOC entry 3591 (class 2606 OID 43347)
 -- Name: apex_objeto_consumo_depen_fk_objeto_c; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28886,7 +29780,7 @@ ALTER TABLE ONLY apex_objeto_dep_consumo
 
 
 --
--- TOC entry 3589 (class 2606 OID 43352)
+-- TOC entry 3590 (class 2606 OID 43352)
 -- Name: apex_objeto_consumo_depen_fk_objeto_p; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28895,7 +29789,7 @@ ALTER TABLE ONLY apex_objeto_dep_consumo
 
 
 --
--- TOC entry 3643 (class 2606 OID 43886)
+-- TOC entry 3644 (class 2606 OID 43886)
 -- Name: apex_objeto_cuadro_col_cc_fk_apex_objeto_cuadro_cc; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28904,7 +29798,7 @@ ALTER TABLE ONLY apex_objeto_cuadro_col_cc
 
 
 --
--- TOC entry 3642 (class 2606 OID 43891)
+-- TOC entry 3643 (class 2606 OID 43891)
 -- Name: apex_objeto_cuadro_col_cc_fk_apex_objeto_ei_cuadro_columna; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28913,7 +29807,7 @@ ALTER TABLE ONLY apex_objeto_cuadro_col_cc
 
 
 --
--- TOC entry 3636 (class 2606 OID 43824)
+-- TOC entry 3637 (class 2606 OID 43824)
 -- Name: apex_objeto_cuadro_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28922,7 +29816,7 @@ ALTER TABLE ONLY apex_objeto_cuadro
 
 
 --
--- TOC entry 3681 (class 2606 OID 44251)
+-- TOC entry 3682 (class 2606 OID 44251)
 -- Name: apex_objeto_datos_rel_fk_ap; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28931,7 +29825,7 @@ ALTER TABLE ONLY apex_objeto_datos_rel
 
 
 --
--- TOC entry 3680 (class 2606 OID 44256)
+-- TOC entry 3681 (class 2606 OID 44256)
 -- Name: apex_objeto_datos_rel_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28940,7 +29834,7 @@ ALTER TABLE ONLY apex_objeto_datos_rel
 
 
 --
--- TOC entry 3668 (class 2606 OID 44111)
+-- TOC entry 3669 (class 2606 OID 44111)
 -- Name: apex_objeto_dbr_fk_ap; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28949,7 +29843,7 @@ ALTER TABLE ONLY apex_objeto_db_registros
 
 
 --
--- TOC entry 3666 (class 2606 OID 44121)
+-- TOC entry 3667 (class 2606 OID 44121)
 -- Name: apex_objeto_dbr_fk_fuente; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28958,7 +29852,7 @@ ALTER TABLE ONLY apex_objeto_db_registros
 
 
 --
--- TOC entry 3667 (class 2606 OID 44116)
+-- TOC entry 3668 (class 2606 OID 44116)
 -- Name: apex_objeto_dbr_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28967,7 +29861,7 @@ ALTER TABLE ONLY apex_objeto_db_registros
 
 
 --
--- TOC entry 3588 (class 2606 OID 43324)
+-- TOC entry 3589 (class 2606 OID 43324)
 -- Name: apex_objeto_depen_fk_objeto_c; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28976,7 +29870,7 @@ ALTER TABLE ONLY apex_objeto_dependencias
 
 
 --
--- TOC entry 3587 (class 2606 OID 43329)
+-- TOC entry 3588 (class 2606 OID 43329)
 -- Name: apex_objeto_depen_fk_objeto_p; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28985,7 +29879,7 @@ ALTER TABLE ONLY apex_objeto_dependencias
 
 
 --
--- TOC entry 3663 (class 2606 OID 44079)
+-- TOC entry 3664 (class 2606 OID 44079)
 -- Name: apex_objeto_ei_firma_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -28994,7 +29888,7 @@ ALTER TABLE ONLY apex_objeto_ei_firma
 
 
 --
--- TOC entry 3651 (class 2606 OID 43966)
+-- TOC entry 3652 (class 2606 OID 43966)
 -- Name: apex_objeto_esquema_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29003,7 +29897,7 @@ ALTER TABLE ONLY apex_objeto_esquema
 
 
 --
--- TOC entry 3591 (class 2606 OID 43384)
+-- TOC entry 3592 (class 2606 OID 43384)
 -- Name: apex_objeto_eventos_fk_accion_vinculo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29012,7 +29906,7 @@ ALTER TABLE ONLY apex_objeto_eventos
 
 
 --
--- TOC entry 3592 (class 2606 OID 43379)
+-- TOC entry 3593 (class 2606 OID 43379)
 -- Name: apex_objeto_eventos_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29021,7 +29915,7 @@ ALTER TABLE ONLY apex_objeto_eventos
 
 
 --
--- TOC entry 3593 (class 2606 OID 43374)
+-- TOC entry 3594 (class 2606 OID 43374)
 -- Name: apex_objeto_eventos_fk_rec_orig; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29030,7 +29924,7 @@ ALTER TABLE ONLY apex_objeto_eventos
 
 
 --
--- TOC entry 3585 (class 2606 OID 43278)
+-- TOC entry 3586 (class 2606 OID 43278)
 -- Name: apex_objeto_fk_clase; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29039,7 +29933,7 @@ ALTER TABLE ONLY apex_objeto
 
 
 --
--- TOC entry 3584 (class 2606 OID 43283)
+-- TOC entry 3585 (class 2606 OID 43283)
 -- Name: apex_objeto_fk_fuente_datos; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29048,7 +29942,7 @@ ALTER TABLE ONLY apex_objeto
 
 
 --
--- TOC entry 3619 (class 2606 OID 43646)
+-- TOC entry 3620 (class 2606 OID 43646)
 -- Name: apex_objeto_fk_fuente_datos; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29057,7 +29951,7 @@ ALTER TABLE ONLY apex_relacion_tablas
 
 
 --
--- TOC entry 3621 (class 2606 OID 43667)
+-- TOC entry 3622 (class 2606 OID 43667)
 -- Name: apex_objeto_fk_fuente_datos; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29066,7 +29960,7 @@ ALTER TABLE ONLY apex_dimension
 
 
 --
--- TOC entry 3664 (class 2606 OID 44131)
+-- TOC entry 3665 (class 2606 OID 44131)
 -- Name: apex_objeto_fk_fuente_schemas; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29075,7 +29969,7 @@ ALTER TABLE ONLY apex_objeto_db_registros
 
 
 --
--- TOC entry 3538 (class 2606 OID 44913)
+-- TOC entry 3539 (class 2606 OID 44913)
 -- Name: apex_objeto_fk_pm_contexto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29084,7 +29978,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3541 (class 2606 OID 44928)
+-- TOC entry 3542 (class 2606 OID 44928)
 -- Name: apex_objeto_fk_pm_impresion; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29093,7 +29987,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3539 (class 2606 OID 44918)
+-- TOC entry 3540 (class 2606 OID 44918)
 -- Name: apex_objeto_fk_pm_sesion; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29102,7 +29996,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3540 (class 2606 OID 44923)
+-- TOC entry 3541 (class 2606 OID 44923)
 -- Name: apex_objeto_fk_pm_usuario; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29111,7 +30005,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3583 (class 2606 OID 43288)
+-- TOC entry 3584 (class 2606 OID 43288)
 -- Name: apex_objeto_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29120,7 +30014,7 @@ ALTER TABLE ONLY apex_objeto
 
 
 --
--- TOC entry 3552 (class 2606 OID 42928)
+-- TOC entry 3553 (class 2606 OID 42928)
 -- Name: apex_objeto_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29129,7 +30023,7 @@ ALTER TABLE ONLY apex_pagina_tipo
 
 
 --
--- TOC entry 3557 (class 2606 OID 43009)
+-- TOC entry 3558 (class 2606 OID 43009)
 -- Name: apex_objeto_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29138,7 +30032,7 @@ ALTER TABLE ONLY apex_consulta_php
 
 
 --
--- TOC entry 3564 (class 2606 OID 43121)
+-- TOC entry 3565 (class 2606 OID 43121)
 -- Name: apex_objeto_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29147,7 +30041,7 @@ ALTER TABLE ONLY apex_item_zona
 
 
 --
--- TOC entry 3582 (class 2606 OID 43293)
+-- TOC entry 3583 (class 2606 OID 43293)
 -- Name: apex_objeto_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29156,7 +30050,7 @@ ALTER TABLE ONLY apex_objeto
 
 
 --
--- TOC entry 3629 (class 2606 OID 43779)
+-- TOC entry 3630 (class 2606 OID 43779)
 -- Name: apex_objeto_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29165,7 +30059,7 @@ ALTER TABLE ONLY apex_objeto_ci_pantalla
 
 
 --
--- TOC entry 3645 (class 2606 OID 43952)
+-- TOC entry 3646 (class 2606 OID 43952)
 -- Name: apex_objeto_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29174,7 +30068,7 @@ ALTER TABLE ONLY apex_objeto_ei_formulario_ef
 
 
 --
--- TOC entry 3665 (class 2606 OID 44126)
+-- TOC entry 3666 (class 2606 OID 44126)
 -- Name: apex_objeto_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29183,7 +30077,7 @@ ALTER TABLE ONLY apex_objeto_db_registros
 
 
 --
--- TOC entry 3679 (class 2606 OID 44261)
+-- TOC entry 3680 (class 2606 OID 44261)
 -- Name: apex_objeto_fk_puntos_montaje; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29192,7 +30086,7 @@ ALTER TABLE ONLY apex_objeto_datos_rel
 
 
 --
--- TOC entry 3660 (class 2606 OID 44059)
+-- TOC entry 3661 (class 2606 OID 44059)
 -- Name: apex_objeto_grafico_fk_grafico; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29201,7 +30095,7 @@ ALTER TABLE ONLY apex_objeto_grafico
 
 
 --
--- TOC entry 3661 (class 2606 OID 44054)
+-- TOC entry 3662 (class 2606 OID 44054)
 -- Name: apex_objeto_grafico_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29210,7 +30104,7 @@ ALTER TABLE ONLY apex_objeto_grafico
 
 
 --
--- TOC entry 3586 (class 2606 OID 43306)
+-- TOC entry 3587 (class 2606 OID 43306)
 -- Name: apex_objeto_info_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29219,7 +30113,7 @@ ALTER TABLE ONLY apex_objeto_info
 
 
 --
--- TOC entry 3659 (class 2606 OID 44036)
+-- TOC entry 3660 (class 2606 OID 44036)
 -- Name: apex_objeto_mapa_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29228,7 +30122,7 @@ ALTER TABLE ONLY apex_objeto_mapa
 
 
 --
--- TOC entry 3605 (class 2606 OID 43521)
+-- TOC entry 3606 (class 2606 OID 43521)
 -- Name: apex_objeto_msg_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29237,7 +30131,7 @@ ALTER TABLE ONLY apex_objeto_msg
 
 
 --
--- TOC entry 3604 (class 2606 OID 43526)
+-- TOC entry 3605 (class 2606 OID 43526)
 -- Name: apex_objeto_msg_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29246,7 +30140,7 @@ ALTER TABLE ONLY apex_objeto_msg
 
 
 --
--- TOC entry 3615 (class 2606 OID 43625)
+-- TOC entry 3616 (class 2606 OID 43625)
 -- Name: apex_objeto_nota_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29255,7 +30149,7 @@ ALTER TABLE ONLY apex_objeto_nota
 
 
 --
--- TOC entry 3614 (class 2606 OID 43630)
+-- TOC entry 3615 (class 2606 OID 43630)
 -- Name: apex_objeto_nota_fk_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29264,7 +30158,7 @@ ALTER TABLE ONLY apex_objeto_nota
 
 
 --
--- TOC entry 3616 (class 2606 OID 43620)
+-- TOC entry 3617 (class 2606 OID 43620)
 -- Name: apex_objeto_nota_fk_usud; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29273,7 +30167,7 @@ ALTER TABLE ONLY apex_objeto_nota
 
 
 --
--- TOC entry 3617 (class 2606 OID 43615)
+-- TOC entry 3618 (class 2606 OID 43615)
 -- Name: apex_objeto_nota_fk_usuo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29282,7 +30176,7 @@ ALTER TABLE ONLY apex_objeto_nota
 
 
 --
--- TOC entry 3644 (class 2606 OID 43908)
+-- TOC entry 3645 (class 2606 OID 43908)
 -- Name: apex_objeto_ut_f_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29291,7 +30185,7 @@ ALTER TABLE ONLY apex_objeto_ut_formulario
 
 
 --
--- TOC entry 3633 (class 2606 OID 43789)
+-- TOC entry 3634 (class 2606 OID 43789)
 -- Name: apex_objetos_pantalla_apex_objeto_ci_pantalla_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29300,7 +30194,7 @@ ALTER TABLE ONLY apex_objetos_pantalla
 
 
 --
--- TOC entry 3632 (class 2606 OID 43794)
+-- TOC entry 3633 (class 2606 OID 43794)
 -- Name: apex_objetos_pantalla_apex_objeto_dependencias_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29309,7 +30203,7 @@ ALTER TABLE ONLY apex_objetos_pantalla
 
 
 --
--- TOC entry 3553 (class 2606 OID 42923)
+-- TOC entry 3554 (class 2606 OID 42923)
 -- Name: apex_pagina_tipo_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29318,7 +30212,7 @@ ALTER TABLE ONLY apex_pagina_tipo
 
 
 --
--- TOC entry 3720 (class 2606 OID 44615)
+-- TOC entry 3721 (class 2606 OID 44615)
 -- Name: apex_per_grupo_acc_grupo_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29327,7 +30221,7 @@ ALTER TABLE ONLY apex_permiso_grupo_acc
 
 
 --
--- TOC entry 3721 (class 2606 OID 44610)
+-- TOC entry 3722 (class 2606 OID 44610)
 -- Name: apex_per_grupo_acc_per_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29336,7 +30230,7 @@ ALTER TABLE ONLY apex_permiso_grupo_acc
 
 
 --
--- TOC entry 3560 (class 2606 OID 43039)
+-- TOC entry 3561 (class 2606 OID 43039)
 -- Name: apex_perfil_datos_set_prueba_fk_fuente; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29345,7 +30239,7 @@ ALTER TABLE ONLY apex_perfil_datos_set_prueba
 
 
 --
--- TOC entry 3536 (class 2606 OID 44888)
+-- TOC entry 3537 (class 2606 OID 44888)
 -- Name: apex_proyecto_fk_menu_tipos; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29354,7 +30248,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3537 (class 2606 OID 44893)
+-- TOC entry 3538 (class 2606 OID 44893)
 -- Name: apex_proyecto_fk_pagina_tipo; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29363,7 +30257,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3544 (class 2606 OID 42804)
+-- TOC entry 3545 (class 2606 OID 42804)
 -- Name: apex_proyecto_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29372,7 +30266,7 @@ ALTER TABLE ONLY apex_puntos_montaje
 
 
 --
--- TOC entry 3596 (class 2606 OID 43394)
+-- TOC entry 3597 (class 2606 OID 43394)
 -- Name: apex_proyecto_fk_ptos_ctrl; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29381,7 +30275,7 @@ ALTER TABLE ONLY apex_ptos_control_x_evento
 
 
 --
--- TOC entry 3533 (class 2606 OID 44873)
+-- TOC entry 3534 (class 2606 OID 44873)
 -- Name: apex_proyecto_item_is; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29390,7 +30284,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3534 (class 2606 OID 44878)
+-- TOC entry 3535 (class 2606 OID 44878)
 -- Name: apex_proyecto_item_ps; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29399,7 +30293,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3535 (class 2606 OID 44883)
+-- TOC entry 3536 (class 2606 OID 44883)
 -- Name: apex_proyecto_item_ss; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29408,7 +30302,7 @@ ALTER TABLE ONLY apex_proyecto
 
 
 --
--- TOC entry 3556 (class 2606 OID 42988)
+-- TOC entry 3557 (class 2606 OID 42988)
 -- Name: apex_ptos_ctrl_ctrl_fk_ptos_ctrl; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29417,7 +30311,7 @@ ALTER TABLE ONLY apex_ptos_control_ctrl
 
 
 --
--- TOC entry 3555 (class 2606 OID 42973)
+-- TOC entry 3556 (class 2606 OID 42973)
 -- Name: apex_ptos_ctrl_param_fk_ptos_ctrl; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29426,7 +30320,7 @@ ALTER TABLE ONLY apex_ptos_control_param
 
 
 --
--- TOC entry 3594 (class 2606 OID 43404)
+-- TOC entry 3595 (class 2606 OID 43404)
 -- Name: apex_ptos_ctrl_x_evt_fk_evento; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29435,7 +30329,7 @@ ALTER TABLE ONLY apex_ptos_control_x_evento
 
 
 --
--- TOC entry 3595 (class 2606 OID 43399)
+-- TOC entry 3596 (class 2606 OID 43399)
 -- Name: apex_ptos_ctrl_x_evt_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29444,7 +30338,7 @@ ALTER TABLE ONLY apex_ptos_control_x_evento
 
 
 --
--- TOC entry 3618 (class 2606 OID 43651)
+-- TOC entry 3619 (class 2606 OID 43651)
 -- Name: apex_relacion_tablas_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29453,7 +30347,7 @@ ALTER TABLE ONLY apex_relacion_tablas
 
 
 --
--- TOC entry 3737 (class 2606 OID 44737)
+-- TOC entry 3738 (class 2606 OID 44737)
 -- Name: apex_restriccion_funcional_cols_fk_evt; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29462,7 +30356,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_cols
 
 
 --
--- TOC entry 3738 (class 2606 OID 44732)
+-- TOC entry 3739 (class 2606 OID 44732)
 -- Name: apex_restriccion_funcional_cols_fk_pf; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29471,7 +30365,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_cols
 
 
 --
--- TOC entry 3725 (class 2606 OID 44657)
+-- TOC entry 3726 (class 2606 OID 44657)
 -- Name: apex_restriccion_funcional_ef_fk_ef; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29480,7 +30374,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_ef
 
 
 --
--- TOC entry 3726 (class 2606 OID 44652)
+-- TOC entry 3727 (class 2606 OID 44652)
 -- Name: apex_restriccion_funcional_ef_fk_pf; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29489,7 +30383,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_ef
 
 
 --
--- TOC entry 3734 (class 2606 OID 44717)
+-- TOC entry 3735 (class 2606 OID 44717)
 -- Name: apex_restriccion_funcional_ei_fk_evt; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29498,7 +30392,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_ei
 
 
 --
--- TOC entry 3735 (class 2606 OID 44712)
+-- TOC entry 3736 (class 2606 OID 44712)
 -- Name: apex_restriccion_funcional_ei_fk_pf; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29507,7 +30401,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_ei
 
 
 --
--- TOC entry 3731 (class 2606 OID 44697)
+-- TOC entry 3732 (class 2606 OID 44697)
 -- Name: apex_restriccion_funcional_evt_fk_evt; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29516,7 +30410,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_evt
 
 
 --
--- TOC entry 3732 (class 2606 OID 44692)
+-- TOC entry 3733 (class 2606 OID 44692)
 -- Name: apex_restriccion_funcional_evt_fk_pf; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29525,7 +30419,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_evt
 
 
 --
--- TOC entry 3740 (class 2606 OID 44757)
+-- TOC entry 3741 (class 2606 OID 44757)
 -- Name: apex_restriccion_funcional_filtro_col_fk_col; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29534,7 +30428,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_filtro_cols
 
 
 --
--- TOC entry 3741 (class 2606 OID 44752)
+-- TOC entry 3742 (class 2606 OID 44752)
 -- Name: apex_restriccion_funcional_filtro_col_fk_pf; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29543,7 +30437,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_filtro_cols
 
 
 --
--- TOC entry 3728 (class 2606 OID 44677)
+-- TOC entry 3729 (class 2606 OID 44677)
 -- Name: apex_restriccion_funcional_pantalla_fk_pantalla; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29552,7 +30446,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_pantalla
 
 
 --
--- TOC entry 3729 (class 2606 OID 44672)
+-- TOC entry 3730 (class 2606 OID 44672)
 -- Name: apex_restriccion_funcional_pantalla_fk_pf; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29561,7 +30455,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_pantalla
 
 
 --
--- TOC entry 3752 (class 2606 OID 44855)
+-- TOC entry 3753 (class 2606 OID 44855)
 -- Name: apex_servicio_web_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29570,7 +30464,7 @@ ALTER TABLE ONLY apex_servicio_web
 
 
 --
--- TOC entry 3753 (class 2606 OID 44868)
+-- TOC entry 3754 (class 2606 OID 44868)
 -- Name: apex_servicio_web_param_fk_serv_web; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29579,7 +30473,7 @@ ALTER TABLE ONLY apex_servicio_web_param
 
 
 --
--- TOC entry 3551 (class 2606 OID 42910)
+-- TOC entry 3552 (class 2606 OID 42910)
 -- Name: apex_sol_obs_tipo_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29588,7 +30482,7 @@ ALTER TABLE ONLY apex_solicitud_obs_tipo
 
 
 --
--- TOC entry 3559 (class 2606 OID 43025)
+-- TOC entry 3560 (class 2606 OID 43025)
 -- Name: apex_tarea_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29597,7 +30491,7 @@ ALTER TABLE ONLY apex_tarea
 
 
 --
--- TOC entry 3715 (class 2606 OID 44898)
+-- TOC entry 3716 (class 2606 OID 44898)
 -- Name: apex_usu_g_acc_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29606,7 +30500,7 @@ ALTER TABLE ONLY apex_usuario_grupo_acc
 
 
 --
--- TOC entry 3717 (class 2606 OID 44580)
+-- TOC entry 3718 (class 2606 OID 44580)
 -- Name: apex_usu_g_acc_fk_us_gru_acc; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29615,7 +30509,7 @@ ALTER TABLE ONLY apex_usuario_grupo_acc_miembros
 
 
 --
--- TOC entry 3716 (class 2606 OID 44585)
+-- TOC entry 3717 (class 2606 OID 44585)
 -- Name: apex_usu_g_acc_fk_us_gru_acc_pertenece; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29624,7 +30518,7 @@ ALTER TABLE ONLY apex_usuario_grupo_acc_miembros
 
 
 --
--- TOC entry 3718 (class 2606 OID 44600)
+-- TOC entry 3719 (class 2606 OID 44600)
 -- Name: apex_usu_item_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29633,7 +30527,7 @@ ALTER TABLE ONLY apex_usuario_grupo_acc_item
 
 
 --
--- TOC entry 3719 (class 2606 OID 44595)
+-- TOC entry 3720 (class 2606 OID 44595)
 -- Name: apex_usu_item_fk_us_gru_acc; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29642,7 +30536,7 @@ ALTER TABLE ONLY apex_usuario_grupo_acc_item
 
 
 --
--- TOC entry 3748 (class 2606 OID 44825)
+-- TOC entry 3749 (class 2606 OID 44825)
 -- Name: apex_usu_proy_fk_grupo_acc; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29651,7 +30545,7 @@ ALTER TABLE ONLY apex_usuario_proyecto
 
 
 --
--- TOC entry 3747 (class 2606 OID 44908)
+-- TOC entry 3748 (class 2606 OID 44908)
 -- Name: apex_usu_proy_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29660,7 +30554,7 @@ ALTER TABLE ONLY apex_usuario_proyecto
 
 
 --
--- TOC entry 3749 (class 2606 OID 44820)
+-- TOC entry 3750 (class 2606 OID 44820)
 -- Name: apex_usu_proy_fk_usuario; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29669,7 +30563,7 @@ ALTER TABLE ONLY apex_usuario_proyecto
 
 
 --
--- TOC entry 3750 (class 2606 OID 44840)
+-- TOC entry 3751 (class 2606 OID 44840)
 -- Name: apex_usu_proy_pd_fk_perf_dat; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29678,7 +30572,7 @@ ALTER TABLE ONLY apex_usuario_proyecto_perfil_datos
 
 
 --
--- TOC entry 3751 (class 2606 OID 44835)
+-- TOC entry 3752 (class 2606 OID 44835)
 -- Name: apex_usu_proy_pd_fk_usuario; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29687,7 +30581,7 @@ ALTER TABLE ONLY apex_usuario_proyecto_perfil_datos
 
 
 --
--- TOC entry 3561 (class 2606 OID 43060)
+-- TOC entry 3562 (class 2606 OID 43060)
 -- Name: apex_usuario_fk_tipodoc; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29696,7 +30590,7 @@ ALTER TABLE ONLY apex_usuario
 
 
 --
--- TOC entry 3714 (class 2606 OID 44903)
+-- TOC entry 3715 (class 2606 OID 44903)
 -- Name: apex_usuario_grupo_acc_menu_fk; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29705,7 +30599,7 @@ ALTER TABLE ONLY apex_usuario_grupo_acc
 
 
 --
--- TOC entry 3712 (class 2606 OID 44561)
+-- TOC entry 3713 (class 2606 OID 44561)
 -- Name: apex_usuario_perfil_datos_dims_fk_dim; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29714,7 +30608,7 @@ ALTER TABLE ONLY apex_usuario_perfil_datos_dims
 
 
 --
--- TOC entry 3713 (class 2606 OID 44556)
+-- TOC entry 3714 (class 2606 OID 44556)
 -- Name: apex_usuario_perfil_datos_dims_fk_perfda; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29723,7 +30617,7 @@ ALTER TABLE ONLY apex_usuario_perfil_datos_dims
 
 
 --
--- TOC entry 3711 (class 2606 OID 44540)
+-- TOC entry 3712 (class 2606 OID 44540)
 -- Name: apex_usuario_perfil_datos_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29732,7 +30626,7 @@ ALTER TABLE ONLY apex_usuario_perfil_datos
 
 
 --
--- TOC entry 3562 (class 2606 OID 43087)
+-- TOC entry 3563 (class 2606 OID 43087)
 -- Name: apex_usuario_pregunta_secreta_fk_usuario; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29741,7 +30635,7 @@ ALTER TABLE ONLY apex_usuario_pregunta_secreta
 
 
 --
--- TOC entry 3624 (class 2606 OID 43728)
+-- TOC entry 3625 (class 2606 OID 43728)
 -- Name: apex_usuario_proyecto_gadgets_fk_gadget; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29750,7 +30644,7 @@ ALTER TABLE ONLY apex_usuario_proyecto_gadgets
 
 
 --
--- TOC entry 3623 (class 2606 OID 43706)
+-- TOC entry 3624 (class 2606 OID 43706)
 -- Name: apex_usuario_proyecto_gadgets_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29759,7 +30653,7 @@ ALTER TABLE ONLY apex_gadgets
 
 
 --
--- TOC entry 3625 (class 2606 OID 43723)
+-- TOC entry 3626 (class 2606 OID 43723)
 -- Name: apex_usuario_proyecto_gadgets_fk_proyecto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29768,7 +30662,7 @@ ALTER TABLE ONLY apex_usuario_proyecto_gadgets
 
 
 --
--- TOC entry 3626 (class 2606 OID 43718)
+-- TOC entry 3627 (class 2606 OID 43718)
 -- Name: apex_usuario_proyecto_gadgets_fk_usuario; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29777,7 +30671,7 @@ ALTER TABLE ONLY apex_usuario_proyecto_gadgets
 
 
 --
--- TOC entry 3563 (class 2606 OID 43103)
+-- TOC entry 3564 (class 2606 OID 43103)
 -- Name: apex_usuario_pwd_usados_fk_usuario; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29786,7 +30680,7 @@ ALTER TABLE ONLY apex_usuario_pwd_usados
 
 
 --
--- TOC entry 3628 (class 2606 OID 43746)
+-- TOC entry 3629 (class 2606 OID 43746)
 -- Name: obj_objeto_mt_me_fk_objeto; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29795,7 +30689,7 @@ ALTER TABLE ONLY apex_objeto_mt_me
 
 
 --
--- TOC entry 3627 (class 2606 OID 43751)
+-- TOC entry 3628 (class 2606 OID 43751)
 -- Name: obj_objeto_mt_me_fk_tnav; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29804,7 +30698,7 @@ ALTER TABLE ONLY apex_objeto_mt_me
 
 
 --
--- TOC entry 3736 (class 2606 OID 44742)
+-- TOC entry 3737 (class 2606 OID 44742)
 -- Name: restriccion_funcional_cols_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29813,7 +30707,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_cols
 
 
 --
--- TOC entry 3724 (class 2606 OID 44662)
+-- TOC entry 3725 (class 2606 OID 44662)
 -- Name: restriccion_funcional_ef_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29822,7 +30716,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_ef
 
 
 --
--- TOC entry 3733 (class 2606 OID 44722)
+-- TOC entry 3734 (class 2606 OID 44722)
 -- Name: restriccion_funcional_ei_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29831,7 +30725,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_ei
 
 
 --
--- TOC entry 3730 (class 2606 OID 44702)
+-- TOC entry 3731 (class 2606 OID 44702)
 -- Name: restriccion_funcional_evt_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29840,7 +30734,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_evt
 
 
 --
--- TOC entry 3739 (class 2606 OID 44762)
+-- TOC entry 3740 (class 2606 OID 44762)
 -- Name: restriccion_funcional_filtro_col_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29849,7 +30743,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_filtro_cols
 
 
 --
--- TOC entry 3722 (class 2606 OID 44632)
+-- TOC entry 3723 (class 2606 OID 44632)
 -- Name: restriccion_funcional_fk_proy; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29858,7 +30752,7 @@ ALTER TABLE ONLY apex_restriccion_funcional
 
 
 --
--- TOC entry 3727 (class 2606 OID 44682)
+-- TOC entry 3728 (class 2606 OID 44682)
 -- Name: restriccion_funcional_pantalla_fk_item; Type: FK CONSTRAINT; Schema: desarrollo; Owner: postgres
 --
 
@@ -29869,7 +30763,7 @@ ALTER TABLE ONLY apex_restriccion_funcional_pantalla
 SET search_path = desarrollo_logs, pg_catalog;
 
 --
--- TOC entry 3754 (class 2606 OID 44967)
+-- TOC entry 3755 (class 2606 OID 44967)
 -- Name: apex_sol_brw_fk_sesion; Type: FK CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -29878,7 +30772,7 @@ ALTER TABLE ONLY apex_solicitud_browser
 
 
 --
--- TOC entry 3755 (class 2606 OID 44962)
+-- TOC entry 3756 (class 2606 OID 44962)
 -- Name: apex_sol_brw_fk_sol; Type: FK CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -29887,7 +30781,7 @@ ALTER TABLE ONLY apex_solicitud_browser
 
 
 --
--- TOC entry 3756 (class 2606 OID 44980)
+-- TOC entry 3757 (class 2606 OID 44980)
 -- Name: apex_sol_consola_fk_sol; Type: FK CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -29896,7 +30790,7 @@ ALTER TABLE ONLY apex_solicitud_consola
 
 
 --
--- TOC entry 3757 (class 2606 OID 44993)
+-- TOC entry 3758 (class 2606 OID 44993)
 -- Name: apex_sol_cron_fk_sol; Type: FK CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -29905,7 +30799,7 @@ ALTER TABLE ONLY apex_solicitud_cronometro
 
 
 --
--- TOC entry 3758 (class 2606 OID 45009)
+-- TOC entry 3759 (class 2606 OID 45009)
 -- Name: apex_sol_obs_fk_sol; Type: FK CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -29914,7 +30808,7 @@ ALTER TABLE ONLY apex_solicitud_observacion
 
 
 --
--- TOC entry 3759 (class 2606 OID 45075)
+-- TOC entry 3760 (class 2606 OID 45075)
 -- Name: apex_sol_web_service_solicitud_fk; Type: FK CONSTRAINT; Schema: desarrollo_logs; Owner: postgres
 --
 
@@ -29925,7 +30819,7 @@ ALTER TABLE ONLY apex_solicitud_web_service
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 3518 (class 2606 OID 42573)
+-- TOC entry 3519 (class 2606 OID 42573)
 -- Name: cargo_por_persona_idtipo_hora_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -29934,7 +30828,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 3526 (class 2606 OID 31364)
+-- TOC entry 3527 (class 2606 OID 31364)
 -- Name: detalle_dias_viatico_idlocalidad_destino_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -29943,7 +30837,7 @@ ALTER TABLE ONLY detalle_dias_viatico
 
 
 --
--- TOC entry 3527 (class 2606 OID 31359)
+-- TOC entry 3528 (class 2606 OID 31359)
 -- Name: detalle_dias_viatico_idlocalidad_origen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -29952,7 +30846,7 @@ ALTER TABLE ONLY detalle_dias_viatico
 
 
 --
--- TOC entry 3528 (class 2606 OID 31354)
+-- TOC entry 3529 (class 2606 OID 31354)
 -- Name: detalle_dias_viatico_idviatico_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -29961,7 +30855,7 @@ ALTER TABLE ONLY detalle_dias_viatico
 
 
 --
--- TOC entry 3521 (class 2606 OID 31292)
+-- TOC entry 3522 (class 2606 OID 31292)
 -- Name: entidad_cargo_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -29970,7 +30864,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 3513 (class 2606 OID 31297)
+-- TOC entry 3514 (class 2606 OID 31297)
 -- Name: estado_civil_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -29979,7 +30873,7 @@ ALTER TABLE ONLY persona
 
 
 --
--- TOC entry 3530 (class 2606 OID 31413)
+-- TOC entry 3531 (class 2606 OID 31413)
 -- Name: estudio_por_persona_identidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -29988,7 +30882,7 @@ ALTER TABLE ONLY estudio_por_persona
 
 
 --
--- TOC entry 3529 (class 2606 OID 31491)
+-- TOC entry 3530 (class 2606 OID 31491)
 -- Name: estudio_por_persona_idestudio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -29997,7 +30891,7 @@ ALTER TABLE ONLY estudio_por_persona
 
 
 --
--- TOC entry 3531 (class 2606 OID 31408)
+-- TOC entry 3532 (class 2606 OID 31408)
 -- Name: estudio_por_persona_idnivel_estudio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30006,7 +30900,7 @@ ALTER TABLE ONLY estudio_por_persona
 
 
 --
--- TOC entry 3532 (class 2606 OID 31403)
+-- TOC entry 3533 (class 2606 OID 31403)
 -- Name: estudio_por_persona_idpersona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30015,7 +30909,7 @@ ALTER TABLE ONLY estudio_por_persona
 
 
 --
--- TOC entry 3511 (class 2606 OID 31287)
+-- TOC entry 3512 (class 2606 OID 31287)
 -- Name: localidad_entidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30024,7 +30918,7 @@ ALTER TABLE ONLY entidad
 
 
 --
--- TOC entry 3514 (class 2606 OID 31272)
+-- TOC entry 3515 (class 2606 OID 31272)
 -- Name: localidad_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30033,7 +30927,7 @@ ALTER TABLE ONLY persona
 
 
 --
--- TOC entry 3517 (class 2606 OID 31277)
+-- TOC entry 3518 (class 2606 OID 31277)
 -- Name: localidad_viatico_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30042,7 +30936,7 @@ ALTER TABLE ONLY viatico
 
 
 --
--- TOC entry 3516 (class 2606 OID 31282)
+-- TOC entry 3517 (class 2606 OID 31282)
 -- Name: localidad_viatico_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30051,7 +30945,7 @@ ALTER TABLE ONLY viatico
 
 
 --
--- TOC entry 3509 (class 2606 OID 31262)
+-- TOC entry 3510 (class 2606 OID 31262)
 -- Name: pais_provincia_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30060,7 +30954,7 @@ ALTER TABLE ONLY provincia
 
 
 --
--- TOC entry 3519 (class 2606 OID 31312)
+-- TOC entry 3520 (class 2606 OID 31312)
 -- Name: persona_cargo_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30069,7 +30963,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 3524 (class 2606 OID 31317)
+-- TOC entry 3525 (class 2606 OID 31317)
 -- Name: persona_telefono_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30078,7 +30972,7 @@ ALTER TABLE ONLY telefono_por_persona
 
 
 --
--- TOC entry 3515 (class 2606 OID 31327)
+-- TOC entry 3516 (class 2606 OID 31327)
 -- Name: persona_viatico_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30087,7 +30981,7 @@ ALTER TABLE ONLY viatico
 
 
 --
--- TOC entry 3510 (class 2606 OID 31267)
+-- TOC entry 3511 (class 2606 OID 31267)
 -- Name: provincia_localidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30096,7 +30990,7 @@ ALTER TABLE ONLY localidad
 
 
 --
--- TOC entry 3520 (class 2606 OID 31302)
+-- TOC entry 3521 (class 2606 OID 31302)
 -- Name: tipo_cargo_cargo_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30105,7 +30999,7 @@ ALTER TABLE ONLY cargo_por_persona
 
 
 --
--- TOC entry 3523 (class 2606 OID 31247)
+-- TOC entry 3524 (class 2606 OID 31247)
 -- Name: tipo_detalle_viatico_detalle_viatico_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30114,7 +31008,7 @@ ALTER TABLE ONLY detalle_viatico
 
 
 --
--- TOC entry 3512 (class 2606 OID 31307)
+-- TOC entry 3513 (class 2606 OID 31307)
 -- Name: tipo_documento_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30123,7 +31017,7 @@ ALTER TABLE ONLY persona
 
 
 --
--- TOC entry 3525 (class 2606 OID 31257)
+-- TOC entry 3526 (class 2606 OID 31257)
 -- Name: tipo_telefono_telefono_por_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30132,7 +31026,7 @@ ALTER TABLE ONLY telefono_por_persona
 
 
 --
--- TOC entry 3522 (class 2606 OID 31332)
+-- TOC entry 3523 (class 2606 OID 31332)
 -- Name: viatico_detalle_viatico_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -30143,7 +31037,7 @@ ALTER TABLE ONLY detalle_viatico
 SET search_path = referencia, pg_catalog;
 
 --
--- TOC entry 3764 (class 2606 OID 45145)
+-- TOC entry 3765 (class 2606 OID 45145)
 -- Name: $1; Type: FK CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -30152,7 +31046,7 @@ ALTER TABLE ONLY ref_persona_juegos
 
 
 --
--- TOC entry 3762 (class 2606 OID 45150)
+-- TOC entry 3763 (class 2606 OID 45150)
 -- Name: $1; Type: FK CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -30161,7 +31055,7 @@ ALTER TABLE ONLY ref_persona_deportes
 
 
 --
--- TOC entry 3760 (class 2606 OID 45155)
+-- TOC entry 3761 (class 2606 OID 45155)
 -- Name: $1; Type: FK CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -30170,7 +31064,7 @@ ALTER TABLE ONLY ref_juegos_oferta
 
 
 --
--- TOC entry 3763 (class 2606 OID 45160)
+-- TOC entry 3764 (class 2606 OID 45160)
 -- Name: $2; Type: FK CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -30179,7 +31073,7 @@ ALTER TABLE ONLY ref_persona_juegos
 
 
 --
--- TOC entry 3761 (class 2606 OID 45165)
+-- TOC entry 3762 (class 2606 OID 45165)
 -- Name: $2; Type: FK CONSTRAINT; Schema: referencia; Owner: postgres
 --
 
@@ -30188,7 +31082,7 @@ ALTER TABLE ONLY ref_persona_deportes
 
 
 --
--- TOC entry 4126 (class 0 OID 0)
+-- TOC entry 4127 (class 0 OID 0)
 -- Dependencies: 10
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -30199,7 +31093,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2018-03-01 17:41:36 ART
+-- Completed on 2018-03-01 19:45:56 ART
 
 --
 -- PostgreSQL database dump complete

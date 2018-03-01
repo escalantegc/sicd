@@ -28,9 +28,9 @@ FROM
 	public.persona
 inner join viatico on persona.idpersona=viatico.idpersona
 inner join tipo_documento on tipo_documento.idtipo_documento=persona.idtipo_documento
-inner join detalle_dias_viatico on detalle_dias_viatico.idviatico=viatico.idviatico
-inner join localidad localidad_origen on localidad_origen.idlocalidad = detalle_dias_viatico.idlocalidad_origen
-inner join localidad localidad_destino on localidad_destino.idlocalidad = detalle_dias_viatico.idlocalidad_destino
+left outer join detalle_dias_viatico on detalle_dias_viatico.idviatico=viatico.idviatico
+left outer join localidad localidad_origen on localidad_origen.idlocalidad = detalle_dias_viatico.idlocalidad_origen
+left outer join localidad localidad_destino on localidad_destino.idlocalidad = detalle_dias_viatico.idlocalidad_destino
 where
 
 	trim(localidad_origen.descripcion) ilike $P{idlocalidad_origen} and
@@ -199,7 +199,7 @@ tomados]]></text>
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[Cantidad de dias
-para reintegro ]]></text>
+reintegrados]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

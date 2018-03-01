@@ -122,7 +122,7 @@ left outer join tipo_hora  using(idtipo_hora)
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Fecha Fin]]></text>
 				</staticText>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="0" y="3" width="158" height="20" forecolor="#A8A8A8" uuid="6d846ef5-696a-46d0-a588-959bd6ebce31"/>
 					<textElement>
 						<font isBold="true"/>
@@ -180,4 +180,17 @@ left outer join tipo_hora  using(idtipo_hora)
 			</textField>
 		</band>
 	</detail>
+	<pageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="10" y="12" width="555" height="35" isRemoveLineWhenBlank="true" uuid="fcb8c0dc-42ac-4657-a993-6794f2ee6a1e">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}.equals(0)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Liberation Sans" size="20"/>
+				</textElement>
+				<text><![CDATA[No posee cargos declarados]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
 </jasperReport>

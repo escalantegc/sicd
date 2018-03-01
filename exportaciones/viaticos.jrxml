@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudios" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f1731819-b5bd-4e7a-9435-cc0cfd3b5b83">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudios" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f1731819-b5bd-4e7a-9435-cc0cfd3b5b83">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -16,9 +16,9 @@
 FROM
 	viatico
 
-inner join detalle_dias_viatico on detalle_dias_viatico.idviatico=viatico.idviatico
-inner join localidad localidad_origen on localidad_origen.idlocalidad = detalle_dias_viatico.idlocalidad_origen
-inner join localidad localidad_destino on localidad_destino.idlocalidad = detalle_dias_viatico.idlocalidad_destino
+left outer join detalle_dias_viatico on detalle_dias_viatico.idviatico=viatico.idviatico
+left outer join localidad localidad_origen on localidad_origen.idlocalidad = detalle_dias_viatico.idlocalidad_origen
+left outer join localidad localidad_destino on localidad_destino.idlocalidad = detalle_dias_viatico.idlocalidad_destino
 where
 
 	viatico.idpersona=$P!{idpersona}
@@ -143,4 +143,17 @@ disponibles]]></text>
 			</textField>
 		</band>
 	</detail>
+	<pageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="0" y="15" width="555" height="35" isRemoveLineWhenBlank="true" uuid="4d0f0c8b-501a-4231-a55d-9482a61f59f2">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}.equals(0)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Liberation Sans" size="20"/>
+				</textElement>
+				<text><![CDATA[No posee viaticos declarados]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
 </jasperReport>
