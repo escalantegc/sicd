@@ -9,10 +9,10 @@ class ci_listado_viaticos extends sicd_ci
 
 	function conf__filtro(ei_filtro_listado_viatico_basico_persona $filtro)
 	{
-		$filtro->columna('cantidad_total_dias')->set_condicion_fija('es_mayor_que');
-		$filtro->columna('cantidad_dias_disponible')->set_condicion_fija('es_mayor_que');
-		$filtro->columna('cantidad_dias_tomados')->set_condicion_fija('es_mayor_que');
-		$filtro->columna('cantidad_dias_reintegro')->set_condicion_fija('es_mayor_que');
+		$filtro->columna('cantidad_total_dias')->set_condicion_fija('es_mayor_igual_que');
+		$filtro->columna('cantidad_dias_disponible')->set_condicion_fija('es_mayor_igual_que');
+		$filtro->columna('cantidad_dias_tomados')->set_condicion_fija('es_mayor_igual_que');
+		$filtro->columna('cantidad_dias_reintegro')->set_condicion_fija('es_mayor_igual_que');
 		$filtro->columna('mes')->set_condicion_fija('es_igual_a');
 		$filtro->columna('nro_expediente')->set_condicion_fija('es_igual_a');
 	}
@@ -173,6 +173,7 @@ class ci_listado_viaticos extends sicd_ci
 	}	
 
 	
+
 
 }
 ?>

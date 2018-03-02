@@ -35,10 +35,10 @@ where
 
            trim(mes) ilike $P{mes} and
            trim(nro_expediente) ilike $P{nro_expediente} and
-	cantidad_total_dias > $P{cantidad_total_dias} and
-         	cantidad_dias_reintegro  > $P{cantidad_dias_reintegro} and
-	cantidad_dias_disponible > $P{cantidad_dias_disponible} and
-	cantidad_dias_tomados  > $P{cantidad_dias_tomados}
+	cantidad_total_dias >= $P{cantidad_total_dias} and
+         	cantidad_dias_reintegro  >= $P{cantidad_dias_reintegro} and
+	cantidad_dias_disponible >= $P{cantidad_dias_disponible} and
+	cantidad_dias_tomados  >= $P{cantidad_dias_tomados}
 
 group by
   	sigla,
@@ -183,48 +183,48 @@ tomados]]></text>
 reintegrados]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="105" y="49" width="108" height="20" uuid="a3e2b35c-d2a0-406a-bf41-dd19db6c42e3"/>
+				<reportElement x="116" y="49" width="108" height="20" uuid="a3e2b35c-d2a0-406a-bf41-dd19db6c42e3"/>
 				<textFieldExpression><![CDATA[$P{cantidad_total_dias}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="49" width="105" height="20" uuid="b8a09340-447d-493d-a70a-523bdcf3d8cc"/>
+				<reportElement x="0" y="49" width="115" height="20" uuid="b8a09340-447d-493d-a70a-523bdcf3d8cc"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<text><![CDATA[Cantidad total de dias:]]></text>
+				<text><![CDATA[Cantidad total de dias >=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="273" y="49" width="125" height="20" uuid="8114d403-b3f6-49ef-a5f8-0ff8a6efc0a3"/>
+				<reportElement x="273" y="49" width="134" height="20" uuid="8114d403-b3f6-49ef-a5f8-0ff8a6efc0a3"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<text><![CDATA[Cantidad dias disponibles:]]></text>
+				<text><![CDATA[Cantidad dias disponibles >=]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="398" y="49" width="75" height="20" uuid="f147acae-31d3-4bce-92b8-d645b94e3cf0"/>
+				<reportElement x="407" y="49" width="75" height="20" uuid="f147acae-31d3-4bce-92b8-d645b94e3cf0"/>
 				<textFieldExpression><![CDATA[$P{cantidad_dias_disponible}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="105" y="72" width="100" height="20" uuid="6221d64b-fcad-40e3-ab7a-9e4c85888f84"/>
+				<reportElement x="116" y="72" width="100" height="20" uuid="6221d64b-fcad-40e3-ab7a-9e4c85888f84"/>
 				<textFieldExpression><![CDATA[$P{cantidad_dias_tomados}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="398" y="72" width="100" height="20" uuid="5e8fe26e-d9f6-44fb-875d-98b310b005d0"/>
+				<reportElement x="408" y="72" width="87" height="20" uuid="5e8fe26e-d9f6-44fb-875d-98b310b005d0"/>
 				<textFieldExpression><![CDATA[$P{cantidad_dias_reintegro}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="273" y="72" width="125" height="20" uuid="ce5e30f0-47e4-4158-a882-0f4d99339f71"/>
+				<reportElement x="273" y="72" width="134" height="20" uuid="ce5e30f0-47e4-4158-a882-0f4d99339f71"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<text><![CDATA[Cantidad dias reintegrados:]]></text>
+				<text><![CDATA[Cantidad dias reintegrados >=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="72" width="105" height="20" uuid="f2cfec5e-3cae-4ff3-aacd-582b0dd6620e"/>
+				<reportElement x="0" y="72" width="115" height="20" uuid="f2cfec5e-3cae-4ff3-aacd-582b0dd6620e"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<text><![CDATA[Cantidad dias tomados:]]></text>
+				<text><![CDATA[Cantidad dias tomados >=]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
