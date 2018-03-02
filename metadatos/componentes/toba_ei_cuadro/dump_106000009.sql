@@ -164,7 +164,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'106000010', --objeto_cuadro_col
 	'cantidad_dias_reintegro', --clave
 	'4', --orden
-	'Dias de Reintegro', --titulo
+	'Dias reintegrados', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-num-p1', --estilo
 	NULL, --ancho
