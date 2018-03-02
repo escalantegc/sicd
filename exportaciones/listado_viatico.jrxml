@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_viatico" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="1.2396694214876032"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
-	<parameter name="idlocalidad_origen" class="java.lang.String"/>
+	<parameter name="cantidad_total_dias" class="java.lang.Integer"/>
 	<parameter name="idnivel_estudio" class="java.lang.String"/>
-	<parameter name="idlocalidad_destino" class="java.lang.String"/>
+	<parameter name="cantidad_dias_disponible" class="java.lang.Integer"/>
 	<parameter name="mes" class="java.lang.String"/>
 	<parameter name="orderby_mostrar" class="java.lang.String"/>
 	<parameter name="usuario" class="java.lang.String"/>
 	<parameter name="orderby" class="java.lang.String"/>
 	<parameter name="nro_expediente" class="java.lang.String"/>
+	<parameter name="cantidad_dias_tomados" class="java.lang.Integer"/>
+	<parameter name="cantidad_dias_reintegro" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT 	nombres ||', '|| apellido as persona,
 	sigla ||' - '||  nro_documento as nro_documento,
@@ -28,15 +30,16 @@ FROM
 	public.persona
 inner join viatico on persona.idpersona=viatico.idpersona
 inner join tipo_documento on tipo_documento.idtipo_documento=persona.idtipo_documento
-left outer join detalle_dias_viatico on detalle_dias_viatico.idviatico=viatico.idviatico
-left outer join localidad localidad_origen on localidad_origen.idlocalidad = detalle_dias_viatico.idlocalidad_origen
-left outer join localidad localidad_destino on localidad_destino.idlocalidad = detalle_dias_viatico.idlocalidad_destino
+
 where
 
-	trim(localidad_origen.descripcion) ilike $P{idlocalidad_origen} and
-	trim(localidad_destino.descripcion) ilike $P{idlocalidad_destino} and
            trim(mes) ilike $P{mes} and
-           trim(nro_expediente) ilike $P{nro_expediente}
+           trim(nro_expediente) ilike $P{nro_expediente} and
+	cantidad_total_dias > $P{cantidad_total_dias} and
+         	cantidad_dias_reintegro  > $P{cantidad_dias_reintegro} and
+	cantidad_dias_disponible > $P{cantidad_dias_disponible} and
+	cantidad_dias_tomados  > $P{cantidad_dias_tomados}
+
 group by
   	sigla,
   	nro_documento,
@@ -85,7 +88,7 @@ order by
 		</band>
 	</title>
 	<columnHeader>
-		<band height="94" splitType="Stretch">
+		<band height="122" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="85" height="20" uuid="301cde45-2b61-44d0-b41f-9cf840cc005c"/>
 				<textElement>
@@ -93,41 +96,26 @@ order by
 				</textElement>
 				<text><![CDATA[Ordenado por: ]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="1" y="50" width="84" height="20" uuid="1de0081f-3a97-4c62-889c-64c7cac3f0ad"/>
-				<textElement>
-					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<text><![CDATA[Localidad origen: ]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="86" y="50" width="167" height="20" uuid="dd36e75f-f364-479b-a586-eea0255e33c6"/>
-				<textFieldExpression><![CDATA[($P{idlocalidad_origen}.toString().equals("%%") ?"TODAS":$P{idlocalidad_origen})]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="85" y="26" width="128" height="20" uuid="02bd12fa-9737-4749-b38e-304be703d52d"/>
 				<textFieldExpression><![CDATA[($P{mes}.toString().equals("%%") ?"TODOS":$P{mes})]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="358" y="50" width="198" height="20" uuid="97aa7683-e3fd-4457-ac01-d331696a8edb"/>
-				<textFieldExpression><![CDATA[($P{idlocalidad_destino}.toString().equals("%%") ?"TODAS":$P{idlocalidad_destino})]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="0" y="74" width="116" height="20" uuid="67dd5898-5259-404e-8008-6915b9822c2e"/>
+				<reportElement x="0" y="99" width="116" height="20" uuid="67dd5898-5259-404e-8008-6915b9822c2e"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[Nombres y Apellido]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="115" y="74" width="60" height="20" uuid="ddfa1253-c913-4b93-b15b-8d4b8861dc99"/>
+				<reportElement x="115" y="99" width="60" height="20" uuid="ddfa1253-c913-4b93-b15b-8d4b8861dc99"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="233" y="70" width="40" height="24" uuid="137dc769-6221-4151-9038-ce38c06a7059"/>
+				<reportElement x="233" y="95" width="40" height="24" uuid="137dc769-6221-4151-9038-ce38c06a7059"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
@@ -139,13 +127,6 @@ order by
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Mes:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="268" y="50" width="90" height="20" uuid="c3378234-04ff-470a-8236-1fea14c5e561"/>
-				<textElement>
-					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<text><![CDATA[Localidad Destino:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="85" y="0" width="128" height="20" uuid="41127821-31d5-46ad-b561-a9bd04aa3405"/>
@@ -163,14 +144,14 @@ order by
 				<text><![CDATA[Nro Expediente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="171" y="70" width="55" height="24" uuid="847f38ec-3111-4af0-949e-179420f5fe7f"/>
+				<reportElement x="174" y="95" width="55" height="24" uuid="847f38ec-3111-4af0-949e-179420f5fe7f"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[Nro Expediente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="275" y="70" width="65" height="24" uuid="8a64368c-c9bf-466b-9d3e-2ca865c48666"/>
+				<reportElement x="275" y="95" width="65" height="24" uuid="8a64368c-c9bf-466b-9d3e-2ca865c48666"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
@@ -178,7 +159,7 @@ order by
 de dias]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="342" y="69" width="63" height="24" uuid="a4beb358-aaeb-43b7-b67c-af97b3b7b58b"/>
+				<reportElement x="342" y="94" width="63" height="24" uuid="a4beb358-aaeb-43b7-b67c-af97b3b7b58b"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
@@ -186,7 +167,7 @@ de dias]]></text>
 disponibles]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="69" width="63" height="24" uuid="36cd9277-4731-4262-9c1b-d75fe895ad73"/>
+				<reportElement x="407" y="94" width="63" height="24" uuid="36cd9277-4731-4262-9c1b-d75fe895ad73"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
@@ -194,12 +175,56 @@ disponibles]]></text>
 tomados]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="470" y="69" width="84" height="24" uuid="fd3719cc-0c3c-435c-ac4e-ce8a86ead94b"/>
+				<reportElement x="470" y="94" width="84" height="24" uuid="fd3719cc-0c3c-435c-ac4e-ce8a86ead94b"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Cantidad de dias
+				<text><![CDATA[Cantidad dias
 reintegrados]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="105" y="49" width="108" height="20" uuid="a3e2b35c-d2a0-406a-bf41-dd19db6c42e3"/>
+				<textFieldExpression><![CDATA[$P{cantidad_total_dias}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="49" width="105" height="20" uuid="b8a09340-447d-493d-a70a-523bdcf3d8cc"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Cantidad total de dias:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="49" width="125" height="20" uuid="8114d403-b3f6-49ef-a5f8-0ff8a6efc0a3"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Cantidad dias disponibles:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="398" y="49" width="75" height="20" uuid="f147acae-31d3-4bce-92b8-d645b94e3cf0"/>
+				<textFieldExpression><![CDATA[$P{cantidad_dias_disponible}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="72" width="100" height="20" uuid="6221d64b-fcad-40e3-ab7a-9e4c85888f84"/>
+				<textFieldExpression><![CDATA[$P{cantidad_dias_tomados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="72" width="100" height="20" uuid="5e8fe26e-d9f6-44fb-875d-98b310b005d0"/>
+				<textFieldExpression><![CDATA[$P{cantidad_dias_reintegro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="273" y="72" width="125" height="20" uuid="ce5e30f0-47e4-4158-a882-0f4d99339f71"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Cantidad dias reintegrados:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="72" width="105" height="20" uuid="f2cfec5e-3cae-4ff3-aacd-582b0dd6620e"/>
+				<textElement>
+					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Cantidad dias tomados:]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

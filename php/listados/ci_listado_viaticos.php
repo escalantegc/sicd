@@ -9,8 +9,10 @@ class ci_listado_viaticos extends sicd_ci
 
 	function conf__filtro(ei_filtro_listado_viatico_basico_persona $filtro)
 	{
-		$filtro->columna('idlocalidad_origen')->set_condicion_fija('es_igual_a');
-		$filtro->columna('idlocalidad_destino')->set_condicion_fija('es_igual_a');
+		$filtro->columna('cantidad_total_dias')->set_condicion_fija('es_mayor_que');
+		$filtro->columna('cantidad_dias_disponible')->set_condicion_fija('es_mayor_que');
+		$filtro->columna('cantidad_dias_tomados')->set_condicion_fija('es_mayor_que');
+		$filtro->columna('cantidad_dias_reintegro')->set_condicion_fija('es_mayor_que');
 		$filtro->columna('mes')->set_condicion_fija('es_igual_a');
 		$filtro->columna('nro_expediente')->set_condicion_fija('es_igual_a');
 	}
@@ -34,8 +36,12 @@ class ci_listado_viaticos extends sicd_ci
 		$report->set_parametro('logo2','S',$path_logo2);
 		//Paramentro del filtro
 		
-		$idlocalidad_origen= '%%';
-		$idlocalidad_destino= '%%';
+		
+		$cantidad_total_dias = 0;
+		$cantidad_dias_disponible = 0;
+		$cantidad_dias_tomados = 0;
+		$cantidad_dias_reintegro = 0;
+
 		$mes = '%%';
 		$nro_expediente = '%%';
 		
@@ -53,23 +59,41 @@ class ci_listado_viaticos extends sicd_ci
 			}
 		}
 
-		if (isset($this->s__criterios_filtrado['idlocalidad_origen']['valor'])!='')
+		if (isset($this->s__criterios_filtrado['cantidad_total_dias']['valor'])!='')
 		{
-			if (trim($this->s__criterios_filtrado['idlocalidad_origen']['valor'])!='nopar')
+			if (trim($this->s__criterios_filtrado['cantidad_total_dias']['valor'])!='nopar')
 			{
-				$idlocalidad_origen = utf8_encode(trim($this->s__criterios_filtrado['idlocalidad_origen']['valor']));
+				$cantidad_total_dias = $this->s__criterios_filtrado['cantidad_total_dias']['valor'];
 				
 				
 			}
 		}
 	
-		if (isset($this->s__criterios_filtrado['idlocalidad_destino']['valor'])!='')
+		if (isset($this->s__criterios_filtrado['cantidad_dias_disponible']['valor'])!='')
 		{
-			if (trim($this->s__criterios_filtrado['idlocalidad_destino']['valor'])!='nopar')
+			if (trim($this->s__criterios_filtrado['cantidad_dias_disponible']['valor'])!='nopar')
 			{
-				$idlocalidad_destino = utf8_encode(trim($this->s__criterios_filtrado['idlocalidad_destino']['valor']));
+				$cantidad_dias_disponible = $this->s__criterios_filtrado['cantidad_dias_disponible']['valor'];
 			}
 		}
+
+		if (isset($this->s__criterios_filtrado['cantidad_dias_tomados']['valor'])!='')
+		{
+			if (trim($this->s__criterios_filtrado['cantidad_dias_tomados']['valor'])!='nopar')
+			{
+				$cantidad_dias_tomados = $this->s__criterios_filtrado['cantidad_dias_tomados']['valor'];
+			}
+		}		
+
+		if (isset($this->s__criterios_filtrado['cantidad_dias_reintegro']['valor'])!='')
+		{
+			if (trim($this->s__criterios_filtrado['cantidad_dias_reintegro']['valor'])!='nopar')
+			{
+				$cantidad_dias_reintegro = $this->s__criterios_filtrado['cantidad_dias_reintegro']['valor'];
+			}
+		}
+
+
 	
 		if (isset($this->s__criterios_filtrado['mes']['valor'])!='')
 		{
@@ -80,9 +104,14 @@ class ci_listado_viaticos extends sicd_ci
 			}
 		}
 	
-		$report->set_parametro('idlocalidad_origen', 'S', $idlocalidad_origen);
+
+
+		$report->set_parametro('cantidad_total_dias', 'E', $cantidad_total_dias);
 		
-		$report->set_parametro('idlocalidad_destino', 'S', $idlocalidad_destino);
+		$report->set_parametro('cantidad_dias_disponible', 'E', $cantidad_dias_disponible);
+		$report->set_parametro('cantidad_dias_tomados', 'E', $cantidad_dias_tomados);
+		$report->set_parametro('cantidad_dias_reintegro', 'E', $cantidad_dias_reintegro);
+
 		$report->set_parametro('mes', 'S', $mes);
 		$report->set_parametro('nro_expediente', 'S', $nro_expediente);
 		
@@ -97,19 +126,37 @@ class ci_listado_viaticos extends sicd_ci
 		$report->set_conexion($db);	
 	}
 
-	function ajax__get_dato_filtro_idlocalidad_origen($idlocalidad_origen, toba_ajax_respuesta $respuesta)
+
+
+
+	function ajax__get_dato_filtro_cantidad_total_dias($cantidad_total_dias, toba_ajax_respuesta $respuesta)
 	{
-		$this->s__criterios_filtrado['idlocalidad_origen']['condicion'] =  'es_igual_a';
-		$this->s__criterios_filtrado['idlocalidad_origen']['valor'] =  $idlocalidad_origen;
-		$respuesta->set($idlocalidad_origen);	
+		$this->s__criterios_filtrado['cantidad_total_dias']['condicion'] =  'es_igual_a';
+		$this->s__criterios_filtrado['cantidad_total_dias']['valor'] =  $cantidad_total_dias;
+		$respuesta->set($cantidad_total_dias);	
+	}		
+
+	function ajax__get_dato_filtro_cantidad_dias_disponible($cantidad_dias_disponible, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['cantidad_dias_disponible']['condicion'] =  'es_igual_a';
+		$this->s__criterios_filtrado['cantidad_dias_disponible']['valor'] =  $cantidad_dias_disponible;
+		$respuesta->set($cantidad_total_dias);	
+	}		
+
+	function ajax__get_dato_filtro_cantidad_dias_tomados($cantidad_dias_tomados, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['cantidad_dias_tomados']['condicion'] =  'es_igual_a';
+		$this->s__criterios_filtrado['cantidad_dias_tomados']['valor'] =  $cantidad_dias_tomados;
+		$respuesta->set($cantidad_dias_tomados);	
+	}		
+	function ajax__get_dato_filtro_cantidad_dias_reintegro($cantidad_dias_reintegro, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['cantidad_dias_reintegro']['condicion'] =  'es_igual_a';
+		$this->s__criterios_filtrado['cantidad_dias_reintegro']['valor'] =  $cantidad_dias_reintegro;
+		$respuesta->set($cantidad_dias_reintegro);	
 	}	
 
-	function ajax__get_dato_filtro_idlocalidad_destino($idlocalidad_destino, toba_ajax_respuesta $respuesta)
-	{
-		$this->s__criterios_filtrado['idlocalidad_destino']['condicion'] =  'es_igual_a';
-		$this->s__criterios_filtrado['idlocalidad_destino']['valor'] =  $idlocalidad_destino;
-		$respuesta->set($idlocalidad_destino);	
-	}	
+		
 
 	function ajax__get_dato_filtro_mes($mes, toba_ajax_respuesta $respuesta)
 	{
