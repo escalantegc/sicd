@@ -42,7 +42,7 @@ class ci_personal_principal extends sicd_ci
 
 			if (strstr($mensaje_log, 'viatico_nro_expediente_idx'))
 			{
-				toba::notificacion()->agregar("El numero de expediente para el viatico que desea dar de alta ya esta registrado",'info');
+				toba::notificacion()->agregar("El numero de expediente para el viatico que desea dar de alta o modificar ya esta registrado",'info');
 			}			
 
 			if (strstr($mensaje_log, 'estudio_por_persona_pkey'))

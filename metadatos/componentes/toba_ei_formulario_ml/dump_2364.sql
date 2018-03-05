@@ -331,10 +331,10 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --carga_no_seteado
 	NULL, --carga_no_seteado_ocultar
 	'3', --edit_tamano
-	'3', --edit_maximo
+	'4', --edit_maximo
 	NULL, --edit_mascara
 	NULL, --edit_unidad
-	NULL, --edit_rango
+	'[0..999]', --edit_rango
 	NULL, --edit_filas
 	NULL, --edit_columnas
 	NULL, --edit_wrap

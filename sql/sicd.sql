@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.9
 -- Dumped by pg_dump version 9.5.9
 
--- Started on 2018-03-01 19:45:55 ART
+-- Started on 2018-03-05 18:58:17 ART
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -5665,7 +5665,7 @@ COPY apex_arbol_items_fotos (proyecto, usuario, foto_nombre, foto_nodos_visibles
 --
 
 COPY apex_checksum_proyectos (checksum, proyecto) FROM stdin;
-db70c7fe64c6179d3149f5bd358078cc1c5dd7f39caa95a97af16c3b560c2c2b	sicd
+010a91020d858745118d310795b59404a7d9902828a992c3952dd90214e58936	sicd
 \.
 
 
@@ -9676,13 +9676,13 @@ sicd	2376	\N	\N	\N	idnivel_estudio	\N	0	\N	100%	1	1	20	P	0	0	\N	0	0	1	1	\N	\N	\N
 sicd	2371	\N	\N	\N	idestudio	\N	0	\N	100%	1	1	20	P	0	0	\N	0	0	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N
 sicd	2305	\N	\N	\N	usuario	\N	0	\N	100%	0	0	\N	\N	0	1	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	1	300px	\N	\N	\N	\N
 sicd	2387	\N	\N	\N	idestudio,idnivel_estudio,idpersona	\N	0	\N	100%	0	0	\N	P	0	0	\N	0	0	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N
-sicd	2330	\N	\N	\N	idviatico	\N	0	\N	100%	1	1	10	P	0	0	\N	0	0	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	t	0	\N	\N
 sicd	2420	\N	\N	\N	idtipo_hora	\N	0	\N	100%	1	1	10	P	0	0	\N	0	0	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	t	0	\N	\N
 sicd	2349	\N	\N	\N	idtipo_detalle_viatico	\N	0	\N	100%	1	1	10	P	0	0	\N	0	0	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	t	0	\N	\N
 sicd	2396	\N	\N	\N	idpersona	\N	0	\N	100%	1	0	\N	P	0	0	\N	0	0	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N
 sicd	106000006	\N	\N	\N	idpersona	persona	0	\N	100%	1	0	\N	P	0	0	\N	0	0	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N
 sicd	106000010	\N	\N	\N	idcargo_por_persona	\N	0	\N	100%	1	0	10	P	0	0	NO existen personas con exceso en cargos	0	0	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	t	1	\N	\N
 sicd	106000009	\N	\N	\N	idviatico	\N	0	\N	100%	1	0	10	P	0	0	NO existen personas con exceso en los dias de viaticos	0	0	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	t	1	\N	\N
+sicd	2330	\N	\N	\N	idviatico	\N	0	\N	100%	1	0	10	P	0	0	\N	0	0	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	t	0	\N	\N
 \.
 
 
@@ -9772,14 +9772,14 @@ COPY apex_objeto_cuadro_col_cc (objeto_cuadro_cc, objeto_cuadro_proyecto, objeto
 5	toba_referencia	1707	361	1
 38	sicd	2326	839	1
 33	sicd	2330	869	1
-33	sicd	2330	871	1
 33	sicd	2330	872	1
-106000001	sicd	106000009	106000010	1
 106000001	sicd	106000009	106000012	1
 106000001	sicd	106000009	106000013	1
 106000003	sicd	106000010	106000014	1
-33	sicd	2330	868	1
 106000001	sicd	106000009	106000011	1
+33	sicd	2330	868	1
+106000001	sicd	106000009	106000010	1
+33	sicd	2330	871	1
 \.
 
 
@@ -12474,7 +12474,6 @@ sicd	2387	864	titulo	2	Titulo	ei-cuadro-col-tit	0	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\
 sicd	2387	865	entidad	3	Entidad	ei-cuadro-col-tit	4	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	2387	866	nivel_estudio	1	Nivel	ei-cuadro-col-tit	4	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	2330	844	nro_expediente	1	Nro expediente	ei-cuadro-col-tit	4	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
-sicd	2330	868	cantidad_dias_reintegro	4	Dias de Reintegro	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
 sicd	2330	869	cantidad_total_dias	2	Total dias	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
 sicd	2330	871	cantidad_dias_disponible	3	Dias disponibles	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
 sicd	2330	872	cantidad_dias_tomados	5	Dias tomados	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
@@ -12492,16 +12491,17 @@ sicd	2384	106000002	altura	4	Altura	ei-cuadro-col-tit	4	10%	1	\N	0	\N	\N	\N	\N	0
 sicd	2384	863	nombre	2	Nombre	ei-cuadro-col-tit	4	70%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000006	106000007	nro_documento	2	Nro documento	ei-cuadro-col-tit	0	80	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000006	106000004	correo	3	Correo	ei-cuadro-col-tit	4	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
-sicd	106000009	106000011	cantidad_total_dias	2	Total dias	ei-cuadro-col-tit	col-num-p1	22,5%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	106000009	106000011	cantidad_total_dias	2	Total dias	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	2330	868	cantidad_dias_reintegro	4	Dias reintegrados	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
 sicd	106000010	106000014	cantidad_horas	2	Cantidad horas	ei-cuadro-col-tit	col-num-p1	10%	1	\N	1	\N	\N	\N	\N	1	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000010	106000015	cargo	1	Cargo/Horas	ei-cuadro-col-tit	4	20%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000010	106000016	fecha_inicio	3	Inicio	ei-cuadro-col-tit	4	6%	8	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000010	106000017	fecha_fin	4	Fin	ei-cuadro-col-tit	4	6%	8	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
 sicd	106000010	106000018	observaciones	5	Observaciones	ei-cuadro-col-tit	4	58%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	0	\N	\N
-sicd	106000009	106000009	nro_expediente	1	Nro expediente	ei-cuadro-col-tit	4	10%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
-sicd	106000009	106000010	cantidad_dias_reintegro	4	Dias de Reintegro	ei-cuadro-col-tit	col-num-p1	22,5%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
-sicd	106000009	106000012	cantidad_dias_disponible	3	Dias disponibles	ei-cuadro-col-tit	col-num-p1	22,5%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
-sicd	106000009	106000013	cantidad_dias_tomados	5	Dias tomados	ei-cuadro-col-tit	col-num-p1	22,5%	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	106000009	106000009	nro_expediente	1	Nro expediente	ei-cuadro-col-tit	4	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	106000009	106000012	cantidad_dias_disponible	3	Dias disponibles	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	106000009	106000013	cantidad_dias_tomados	5	Dias tomados	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
+sicd	106000009	106000010	cantidad_dias_reintegro	4	Dias reintegrados	ei-cuadro-col-tit	col-num-p1	\N	1	\N	0	\N	\N	\N	\N	0	\N	0	\N	\N	\N	\N	\N	\N	\N	1	\N	\N
 \.
 
 
@@ -12635,14 +12635,12 @@ COPY apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, objeto_e
 22	2329	sicd	opciones	idlocalidad_origen	detalle_dias_viatico.idlocalidad_origen	Origen	\N	0	0	3	\N	0	ef_combo	get_localidad_origen	\N	\N	\N	3	\N	sicd	\N	idlocalidad_origen	localidad	1	--Seleccione--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 23	2329	sicd	opciones	idlocalidad_destino	detalle_dias_viatico.idlocalidad_destino	Destino	\N	0	0	4	\N	0	ef_combo	get_localidad_destino	\N	\N	\N	3	\N	sicd	\N	idlocalidad_destino	localidad	1	--Seleccione--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 106000002	106000002	sicd	opciones	idpersona	idpersona	Persona	\N	0	1	1	\N	0	ef_popup	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	100	\N	\N	\N	\N	\N	\N	106000002	sicd	0	width: 800,height: 600,scrollbars: yes	get_descripcion_persona_popup	dao	dao.php	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+106000001	2424	sicd	cadena	nro_expediente	nro_expediente	Nro Expediente	\N	0	1	2	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	10	10	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	--Todos--
+64	2424	sicd	opciones	mes	mes	Mes	\N	0	1	1	\N	0	ef_combo	get_listado_nivel_estudio	\N	\N	\N	\N	\N	sicd	1/1,2/2,3/3,4/4,5/5,6/6,7/7,8/8,9/9,10/10,11/11,12/12	\N	\N	1	--Todos--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 106000008	106000007	sicd	numero	nro_documento	nro_documento	Nro Documento	\N	0	1	2	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 106000006	106000007	sicd	cadena	persona	nombres||', '||apellido	Persona	\N	0	1	1	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 106000018	106000012	sicd	opciones	tipo	tipo	Tipo	\N	0	1	1	\N	0	ef_combo	\N	\N	\N	\N	\N	\N	sicd	cargo/Cargo,horas/Horas	\N	\N	1	--Todos--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N
-66	2424	sicd	opciones	idlocalidad_destino	idlocalidad_destino	Localidad Destino	\N	0	1	4	\N	0	ef_combo	get_listado_localidad	\N	\N	\N	3	\N	sicd	\N	localidad	localidad	1	--Todas--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-106000001	2424	sicd	cadena	nro_expediente	nro_expediente	Nro Expediente	\N	0	1	2	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	10	10	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	--Todos--
-64	2424	sicd	opciones	mes	mes	Mes	\N	0	1	1	\N	0	ef_combo	get_listado_nivel_estudio	\N	\N	\N	\N	\N	sicd	1/1,2/2,3/3,4/4,5/5,6/6,7/7,8/8,9/9,10/10,11/11,12/12	\N	\N	1	--Todos--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 67	2327	sicd	cadena	observaciones	observaciones	Observaciones	\N	0	0	6	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-62	2424	sicd	opciones	idlocalidad_origen	idlocalidad_origen	Localidad Origen	\N	0	1	3	\N	0	ef_combo	get_listado_localidad	\N	\N	\N	3	\N	sicd	\N	localidad	localidad	1	--Todas--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 106000013	106000012	sicd	numero	cantidad_horas	cantidad_horas	Cantidad Horas	\N	0	1	5	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 106000010	106000012	sicd	opciones	idtipo_cargo	cargo_por_persona.idtipo_cargo	Cargo	\N	0	1	2	\N	0	ef_combo	get_listado_tipo_cargo	\N	\N	\N	3	\N	sicd	\N	descripcion	descripcion	1	--Todos--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 106000014	106000012	sicd	fecha	fecha_inicio	fecha_inicio	Fecha Inicio	\N	0	1	6	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -12650,6 +12648,10 @@ COPY apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, objeto_e
 106000017	106000012	sicd	opciones	idtipo_hora	idtipo_hora	Tipo Hora	\N	0	1	3	\N	0	ef_combo	get_listado_tipo_hora	\N	\N	\N	3	\N	sicd	\N	descripcion	descripcion	1	--Todas--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 106000019	106000012	sicd	booleano	activo	activo	Activo	\N	0	1	8	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 106000020	106000012	sicd	booleano	historico	historico	Historico	\N	0	1	9	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+106000022	2424	sicd	numero	cantidad_dias_disponible	cantidad_dias_disponible	Cantidad dias disponibles	\N	0	1	4	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	3	3	\N	\N	[0..999]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+106000021	2424	sicd	numero	cantidad_total_dias	cantidad_total_dias	Cantidad total de dias	\N	0	1	3	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	3	3	\N	\N	[0..999]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+106000023	2424	sicd	numero	cantidad_dias_tomados	cantidad_dias_tomados	Cantidad dias tomados	\N	0	1	5	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	3	3	\N	\N	[0..999]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+106000024	2424	sicd	numero	cantidad_dias_reintegro	cantidad_dias_reintegro	Cantidad dias reintegrados	\N	0	1	6	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	3	3	\N	\N	[0..999]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -12659,7 +12661,7 @@ COPY apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, objeto_e
 -- Name: apex_objeto_ei_filtro_col_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
 
-SELECT pg_catalog.setval('apex_objeto_ei_filtro_col_seq', 106000020, true);
+SELECT pg_catalog.setval('apex_objeto_ei_filtro_col_seq', 106000024, true);
 
 
 --
@@ -13953,7 +13955,6 @@ COPY apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_formular
 5423	2331	sicd	idlocalidad_origen	ef_combo	idlocalidad_origen	0	0	5	Origen	\N	\N	0	1	\N	\N	\N	0	0	\N	0	0	get_localidad_origen	\N	\N	\N	3	\N	sicd	\N	idlocalidad_origen	localidad	\N	0	0	1	--Seleccione--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N
 5424	2331	sicd	idlocalidad_destino	ef_combo	idlocalidad_destino	0	0	6	Destino	\N	\N	0	1	\N	\N	\N	0	0	\N	0	0	get_localidad_destino	\N	\N	\N	3	\N	sicd	\N	idlocalidad_destino	localidad	\N	0	0	1	--Seleccione--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N
 5450	2331	sicd	mes	ef_combo	mes	1	0	4	Mes	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	sicd	1/1,2/2,3/3,4/4,5/5,6/6,7/7,8/8,9/9,10/10,11/11,12/12	\N	\N	\N	0	0	0	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N
-5475	2331	sicd	cantidad_dias_tomados	ef_editable_numero	cantidad_dias_tomados	0	0	9	Cantidad dias tomados	\N	\N	0	0	\N	\N	\N	0	0	0	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5482	2411	sicd	descripcion	ef_editable	descripcion	1	0	1	Descripcion	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	50	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5487	2411	sicd	cantidad_cargos	ef_editable_numero	cantidad_cargos	0	0	2	Cantidad cargos	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5497	2411	sicd	jerarquico	ef_checkbox	jerarquico	0	0	3	Jerarquico	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -13964,10 +13965,11 @@ COPY apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_formular
 5484	2417	sicd	maximo_horas	ef_editable_numero	maximo_horas	1	0	2	Maximo horas	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5465	2385	sicd	altura	ef_editable_numero	altura	0	0	5	Altura	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	[0..99999]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5466	2385	sicd	piso	ef_editable	piso	0	0	6	Piso	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	2	2	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-5474	2331	sicd	cantidad_dias_disponible	ef_editable_numero	cantidad_dias_disponible	0	0	8	Cantidad dias disponibles	\N	\N	0	0	\N	\N	\N	0	0	\N	1	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+5475	2331	sicd	cantidad_dias_tomados	ef_editable_numero	cantidad_dias_tomados	0	0	9	Cantidad dias tomados	\N	\N	0	0	\N	\N	\N	0	0	0	1	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	2	2	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5453	2368	sicd	idprovincia	ef_combo	idprovincia	1	0	2	Provincia	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	get_listado_provincia_cascada	\N	\N	\N	3	\N	sicd	\N	idprovincia	descripcion	idpais	0	0	1	--Seleccione--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N
-5449	2331	sicd	cantidad_total_dias	ef_editable_numero	cantidad_total_dias	1	0	7	Cantidad total de dias	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-5451	2331	sicd	cantidad_dias_reintegro	ef_editable_numero	cantidad_dias_reintegro	0	0	10	Cantidad dias reintegrados	\N	\N	0	0	\N	\N	\N	0	0	0	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+5474	2331	sicd	cantidad_dias_disponible	ef_editable_numero	cantidad_dias_disponible	0	0	8	Cantidad dias disponibles	\N	\N	0	0	\N	\N	\N	0	0	\N	1	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	2	2	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+5449	2331	sicd	cantidad_total_dias	ef_editable_numero	cantidad_total_dias	1	0	7	Cantidad total de dias	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	2	2	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+5451	2331	sicd	cantidad_dias_reintegro	ef_editable_numero	cantidad_dias_reintegro	0	0	10	Cantidad dias reintegrados	\N	\N	0	0	\N	\N	\N	0	0	0	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	2	2	\N	\N	[0..999]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5485	2417	sicd	cantidad_permitida	ef_editable_numero	cantidad_permitida	1	0	3	Cantidad permitida	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5413	2328	sicd	cantidad_horas	ef_editable_numero	cantidad_horas	1	1	6	Cantidad horas	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	2	\N	\N	[0..99]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5414	2328	sicd	fecha_inicio	ef_editable_fecha	fecha_inicio	0	0	7	Fecha inicio	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -14029,7 +14031,6 @@ COPY apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_formular
 5411	2323	sicd	numero	ef_editable	numero	1	0	2	Numero	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	15	15	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5444	2364	sicd	fecha_desde	ef_editable_fecha	fecha_desde	1	0	3	Desde	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5445	2364	sicd	fecha_hasta	ef_editable_fecha	fecha_hasta	1	0	4	Hasta	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-5446	2364	sicd	cantidad_dias	ef_editable_numero	cantidad_dias	1	0	5	Dias	\N	\N	0	0	\N	1	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	3	3	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5447	2364	sicd	idlocalidad_origen	ef_combo	idlocalidad_origen	1	0	1	Origen	\N	\N	0	0	\N	0	\N	0	0	\N	0	0	get_localidad_origen	\N	\N	\N	3	\N	sicd	\N	idlocalidad_origen	localidad	\N	0	0	0	\N	0	300	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	get_descripcion_localidad	dao	dao.php	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N
 5448	2364	sicd	idlocalidad_destino	ef_combo	idlocalidad_destino	1	0	2	Destino	\N	\N	0	0	\N	0	\N	0	0	\N	0	0	get_localidad_destino	\N	\N	\N	3	\N	sicd	\N	idlocalidad_destino	localidad	\N	0	0	0	--Seleccione--	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	get_descripcion_localidad	dao	dao.php	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	13	\N
 5473	2364	sicd	medio_dia	ef_checkbox	medio_dia	0	0	6	Medio Dia	\N	\N	0	0	\N	0	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	1	0	Sí	No	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -14037,6 +14038,7 @@ COPY apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_formular
 5467	2385	sicd	depto	ef_editable	depto	0	0	7	Depto	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	2	2	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5472	2377	sicd	orden	ef_editable_numero	orden	0	0	3	Orden	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	[0..999]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5477	2405	sicd	cantidad_max_dias_viatico_mensual	ef_editable_numero	cantidad_max_dias_viatico_mensual	1	0	1	Cantidad max dias viatico mensual	\N	\N	0	0	\N	\N	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	2	2	\N	\N	[0..99]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+5446	2364	sicd	cantidad_dias	ef_editable_numero	cantidad_dias	1	0	5	Dias	\N	\N	0	0	\N	1	\N	0	0	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0	\N	\N	3	4	\N	\N	[0..999]	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -15027,8 +15029,6 @@ sicd	106000014	106000010	borrar	\N	1	0	¿Esta seguro de borrar el registro?	\N	a
 sicd	106000015	106000010	historico	\N	1	0	¿Esta seguro de pasar al historico?	\N	apex	historia.png	0	\N	3	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	0	0
 sicd	106000016	106000010	nuevo	&Nuevo	1	0	\N	\N	apex	consulta_php	0	\N	4	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	0	0
 sicd	106000017	106000010	seleccion		1	0	\N	\N	apex	doc.gif	0	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	0	0
-sicd	106000012	106000009	borrar	\N	1	0	¿Esta seguro de borrar el registro?	\N	apex	borrar	0	\N	2	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	0	0
-sicd	106000013	106000009	seleccion		1	0	\N	\N	apex	doc.gif	0	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
 sicd	106000018	106000012	cancelar	&Limpiar	0	\N	\N	ei-boton-limpiar	apex	limpiar.png	0	\N	2	\N	0	0	\N	cargado	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
 sicd	106000019	106000012	filtrar	&Generar	1	\N	\N	ei-boton-filtrar	apex	filtrar.png	1	\N	1	\N	0	1	\N	cargado,no_cargado	V	\N	\N	\N	\N	0	\N	\N	\N	vista_jasperreports	0	1
 \.
@@ -15040,7 +15040,7 @@ sicd	106000019	106000012	filtrar	&Generar	1	\N	\N	ei-boton-filtrar	apex	filtrar.
 -- Name: apex_objeto_eventos_seq; Type: SEQUENCE SET; Schema: desarrollo; Owner: postgres
 --
 
-SELECT pg_catalog.setval('apex_objeto_eventos_seq', 106000019, true);
+SELECT pg_catalog.setval('apex_objeto_eventos_seq', 106000020, true);
 
 
 --
@@ -15334,8 +15334,8 @@ sicd	2408	\N	\N	90%	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 sicd	2413	\N	\N	90%	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 sicd	106000001	\N	\N	90%	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 sicd	106000003	\N	\N	90%	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-sicd	106000008	\N	\N	90%	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 sicd	106000011	\N	\N	\N	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+sicd	106000008	\N	\N	90%	\N	\N	\N	0	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -17639,6 +17639,38 @@ COPY apex_log_objeto (log_objeto, momento, usuario, objeto_proyecto, objeto, ite
 106000143	2018-03-01 19:42:00	toba	sicd	106000009	\N	\N
 106000144	2018-03-01 19:42:35	toba	sicd	106000009	\N	\N
 106000145	2018-03-01 19:43:58	toba	sicd	106000009	\N	\N
+106000146	2018-03-01 20:42:04	toba	sicd	106000009	\N	\N
+106000147	2018-03-01 20:42:29	toba	sicd	106000009	\N	\N
+106000148	2018-03-01 20:42:50	toba	sicd	106000009	\N	\N
+106000149	2018-03-01 20:43:05	toba	sicd	106000008	\N	\N
+106000150	2018-03-01 20:43:27	toba	sicd	106000008	\N	\N
+106000151	2018-03-01 20:46:11	toba	sicd	2330	\N	\N
+106000152	2018-03-01 20:47:28	toba	sicd	2330	\N	\N
+106000153	2018-03-01 20:52:44	toba	sicd	2424	\N	\N
+106000154	2018-03-01 20:56:59	toba	sicd	2424	\N	\N
+106000155	2018-03-01 20:58:45	toba	sicd	2424	\N	\N
+106000156	2018-03-01 20:58:59	toba	sicd	2424	\N	\N
+106000157	2018-03-01 20:59:05	toba	sicd	2424	\N	\N
+106000158	2018-03-01 20:59:14	toba	sicd	2424	\N	\N
+106000159	2018-03-01 20:59:24	toba	sicd	2424	\N	\N
+106000160	2018-03-01 21:19:36	toba	sicd	2424	\N	\N
+106000161	2018-03-01 21:27:49	toba	sicd	2424	\N	\N
+106000162	2018-03-02 17:30:55	toba	sicd	2424	\N	\N
+106000163	2018-03-02 17:36:25	toba	sicd	2424	\N	\N
+106000164	2018-03-02 17:36:48	toba	sicd	2424	\N	\N
+106000165	2018-03-02 17:36:49	toba	sicd	2424	\N	\N
+106000166	2018-03-02 18:06:43	toba	sicd	106000009	\N	\N
+106000167	2018-03-02 18:19:29	toba	sicd	2364	\N	\N
+106000168	2018-03-05 17:25:23	toba	sicd	2331	\N	\N
+106000169	2018-03-05 17:34:01	toba	sicd	2331	\N	\N
+106000170	2018-03-05 17:40:34	toba	sicd	2331	\N	\N
+106000171	2018-03-05 17:40:47	toba	sicd	2331	\N	\N
+106000172	2018-03-05 17:40:53	toba	sicd	2331	\N	\N
+106000173	2018-03-05 17:41:07	toba	sicd	2331	\N	\N
+106000174	2018-03-05 17:56:47	toba	sicd	2364	\N	\N
+106000175	2018-03-05 17:58:04	toba	sicd	2331	\N	\N
+106000176	2018-03-05 17:58:50	toba	sicd	2331	\N	\N
+106000177	2018-03-05 18:07:15	toba	sicd	2330	\N	\N
 \.
 
 
@@ -17648,7 +17680,7 @@ COPY apex_log_objeto (log_objeto, momento, usuario, objeto_proyecto, objeto, ite
 -- Name: apex_log_objeto_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
 
-SELECT pg_catalog.setval('apex_log_objeto_seq', 106000145, true);
+SELECT pg_catalog.setval('apex_log_objeto_seq', 106000177, true);
 
 
 --
@@ -17726,7 +17758,15 @@ COPY apex_sesion_browser (sesion_browser, proyecto, usuario, ingreso, egreso, ob
 106000028	toba_editor	toba	2018-02-27 20:31:29	\N	\N	am68mcoah0ecemtatb321p0h26	127.0.0.1	\N
 106000029	sicd	toba	2018-02-27 20:31:33	\N	\N	am68mcoah0ecemtatb321p0h26	127.0.0.1	\N
 106000030	toba_editor	toba	2018-03-01 17:39:06	\N	\N	r9rgimlbavdamj1v7c4qeil8p6	127.0.0.1	\N
-106000031	sicd	toba	2018-03-01 17:39:10	\N	\N	r9rgimlbavdamj1v7c4qeil8p6	127.0.0.1	\N
+106000031	sicd	toba	2018-03-01 17:39:10	2018-03-01 20:34:22	Se exedio la ventana temporal (30 m.)	r9rgimlbavdamj1v7c4qeil8p6	127.0.0.1	\N
+106000032	toba_editor	toba	2018-03-01 20:34:33	\N	\N	2b7fb97krmufdsegakbgbmr111	127.0.0.1	\N
+106000033	sicd	toba	2018-03-01 20:34:37	\N	\N	2b7fb97krmufdsegakbgbmr111	127.0.0.1	\N
+106000034	toba_editor	toba	2018-03-02 17:13:39	\N	\N	vram2c774f8avtj6nq4kkm7l34	127.0.0.1	\N
+106000035	sicd	toba	2018-03-02 17:13:42	\N	\N	vram2c774f8avtj6nq4kkm7l34	127.0.0.1	\N
+106000036	toba_editor	toba	2018-03-02 18:04:56	\N	\N	qg7jdec5mqf5asjbbri3fuhc91	127.0.0.1	\N
+106000037	sicd	toba	2018-03-02 18:05:10	\N	\N	qg7jdec5mqf5asjbbri3fuhc91	127.0.0.1	\N
+106000038	toba_editor	toba	2018-03-05 17:23:30	\N	\N	94g32904lcui0ula6gkguah4m2	127.0.0.1	\N
+106000039	sicd	toba	2018-03-05 17:23:33	\N	\N	94g32904lcui0ula6gkguah4m2	127.0.0.1	\N
 \.
 
 
@@ -17736,7 +17776,7 @@ COPY apex_sesion_browser (sesion_browser, proyecto, usuario, ingreso, egreso, ob
 -- Name: apex_sesion_browser_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
 
-SELECT pg_catalog.setval('apex_sesion_browser_seq', 106000031, true);
+SELECT pg_catalog.setval('apex_sesion_browser_seq', 106000039, true);
 
 
 --
@@ -19047,6 +19087,173 @@ sicd	106002097	web	sicd	2	\N	2018-03-01 19:41:44	0.172714948654170003
 sicd	106002099	web	sicd	2	\N	2018-03-01 19:42:03	0.144615173339840003
 sicd	106002102	web	sicd	2	\N	2018-03-01 19:42:37	0.176660060882569997
 sicd	106002107	web	sicd	2	\N	2018-03-01 19:44:01	0.168601989746090003
+sicd	106002108	web	sicd	3491	\N	2018-03-01 19:48:22	0.230030059814449989
+sicd	106002109	web	sicd	3491	\N	2018-03-01 19:48:23	7.39008688926699975
+sicd	106002110	web	sicd	3466	\N	2018-03-01 19:49:00	0.179563999176029998
+sicd	106002111	web	sicd	3466	\N	2018-03-01 19:49:03	0.225306034088129992
+sicd	106002112	web	sicd	3466	\N	2018-03-01 19:49:04	0.187087059021000007
+sicd	106002113	web	sicd	3466	\N	2018-03-01 19:49:07	0.182656049728390002
+sicd	106002114	web	sicd	3466	\N	2018-03-01 19:49:21	0.275568962097170023
+sicd	106002115	web	sicd	3491	\N	2018-03-01 19:49:25	0.129506111145020003
+sicd	106002116	web	sicd	3491	\N	2018-03-01 19:49:27	0.382344961166380004
+sicd	106002117	web	sicd	106000001	\N	2018-03-01 19:49:37	0.133841037750240005
+sicd	106002118	web	sicd	106000002	\N	2018-03-01 19:49:39	0.116352081298829999
+sicd	106002119	web	sicd	106000001	\N	2018-03-01 19:49:41	0.152845144271850003
+sicd	106002120	web	sicd	106000001	\N	2018-03-01 19:49:42	0.529546022415160023
+sicd	106002121	web	sicd	3491	\N	2018-03-01 20:34:22	0.258354902267459996
+sicd	106002131	web	sicd	3491	\N	2018-03-01 20:34:37	0.108396053314209997
+sicd	106002132	web	sicd	3466	\N	2018-03-01 20:35:11	0.177047967910769988
+sicd	106002133	web	sicd	3466	\N	2018-03-01 20:35:14	0.237232923507690013
+sicd	106002134	web	sicd	3466	\N	2018-03-01 20:35:25	0.204488039016719997
+sicd	106002135	web	sicd	3466	\N	2018-03-01 20:35:26	0.235332965850829995
+sicd	106002136	web	sicd	3466	\N	2018-03-01 20:35:33	0.194010019302369996
+sicd	106002137	web	sicd	3466	\N	2018-03-01 20:35:36	0.260776042938229979
+sicd	106002138	web	sicd	3466	\N	2018-03-01 20:35:38	0.226921081542969999
+sicd	106002145	web	sicd	3466	\N	2018-03-01 20:40:39	0.213762998580930008
+sicd	106002146	web	sicd	2	\N	2018-03-01 20:41:46	0.199993133544919988
+sicd	106002152	web	sicd	3466	\N	2018-03-01 20:42:06	0.217434167861940003
+sicd	106002153	web	sicd	2	\N	2018-03-01 20:42:07	0.170011043548579988
+sicd	106002155	web	sicd	2	\N	2018-03-01 20:42:31	0.184565067291259988
+sicd	106002160	web	sicd	2	\N	2018-03-01 20:42:53	0.161245822906490005
+sicd	106002163	web	sicd	2	\N	2018-03-01 20:43:08	0.151746034622189996
+sicd	106002164	web	sicd	2	\N	2018-03-01 20:43:23	0.156862974166870006
+sicd	106002170	web	sicd	3466	\N	2018-03-01 20:45:49	0.206211090087889987
+sicd	106002171	web	sicd	3466	\N	2018-03-01 20:45:53	0.252281188964839975
+sicd	106002172	web	sicd	3466	\N	2018-03-01 20:45:54	0.247381210327149992
+sicd	106002178	web	sicd	3466	\N	2018-03-01 20:48:17	0.224797010421749988
+sicd	106002185	web	sicd	3491	\N	2018-03-01 20:52:47	0.160022974014280006
+sicd	106002186	web	sicd	3491	\N	2018-03-01 20:56:16	0.154356956481930013
+sicd	106002187	web	sicd	3491	\N	2018-03-01 20:56:51	0.114446878433229995
+sicd	106002189	web	sicd	3491	\N	2018-03-01 20:57:02	0.138800859451290004
+sicd	106002190	web	sicd	3491	\N	2018-03-01 20:58:04	0.139987945556639987
+sicd	106002201	web	sicd	3491	\N	2018-03-01 20:59:26	0.108241796493529996
+sicd	106002202	web	sicd	3491	\N	2018-03-01 21:13:11	0.208606004714970011
+sicd	106002204	web	sicd	2	\N	2018-03-01 21:19:38	0.150821924209590008
+sicd	106002205	web	sicd	3491	\N	2018-03-01 21:25:48	0.184442996978759988
+sicd	106002206	web	sicd	3491	\N	2018-03-01 21:25:49	0.113255023956299994
+sicd	106002207	web	sicd	3491	\N	2018-03-01 21:26:05	0.0772600173950200031
+sicd	106002208	web	sicd	3491	\N	2018-03-01 21:26:10	\N
+sicd	106002209	web	sicd	3491	\N	2018-03-01 21:27:03	0.122854948043819995
+sicd	106002210	web	sicd	3491	\N	2018-03-01 21:27:08	0.122506141662600002
+sicd	106002211	web	sicd	3491	\N	2018-03-01 21:27:09	6.13596701622009988
+sicd	106002213	web	sicd	3491	\N	2018-03-01 21:28:20	0.112525939941409997
+sicd	106002214	web	sicd	3491	\N	2018-03-01 21:28:24	0.236912012100220004
+sicd	106002215	web	sicd	3491	\N	2018-03-01 21:29:28	0.126157999038700008
+sicd	106002216	web	sicd	3491	\N	2018-03-01 21:29:30	0.19266414642334001
+sicd	106002223	web	sicd	2	\N	2018-03-02 17:13:42	1.92807316780089999
+sicd	106002224	web	sicd	3491	\N	2018-03-02 17:18:27	0.36044597625732
+sicd	106002225	web	sicd	3491	\N	2018-03-02 17:18:42	0.114898920059199994
+sicd	106002226	web	sicd	3491	\N	2018-03-02 17:19:03	0.115648031234740004
+sicd	106002227	web	sicd	3484	\N	2018-03-02 17:19:18	0.259577989578250012
+sicd	106002228	web	sicd	3491	\N	2018-03-02 17:19:21	0.114784002304079993
+sicd	106002229	web	sicd	3491	\N	2018-03-02 17:19:45	0.131392955780029991
+sicd	106002230	web	sicd	3491	\N	2018-03-02 17:20:05	0.0800979137420649995
+sicd	106002237	web	sicd	3491	\N	2018-03-02 17:24:28	\N
+sicd	106002238	web	sicd	3491	\N	2018-03-02 17:24:39	\N
+sicd	106002239	web	sicd	3491	\N	2018-03-02 17:24:53	\N
+sicd	106002240	web	sicd	3491	\N	2018-03-02 17:25:06	0.105681180953980006
+sicd	106002241	web	sicd	3491	\N	2018-03-02 17:25:35	0.111547946929930003
+sicd	106002242	web	sicd	3491	\N	2018-03-02 17:26:18	0.11062908172607
+sicd	106002243	web	sicd	3491	\N	2018-03-02 17:27:34	0.11165690422058
+sicd	106002244	web	sicd	3491	\N	2018-03-02 17:27:39	0.0981340408325200031
+sicd	106002245	web	sicd	3491	\N	2018-03-02 17:29:35	\N
+sicd	106002246	web	sicd	3491	\N	2018-03-02 17:29:43	0.114326953887939994
+sicd	106002247	web	sicd	3491	\N	2018-03-02 17:29:49	4.03322196006770017
+sicd	106002248	web	sicd	3491	\N	2018-03-02 17:29:53	3.06896090507509989
+sicd	106002256	web	sicd	3491	\N	2018-03-02 17:31:52	0.141541957855220002
+sicd	106002257	web	sicd	3491	\N	2018-03-02 17:31:56	0.0839319229125980032
+sicd	106002258	web	sicd	3491	\N	2018-03-02 17:32:02	0.158318042755130006
+sicd	106002259	web	sicd	3491	\N	2018-03-02 17:32:02	0.21876406669616999
+sicd	106002260	web	sicd	3491	\N	2018-03-02 17:32:07	0.0798261165618899954
+sicd	106002263	web	sicd	3491	\N	2018-03-02 17:33:04	0.0902340412139889941
+sicd	106002264	web	sicd	3491	\N	2018-03-02 17:33:11	0.264875888824460004
+sicd	106002265	web	sicd	3491	\N	2018-03-02 17:35:17	0.123414039611820001
+sicd	106002266	web	sicd	3491	\N	2018-03-02 17:35:19	0.222596168518069987
+sicd	106002267	web	sicd	3491	\N	2018-03-02 17:36:07	0.11070799827576
+sicd	106002268	web	sicd	3491	\N	2018-03-02 17:36:09	0.242563962936400007
+sicd	106002278	web	sicd	3491	\N	2018-03-02 17:36:50	0.0824911594390869973
+sicd	106002285	web	sicd	2	\N	2018-03-02 18:05:11	2.00986385345460006
+sicd	106002286	web	sicd	3466	\N	2018-03-02 18:05:15	1.0219330787659
+sicd	106002287	web	sicd	3466	\N	2018-03-02 18:05:18	0.644162893295289973
+sicd	106002288	web	sicd	3466	\N	2018-03-02 18:05:20	0.23260498046875
+sicd	106002289	web	sicd	3466	\N	2018-03-02 18:06:26	0.189496994018549997
+sicd	106002290	web	sicd	2	\N	2018-03-02 18:06:27	0.106144905090330005
+sicd	106002293	web	sicd	3466	\N	2018-03-02 18:13:20	0.195033073425289999
+sicd	106002294	web	sicd	3466	\N	2018-03-02 18:13:23	0.183645963668819995
+sicd	106002295	web	sicd	3466	\N	2018-03-02 18:13:28	0.20282983779906999
+sicd	106002296	web	sicd	3466	\N	2018-03-02 18:13:30	0.258676052093510023
+sicd	106002305	web	sicd	2	\N	2018-03-05 17:23:33	3.2394161224364999
+sicd	106002306	web	sicd	3466	\N	2018-03-05 17:24:47	1.04072403907780009
+sicd	106002307	web	sicd	3466	\N	2018-03-05 17:24:50	0.553024053573609953
+sicd	106002308	web	sicd	3466	\N	2018-03-05 17:24:52	0.250761985778809982
+sicd	106002309	web	sicd	3466	\N	2018-03-05 17:24:54	0.265414953231810025
+sicd	106002312	web	sicd	3466	\N	2018-03-05 17:25:26	0.192811012268069987
+sicd	106002313	web	sicd	3466	\N	2018-03-05 17:25:27	0.181648015975950011
+sicd	106002315	web	sicd	3466	\N	2018-03-05 17:32:27	0.476960897445679988
+sicd	106002316	web	sicd	3466	\N	2018-03-05 17:32:29	0.18395614624022999
+sicd	106002319	web	sicd	3466	\N	2018-03-05 17:34:08	0.175693988800049994
+sicd	106002320	web	sicd	3466	\N	2018-03-05 17:34:10	0.216496944427490012
+sicd	106002321	web	sicd	3466	\N	2018-03-05 17:39:33	1.0101680755614999
+sicd	106002322	web	sicd	3466	\N	2018-03-05 17:39:35	0.210828065872189996
+sicd	106002323	web	sicd	3466	\N	2018-03-05 17:39:47	0.852787017822269955
+sicd	106002324	web	sicd	3466	\N	2018-03-05 17:39:49	0.214447021484379996
+sicd	106002327	web	sicd	3466	\N	2018-03-05 17:40:36	0.637859106063839998
+sicd	106002328	web	sicd	3466	\N	2018-03-05 17:40:38	0.25127196311951
+sicd	106002333	web	sicd	3466	\N	2018-03-05 17:40:58	0.277066946029659977
+sicd	106002334	web	sicd	3466	\N	2018-03-05 17:41:00	0.186203956603999993
+sicd	106002343	web	sicd	3466	\N	2018-03-05 17:58:53	0.520064830780029963
+sicd	106002344	web	sicd	3466	\N	2018-03-05 17:58:55	0.204169988632200011
+sicd	106002345	web	sicd	3466	\N	2018-03-05 18:04:30	0.236737012863160012
+sicd	106002346	web	sicd	3466	\N	2018-03-05 18:04:33	0.173072814941409997
+sicd	106002347	web	sicd	3466	\N	2018-03-05 18:04:34	0.196038007736209996
+sicd	106002348	web	sicd	3466	\N	2018-03-05 18:04:35	0.220353126525879989
+sicd	106002349	web	sicd	3466	\N	2018-03-05 18:04:41	0.584815025329589955
+sicd	106002350	web	sicd	3466	\N	2018-03-05 18:04:45	0.864192962646480045
+sicd	106002351	web	sicd	3466	\N	2018-03-05 18:05:44	0.473448038101200008
+sicd	106002352	web	sicd	3466	\N	2018-03-05 18:05:48	0.210981130599979999
+sicd	106002356	web	sicd	3466	\N	2018-03-05 18:07:17	\N
+sicd	106002357	web	sicd	3466	\N	2018-03-05 18:07:53	0.185078144073489992
+sicd	106002358	web	sicd	3466	\N	2018-03-05 18:07:55	0.19844889640808
+sicd	106002359	web	sicd	3466	\N	2018-03-05 18:07:56	0.227978944778439996
+sicd	106002360	web	sicd	3466	\N	2018-03-05 18:09:09	0.777100086212159979
+sicd	106002361	web	sicd	3466	\N	2018-03-05 18:09:12	0.663976907730099986
+sicd	106002362	web	sicd	3466	\N	2018-03-05 18:09:49	0.21831893920897999
+sicd	106002363	web	sicd	3466	\N	2018-03-05 18:09:50	0.245618104934689996
+sicd	106002364	web	sicd	3466	\N	2018-03-05 18:10:33	0.19593286514281999
+sicd	106002365	web	sicd	3466	\N	2018-03-05 18:11:06	0.209936857223509993
+sicd	106002366	web	sicd	3466	\N	2018-03-05 18:11:08	0.203432083129880009
+sicd	106002371	web	sicd	3466	\N	2018-03-05 18:34:13	0.249125003814700013
+sicd	106002372	web	sicd	3466	\N	2018-03-05 18:34:17	0.220023155212400012
+sicd	106002373	web	sicd	3466	\N	2018-03-05 18:34:19	0.197842836379999998
+sicd	106002374	web	sicd	3466	\N	2018-03-05 18:34:21	0.207978963851929988
+sicd	106002375	web	sicd	3466	\N	2018-03-05 18:37:57	0.786192893981930041
+sicd	106002376	web	sicd	3466	\N	2018-03-05 18:38:01	0.461703062057500002
+sicd	106002377	web	sicd	3466	\N	2018-03-05 18:38:37	0.223592996597290011
+sicd	106002378	web	sicd	3466	\N	2018-03-05 18:38:40	0.182674884796139997
+sicd	106002379	web	sicd	3466	\N	2018-03-05 18:38:59	0.782721996307370049
+sicd	106002380	web	sicd	3466	\N	2018-03-05 18:40:52	0.77734398841857999
+sicd	106002381	web	sicd	3466	\N	2018-03-05 18:43:46	0.325462102890009986
+sicd	106002382	web	sicd	3466	\N	2018-03-05 18:43:48	0.210013151168819995
+sicd	106002383	web	sicd	3466	\N	2018-03-05 18:44:34	0.219498872756960006
+sicd	106002384	web	sicd	3466	\N	2018-03-05 18:44:35	0.214488029479979997
+sicd	106002385	web	sicd	3466	\N	2018-03-05 18:44:38	0.180482149124150004
+sicd	106002386	web	sicd	3466	\N	2018-03-05 18:44:40	0.205363988876339998
+sicd	106002387	web	sicd	3466	\N	2018-03-05 18:44:48	0.246432781219480007
+sicd	106002388	web	sicd	3466	\N	2018-03-05 18:44:50	0.182368040084840005
+sicd	106002389	web	sicd	3466	\N	2018-03-05 18:44:52	0.20204019546509
+sicd	106002390	web	sicd	3466	\N	2018-03-05 18:44:53	0.283802032470700016
+sicd	106002391	web	sicd	3466	\N	2018-03-05 18:46:35	0.173842906951899995
+sicd	106002392	web	sicd	3466	\N	2018-03-05 18:46:37	0.214632034301760005
+sicd	106002393	web	sicd	3466	\N	2018-03-05 18:46:39	0.208546161651609996
+sicd	106002394	web	sicd	3466	\N	2018-03-05 18:46:40	0.215312957763669988
+sicd	106002397	web	sicd	3466	\N	2018-03-05 18:50:41	0.208541870117189998
+sicd	106002398	web	sicd	3466	\N	2018-03-05 18:50:43	0.221564769744869994
+sicd	106002399	web	sicd	3491	\N	2018-03-05 18:56:03	0.125617980957030001
+sicd	106002400	web	sicd	3491	\N	2018-03-05 18:56:05	8.05501008033749955
+sicd	106002401	web	sicd	106000001	\N	2018-03-05 18:57:25	0.138420104980469999
+sicd	106002402	web	sicd	106000002	\N	2018-03-05 18:57:28	0.138639926910400002
+sicd	106002403	web	sicd	106000001	\N	2018-03-05 18:57:29	0.18726587295531999
+sicd	106002404	web	sicd	106000001	\N	2018-03-05 18:57:30	0.777261018753049981
 \.
 
 
@@ -20304,6 +20511,166 @@ sicd	106000031	sicd	106002097	127.0.0.1
 sicd	106000031	sicd	106002099	127.0.0.1
 sicd	106000031	sicd	106002102	127.0.0.1
 sicd	106000031	sicd	106002107	127.0.0.1
+sicd	106000031	sicd	106002108	127.0.0.1
+sicd	106000031	sicd	106002109	127.0.0.1
+sicd	106000031	sicd	106002110	127.0.0.1
+sicd	106000031	sicd	106002111	127.0.0.1
+sicd	106000031	sicd	106002112	127.0.0.1
+sicd	106000031	sicd	106002113	127.0.0.1
+sicd	106000031	sicd	106002114	127.0.0.1
+sicd	106000031	sicd	106002115	127.0.0.1
+sicd	106000031	sicd	106002116	127.0.0.1
+sicd	106000031	sicd	106002117	127.0.0.1
+sicd	106000031	sicd	106002118	127.0.0.1
+sicd	106000031	sicd	106002119	127.0.0.1
+sicd	106000031	sicd	106002120	127.0.0.1
+sicd	106000033	sicd	106002131	127.0.0.1
+sicd	106000033	sicd	106002132	127.0.0.1
+sicd	106000033	sicd	106002133	127.0.0.1
+sicd	106000033	sicd	106002134	127.0.0.1
+sicd	106000033	sicd	106002135	127.0.0.1
+sicd	106000033	sicd	106002136	127.0.0.1
+sicd	106000033	sicd	106002137	127.0.0.1
+sicd	106000033	sicd	106002138	127.0.0.1
+sicd	106000033	sicd	106002145	127.0.0.1
+sicd	106000033	sicd	106002146	127.0.0.1
+sicd	106000033	sicd	106002152	127.0.0.1
+sicd	106000033	sicd	106002153	127.0.0.1
+sicd	106000033	sicd	106002155	127.0.0.1
+sicd	106000033	sicd	106002160	127.0.0.1
+sicd	106000033	sicd	106002163	127.0.0.1
+sicd	106000033	sicd	106002164	127.0.0.1
+sicd	106000033	sicd	106002170	127.0.0.1
+sicd	106000033	sicd	106002171	127.0.0.1
+sicd	106000033	sicd	106002172	127.0.0.1
+sicd	106000033	sicd	106002178	127.0.0.1
+sicd	106000033	sicd	106002185	127.0.0.1
+sicd	106000033	sicd	106002186	127.0.0.1
+sicd	106000033	sicd	106002187	127.0.0.1
+sicd	106000033	sicd	106002189	127.0.0.1
+sicd	106000033	sicd	106002190	127.0.0.1
+sicd	106000033	sicd	106002201	127.0.0.1
+sicd	106000033	sicd	106002202	127.0.0.1
+sicd	106000033	sicd	106002204	127.0.0.1
+sicd	106000033	sicd	106002205	127.0.0.1
+sicd	106000033	sicd	106002206	127.0.0.1
+sicd	106000033	sicd	106002207	127.0.0.1
+sicd	106000033	sicd	106002209	127.0.0.1
+sicd	106000033	sicd	106002210	127.0.0.1
+sicd	106000033	sicd	106002211	127.0.0.1
+sicd	106000033	sicd	106002213	127.0.0.1
+sicd	106000033	sicd	106002214	127.0.0.1
+sicd	106000033	sicd	106002215	127.0.0.1
+sicd	106000033	sicd	106002216	127.0.0.1
+sicd	106000035	sicd	106002223	127.0.0.1
+sicd	106000035	sicd	106002224	127.0.0.1
+sicd	106000035	sicd	106002225	127.0.0.1
+sicd	106000035	sicd	106002226	127.0.0.1
+sicd	106000035	sicd	106002227	127.0.0.1
+sicd	106000035	sicd	106002228	127.0.0.1
+sicd	106000035	sicd	106002229	127.0.0.1
+sicd	106000035	sicd	106002230	127.0.0.1
+sicd	106000035	sicd	106002240	127.0.0.1
+sicd	106000035	sicd	106002241	127.0.0.1
+sicd	106000035	sicd	106002242	127.0.0.1
+sicd	106000035	sicd	106002243	127.0.0.1
+sicd	106000035	sicd	106002244	127.0.0.1
+sicd	106000035	sicd	106002246	127.0.0.1
+sicd	106000035	sicd	106002247	127.0.0.1
+sicd	106000035	sicd	106002248	127.0.0.1
+sicd	106000035	sicd	106002256	127.0.0.1
+sicd	106000035	sicd	106002257	127.0.0.1
+sicd	106000035	sicd	106002258	127.0.0.1
+sicd	106000035	sicd	106002259	127.0.0.1
+sicd	106000035	sicd	106002260	127.0.0.1
+sicd	106000035	sicd	106002263	127.0.0.1
+sicd	106000035	sicd	106002264	127.0.0.1
+sicd	106000035	sicd	106002265	127.0.0.1
+sicd	106000035	sicd	106002266	127.0.0.1
+sicd	106000035	sicd	106002267	127.0.0.1
+sicd	106000035	sicd	106002268	127.0.0.1
+sicd	106000035	sicd	106002278	127.0.0.1
+sicd	106000037	sicd	106002285	127.0.0.1
+sicd	106000037	sicd	106002286	127.0.0.1
+sicd	106000037	sicd	106002287	127.0.0.1
+sicd	106000037	sicd	106002288	127.0.0.1
+sicd	106000037	sicd	106002289	127.0.0.1
+sicd	106000037	sicd	106002290	127.0.0.1
+sicd	106000037	sicd	106002293	127.0.0.1
+sicd	106000037	sicd	106002294	127.0.0.1
+sicd	106000037	sicd	106002295	127.0.0.1
+sicd	106000037	sicd	106002296	127.0.0.1
+sicd	106000039	sicd	106002305	127.0.0.1
+sicd	106000039	sicd	106002306	127.0.0.1
+sicd	106000039	sicd	106002307	127.0.0.1
+sicd	106000039	sicd	106002308	127.0.0.1
+sicd	106000039	sicd	106002309	127.0.0.1
+sicd	106000039	sicd	106002312	127.0.0.1
+sicd	106000039	sicd	106002313	127.0.0.1
+sicd	106000039	sicd	106002315	127.0.0.1
+sicd	106000039	sicd	106002316	127.0.0.1
+sicd	106000039	sicd	106002319	127.0.0.1
+sicd	106000039	sicd	106002320	127.0.0.1
+sicd	106000039	sicd	106002321	127.0.0.1
+sicd	106000039	sicd	106002322	127.0.0.1
+sicd	106000039	sicd	106002323	127.0.0.1
+sicd	106000039	sicd	106002324	127.0.0.1
+sicd	106000039	sicd	106002327	127.0.0.1
+sicd	106000039	sicd	106002328	127.0.0.1
+sicd	106000039	sicd	106002333	127.0.0.1
+sicd	106000039	sicd	106002334	127.0.0.1
+sicd	106000039	sicd	106002343	127.0.0.1
+sicd	106000039	sicd	106002344	127.0.0.1
+sicd	106000039	sicd	106002345	127.0.0.1
+sicd	106000039	sicd	106002346	127.0.0.1
+sicd	106000039	sicd	106002347	127.0.0.1
+sicd	106000039	sicd	106002348	127.0.0.1
+sicd	106000039	sicd	106002349	127.0.0.1
+sicd	106000039	sicd	106002350	127.0.0.1
+sicd	106000039	sicd	106002351	127.0.0.1
+sicd	106000039	sicd	106002352	127.0.0.1
+sicd	106000039	sicd	106002357	127.0.0.1
+sicd	106000039	sicd	106002358	127.0.0.1
+sicd	106000039	sicd	106002359	127.0.0.1
+sicd	106000039	sicd	106002360	127.0.0.1
+sicd	106000039	sicd	106002361	127.0.0.1
+sicd	106000039	sicd	106002362	127.0.0.1
+sicd	106000039	sicd	106002363	127.0.0.1
+sicd	106000039	sicd	106002364	127.0.0.1
+sicd	106000039	sicd	106002365	127.0.0.1
+sicd	106000039	sicd	106002366	127.0.0.1
+sicd	106000039	sicd	106002371	127.0.0.1
+sicd	106000039	sicd	106002372	127.0.0.1
+sicd	106000039	sicd	106002373	127.0.0.1
+sicd	106000039	sicd	106002374	127.0.0.1
+sicd	106000039	sicd	106002375	127.0.0.1
+sicd	106000039	sicd	106002376	127.0.0.1
+sicd	106000039	sicd	106002377	127.0.0.1
+sicd	106000039	sicd	106002378	127.0.0.1
+sicd	106000039	sicd	106002379	127.0.0.1
+sicd	106000039	sicd	106002380	127.0.0.1
+sicd	106000039	sicd	106002381	127.0.0.1
+sicd	106000039	sicd	106002382	127.0.0.1
+sicd	106000039	sicd	106002383	127.0.0.1
+sicd	106000039	sicd	106002384	127.0.0.1
+sicd	106000039	sicd	106002385	127.0.0.1
+sicd	106000039	sicd	106002386	127.0.0.1
+sicd	106000039	sicd	106002387	127.0.0.1
+sicd	106000039	sicd	106002388	127.0.0.1
+sicd	106000039	sicd	106002389	127.0.0.1
+sicd	106000039	sicd	106002390	127.0.0.1
+sicd	106000039	sicd	106002391	127.0.0.1
+sicd	106000039	sicd	106002392	127.0.0.1
+sicd	106000039	sicd	106002393	127.0.0.1
+sicd	106000039	sicd	106002394	127.0.0.1
+sicd	106000039	sicd	106002397	127.0.0.1
+sicd	106000039	sicd	106002398	127.0.0.1
+sicd	106000039	sicd	106002399	127.0.0.1
+sicd	106000039	sicd	106002400	127.0.0.1
+sicd	106000039	sicd	106002401	127.0.0.1
+sicd	106000039	sicd	106002402	127.0.0.1
+sicd	106000039	sicd	106002403	127.0.0.1
+sicd	106000039	sicd	106002404	127.0.0.1
 \.
 
 
@@ -25917,6 +26284,972 @@ sicd	106002107	3	item	Procesando Servicio	1519944241.02987409
 sicd	106002107	4	item	Resumen toba_editor	1519944241.08831906
 sicd	106002107	5	item	Finalizando Solicitud	1519944241.0912621
 sicd	106002107	6	item	Fin medición	1519944241.1124599
+sicd	106002108	0	item	Inicio medición	1519944501.38867593
+sicd	106002108	1	item	Inicio Solicitud	1519944501.42331791
+sicd	106002108	2	item	Procesando Eventos	1519944501.57772207
+sicd	106002108	3	item	Procesando Servicio	1519944501.57775903
+sicd	106002108	4	item	Resumen toba_editor	1519944501.61317706
+sicd	106002108	5	item	Finalizando Solicitud	1519944501.61870599
+sicd	106002108	6	item	Fin medición	1519944501.64215899
+sicd	106002110	0	item	Inicio medición	1519944539.66009402
+sicd	106002110	1	item	Inicio Solicitud	1519944539.69595003
+sicd	106002110	2	item	Procesando Eventos	1519944539.81258607
+sicd	106002110	3	item	Procesando Servicio	1519944539.81262112
+sicd	106002110	4	item	Resumen toba_editor	1519944539.83638096
+sicd	106002110	5	item	Finalizando Solicitud	1519944539.83965802
+sicd	106002110	6	item	Fin medición	1519944539.85347605
+sicd	106002111	0	item	Inicio medición	1519944542.6840179
+sicd	106002111	1	item	Inicio Solicitud	1519944542.71502304
+sicd	106002111	2	item	Procesando Eventos	1519944542.84217
+sicd	106002111	3	item	Procesando Servicio	1519944542.8703239
+sicd	106002111	4	item	Resumen toba_editor	1519944542.90655589
+sicd	106002111	5	item	Finalizando Solicitud	1519944542.90932393
+sicd	106002111	6	item	Fin medición	1519944542.93137002
+sicd	106002112	0	item	Inicio medición	1519944544.42702198
+sicd	106002112	1	item	Inicio Solicitud	1519944544.45933604
+sicd	106002112	2	item	Procesando Eventos	1519944544.5448091
+sicd	106002112	3	item	Procesando Servicio	1519944544.56787491
+sicd	106002112	4	item	Resumen toba_editor	1519944544.60995293
+sicd	106002112	5	item	Finalizando Solicitud	1519944544.61410904
+sicd	106002112	6	item	Fin medición	1519944544.631984
+sicd	106002113	0	item	Inicio medición	1519944547.05913997
+sicd	106002113	1	item	Inicio Solicitud	1519944547.09505701
+sicd	106002113	2	item	Procesando Eventos	1519944547.18268204
+sicd	106002113	3	item	Procesando Servicio	1519944547.21123409
+sicd	106002113	4	item	Resumen toba_editor	1519944547.23856592
+sicd	106002113	5	item	Finalizando Solicitud	1519944547.24179602
+sicd	106002113	6	item	Fin medición	1519944547.26505899
+sicd	106002114	0	item	Inicio medición	1519944561.10085893
+sicd	106002114	1	item	Inicio Solicitud	1519944561.13382697
+sicd	106002114	2	item	Procesando Eventos	1519944561.27123189
+sicd	106002114	3	item	Procesando Servicio	1519944561.34370208
+sicd	106002114	4	item	Resumen toba_editor	1519944561.37202811
+sicd	106002114	5	item	Finalizando Solicitud	1519944561.37642789
+sicd	106002114	6	item	Fin medición	1519944561.40033007
+sicd	106002115	0	item	Inicio medición	1519944565.245713
+sicd	106002115	1	item	Inicio Solicitud	1519944565.29067302
+sicd	106002115	2	item	Procesando Eventos	1519944565.35544801
+sicd	106002115	3	item	Procesando Servicio	1519944565.3554759
+sicd	106002115	4	item	Resumen toba_editor	1519944565.37241697
+sicd	106002115	5	item	Finalizando Solicitud	1519944565.37521911
+sicd	106002115	6	item	Fin medición	1519944565.38887405
+sicd	106002117	0	item	Inicio medición	1519944576.77574801
+sicd	106002117	1	item	Inicio Solicitud	1519944576.812397
+sicd	106002117	2	item	Procesando Eventos	1519944576.89634204
+sicd	106002117	3	item	Procesando Servicio	1519944576.89637494
+sicd	106002117	4	item	Resumen toba_editor	1519944576.90641809
+sicd	106002117	5	item	Finalizando Solicitud	1519944576.90958905
+sicd	106002117	6	item	Fin medición	1519944576.93353701
+sicd	106002118	0	item	Inicio medición	1519944579.1709609
+sicd	106002118	1	item	Inicio Solicitud	1519944579.22248507
+sicd	106002118	2	item	Procesando Eventos	1519944579.26100302
+sicd	106002118	3	item	Procesando Servicio	1519944579.26103902
+sicd	106002118	4	item	Resumen toba_editor	1519944579.28345704
+sicd	106002118	5	item	Finalizando Solicitud	1519944579.28731298
+sicd	106002118	6	item	Fin medición	1519944579.310256
+sicd	106002131	0	item	Inicio medición	1519947277.13717389
+sicd	106002131	1	item	Inicio Solicitud	1519947277.19285393
+sicd	106002131	2	item	Procesando Eventos	1519947277.22299504
+sicd	106002131	3	item	Procesando Servicio	1519947277.22302294
+sicd	106002131	4	item	Resumen toba_editor	1519947277.2402401
+sicd	106002131	5	item	Finalizando Solicitud	1519947277.24556994
+sicd	106002131	6	item	Fin medición	1519947277.26961589
+sicd	106002132	0	item	Inicio medición	1519947311.16980004
+sicd	106002132	1	item	Inicio Solicitud	1519947311.20014405
+sicd	106002132	2	item	Procesando Eventos	1519947311.32121205
+sicd	106002132	3	item	Procesando Servicio	1519947311.32124305
+sicd	106002132	4	item	Resumen toba_editor	1519947311.34351897
+sicd	106002132	5	item	Finalizando Solicitud	1519947311.34684801
+sicd	106002132	6	item	Fin medición	1519947311.38045907
+sicd	106002133	0	item	Inicio medición	1519947314.37906909
+sicd	106002133	1	item	Inicio Solicitud	1519947314.42047405
+sicd	106002133	2	item	Procesando Eventos	1519947314.55473495
+sicd	106002133	3	item	Procesando Servicio	1519947314.57923102
+sicd	106002133	4	item	Resumen toba_editor	1519947314.61315703
+sicd	106002133	5	item	Finalizando Solicitud	1519947314.61630201
+sicd	106002133	6	item	Fin medición	1519947314.63653803
+sicd	106002134	0	item	Inicio medición	1519947324.90713191
+sicd	106002134	1	item	Inicio Solicitud	1519947324.93985605
+sicd	106002134	2	item	Procesando Eventos	1519947325.04730701
+sicd	106002134	3	item	Procesando Servicio	1519947325.06898308
+sicd	106002134	4	item	Resumen toba_editor	1519947325.10823202
+sicd	106002134	5	item	Finalizando Solicitud	1519947325.11161995
+sicd	106002134	6	item	Fin medición	1519947325.12734294
+sicd	106002135	0	item	Inicio medición	1519947326.08832908
+sicd	106002135	1	item	Inicio Solicitud	1519947326.12793708
+sicd	106002135	2	item	Procesando Eventos	1519947326.24879503
+sicd	106002135	3	item	Procesando Servicio	1519947326.28039908
+sicd	106002135	4	item	Resumen toba_editor	1519947326.31982207
+sicd	106002135	5	item	Finalizando Solicitud	1519947326.32366204
+sicd	106002135	6	item	Fin medición	1519947326.34816003
+sicd	106002136	0	item	Inicio medición	1519947333.45129395
+sicd	106002136	1	item	Inicio Solicitud	1519947333.48632598
+sicd	106002136	2	item	Procesando Eventos	1519947333.56971908
+sicd	106002136	3	item	Procesando Servicio	1519947333.60299611
+sicd	106002136	4	item	Resumen toba_editor	1519947333.64116406
+sicd	106002136	5	item	Finalizando Solicitud	1519947333.64530396
+sicd	106002136	6	item	Fin medición	1519947333.65971398
+sicd	106002137	0	item	Inicio medición	1519947335.50570893
+sicd	106002137	1	item	Inicio Solicitud	1519947335.5454669
+sicd	106002137	2	item	Procesando Eventos	1519947335.71786499
+sicd	106002137	3	item	Procesando Servicio	1519947335.73357797
+sicd	106002137	4	item	Resumen toba_editor	1519947335.76321006
+sicd	106002137	5	item	Finalizando Solicitud	1519947335.76648498
+sicd	106002137	6	item	Fin medición	1519947335.7940619
+sicd	106002138	0	item	Inicio medición	1519947337.59078598
+sicd	106002138	1	item	Inicio Solicitud	1519947337.62636304
+sicd	106002138	2	item	Procesando Eventos	1519947337.74585104
+sicd	106002138	3	item	Procesando Servicio	1519947337.77967811
+sicd	106002138	4	item	Resumen toba_editor	1519947337.81472397
+sicd	106002138	5	item	Finalizando Solicitud	1519947337.81770706
+sicd	106002138	6	item	Fin medición	1519947337.83705497
+sicd	106002145	0	item	Inicio medición	1519947638.73152804
+sicd	106002145	1	item	Inicio Solicitud	1519947638.76595712
+sicd	106002145	2	item	Procesando Eventos	1519947638.88404298
+sicd	106002145	3	item	Procesando Servicio	1519947638.90176105
+sicd	106002145	4	item	Resumen toba_editor	1519947638.94191694
+sicd	106002145	5	item	Finalizando Solicitud	1519947638.94529104
+sicd	106002145	6	item	Fin medición	1519947638.96744394
+sicd	106002146	0	item	Inicio medición	1519947705.55401993
+sicd	106002146	1	item	Inicio Solicitud	1519947705.6041801
+sicd	106002146	2	item	Procesando Eventos	1519947705.67722511
+sicd	106002146	3	item	Procesando Servicio	1519947705.67726302
+sicd	106002146	4	item	Resumen toba_editor	1519947705.750741
+sicd	106002146	5	item	Finalizando Solicitud	1519947705.75401306
+sicd	106002146	6	item	Fin medición	1519947705.77980995
+sicd	106002152	0	item	Inicio medición	1519947725.75323391
+sicd	106002152	1	item	Inicio Solicitud	1519947725.81078196
+sicd	106002152	2	item	Procesando Eventos	1519947725.94437695
+sicd	106002152	3	item	Procesando Servicio	1519947725.94440389
+sicd	106002152	4	item	Resumen toba_editor	1519947725.96712995
+sicd	106002152	5	item	Finalizando Solicitud	1519947725.97066808
+sicd	106002152	6	item	Fin medición	1519947725.9912219
+sicd	106002153	0	item	Inicio medición	1519947726.67262697
+sicd	106002153	1	item	Inicio Solicitud	1519947726.71326089
+sicd	106002153	2	item	Procesando Eventos	1519947726.79225802
+sicd	106002153	3	item	Procesando Servicio	1519947726.79230309
+sicd	106002153	4	item	Resumen toba_editor	1519947726.83945799
+sicd	106002153	5	item	Finalizando Solicitud	1519947726.84263802
+sicd	106002153	6	item	Fin medición	1519947726.85851502
+sicd	106002155	0	item	Inicio medición	1519947751.18259001
+sicd	106002155	1	item	Inicio Solicitud	1519947751.22003388
+sicd	106002155	2	item	Procesando Eventos	1519947751.31789303
+sicd	106002155	3	item	Procesando Servicio	1519947751.31791806
+sicd	106002155	4	item	Resumen toba_editor	1519947751.36257195
+sicd	106002155	5	item	Finalizando Solicitud	1519947751.36715508
+sicd	106002155	6	item	Fin medición	1519947751.39326096
+sicd	106002160	0	item	Inicio medición	1519947772.88180709
+sicd	106002160	1	item	Inicio Solicitud	1519947772.92551994
+sicd	106002160	2	item	Procesando Eventos	1519947772.99079394
+sicd	106002160	3	item	Procesando Servicio	1519947772.99081898
+sicd	106002160	4	item	Resumen toba_editor	1519947773.03928304
+sicd	106002160	5	item	Finalizando Solicitud	1519947773.04305291
+sicd	106002160	6	item	Fin medición	1519947773.06071901
+sicd	106002163	0	item	Inicio medición	1519947788.14831805
+sicd	106002163	1	item	Inicio Solicitud	1519947788.18447208
+sicd	106002163	2	item	Procesando Eventos	1519947788.25238895
+sicd	106002163	3	item	Procesando Servicio	1519947788.25242496
+sicd	106002163	4	item	Resumen toba_editor	1519947788.2964859
+sicd	106002163	5	item	Finalizando Solicitud	1519947788.30006409
+sicd	106002163	6	item	Fin medición	1519947788.31545305
+sicd	106002164	0	item	Inicio medición	1519947802.69200397
+sicd	106002164	1	item	Inicio Solicitud	1519947802.72702503
+sicd	106002164	2	item	Procesando Eventos	1519947802.80136991
+sicd	106002164	3	item	Procesando Servicio	1519947802.80139709
+sicd	106002164	4	item	Resumen toba_editor	1519947802.84336305
+sicd	106002164	5	item	Finalizando Solicitud	1519947802.84886694
+sicd	106002164	6	item	Fin medición	1519947802.87146711
+sicd	106002170	0	item	Inicio medición	1519947948.98848701
+sicd	106002170	1	item	Inicio Solicitud	1519947949.02451396
+sicd	106002170	2	item	Procesando Eventos	1519947949.16680694
+sicd	106002170	3	item	Procesando Servicio	1519947949.16684103
+sicd	106002170	4	item	Resumen toba_editor	1519947949.19052911
+sicd	106002170	5	item	Finalizando Solicitud	1519947949.1946981
+sicd	106002170	6	item	Fin medición	1519947949.20944691
+sicd	106002171	0	item	Inicio medición	1519947952.96560693
+sicd	106002171	1	item	Inicio Solicitud	1519947953.00344896
+sicd	106002171	2	item	Procesando Eventos	1519947953.15145707
+sicd	106002171	3	item	Procesando Servicio	1519947953.17969894
+sicd	106002171	4	item	Resumen toba_editor	1519947953.21479392
+sicd	106002171	5	item	Finalizando Solicitud	1519947953.21788812
+sicd	106002171	6	item	Fin medición	1519947953.23213696
+sicd	106002172	0	item	Inicio medición	1519947954.2518599
+sicd	106002172	1	item	Inicio Solicitud	1519947954.28908896
+sicd	106002172	2	item	Procesando Eventos	1519947954.40797806
+sicd	106002172	3	item	Procesando Servicio	1519947954.43291807
+sicd	106002172	4	item	Resumen toba_editor	1519947954.49571395
+sicd	106002172	5	item	Finalizando Solicitud	1519947954.49924111
+sicd	106002172	6	item	Fin medición	1519947954.5208571
+sicd	106002178	0	item	Inicio medición	1519948096.53840995
+sicd	106002178	1	item	Inicio Solicitud	1519948096.57275891
+sicd	106002178	2	item	Procesando Eventos	1519948096.69006991
+sicd	106002178	3	item	Procesando Servicio	1519948096.72395992
+sicd	106002178	4	item	Resumen toba_editor	1519948096.75750804
+sicd	106002178	5	item	Finalizando Solicitud	1519948096.76320696
+sicd	106002178	6	item	Fin medición	1519948096.77980089
+sicd	106002186	0	item	Inicio medición	1519948575.43979311
+sicd	106002186	1	item	Inicio Solicitud	1519948575.4708941
+sicd	106002186	2	item	Procesando Eventos	1519948575.581846
+sicd	106002186	3	item	Procesando Servicio	1519948575.58187103
+sicd	106002186	4	item	Resumen toba_editor	1519948575.59091997
+sicd	106002186	5	item	Finalizando Solicitud	1519948575.59415007
+sicd	106002186	6	item	Fin medición	1519948575.65936494
+sicd	106002187	0	item	Inicio medición	1519948610.8827281
+sicd	106002187	1	item	Inicio Solicitud	1519948610.91912103
+sicd	106002187	2	item	Procesando Eventos	1519948610.97979307
+sicd	106002187	3	item	Procesando Servicio	1519948610.97982907
+sicd	106002187	4	item	Resumen toba_editor	1519948610.99313402
+sicd	106002187	5	item	Finalizando Solicitud	1519948610.99717498
+sicd	106002187	6	item	Fin medición	1519948611.01460409
+sicd	106002189	0	item	Inicio medición	1519948621.6722331
+sicd	106002189	1	item	Inicio Solicitud	1519948621.71110892
+sicd	106002189	2	item	Procesando Eventos	1519948621.79543805
+sicd	106002189	3	item	Procesando Servicio	1519948621.79546404
+sicd	106002189	4	item	Resumen toba_editor	1519948621.80730796
+sicd	106002189	5	item	Finalizando Solicitud	1519948621.81103396
+sicd	106002189	6	item	Fin medición	1519948621.82726598
+sicd	106002190	0	item	Inicio medición	1519948683.68083811
+sicd	106002190	1	item	Inicio Solicitud	1519948683.71748996
+sicd	106002190	2	item	Procesando Eventos	1519948683.80242109
+sicd	106002190	3	item	Procesando Servicio	1519948683.80244589
+sicd	106002190	4	item	Resumen toba_editor	1519948683.81732988
+sicd	106002190	5	item	Finalizando Solicitud	1519948683.82082605
+sicd	106002190	6	item	Fin medición	1519948683.8722291
+sicd	106002201	0	item	Inicio medición	1519948765.98981309
+sicd	106002201	1	item	Inicio Solicitud	1519948766.02192092
+sicd	106002201	2	item	Procesando Eventos	1519948766.08555007
+sicd	106002201	3	item	Procesando Servicio	1519948766.0855751
+sicd	106002201	4	item	Resumen toba_editor	1519948766.09481001
+sicd	106002201	5	item	Finalizando Solicitud	1519948766.09805489
+sicd	106002201	6	item	Fin medición	1519948766.12031603
+sicd	106002202	0	item	Inicio medición	1519949590.63884711
+sicd	106002202	1	item	Inicio Solicitud	1519949590.67545009
+sicd	106002202	2	item	Procesando Eventos	1519949590.81523705
+sicd	106002202	3	item	Procesando Servicio	1519949590.81527805
+sicd	106002202	4	item	Resumen toba_editor	1519949590.84218597
+sicd	106002202	5	item	Finalizando Solicitud	1519949590.84745312
+sicd	106002202	6	item	Fin medición	1519949590.86891294
+sicd	106002204	0	item	Inicio medición	1519949978.28297901
+sicd	106002204	1	item	Inicio Solicitud	1519949978.3186841
+sicd	106002204	2	item	Procesando Eventos	1519949978.37280703
+sicd	106002204	3	item	Procesando Servicio	1519949978.37283492
+sicd	106002204	4	item	Resumen toba_editor	1519949978.43069696
+sicd	106002204	5	item	Finalizando Solicitud	1519949978.43380094
+sicd	106002204	6	item	Fin medición	1519949978.4601531
+sicd	106002205	0	item	Inicio medición	1519950347.44523907
+sicd	106002205	1	item	Inicio Solicitud	1519950347.55802989
+sicd	106002205	2	item	Procesando Eventos	1519950347.6159699
+sicd	106002205	3	item	Procesando Servicio	1519950347.61599493
+sicd	106002205	4	item	Resumen toba_editor	1519950347.62639499
+sicd	106002205	5	item	Finalizando Solicitud	1519950347.62968206
+sicd	106002205	6	item	Fin medición	1519950347.6600101
+sicd	106002207	0	item	Inicio medición	1519950365.43507099
+sicd	106002207	1	item	Inicio Solicitud	1519950365.46785688
+sicd	106002207	2	item	Procesando Eventos	1519950365.49914289
+sicd	106002207	3	item	Procesando Servicio	1519950365.49917507
+sicd	106002207	4	item	Resumen toba_editor	1519950365.50925493
+sicd	106002207	5	item	Finalizando Solicitud	1519950365.51233101
+sicd	106002207	6	item	Fin medición	1519950365.52638412
+sicd	106002209	0	item	Inicio medición	1519950423.01309896
+sicd	106002209	1	item	Inicio Solicitud	1519950423.04846191
+sicd	106002209	2	item	Procesando Eventos	1519950423.1166079
+sicd	106002209	3	item	Procesando Servicio	1519950423.1166451
+sicd	106002209	4	item	Resumen toba_editor	1519950423.13169003
+sicd	106002209	5	item	Finalizando Solicitud	1519950423.1359539
+sicd	106002209	6	item	Fin medición	1519950423.15102005
+sicd	106002210	0	item	Inicio medición	1519950427.6078589
+sicd	106002210	1	item	Inicio Solicitud	1519950427.63812089
+sicd	106002210	2	item	Procesando Eventos	1519950427.71307397
+sicd	106002210	3	item	Procesando Servicio	1519950427.713099
+sicd	106002210	4	item	Resumen toba_editor	1519950427.72698808
+sicd	106002210	5	item	Finalizando Solicitud	1519950427.73036504
+sicd	106002210	6	item	Fin medición	1519950427.81771898
+sicd	106002213	0	item	Inicio medición	1519950500.08387709
+sicd	106002213	1	item	Inicio Solicitud	1519950500.1176641
+sicd	106002213	2	item	Procesando Eventos	1519950500.18293309
+sicd	106002213	3	item	Procesando Servicio	1519950500.18296099
+sicd	106002213	4	item	Resumen toba_editor	1519950500.19347
+sicd	106002213	5	item	Finalizando Solicitud	1519950500.19640303
+sicd	106002213	6	item	Fin medición	1519950500.22027707
+sicd	106002215	0	item	Inicio medición	1519950568.41532707
+sicd	106002215	1	item	Inicio Solicitud	1519950568.46785808
+sicd	106002215	2	item	Procesando Eventos	1519950568.52271509
+sicd	106002215	3	item	Procesando Servicio	1519950568.52275491
+sicd	106002215	4	item	Resumen toba_editor	1519950568.53760695
+sicd	106002215	5	item	Finalizando Solicitud	1519950568.54148507
+sicd	106002215	6	item	Fin medición	1519950568.55568099
+sicd	106002223	0	item	Inicio medición	1520021621.8707099
+sicd	106002223	1	item	Inicio Solicitud	1520021622.29610705
+sicd	106002223	2	item	Procesando Eventos	1520021623.08645105
+sicd	106002223	3	item	Procesando Servicio	1520021623.08656001
+sicd	106002223	4	item	Resumen toba_editor	1520021623.79594207
+sicd	106002223	5	item	Finalizando Solicitud	1520021623.79878306
+sicd	106002223	6	item	Fin medición	1520021623.97361898
+sicd	106002224	0	item	Inicio medición	1520021906.64492202
+sicd	106002224	1	item	Inicio Solicitud	1520021906.67877698
+sicd	106002224	2	item	Procesando Eventos	1520021906.76615191
+sicd	106002224	3	item	Procesando Servicio	1520021906.76617694
+sicd	106002224	4	item	Resumen toba_editor	1520021907.00222898
+sicd	106002224	5	item	Finalizando Solicitud	1520021907.00536799
+sicd	106002224	6	item	Fin medición	1520021907.02786207
+sicd	106002225	0	item	Inicio medición	1520021921.54471803
+sicd	106002225	1	item	Inicio Solicitud	1520021921.57894611
+sicd	106002225	2	item	Procesando Eventos	1520021921.64731312
+sicd	106002225	3	item	Procesando Servicio	1520021921.64733791
+sicd	106002225	4	item	Resumen toba_editor	1520021921.65676308
+sicd	106002225	5	item	Finalizando Solicitud	1520021921.65961695
+sicd	106002225	6	item	Fin medición	1520021921.68321204
+sicd	106002227	0	item	Inicio medición	1520021958.41132212
+sicd	106002227	1	item	Inicio Solicitud	1520021958.44387698
+sicd	106002227	2	item	Procesando Eventos	1520021958.50815296
+sicd	106002227	3	item	Procesando Servicio	1520021958.50818205
+sicd	106002227	4	item	Resumen toba_editor	1520021958.66822195
+sicd	106002227	5	item	Finalizando Solicitud	1520021958.67090011
+sicd	106002227	6	item	Fin medición	1520021958.69386601
+sicd	106002228	0	item	Inicio medición	1520021960.48161602
+sicd	106002228	1	item	Inicio Solicitud	1520021960.51440001
+sicd	106002228	2	item	Procesando Eventos	1520021960.58052397
+sicd	106002228	3	item	Procesando Servicio	1520021960.58054805
+sicd	106002228	4	item	Resumen toba_editor	1520021960.5934391
+sicd	106002228	5	item	Finalizando Solicitud	1520021960.59640002
+sicd	106002228	6	item	Fin medición	1520021960.61746192
+sicd	106002240	0	item	Inicio medición	1520022306.39947891
+sicd	106002240	1	item	Inicio Solicitud	1520022306.43468595
+sicd	106002240	2	item	Procesando Eventos	1520022306.49211311
+sicd	106002240	3	item	Procesando Servicio	1520022306.49214005
+sicd	106002240	4	item	Resumen toba_editor	1520022306.50231004
+sicd	106002240	5	item	Finalizando Solicitud	1520022306.50516009
+sicd	106002240	6	item	Fin medición	1520022306.56300402
+sicd	106002241	0	item	Inicio medición	1520022334.82194304
+sicd	106002241	1	item	Inicio Solicitud	1520022334.85751295
+sicd	106002241	2	item	Procesando Eventos	1520022334.92116404
+sicd	106002241	3	item	Procesando Servicio	1520022334.92118907
+sicd	106002241	4	item	Resumen toba_editor	1520022334.93065906
+sicd	106002241	5	item	Finalizando Solicitud	1520022334.93349099
+sicd	106002241	6	item	Fin medición	1520022335.018718
+sicd	106002242	0	item	Inicio medición	1520022377.72797203
+sicd	106002242	1	item	Inicio Solicitud	1520022377.76195407
+sicd	106002242	2	item	Procesando Eventos	1520022377.82606602
+sicd	106002242	3	item	Procesando Servicio	1520022377.82609105
+sicd	106002242	4	item	Resumen toba_editor	1520022377.83530807
+sicd	106002242	5	item	Finalizando Solicitud	1520022377.83860111
+sicd	106002242	6	item	Fin medición	1520022377.85359597
+sicd	106002243	0	item	Inicio medición	1520022453.93766308
+sicd	106002243	1	item	Inicio Solicitud	1520022453.972157
+sicd	106002243	2	item	Procesando Eventos	1520022454.03668594
+sicd	106002243	3	item	Procesando Servicio	1520022454.03671288
+sicd	106002243	4	item	Resumen toba_editor	1520022454.04653502
+sicd	106002243	5	item	Finalizando Solicitud	1520022454.04931998
+sicd	106002243	6	item	Fin medición	1520022454.07372904
+sicd	106002246	0	item	Inicio medición	1520022583.41721511
+sicd	106002246	1	item	Inicio Solicitud	1520022583.45511293
+sicd	106002246	2	item	Procesando Eventos	1520022583.51861
+sicd	106002246	3	item	Procesando Servicio	1520022583.5186491
+sicd	106002246	4	item	Resumen toba_editor	1520022583.52869892
+sicd	106002246	5	item	Finalizando Solicitud	1520022583.53154206
+sicd	106002246	6	item	Fin medición	1520022583.55231404
+sicd	106002256	0	item	Inicio medición	1520022712.45861006
+sicd	106002256	1	item	Inicio Solicitud	1520022712.49321389
+sicd	106002256	2	item	Procesando Eventos	1520022712.58660293
+sicd	106002256	3	item	Procesando Servicio	1520022712.58663011
+sicd	106002256	4	item	Resumen toba_editor	1520022712.59689999
+sicd	106002256	5	item	Finalizando Solicitud	1520022712.60015202
+sicd	106002256	6	item	Fin medición	1520022712.62239695
+sicd	106002257	0	item	Inicio medición	1520022716.459342
+sicd	106002257	1	item	Inicio Solicitud	1520022716.49327803
+sicd	106002257	2	item	Procesando Eventos	1520022716.53067088
+sicd	106002257	3	item	Procesando Servicio	1520022716.53725195
+sicd	106002257	4	item	Resumen toba_editor	1520022716.54053497
+sicd	106002257	5	item	Finalizando Solicitud	1520022716.54327393
+sicd	106002257	6	item	Fin medición	1520022716.64550495
+sicd	106002259	0	item	Inicio medición	1520022722.21299291
+sicd	106002259	1	item	Inicio Solicitud	1520022722.35377789
+sicd	106002259	2	item	Procesando Eventos	1520022722.41978502
+sicd	106002259	3	item	Procesando Servicio	1520022722.42584395
+sicd	106002259	4	item	Resumen toba_editor	1520022722.42895794
+sicd	106002259	5	item	Finalizando Solicitud	1520022722.43175697
+sicd	106002259	6	item	Fin medición	1520022722.44567394
+sicd	106002260	0	item	Inicio medición	1520022726.77408099
+sicd	106002260	1	item	Inicio Solicitud	1520022726.80579901
+sicd	106002260	2	item	Procesando Eventos	1520022726.840523
+sicd	106002260	3	item	Procesando Servicio	1520022726.84666395
+sicd	106002260	4	item	Resumen toba_editor	1520022726.85039592
+sicd	106002260	5	item	Finalizando Solicitud	1520022726.85390711
+sicd	106002260	6	item	Fin medición	1520022726.86799312
+sicd	106002263	0	item	Inicio medición	1520022783.680825
+sicd	106002263	1	item	Inicio Solicitud	1520022783.7184999
+sicd	106002263	2	item	Procesando Eventos	1520022783.75547099
+sicd	106002263	3	item	Procesando Servicio	1520022783.75549507
+sicd	106002263	4	item	Resumen toba_editor	1520022783.76697493
+sicd	106002263	5	item	Finalizando Solicitud	1520022783.77105904
+sicd	106002263	6	item	Fin medición	1520022783.79117799
+sicd	106002265	0	item	Inicio medición	1520022916.60759497
+sicd	106002265	1	item	Inicio Solicitud	1520022916.6418159
+sicd	106002265	2	item	Procesando Eventos	1520022916.71576691
+sicd	106002265	3	item	Procesando Servicio	1520022916.71579194
+sicd	106002265	4	item	Resumen toba_editor	1520022916.72783589
+sicd	106002265	5	item	Finalizando Solicitud	1520022916.73100901
+sicd	106002265	6	item	Fin medición	1520022916.7503171
+sicd	106002267	0	item	Inicio medición	1520022966.64162111
+sicd	106002267	1	item	Inicio Solicitud	1520022966.67699289
+sicd	106002267	2	item	Procesando Eventos	1520022966.73947096
+sicd	106002267	3	item	Procesando Servicio	1520022966.73949504
+sicd	106002267	4	item	Resumen toba_editor	1520022966.74870992
+sicd	106002267	5	item	Finalizando Solicitud	1520022966.75232911
+sicd	106002267	6	item	Fin medición	1520022966.77530098
+sicd	106002278	0	item	Inicio medición	1520023010.11607695
+sicd	106002278	1	item	Inicio Solicitud	1520023010.14780903
+sicd	106002278	2	item	Procesando Eventos	1520023010.18630099
+sicd	106002278	3	item	Procesando Servicio	1520023010.18632698
+sicd	106002278	4	item	Resumen toba_editor	1520023010.19561005
+sicd	106002278	5	item	Finalizando Solicitud	1520023010.19856811
+sicd	106002278	6	item	Fin medición	1520023010.22132802
+sicd	106002285	0	item	Inicio medición	1520024710.15613103
+sicd	106002285	1	item	Inicio Solicitud	1520024710.58091903
+sicd	106002285	2	item	Procesando Eventos	1520024711.39494395
+sicd	106002285	3	item	Procesando Servicio	1520024711.39496899
+sicd	106002285	4	item	Resumen toba_editor	1520024712.15952301
+sicd	106002285	5	item	Finalizando Solicitud	1520024712.16599488
+sicd	106002285	6	item	Fin medición	1520024712.36250091
+sicd	106002286	0	item	Inicio medición	1520024714.90412092
+sicd	106002286	1	item	Inicio Solicitud	1520024714.93873596
+sicd	106002286	2	item	Procesando Eventos	1520024715.59974408
+sicd	106002286	3	item	Procesando Servicio	1520024715.599787
+sicd	106002286	4	item	Resumen toba_editor	1520024715.92236209
+sicd	106002286	5	item	Finalizando Solicitud	1520024715.926054
+sicd	106002286	6	item	Fin medición	1520024715.95089293
+sicd	106002287	0	item	Inicio medición	1520024718.1463511
+sicd	106002287	1	item	Inicio Solicitud	1520024718.18005395
+sicd	106002287	2	item	Procesando Eventos	1520024718.3913691
+sicd	106002287	3	item	Procesando Servicio	1520024718.49293089
+sicd	106002287	4	item	Resumen toba_editor	1520024718.78717399
+sicd	106002287	5	item	Finalizando Solicitud	1520024718.79051399
+sicd	106002287	6	item	Fin medición	1520024718.81817007
+sicd	106002288	0	item	Inicio medición	1520024720.4537921
+sicd	106002288	1	item	Inicio Solicitud	1520024720.486202
+sicd	106002288	2	item	Procesando Eventos	1520024720.57155299
+sicd	106002288	3	item	Procesando Servicio	1520024720.59267712
+sicd	106002288	4	item	Resumen toba_editor	1520024720.68329906
+sicd	106002288	5	item	Finalizando Solicitud	1520024720.68639708
+sicd	106002288	6	item	Fin medición	1520024720.71817708
+sicd	106002289	0	item	Inicio medición	1520024785.54746103
+sicd	106002289	1	item	Inicio Solicitud	1520024785.59156489
+sicd	106002289	2	item	Procesando Eventos	1520024785.71083307
+sicd	106002289	3	item	Procesando Servicio	1520024785.71086097
+sicd	106002289	4	item	Resumen toba_editor	1520024785.73270202
+sicd	106002289	5	item	Finalizando Solicitud	1520024785.73695803
+sicd	106002289	6	item	Fin medición	1520024785.75871611
+sicd	106002290	0	item	Inicio medición	1520024786.74286509
+sicd	106002290	1	item	Inicio Solicitud	1520024786.77673602
+sicd	106002290	2	item	Procesando Eventos	1520024786.81022096
+sicd	106002290	3	item	Procesando Servicio	1520024786.81024599
+sicd	106002290	4	item	Resumen toba_editor	1520024786.84587693
+sicd	106002290	5	item	Finalizando Solicitud	1520024786.84900999
+sicd	106002290	6	item	Fin medición	1520024786.8706491
+sicd	106002293	0	item	Inicio medición	1520025199.85779095
+sicd	106002293	1	item	Inicio Solicitud	1520025199.894485
+sicd	106002293	2	item	Procesando Eventos	1520025200.02540398
+sicd	106002293	3	item	Procesando Servicio	1520025200.02545094
+sicd	106002293	4	item	Resumen toba_editor	1520025200.04954791
+sicd	106002293	5	item	Finalizando Solicitud	1520025200.05282402
+sicd	106002293	6	item	Fin medición	1520025200.07369304
+sicd	106002294	0	item	Inicio medición	1520025202.94156003
+sicd	106002294	1	item	Inicio Solicitud	1520025202.97578192
+sicd	106002294	2	item	Procesando Eventos	1520025203.0730989
+sicd	106002294	3	item	Procesando Servicio	1520025203.09274793
+sicd	106002294	4	item	Resumen toba_editor	1520025203.12201905
+sicd	106002294	5	item	Finalizando Solicitud	1520025203.12520599
+sicd	106002294	6	item	Fin medición	1520025203.14070296
+sicd	106002295	0	item	Inicio medición	1520025207.7798481
+sicd	106002295	1	item	Inicio Solicitud	1520025207.81119299
+sicd	106002295	2	item	Procesando Eventos	1520025207.91753197
+sicd	106002295	3	item	Procesando Servicio	1520025207.9380331
+sicd	106002295	4	item	Resumen toba_editor	1520025207.97916293
+sicd	106002295	5	item	Finalizando Solicitud	1520025207.98267794
+sicd	106002295	6	item	Fin medición	1520025208.00628304
+sicd	106002296	0	item	Inicio medición	1520025210.42263603
+sicd	106002296	1	item	Inicio Solicitud	1520025210.45774388
+sicd	106002296	2	item	Procesando Eventos	1520025210.55216193
+sicd	106002296	3	item	Procesando Servicio	1520025210.58366299
+sicd	106002296	4	item	Resumen toba_editor	1520025210.6780231
+sicd	106002296	5	item	Finalizando Solicitud	1520025210.68131208
+sicd	106002296	6	item	Fin medición	1520025210.70697188
+sicd	106002305	0	item	Inicio medición	1520281412.40096998
+sicd	106002305	1	item	Inicio Solicitud	1520281412.8373301
+sicd	106002305	2	item	Procesando Eventos	1520281414.23931503
+sicd	106002305	3	item	Procesando Servicio	1520281414.23934293
+sicd	106002305	4	item	Resumen toba_editor	1520281415.63738298
+sicd	106002305	5	item	Finalizando Solicitud	1520281415.6403861
+sicd	106002305	6	item	Fin medición	1520281415.90911102
+sicd	106002306	0	item	Inicio medición	1520281486.75124598
+sicd	106002306	1	item	Inicio Solicitud	1520281486.79132295
+sicd	106002306	2	item	Procesando Eventos	1520281487.46340299
+sicd	106002306	3	item	Procesando Servicio	1520281487.46343303
+sicd	106002306	4	item	Resumen toba_editor	1520281487.78724098
+sicd	106002306	5	item	Finalizando Solicitud	1520281487.79197001
+sicd	106002306	6	item	Fin medición	1520281487.82048607
+sicd	106002307	0	item	Inicio medición	1520281490.19177103
+sicd	106002307	1	item	Inicio Solicitud	1520281490.23062897
+sicd	106002307	2	item	Procesando Eventos	1520281490.34394097
+sicd	106002307	3	item	Procesando Servicio	1520281490.44544196
+sicd	106002307	4	item	Resumen toba_editor	1520281490.741503
+sicd	106002307	5	item	Finalizando Solicitud	1520281490.74479508
+sicd	106002307	6	item	Fin medición	1520281490.76450896
+sicd	106002308	0	item	Inicio medición	1520281492.11219311
+sicd	106002308	1	item	Inicio Solicitud	1520281492.14839005
+sicd	106002308	2	item	Procesando Eventos	1520281492.26298499
+sicd	106002308	3	item	Procesando Servicio	1520281492.28564811
+sicd	106002308	4	item	Resumen toba_editor	1520281492.36010194
+sicd	106002308	5	item	Finalizando Solicitud	1520281492.36295509
+sicd	106002308	6	item	Fin medición	1520281492.38678503
+sicd	106002309	0	item	Inicio medición	1520281493.77273703
+sicd	106002309	1	item	Inicio Solicitud	1520281493.80531907
+sicd	106002309	2	item	Procesando Eventos	1520281493.89702511
+sicd	106002309	3	item	Procesando Servicio	1520281493.93133092
+sicd	106002309	4	item	Resumen toba_editor	1520281494.0350039
+sicd	106002309	5	item	Finalizando Solicitud	1520281494.03815198
+sicd	106002309	6	item	Fin medición	1520281494.06395006
+sicd	106002312	0	item	Inicio medición	1520281525.49927306
+sicd	106002312	1	item	Inicio Solicitud	1520281525.53453994
+sicd	106002312	2	item	Procesando Eventos	1520281525.641258
+sicd	106002312	3	item	Procesando Servicio	1520281525.6587491
+sicd	106002312	4	item	Resumen toba_editor	1520281525.68839598
+sicd	106002312	5	item	Finalizando Solicitud	1520281525.69208407
+sicd	106002312	6	item	Fin medición	1520281525.71822691
+sicd	106002313	0	item	Inicio medición	1520281526.83976293
+sicd	106002313	1	item	Inicio Solicitud	1520281526.87372208
+sicd	106002313	2	item	Procesando Eventos	1520281526.95818496
+sicd	106002313	3	item	Procesando Servicio	1520281526.986274
+sicd	106002313	4	item	Resumen toba_editor	1520281527.01749611
+sicd	106002313	5	item	Finalizando Solicitud	1520281527.02141094
+sicd	106002313	6	item	Fin medición	1520281527.04002595
+sicd	106002315	0	item	Inicio medición	1520281946.873276
+sicd	106002315	1	item	Inicio Solicitud	1520281946.9056201
+sicd	106002315	2	item	Procesando Eventos	1520281947.30280495
+sicd	106002315	3	item	Procesando Servicio	1520281947.3182981
+sicd	106002315	4	item	Resumen toba_editor	1520281947.346874
+sicd	106002315	5	item	Finalizando Solicitud	1520281947.35023689
+sicd	106002315	6	item	Fin medición	1520281947.37149405
+sicd	106002316	0	item	Inicio medición	1520281948.5506289
+sicd	106002316	1	item	Inicio Solicitud	1520281948.58612108
+sicd	106002316	2	item	Procesando Eventos	1520281948.67030096
+sicd	106002316	3	item	Procesando Servicio	1520281948.69987011
+sicd	106002316	4	item	Resumen toba_editor	1520281948.73118997
+sicd	106002316	5	item	Finalizando Solicitud	1520281948.73458505
+sicd	106002316	6	item	Fin medición	1520281948.74942303
+sicd	106002319	0	item	Inicio medición	1520282048.13413191
+sicd	106002319	1	item	Inicio Solicitud	1520282048.1694119
+sicd	106002319	2	item	Procesando Eventos	1520282048.26316905
+sicd	106002319	3	item	Procesando Servicio	1520282048.27819109
+sicd	106002319	4	item	Resumen toba_editor	1520282048.30580807
+sicd	106002319	5	item	Finalizando Solicitud	1520282048.3098259
+sicd	106002319	6	item	Fin medición	1520282048.33147597
+sicd	106002320	0	item	Inicio medición	1520282049.93894911
+sicd	106002320	1	item	Inicio Solicitud	1520282049.97261906
+sicd	106002320	2	item	Procesando Eventos	1520282050.08446002
+sicd	106002320	3	item	Procesando Servicio	1520282050.11917591
+sicd	106002320	4	item	Resumen toba_editor	1520282050.15178299
+sicd	106002320	5	item	Finalizando Solicitud	1520282050.15544605
+sicd	106002320	6	item	Fin medición	1520282050.17520595
+sicd	106002321	0	item	Inicio medición	1520282372.47361493
+sicd	106002321	1	item	Inicio Solicitud	1520282372.50931692
+sicd	106002321	2	item	Procesando Eventos	1520282373.43456507
+sicd	106002321	3	item	Procesando Servicio	1520282373.4505899
+sicd	106002321	4	item	Resumen toba_editor	1520282373.48045301
+sicd	106002321	5	item	Finalizando Solicitud	1520282373.48378301
+sicd	106002321	6	item	Fin medición	1520282373.50815511
+sicd	106002322	0	item	Inicio medición	1520282374.85364199
+sicd	106002322	1	item	Inicio Solicitud	1520282374.88648295
+sicd	106002322	2	item	Procesando Eventos	1520282374.99632001
+sicd	106002322	3	item	Procesando Servicio	1520282375.02968597
+sicd	106002322	4	item	Resumen toba_editor	1520282375.06122088
+sicd	106002322	5	item	Finalizando Solicitud	1520282375.06447005
+sicd	106002322	6	item	Fin medición	1520282375.08571696
+sicd	106002323	0	item	Inicio medición	1520282386.979105
+sicd	106002323	1	item	Inicio Solicitud	1520282387.01655507
+sicd	106002323	2	item	Procesando Eventos	1520282387.78219509
+sicd	106002323	3	item	Procesando Servicio	1520282387.79767489
+sicd	106002323	4	item	Resumen toba_editor	1520282387.82797289
+sicd	106002323	5	item	Finalizando Solicitud	1520282387.83189201
+sicd	106002323	6	item	Fin medición	1520282387.8593421
+sicd	106002324	0	item	Inicio medición	1520282389.01756001
+sicd	106002324	1	item	Inicio Solicitud	1520282389.05345988
+sicd	106002324	2	item	Procesando Eventos	1520282389.1652081
+sicd	106002324	3	item	Procesando Servicio	1520282389.19715905
+sicd	106002324	4	item	Resumen toba_editor	1520282389.22837806
+sicd	106002324	5	item	Finalizando Solicitud	1520282389.23200703
+sicd	106002324	6	item	Fin medición	1520282389.24832106
+sicd	106002327	0	item	Inicio medición	1520282436.33024001
+sicd	106002327	1	item	Inicio Solicitud	1520282436.36626697
+sicd	106002327	2	item	Procesando Eventos	1520282436.92249107
+sicd	106002327	3	item	Procesando Servicio	1520282436.93659806
+sicd	106002327	4	item	Resumen toba_editor	1520282436.96490002
+sicd	106002327	5	item	Finalizando Solicitud	1520282436.96809912
+sicd	106002327	6	item	Fin medición	1520282436.99628711
+sicd	106002328	0	item	Inicio medición	1520282438.01476097
+sicd	106002328	1	item	Inicio Solicitud	1520282438.05294895
+sicd	106002328	2	item	Procesando Eventos	1520282438.19942594
+sicd	106002328	3	item	Procesando Servicio	1520282438.23324895
+sicd	106002328	4	item	Resumen toba_editor	1520282438.26260209
+sicd	106002328	5	item	Finalizando Solicitud	1520282438.26603293
+sicd	106002328	6	item	Fin medición	1520282438.28487706
+sicd	106002333	0	item	Inicio medición	1520282458.29711008
+sicd	106002333	1	item	Inicio Solicitud	1520282458.33162189
+sicd	106002333	2	item	Procesando Eventos	1520282458.52495909
+sicd	106002333	3	item	Procesando Servicio	1520282458.539711
+sicd	106002333	4	item	Resumen toba_editor	1520282458.57069111
+sicd	106002333	5	item	Finalizando Solicitud	1520282458.57417703
+sicd	106002333	6	item	Fin medición	1520282458.82688403
+sicd	106002334	0	item	Inicio medición	1520282459.92057204
+sicd	106002334	1	item	Inicio Solicitud	1520282459.95485091
+sicd	106002334	2	item	Procesando Eventos	1520282460.0352509
+sicd	106002334	3	item	Procesando Servicio	1520282460.06777406
+sicd	106002334	4	item	Resumen toba_editor	1520282460.10323596
+sicd	106002334	5	item	Finalizando Solicitud	1520282460.106776
+sicd	106002334	6	item	Fin medición	1520282460.12734604
+sicd	106002343	0	item	Inicio medición	1520283532.7731421
+sicd	106002343	1	item	Inicio Solicitud	1520283532.81585312
+sicd	106002343	2	item	Procesando Eventos	1520283533.24424791
+sicd	106002343	3	item	Procesando Servicio	1520283533.26152802
+sicd	106002343	4	item	Resumen toba_editor	1520283533.2895689
+sicd	106002343	5	item	Finalizando Solicitud	1520283533.29320693
+sicd	106002343	6	item	Fin medición	1520283533.3240149
+sicd	106002344	0	item	Inicio medición	1520283534.64913392
+sicd	106002344	1	item	Inicio Solicitud	1520283534.68198895
+sicd	106002344	2	item	Procesando Eventos	1520283534.78781605
+sicd	106002344	3	item	Procesando Servicio	1520283534.81708503
+sicd	106002344	4	item	Resumen toba_editor	1520283534.84966493
+sicd	106002344	5	item	Finalizando Solicitud	1520283534.85330391
+sicd	106002344	6	item	Fin medición	1520283534.96866298
+sicd	106002345	0	item	Inicio medición	1520283870.2958889
+sicd	106002345	1	item	Inicio Solicitud	1520283870.33065295
+sicd	106002345	2	item	Procesando Eventos	1520283870.47753191
+sicd	106002345	3	item	Procesando Servicio	1520283870.49605298
+sicd	106002345	4	item	Resumen toba_editor	1520283870.52926493
+sicd	106002345	5	item	Finalizando Solicitud	1520283870.53262591
+sicd	106002345	6	item	Fin medición	1520283870.61928201
+sicd	106002346	0	item	Inicio medición	1520283872.87673712
+sicd	106002346	1	item	Inicio Solicitud	1520283872.91638398
+sicd	106002346	2	item	Procesando Eventos	1520283873.02349806
+sicd	106002346	3	item	Procesando Servicio	1520283873.02352691
+sicd	106002346	4	item	Resumen toba_editor	1520283873.04650807
+sicd	106002346	5	item	Finalizando Solicitud	1520283873.04980993
+sicd	106002346	6	item	Fin medición	1520283873.07368803
+sicd	106002347	0	item	Inicio medición	1520283874.36423206
+sicd	106002347	1	item	Inicio Solicitud	1520283874.4017241
+sicd	106002347	2	item	Procesando Eventos	1520283874.50305295
+sicd	106002347	3	item	Procesando Servicio	1520283874.52569389
+sicd	106002347	4	item	Resumen toba_editor	1520283874.55562711
+sicd	106002347	5	item	Finalizando Solicitud	1520283874.56027007
+sicd	106002347	6	item	Fin medición	1520283874.58501101
+sicd	106002348	0	item	Inicio medición	1520283875.41104198
+sicd	106002348	1	item	Inicio Solicitud	1520283875.44558191
+sicd	106002348	2	item	Procesando Eventos	1520283875.55810595
+sicd	106002348	3	item	Procesando Servicio	1520283875.57983708
+sicd	106002348	4	item	Resumen toba_editor	1520283875.62745404
+sicd	106002348	5	item	Finalizando Solicitud	1520283875.6313951
+sicd	106002348	6	item	Fin medición	1520283875.65261698
+sicd	106002349	0	item	Inicio medición	1520283880.63659
+sicd	106002349	1	item	Inicio Solicitud	1520283880.67340398
+sicd	106002349	2	item	Procesando Eventos	1520283881.15390205
+sicd	106002349	3	item	Procesando Servicio	1520283881.1868031
+sicd	106002349	4	item	Resumen toba_editor	1520283881.21724296
+sicd	106002349	5	item	Finalizando Solicitud	1520283881.22140503
+sicd	106002349	6	item	Fin medición	1520283881.24221206
+sicd	106002350	0	item	Inicio medición	1520283884.85163808
+sicd	106002350	1	item	Inicio Solicitud	1520283884.9542551
+sicd	106002350	2	item	Procesando Eventos	1520283885.56478
+sicd	106002350	3	item	Procesando Servicio	1520283885.67905307
+sicd	106002350	4	item	Resumen toba_editor	1520283885.71252799
+sicd	106002350	5	item	Finalizando Solicitud	1520283885.71583104
+sicd	106002350	6	item	Fin medición	1520283885.73805809
+sicd	106002351	0	item	Inicio medición	1520283944.40844989
+sicd	106002351	1	item	Inicio Solicitud	1520283944.44433999
+sicd	106002351	2	item	Procesando Eventos	1520283944.81370807
+sicd	106002351	3	item	Procesando Servicio	1520283944.84662509
+sicd	106002351	4	item	Resumen toba_editor	1520283944.87865496
+sicd	106002351	5	item	Finalizando Solicitud	1520283944.88189793
+sicd	106002351	6	item	Fin medición	1520283944.90276504
+sicd	106002352	0	item	Inicio medición	1520283948.09654188
+sicd	106002352	1	item	Inicio Solicitud	1520283948.13042593
+sicd	106002352	2	item	Procesando Eventos	1520283948.22244811
+sicd	106002352	3	item	Procesando Servicio	1520283948.26620507
+sicd	106002352	4	item	Resumen toba_editor	1520283948.30408812
+sicd	106002352	5	item	Finalizando Solicitud	1520283948.30752301
+sicd	106002352	6	item	Fin medición	1520283948.32545304
+sicd	106002357	0	item	Inicio medición	1520284072.82935691
+sicd	106002357	1	item	Inicio Solicitud	1520284072.86898303
+sicd	106002357	2	item	Procesando Eventos	1520284072.98550391
+sicd	106002357	3	item	Procesando Servicio	1520284072.98553109
+sicd	106002357	4	item	Resumen toba_editor	1520284073.01067996
+sicd	106002357	5	item	Finalizando Solicitud	1520284073.01443505
+sicd	106002357	6	item	Fin medición	1520284073.03546095
+sicd	106002358	0	item	Inicio medición	1520284075.03832102
+sicd	106002358	1	item	Inicio Solicitud	1520284075.07290006
+sicd	106002358	2	item	Procesando Eventos	1520284075.180619
+sicd	106002358	3	item	Procesando Servicio	1520284075.20202589
+sicd	106002358	4	item	Resumen toba_editor	1520284075.23372197
+sicd	106002358	5	item	Finalizando Solicitud	1520284075.23676991
+sicd	106002358	6	item	Fin medición	1520284075.25786591
+sicd	106002359	0	item	Inicio medición	1520284076.38982201
+sicd	106002359	1	item	Inicio Solicitud	1520284076.42559791
+sicd	106002359	2	item	Procesando Eventos	1520284076.54225993
+sicd	106002359	3	item	Procesando Servicio	1520284076.56517911
+sicd	106002359	4	item	Resumen toba_editor	1520284076.614218
+sicd	106002359	5	item	Finalizando Solicitud	1520284076.61780095
+sicd	106002359	6	item	Fin medición	1520284076.63539696
+sicd	106002360	0	item	Inicio medición	1520284148.93589401
+sicd	106002360	1	item	Inicio Solicitud	1520284148.96771002
+sicd	106002360	2	item	Procesando Eventos	1520284149.56834888
+sicd	106002360	3	item	Procesando Servicio	1520284149.59941506
+sicd	106002360	4	item	Resumen toba_editor	1520284149.70923901
+sicd	106002360	5	item	Finalizando Solicitud	1520284149.7129941
+sicd	106002360	6	item	Fin medición	1520284149.74517012
+sicd	106002361	0	item	Inicio medición	1520284152.01260304
+sicd	106002361	1	item	Inicio Solicitud	1520284152.04959011
+sicd	106002361	2	item	Procesando Eventos	1520284152.61047697
+sicd	106002361	3	item	Procesando Servicio	1520284152.64536095
+sicd	106002361	4	item	Resumen toba_editor	1520284152.67376494
+sicd	106002361	5	item	Finalizando Solicitud	1520284152.67657995
+sicd	106002361	6	item	Fin medición	1520284152.81236911
+sicd	106002362	0	item	Inicio medición	1520284188.97944403
+sicd	106002362	1	item	Inicio Solicitud	1520284189.01394296
+sicd	106002362	2	item	Procesando Eventos	1520284189.12992406
+sicd	106002362	3	item	Procesando Servicio	1520284189.14705396
+sicd	106002362	4	item	Resumen toba_editor	1520284189.19440794
+sicd	106002362	5	item	Finalizando Solicitud	1520284189.19776297
+sicd	106002362	6	item	Fin medición	1520284189.21331692
+sicd	106002363	0	item	Inicio medición	1520284189.96658993
+sicd	106002363	1	item	Inicio Solicitud	1520284190.00295901
+sicd	106002363	2	item	Procesando Eventos	1520284190.12435102
+sicd	106002363	3	item	Procesando Servicio	1520284190.16429996
+sicd	106002363	4	item	Resumen toba_editor	1520284190.20814705
+sicd	106002363	5	item	Finalizando Solicitud	1520284190.21220803
+sicd	106002363	6	item	Fin medición	1520284190.23653102
+sicd	106002364	0	item	Inicio medición	1520284232.86931705
+sicd	106002364	1	item	Inicio Solicitud	1520284232.90473008
+sicd	106002364	2	item	Procesando Eventos	1520284233.00164509
+sicd	106002364	3	item	Procesando Servicio	1520284233.02901912
+sicd	106002364	4	item	Resumen toba_editor	1520284233.06063604
+sicd	106002364	5	item	Finalizando Solicitud	1520284233.06524992
+sicd	106002364	6	item	Fin medición	1520284233.08076811
+sicd	106002365	0	item	Inicio medición	1520284266.33491111
+sicd	106002365	1	item	Inicio Solicitud	1520284266.37069011
+sicd	106002365	2	item	Procesando Eventos	1520284266.48357296
+sicd	106002365	3	item	Procesando Servicio	1520284266.49872899
+sicd	106002365	4	item	Resumen toba_editor	1520284266.54140806
+sicd	106002365	5	item	Finalizando Solicitud	1520284266.54484797
+sicd	106002365	6	item	Fin medición	1520284266.57416606
+sicd	106002366	0	item	Inicio medición	1520284268.372154
+sicd	106002366	1	item	Inicio Solicitud	1520284268.40641308
+sicd	106002366	2	item	Procesando Eventos	1520284268.51420808
+sicd	106002366	3	item	Procesando Servicio	1520284268.543082
+sicd	106002366	4	item	Resumen toba_editor	1520284268.57186604
+sicd	106002366	5	item	Finalizando Solicitud	1520284268.57558608
+sicd	106002366	6	item	Fin medición	1520284268.595541
+sicd	106002371	0	item	Inicio medición	1520285653.33022404
+sicd	106002371	1	item	Inicio Solicitud	1520285653.40109205
+sicd	106002371	2	item	Procesando Eventos	1520285653.49945211
+sicd	106002371	3	item	Procesando Servicio	1520285653.51655412
+sicd	106002371	4	item	Resumen toba_editor	1520285653.57627892
+sicd	106002371	5	item	Finalizando Solicitud	1520285653.57934904
+sicd	106002371	6	item	Fin medición	1520285653.60504889
+sicd	106002372	0	item	Inicio medición	1520285656.91184092
+sicd	106002372	1	item	Inicio Solicitud	1520285656.9483211
+sicd	106002372	2	item	Procesando Eventos	1520285657.06212592
+sicd	106002372	3	item	Procesando Servicio	1520285657.09432697
+sicd	106002372	4	item	Resumen toba_editor	1520285657.12709594
+sicd	106002372	5	item	Finalizando Solicitud	1520285657.13186407
+sicd	106002372	6	item	Fin medición	1520285657.14906406
+sicd	106002373	0	item	Inicio medición	1520285659.05222106
+sicd	106002373	1	item	Inicio Solicitud	1520285659.08636498
+sicd	106002373	2	item	Procesando Eventos	1520285659.19087505
+sicd	106002373	3	item	Procesando Servicio	1520285659.20547009
+sicd	106002373	4	item	Resumen toba_editor	1520285659.24685597
+sicd	106002373	5	item	Finalizando Solicitud	1520285659.2500639
+sicd	106002373	6	item	Fin medición	1520285659.27254391
+sicd	106002374	0	item	Inicio medición	1520285661.21172905
+sicd	106002374	1	item	Inicio Solicitud	1520285661.24608803
+sicd	106002374	2	item	Procesando Eventos	1520285661.35429406
+sicd	106002374	3	item	Procesando Servicio	1520285661.38278389
+sicd	106002374	4	item	Resumen toba_editor	1520285661.41623402
+sicd	106002374	5	item	Finalizando Solicitud	1520285661.41970801
+sicd	106002374	6	item	Fin medición	1520285661.57248807
+sicd	106002375	0	item	Inicio medición	1520285876.58062005
+sicd	106002375	1	item	Inicio Solicitud	1520285876.61615992
+sicd	106002375	2	item	Procesando Eventos	1520285877.31157207
+sicd	106002375	3	item	Procesando Servicio	1520285877.32613993
+sicd	106002375	4	item	Resumen toba_editor	1520285877.36336589
+sicd	106002375	5	item	Finalizando Solicitud	1520285877.36681294
+sicd	106002375	6	item	Fin medición	1520285877.38165498
+sicd	106002376	0	item	Inicio medición	1520285881.18185091
+sicd	106002376	1	item	Inicio Solicitud	1520285881.21616197
+sicd	106002376	2	item	Procesando Eventos	1520285881.57774591
+sicd	106002376	3	item	Procesando Servicio	1520285881.60649109
+sicd	106002376	4	item	Resumen toba_editor	1520285881.63804698
+sicd	106002376	5	item	Finalizando Solicitud	1520285881.64355397
+sicd	106002376	6	item	Fin medición	1520285881.6818819
+sicd	106002377	0	item	Inicio medición	1520285917.21249104
+sicd	106002377	1	item	Inicio Solicitud	1520285917.24710202
+sicd	106002377	2	item	Procesando Eventos	1520285917.37907004
+sicd	106002377	3	item	Procesando Servicio	1520285917.3943119
+sicd	106002377	4	item	Resumen toba_editor	1520285917.4329071
+sicd	106002377	5	item	Finalizando Solicitud	1520285917.43608403
+sicd	106002377	6	item	Fin medición	1520285917.46044493
+sicd	106002378	0	item	Inicio medición	1520285920.24809003
+sicd	106002378	1	item	Inicio Solicitud	1520285920.28401089
+sicd	106002378	2	item	Procesando Eventos	1520285920.36810803
+sicd	106002378	3	item	Procesando Servicio	1520285920.39717793
+sicd	106002378	4	item	Resumen toba_editor	1520285920.4269681
+sicd	106002378	5	item	Finalizando Solicitud	1520285920.43076491
+sicd	106002378	6	item	Fin medición	1520285920.44966292
+sicd	106002379	0	item	Inicio medición	1520285938.67758393
+sicd	106002379	1	item	Inicio Solicitud	1520285938.71631694
+sicd	106002379	2	item	Procesando Eventos	1520285939.40315008
+sicd	106002379	3	item	Procesando Servicio	1520285939.41825509
+sicd	106002379	4	item	Resumen toba_editor	1520285939.45709205
+sicd	106002379	5	item	Finalizando Solicitud	1520285939.46030593
+sicd	106002379	6	item	Fin medición	1520285939.47902012
+sicd	106002380	0	item	Inicio medición	1520286051.62958598
+sicd	106002380	1	item	Inicio Solicitud	1520286051.66633892
+sicd	106002380	2	item	Procesando Eventos	1520286052.34608102
+sicd	106002380	3	item	Procesando Servicio	1520286052.37374306
+sicd	106002380	4	item	Resumen toba_editor	1520286052.40355206
+sicd	106002380	5	item	Finalizando Solicitud	1520286052.40692997
+sicd	106002380	6	item	Fin medición	1520286052.43394089
+sicd	106002381	0	item	Inicio medición	1520286226.17160296
+sicd	106002381	1	item	Inicio Solicitud	1520286226.20722198
+sicd	106002381	2	item	Procesando Eventos	1520286226.43389106
+sicd	106002381	3	item	Procesando Servicio	1520286226.45269608
+sicd	106002381	4	item	Resumen toba_editor	1520286226.49319506
+sicd	106002381	5	item	Finalizando Solicitud	1520286226.49706507
+sicd	106002381	6	item	Fin medición	1520286226.51878905
+sicd	106002382	0	item	Inicio medición	1520286228.23582196
+sicd	106002382	1	item	Inicio Solicitud	1520286228.26902509
+sicd	106002382	2	item	Procesando Eventos	1520286228.3767271
+sicd	106002382	3	item	Procesando Servicio	1520286228.40826893
+sicd	106002382	4	item	Resumen toba_editor	1520286228.4423821
+sicd	106002382	5	item	Finalizando Solicitud	1520286228.44583511
+sicd	106002382	6	item	Fin medición	1520286228.46262598
+sicd	106002383	0	item	Inicio medición	1520286273.49353909
+sicd	106002383	1	item	Inicio Solicitud	1520286273.53041291
+sicd	106002383	2	item	Procesando Eventos	1520286273.64548707
+sicd	106002383	3	item	Procesando Servicio	1520286273.66457891
+sicd	106002383	4	item	Resumen toba_editor	1520286273.7095499
+sicd	106002383	5	item	Finalizando Solicitud	1520286273.71303797
+sicd	106002383	6	item	Fin medición	1520286273.7311461
+sicd	106002384	0	item	Inicio medición	1520286275.34870601
+sicd	106002384	1	item	Inicio Solicitud	1520286275.38326097
+sicd	106002384	2	item	Procesando Eventos	1520286275.49615002
+sicd	106002384	3	item	Procesando Servicio	1520286275.52651811
+sicd	106002384	4	item	Resumen toba_editor	1520286275.55915809
+sicd	106002384	5	item	Finalizando Solicitud	1520286275.56319404
+sicd	106002384	6	item	Fin medición	1520286275.58808208
+sicd	106002385	0	item	Inicio medición	1520286277.59373689
+sicd	106002385	1	item	Inicio Solicitud	1520286277.62783599
+sicd	106002385	2	item	Procesando Eventos	1520286277.71256804
+sicd	106002385	3	item	Procesando Servicio	1520286277.72854805
+sicd	106002385	4	item	Resumen toba_editor	1520286277.76973701
+sicd	106002385	5	item	Finalizando Solicitud	1520286277.77421904
+sicd	106002385	6	item	Fin medición	1520286277.79752493
+sicd	106002386	0	item	Inicio medición	1520286279.87578011
+sicd	106002386	1	item	Inicio Solicitud	1520286279.91285205
+sicd	106002386	2	item	Procesando Eventos	1520286280.01607299
+sicd	106002386	3	item	Procesando Servicio	1520286280.04535198
+sicd	106002386	4	item	Resumen toba_editor	1520286280.0772779
+sicd	106002386	5	item	Finalizando Solicitud	1520286280.08114409
+sicd	106002386	6	item	Fin medición	1520286280.09905791
+sicd	106002387	0	item	Inicio medición	1520286288.06511211
+sicd	106002387	1	item	Inicio Solicitud	1520286288.10115409
+sicd	106002387	2	item	Procesando Eventos	1520286288.25035906
+sicd	106002387	3	item	Procesando Servicio	1520286288.2681129
+sicd	106002387	4	item	Resumen toba_editor	1520286288.3077929
+sicd	106002387	5	item	Finalizando Solicitud	1520286288.3115449
+sicd	106002387	6	item	Fin medición	1520286288.51022911
+sicd	106002388	0	item	Inicio medición	1520286290.12851405
+sicd	106002388	1	item	Inicio Solicitud	1520286290.16444302
+sicd	106002388	2	item	Procesando Eventos	1520286290.24897695
+sicd	106002388	3	item	Procesando Servicio	1520286290.27678895
+sicd	106002388	4	item	Resumen toba_editor	1520286290.30494595
+sicd	106002388	5	item	Finalizando Solicitud	1520286290.31088209
+sicd	106002388	6	item	Fin medición	1520286290.3325479
+sicd	106002389	0	item	Inicio medición	1520286292.06381989
+sicd	106002389	1	item	Inicio Solicitud	1520286292.10146594
+sicd	106002389	2	item	Procesando Eventos	1520286292.20621705
+sicd	106002389	3	item	Procesando Servicio	1520286292.22158504
+sicd	106002389	4	item	Resumen toba_editor	1520286292.26246405
+sicd	106002389	5	item	Finalizando Solicitud	1520286292.26586008
+sicd	106002389	6	item	Fin medición	1520286292.28703094
+sicd	106002390	0	item	Inicio medición	1520286293.3493259
+sicd	106002390	1	item	Inicio Solicitud	1520286293.38440299
+sicd	106002390	2	item	Procesando Eventos	1520286293.56485009
+sicd	106002390	3	item	Procesando Servicio	1520286293.59716702
+sicd	106002390	4	item	Resumen toba_editor	1520286293.62919307
+sicd	106002390	5	item	Finalizando Solicitud	1520286293.63312793
+sicd	106002390	6	item	Fin medición	1520286293.65383506
+sicd	106002391	0	item	Inicio medición	1520286394.63737607
+sicd	106002391	1	item	Inicio Solicitud	1520286394.67303991
+sicd	106002391	2	item	Procesando Eventos	1520286394.7548039
+sicd	106002391	3	item	Procesando Servicio	1520286394.76968694
+sicd	106002391	4	item	Resumen toba_editor	1520286394.80757689
+sicd	106002391	5	item	Finalizando Solicitud	1520286394.81121898
+sicd	106002391	6	item	Fin medición	1520286394.83603907
+sicd	106002392	0	item	Inicio medición	1520286396.76592398
+sicd	106002392	1	item	Inicio Solicitud	1520286396.79938197
+sicd	106002392	2	item	Procesando Eventos	1520286396.90917706
+sicd	106002392	3	item	Procesando Servicio	1520286396.94207311
+sicd	106002392	4	item	Resumen toba_editor	1520286396.97669005
+sicd	106002392	5	item	Finalizando Solicitud	1520286396.98055601
+sicd	106002392	6	item	Fin medición	1520286397.00140095
+sicd	106002393	0	item	Inicio medición	1520286398.65992594
+sicd	106002393	1	item	Inicio Solicitud	1520286398.69422793
+sicd	106002393	2	item	Procesando Eventos	1520286398.80416203
+sicd	106002393	3	item	Procesando Servicio	1520286398.82143092
+sicd	106002393	4	item	Resumen toba_editor	1520286398.86521196
+sicd	106002393	5	item	Finalizando Solicitud	1520286398.8684721
+sicd	106002393	6	item	Fin medición	1520286398.891922
+sicd	106002394	0	item	Inicio medición	1520286400.05004096
+sicd	106002394	1	item	Inicio Solicitud	1520286400.08641911
+sicd	106002394	2	item	Procesando Eventos	1520286400.19742489
+sicd	106002394	3	item	Procesando Servicio	1520286400.22890306
+sicd	106002394	4	item	Resumen toba_editor	1520286400.2615931
+sicd	106002394	5	item	Finalizando Solicitud	1520286400.26535392
+sicd	106002394	6	item	Fin medición	1520286400.28031206
+sicd	106002397	0	item	Inicio medición	1520286640.69499111
+sicd	106002397	1	item	Inicio Solicitud	1520286640.73035502
+sicd	106002397	2	item	Procesando Eventos	1520286640.84072208
+sicd	106002397	3	item	Procesando Servicio	1520286640.85841393
+sicd	106002397	4	item	Resumen toba_editor	1520286640.89953589
+sicd	106002397	5	item	Finalizando Solicitud	1520286640.90353298
+sicd	106002397	6	item	Fin medición	1520286640.93125391
+sicd	106002398	0	item	Inicio medición	1520286642.84871411
+sicd	106002398	1	item	Inicio Solicitud	1520286642.88508296
+sicd	106002398	2	item	Procesando Eventos	1520286643.00030708
+sicd	106002398	3	item	Procesando Servicio	1520286643.0342319
+sicd	106002398	4	item	Resumen toba_editor	1520286643.06712103
+sicd	106002398	5	item	Finalizando Solicitud	1520286643.07027888
+sicd	106002398	6	item	Fin medición	1520286643.08715296
+sicd	106002399	0	item	Inicio medición	1520286963.31787109
+sicd	106002399	1	item	Inicio Solicitud	1520286963.3590889
+sicd	106002399	2	item	Procesando Eventos	1520286963.41740894
+sicd	106002399	3	item	Procesando Servicio	1520286963.41743398
+sicd	106002399	4	item	Resumen toba_editor	1520286963.44043398
+sicd	106002399	5	item	Finalizando Solicitud	1520286963.44348907
+sicd	106002399	6	item	Fin medición	1520286963.4857409
+sicd	106002401	0	item	Inicio medición	1520287045.40152001
+sicd	106002401	1	item	Inicio Solicitud	1520287045.437567
+sicd	106002401	2	item	Procesando Eventos	1520287045.51473594
+sicd	106002401	3	item	Procesando Servicio	1520287045.51476312
+sicd	106002401	4	item	Resumen toba_editor	1520287045.53570104
+sicd	106002401	5	item	Finalizando Solicitud	1520287045.53994012
+sicd	106002401	6	item	Fin medición	1520287045.57489991
+sicd	106002402	0	item	Inicio medición	1520287047.55999804
+sicd	106002402	1	item	Inicio Solicitud	1520287047.59749198
+sicd	106002402	2	item	Procesando Eventos	1520287047.6535449
+sicd	106002402	3	item	Procesando Servicio	1520287047.65357304
+sicd	106002402	4	item	Resumen toba_editor	1520287047.69525194
+sicd	106002402	5	item	Finalizando Solicitud	1520287047.69863796
+sicd	106002402	6	item	Fin medición	1520287047.72018695
 \.
 
 
@@ -25945,7 +27278,7 @@ SELECT pg_catalog.setval('apex_solicitud_observacion_seq', 106000000, true);
 -- Name: apex_solicitud_seq; Type: SEQUENCE SET; Schema: desarrollo_logs; Owner: postgres
 --
 
-SELECT pg_catalog.setval('apex_solicitud_seq', 106002107, true);
+SELECT pg_catalog.setval('apex_solicitud_seq', 106002404, true);
 
 
 --
@@ -26032,6 +27365,7 @@ COPY detalle_dias_viatico (iddetalle_dias_viatico, fecha_desde, fecha_hasta, can
 17	2018-02-07	2018-02-09	2	218	193	17	f
 18	2018-02-20	2018-02-22	2	193	193	18	f
 12	2018-02-27	2018-02-27	1	218	264	8	f
+21	2018-03-01	2018-03-03	2	193	211	19	f
 \.
 
 
@@ -26041,7 +27375,7 @@ COPY detalle_dias_viatico (iddetalle_dias_viatico, fecha_desde, fecha_hasta, can
 -- Name: detalle_dias_viatico_iddetalle_dias_viatico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('detalle_dias_viatico_iddetalle_dias_viatico_seq', 20, true);
+SELECT pg_catalog.setval('detalle_dias_viatico_iddetalle_dias_viatico_seq', 21, true);
 
 
 --
@@ -26571,7 +27905,7 @@ COPY viatico (idviatico, fecha_desde, nro_expediente, fecha_hasta, idpersona, id
 18	\N	647	\N	4	\N	\N	15	1 	0	15	0
 8	\N	989	\N	1	\N	\N	10	1 	0	9	1
 15	\N	7987	\N	1	\N	\N	15	1 	0	15	0
-19	\N	46511	\N	6	\N	\N	15	1 	0	15	0
+19	\N	46511	\N	6	\N	\N	15	3 	0	13	2
 \.
 
 
@@ -31093,7 +32427,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2018-03-01 19:45:56 ART
+-- Completed on 2018-03-05 18:58:19 ART
 
 --
 -- PostgreSQL database dump complete
