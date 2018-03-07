@@ -108,14 +108,14 @@ order by
 				<text><![CDATA[Nombres y Apellido]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="115" y="99" width="60" height="20" uuid="ddfa1253-c913-4b93-b15b-8d4b8861dc99"/>
+				<reportElement x="185" y="99" width="60" height="20" uuid="ddfa1253-c913-4b93-b15b-8d4b8861dc99"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="233" y="95" width="40" height="24" uuid="137dc769-6221-4151-9038-ce38c06a7059"/>
+				<reportElement x="306" y="94" width="40" height="24" uuid="137dc769-6221-4151-9038-ce38c06a7059"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
@@ -144,42 +144,42 @@ order by
 				<text><![CDATA[Nro Expediente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="174" y="95" width="55" height="24" uuid="847f38ec-3111-4af0-949e-179420f5fe7f"/>
+				<reportElement x="247" y="95" width="55" height="24" uuid="847f38ec-3111-4af0-949e-179420f5fe7f"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[Nro Expediente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="275" y="95" width="65" height="24" uuid="8a64368c-c9bf-466b-9d3e-2ca865c48666"/>
+				<reportElement x="348" y="94" width="41" height="24" uuid="8a64368c-c9bf-466b-9d3e-2ca865c48666"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Cantidad total
+				<text><![CDATA[Total
 de dias]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="342" y="94" width="63" height="24" uuid="a4beb358-aaeb-43b7-b67c-af97b3b7b58b"/>
+				<reportElement x="392" y="94" width="55" height="24" uuid="a4beb358-aaeb-43b7-b67c-af97b3b7b58b"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Cantidad dias
+				<text><![CDATA[Dias
 disponibles]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="94" width="63" height="24" uuid="36cd9277-4731-4262-9c1b-d75fe895ad73"/>
+				<reportElement x="449" y="94" width="42" height="24" uuid="36cd9277-4731-4262-9c1b-d75fe895ad73"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Cantidad dias
+				<text><![CDATA[Dias
 tomados]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="470" y="94" width="84" height="24" uuid="fd3719cc-0c3c-435c-ac4e-ce8a86ead94b"/>
+				<reportElement x="495" y="94" width="59" height="24" uuid="fd3719cc-0c3c-435c-ac4e-ce8a86ead94b"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Cantidad dias
+				<text><![CDATA[Dias
 reintegrados]]></text>
 			</staticText>
 			<textField>
@@ -231,21 +231,14 @@ reintegrados]]></text>
 	<detail>
 		<band height="23" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="1" y="3" width="116" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
+				<reportElement x="1" y="3" width="184" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{persona}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="116" y="3" width="60" height="20" uuid="f7dfe77a-9a44-4168-8f4c-b3dca8a0b2ce"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nro_documento}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="233" y="3" width="20" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
+				<reportElement x="306" y="2" width="20" height="20" uuid="b9301dfb-5b0f-4786-b6b9-29f44a0bc8f7"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
@@ -255,39 +248,46 @@ reintegrados]]></text>
 				<reportElement key="line" x="0" y="1" width="550" height="1" forecolor="#D5D5D5" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
 			</line>
 			<textField>
-				<reportElement x="200" y="3" width="31" height="20" uuid="7facd5e3-583a-42a2-92c1-c8833ae2de11"/>
+				<reportElement x="247" y="2" width="55" height="20" uuid="7facd5e3-583a-42a2-92c1-c8833ae2de11"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nro_expediente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="275" y="2" width="34" height="20" uuid="ae1f706a-15b2-49c0-9f93-0acd55e7e70c"/>
+				<reportElement x="348" y="0" width="34" height="20" uuid="ae1f706a-15b2-49c0-9f93-0acd55e7e70c"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_total_dias}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="347" y="2" width="32" height="20" uuid="95399f4c-71c2-4223-86df-5ef10814df19"/>
+				<reportElement x="392" y="0" width="32" height="20" uuid="95399f4c-71c2-4223-86df-5ef10814df19"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_dias_disponible}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="2" width="32" height="20" uuid="c269465e-77a8-4d5c-92e2-42eb1ca564cf"/>
+				<reportElement x="449" y="1" width="32" height="20" uuid="c269465e-77a8-4d5c-92e2-42eb1ca564cf"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_dias_tomados}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="477" y="2" width="42" height="20" uuid="238b1e64-48c9-4588-b56b-575b1bb036e6"/>
+				<reportElement x="495" y="1" width="42" height="20" uuid="238b1e64-48c9-4588-b56b-575b1bb036e6"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_dias_reintegro}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="185" y="2" width="60" height="20" uuid="f7dfe77a-9a44-4168-8f4c-b3dca8a0b2ce"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro_documento}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

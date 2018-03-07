@@ -1,0 +1,2 @@
+ALTER TABLE public.persona ALTER COLUMN cuil DROP NOT NULL;
+

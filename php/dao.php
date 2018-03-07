@@ -343,7 +343,7 @@ class dao
   						cantidad_dias_reintegro,
   						cantidad_dias_disponible,
   						cantidad_dias_tomados
-  				order by mes::int asc		
+  				order by mes::int asc , nro_expediente 		
   				";
   		return consultar_fuente($sql);
 	}
