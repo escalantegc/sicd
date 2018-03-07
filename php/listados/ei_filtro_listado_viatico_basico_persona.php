@@ -10,7 +10,6 @@ class ei_filtro_listado_viatico_basico_persona extends sicd_ei_filtro
 		echo "
 		//---- Procesamiento de EFs --------------------------------
 		
-		{$this->objeto_js}.evt__idlocalidad_origen__procesar = function(es_inicial)
 		
 		        
 		        {$this->objeto_js}.evt__mes__procesar = function(es_inicial)
