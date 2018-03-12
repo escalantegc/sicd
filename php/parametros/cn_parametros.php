@@ -712,6 +712,59 @@ class cn_parametros extends sicd_cn
 	{
 		$id = $this->dep('dr_parametros')->tabla('dt_tipo_hora')->get_id_fila_condicion($seleccion);
 		$this->dep('dr_parametros')->tabla('dt_tipo_hora')->eliminar_fila($id[0]);
+	}	
+
+	//-----------------------------------------------------------------------------------
+	//---- DT-FUENTE DE FINANCIAMIENTO-----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function cargar_dt_fuente_financiamiento($seleccion)
+	{
+		if(!$this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->esta_cargada())
+		{				// verifica si esta cargada el datos relacion			
+			if(!isset($seleccion))
+			{
+				$this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->cargar();					// lee de la BD fisica y carga al datos relacion
+			}else{
+				$this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->cargar($seleccion);				// lee de la BD fisica y carga al datos relacion
+			}
+		}
+	}
+	function set_cursor_dt_fuente_financiamiento($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->set_cursor($id[0]);
+	}
+
+	function hay_cursor_dt_fuente_financiamiento()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->hay_cursor();
+	}
+
+	function resetear_cursor_dt_fuente_financiamiento()
+	{
+		$this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->resetear_cursor();
+	}
+
+	function get_dt_fuente_financiamiento()
+	{
+		return $this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->get();
+	}
+
+	function set_dt_fuente_financiamiento($datos)
+	{
+		$this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->set($datos);
+	}
+
+	function agregar_dt_fuente_financiamiento($datos)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->nueva_fila($datos);
+		$this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->set_cursor($id);
+	}	
+
+	function eliminar_dt_fuente_financiamiento($seleccion)
+	{
+		$id = $this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->get_id_fila_condicion($seleccion);
+		$this->dep('dr_parametros')->tabla('dt_fuente_financiamiento')->eliminar_fila($id[0]);
 	}
 }
 

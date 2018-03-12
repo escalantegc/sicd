@@ -8,8 +8,8 @@ class dao
 			$where = '1 = 1 and baja = false';
 		}
 		$sql = "SELECT 	idpersona, 
-						nombres ||', '|| apellido as persona, 
-						sigla ||' - '||  nro_documento as nro_documento , 
+						apellido ||', '||   nombres as persona, 
+						tipo_documento.sigla ||' - '||  nro_documento as nro_documento , 
        					matricula, 
        					estado_civil.descripcion as estado_civil, 
        					cuil, 
@@ -25,14 +25,39 @@ class dao
        					matricula_activa, 
        					fecha_baja_matricula,
        					baja,
-       					date_part('year',age(fecha_nacimiento))  as edad
+       					date_part('year',age(fecha_nacimiento))  as edad,
+       					(cargos_de_una_persona(idpersona)) as cargos
+
   				FROM 
   					public.persona
   				inner join tipo_documento using (idtipo_documento)
   				left outer join estado_civil using (idestado_civil)
   				inner join localidad using (idlocalidad)
+  				left outer join cargo_por_persona using (idpersona)
+  				left outer join fuente_financiamiento on fuente_financiamiento.idfuente_financiamiento=cargo_por_persona.idfuente_financiamiento
   				where
   					$where
+  				group by
+  					idpersona, 
+					apellido,
+					nombres , 
+					tipo_documento.sigla,  
+					nro_documento, 
+   					matricula, 
+   					estado_civil.descripcion , 
+   					cuil, 
+   					correo,
+   					fecha_nacimiento, 
+   					sexo, 
+   					localidad.descripcion , 
+   					calle, 
+   					altura, 
+   					depto, 
+   					piso, 
+   					domicilio, 
+   					matricula_activa, 
+   					fecha_baja_matricula,
+   					baja
   				order by apellido, nombres";
   		return consultar_fuente($sql);
 	}
@@ -220,7 +245,7 @@ class dao
 						cargo_por_persona.idpersona, 
 						cargo_por_persona.identidad, 
 						cargo_por_persona.idtipo_cargo,
-						nombres ||', '|| apellido as persona, 
+						apellido ||', '||   nombres as persona, 
 						(case when  tipo_cargo.descripcion is null then tipo_hora.descripcion else tipo_cargo.descripcion end) as cargo,
 						cargo_por_persona.idtipo_hora, 
 						tipo_cargo.cantidad_cargos as max_cargos,
@@ -259,6 +284,7 @@ class dao
   					order by 
   						bloque,
   						activo desc,
+  						apellido, nombres,
   						fecha_inicio,
   						cargo_por_persona.idtipo_hora";
   		return consultar_fuente($sql);
@@ -316,7 +342,7 @@ class dao
 		$sql = "SELECT 	idviatico, 
 						nro_expediente, 
 						persona.idpersona, 
-						nombres ||', '|| apellido as persona,
+						 apellido||', '||  nombres as persona,
 						cantidad_total_dias ,
 						mes ,
 						cantidad_dias_reintegro ,
@@ -580,6 +606,22 @@ class dao
 		if ( isset($resultado[0]) ) {
 			return $resultado[0]['persona'];
 		}
+	}
+
+	function get_listado_fuente_financiamiento($where = null)
+	{
+		if (!isset($where))
+		{
+			$where = '1 = 1';
+		}
+		$sql ="SELECT 	idfuente_financiamiento, 
+						sigla, 
+						nombre
+  				FROM 
+  					public.fuente_financiamiento
+  				WHERE
+  					$where";
+  		return consultar_fuente($sql);
 	}
 
   

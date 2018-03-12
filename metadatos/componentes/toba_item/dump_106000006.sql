@@ -1,34 +1,34 @@
 ------------------------------------------------------------
---[2]--  Incompatibilidades 
+--[106000006]--  Fuente de Financiamiento 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
 -- apex_item
 ------------------------------------------------------------
 
---- INICIO Grupo de desarrollo 0
+--- INICIO Grupo de desarrollo 106
 INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre, carpeta, nivel_acceso, solicitud_tipo, pagina_tipo_proyecto, pagina_tipo, actividad_buffer_proyecto, actividad_buffer, actividad_patron_proyecto, actividad_patron, nombre, descripcion, punto_montaje, actividad_accion, menu, orden, solicitud_registrar, solicitud_obs_tipo_proyecto, solicitud_obs_tipo, solicitud_observacion, solicitud_registrar_cron, prueba_directorios, zona_proyecto, zona, zona_orden, zona_listar, imagen_recurso_origen, imagen, parametro_a, parametro_b, parametro_c, publico, redirecciona, usuario, exportable, creacion, retrasar_headers) VALUES (
 	NULL, --item_id
 	'sicd', --proyecto
-	'2', --item
+	'106000006', --item
 	NULL, --padre_id
 	'sicd', --padre_proyecto
-	'1', --padre
+	'3487', --padre
 	'0', --carpeta
 	'0', --nivel_acceso
 	'web', --solicitud_tipo
 	'toba', --pagina_tipo_proyecto
 	'normal', --pagina_tipo
-	'toba', --actividad_buffer_proyecto
-	'0', --actividad_buffer
-	'toba', --actividad_patron_proyecto
-	'especifico', --actividad_patron
-	'Incompatibilidades', --nombre
-	'', --descripcion
+	NULL, --actividad_buffer_proyecto
+	NULL, --actividad_buffer
+	NULL, --actividad_patron_proyecto
+	NULL, --actividad_patron
+	'Fuente de Financiamiento', --nombre
+	NULL, --descripcion
 	'13', --punto_montaje
 	NULL, --actividad_accion
 	'1', --menu
-	'0', --orden
+	'3', --orden
 	'0', --solicitud_registrar
 	NULL, --solicitud_obs_tipo_proyecto
 	NULL, --solicitud_obs_tipo
@@ -48,10 +48,10 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 	NULL, --redirecciona
 	NULL, --usuario
 	'0', --exportable
-	'2017-11-02 17:33:42', --creacion
+	'2018-03-12 19:20:40', --creacion
 	'0'  --retrasar_headers
 );
---- FIN Grupo de desarrollo 0
+--- FIN Grupo de desarrollo 106
 
 ------------------------------------------------------------
 -- apex_item_objeto
@@ -59,8 +59,16 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 INSERT INTO apex_item_objeto (item_id, proyecto, item, objeto, orden, inicializar) VALUES (
 	NULL, --item_id
 	'sicd', --proyecto
-	'2', --item
-	'106000008', --objeto
-	'0', --orden
+	'106000006', --item
+	'2334', --objeto
+	'2', --orden
+	NULL  --inicializar
+);
+INSERT INTO apex_item_objeto (item_id, proyecto, item, objeto, orden, inicializar) VALUES (
+	NULL, --item_id
+	'sicd', --proyecto
+	'106000006', --item
+	'106000013', --objeto
+	'1', --orden
 	NULL  --inicializar
 );
