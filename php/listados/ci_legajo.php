@@ -9,6 +9,9 @@ class ci_legajo extends sicd_ci
 	function conf__filtro(sicd_ei_filtro $filtro)
 	{
 		$filtro->columna('idpersona')->set_condicion_fija('es_igual_a');
+		$filtro->columna('estudios')->set_condicion_fija('es_igual_a');
+		$filtro->columna('viaticos')->set_condicion_fija('es_igual_a');
+		$filtro->columna('cargos')->set_condicion_fija('es_igual_a');
 
 	}
 	function vista_jasperreports(toba_vista_jasperreports $report)
@@ -35,6 +38,9 @@ class ci_legajo extends sicd_ci
 		
 		
 		$idpersona = 0;
+		$detalleamostrar ='-';
+
+
 
 
 		if (isset($this->s__criterios_filtrado['idpersona']['valor'])!='')
@@ -42,14 +48,29 @@ class ci_legajo extends sicd_ci
 			if (trim($this->s__criterios_filtrado['idpersona']['valor'])!='nopar')
 			{
 				$idpersona = $this->s__criterios_filtrado['idpersona']['valor'];
-				
-				
+
 			}
 		}
-	
+
+		if (trim($this->s__criterios_filtrado['estudios']['valor']) != '-') 
+		{
+			$detalleamostrar = $detalleamostrar.'estudios';
+		}
+
+		if (trim($this->s__criterios_filtrado['viaticos']['valor']) != '-') 
+		{
+			$detalleamostrar = $detalleamostrar.'viaticos';
+		}
+
+		if (trim($this->s__criterios_filtrado['cargos']['valor']) != '-') 
+		{
+			$detalleamostrar = $detalleamostrar.'cargos';
+		}
+
 		
 	
 		$report->set_parametro('idpersona', 'E', $idpersona);
+		$report->set_parametro('detalleamostrar', 'S', $detalleamostrar);
 
 	
 
@@ -66,5 +87,29 @@ class ci_legajo extends sicd_ci
 		$this->s__criterios_filtrado['idpersona']['valor'] =  $idpersona;
 		$respuesta->set($idpersona);	
 	}	
+
+	 function ajax__get_dato_filtro_cargos($cargos, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['cargos']['condicion'] =  'es_igual_a';
+		$this->s__criterios_filtrado['cargos']['valor'] = $cargos;
+		$respuesta->set($cargos);	
+	}	 
+
+	function ajax__get_dato_filtro_estudios($estudios, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['estudios']['condicion'] =  'es_igual_a';
+		$this->s__criterios_filtrado['estudios']['valor'] = $estudios;
+		$respuesta->set($estudios);	
+	}	 
+
+	function ajax__get_dato_filtro_viaticos($viaticos, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['viaticos']['condicion'] =  'es_igual_a';
+		$this->s__criterios_filtrado['viaticos']['valor'] = $viaticos;
+		$respuesta->set($viaticos);	
+	}
+	
+
+
 }
 ?>

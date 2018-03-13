@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="legajo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed811449-f56c-42ef-8ee8-d6b355b7a23f">
-	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="187"/>
 	<parameter name="idpersona" class="java.lang.Integer"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
 	<parameter name="usuario" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<parameter name="detalleamostrar" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 	idpersona,
 						apellido ||', '|| nombres as persona,
@@ -106,9 +107,6 @@ order by persona]]>
 				</textField>
 			</band>
 		</groupHeader>
-		<groupFooter>
-			<band height="50"/>
-		</groupFooter>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -134,6 +132,7 @@ order by persona]]>
 	</title>
 	<detail>
 		<band height="81" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{detalleamostrar}.contains("estudios")]]></printWhenExpression>
 			<subreport>
 				<reportElement x="2" y="5" width="553" height="67" uuid="6e9d1060-c72d-4194-b339-268cfdfe8f45"/>
 				<subreportParameter name="idpersona">
@@ -144,6 +143,7 @@ order by persona]]>
 			</subreport>
 		</band>
 		<band height="75">
+			<printWhenExpression><![CDATA[$P{detalleamostrar}.contains("viaticos")]]></printWhenExpression>
 			<subreport>
 				<reportElement x="2" y="0" width="553" height="67" uuid="0623a979-39d5-452e-870b-ed3ddb207a69"/>
 				<subreportParameter name="idpersona">
@@ -154,6 +154,7 @@ order by persona]]>
 			</subreport>
 		</band>
 		<band height="72">
+			<printWhenExpression><![CDATA[$P{detalleamostrar}.contains("cargos")]]></printWhenExpression>
 			<subreport>
 				<reportElement x="1" y="0" width="553" height="67" uuid="e898da9e-44e3-4b74-8caf-d32a010e5352"/>
 				<subreportParameter name="idpersona">

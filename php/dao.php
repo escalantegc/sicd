@@ -270,7 +270,9 @@ class dao
 						activo,
 						(case when historico = true then 'SI' else 'NO' end) as historico ,
 						tipo,
-						(case when jerarquico = true then 'SI' else 'NO' end) as jerarquico 
+						(case when jerarquico = true then 'SI' else 'NO' end) as jerarquico,
+						monto,
+						(traer_fuente_financiamiento(idfuente_financiamiento)) as fuente
 				FROM 
 					cargo_por_persona
 				  inner join persona using(idpersona)

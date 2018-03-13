@@ -1,4 +1,3 @@
-ALTER TABLE public.persona ALTER COLUMN cuil DROP NOT NULL;
 
 
 CREATE OR REPLACE FUNCTION cargos_de_una_persona (int)
@@ -63,6 +62,8 @@ ALTER TABLE public.fuente_financiamiento
 
 
 ALTER TABLE public.cargo_por_persona ADD COLUMN idfuente_financiamiento integer;
+ALTER TABLE public.cargo_por_persona ADD COLUMN monto double precision;
+
 
 -- Foreign Key: public.tipo_cargo_cargo_por_persona_fk
 
@@ -73,27 +74,3 @@ ALTER TABLE public.cargo_por_persona
       REFERENCES public.tipo_cargo (idtipo_cargo) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;
 
-
--- Function: public.contar_cargos()
-
--- DROP FUNCTION public.contar_cargos();
-
-CREATE OR REPLACE FUNCTION traer_fuente_financiamiento(int)
-  RETURNS text AS
-$BODY$
-DECLARE 
-	fuente text;
-BEGIN
-    fuente := (SELECT 	 
-			 
-			nombre
-		FROM 
-			public.fuente_financiamiento
-		where 
-			idfuente_financiamiento =$1) ;
-    
-    RETURN fuente;
-END;
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;

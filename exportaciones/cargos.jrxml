@@ -48,7 +48,9 @@
 	activo,
 	(case when historico = true then 'SI' else 'NO' end) as historico ,
 	tipo,
-	(case when jerarquico = true then 'SI' else 'NO' end) as jerarquico
+	(case when jerarquico = true then 'SI' else 'NO' end) as jerarquico,
+	monto,
+	(traer_fuente_financiamiento(idfuente_financiamiento)) as fuente
 FROM
 	cargo_por_persona
 inner join persona using(idpersona)
@@ -93,12 +95,14 @@ left outer join tipo_hora  using(idtipo_hora)
 	<field name="historico" class="java.lang.String"/>
 	<field name="tipo" class="java.lang.String"/>
 	<field name="jerarquico" class="java.lang.String"/>
+	<field name="monto" class="java.lang.Double"/>
+	<field name="fuente" class="java.lang.String"/>
 	<group name="boque">
 		<groupExpression><![CDATA[$F{bloque}]]></groupExpression>
 		<groupHeader>
 			<band height="45">
 				<staticText>
-					<reportElement x="163" y="23" width="100" height="20" uuid="a0e3fc24-d8f2-4db2-8b18-24015356c5d5"/>
+					<reportElement x="159" y="23" width="100" height="20" uuid="a0e3fc24-d8f2-4db2-8b18-24015356c5d5"/>
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Institucion]]></text>
 				</staticText>
@@ -113,12 +117,12 @@ left outer join tipo_hora  using(idtipo_hora)
 					<text><![CDATA[Cargo/Horas]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="411" y="23" width="69" height="20" uuid="ef0e7e6e-64a0-4389-ac98-eab4f44cadfd"/>
+					<reportElement x="404" y="23" width="60" height="20" uuid="ef0e7e6e-64a0-4389-ac98-eab4f44cadfd"/>
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Fecha Inicio]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="483" y="23" width="69" height="20" uuid="b1c4d259-affd-4d0b-9a1c-62badd2ba5d9"/>
+					<reportElement x="465" y="23" width="60" height="20" uuid="b1c4d259-affd-4d0b-9a1c-62badd2ba5d9"/>
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Fecha Fin]]></text>
 				</staticText>
@@ -130,7 +134,7 @@ left outer join tipo_hora  using(idtipo_hora)
 					<textFieldExpression><![CDATA[$F{bloque}]]></textFieldExpression>
 				</textField>
 				<line direction="BottomUp">
-					<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="21" width="555" height="1" forecolor="#A8A8A8" uuid="2a58527a-5685-43e5-9dba-d1a2dc97e27f"/>
+					<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="21" width="595" height="1" forecolor="#A8A8A8" uuid="2a58527a-5685-43e5-9dba-d1a2dc97e27f"/>
 				</line>
 			</band>
 		</groupHeader>
@@ -152,10 +156,10 @@ left outer join tipo_hora  using(idtipo_hora)
 	<detail>
 		<band height="23" splitType="Stretch">
 			<line direction="BottomUp">
-				<reportElement key="line" x="0" y="1" width="555" height="1" forecolor="#A8A8A8" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
+				<reportElement key="line" x="0" y="1" width="595" height="1" forecolor="#A8A8A8" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="163" y="3" width="240" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
+				<reportElement x="159" y="3" width="240" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -171,11 +175,11 @@ left outer join tipo_hora  using(idtipo_hora)
 				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="411" y="2" width="69" height="20" uuid="44cc68d6-eaf9-41e3-91a6-23b657f13f2f"/>
+				<reportElement x="403" y="2" width="60" height="20" uuid="44cc68d6-eaf9-41e3-91a6-23b657f13f2f"/>
 				<textFieldExpression><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="483" y="2" width="69" height="20" uuid="e6cae853-3bd2-4c94-88e7-a5a7a6693601"/>
+				<reportElement x="466" y="2" width="60" height="20" uuid="e6cae853-3bd2-4c94-88e7-a5a7a6693601"/>
 				<textFieldExpression><![CDATA[$F{fecha_fin}]]></textFieldExpression>
 			</textField>
 		</band>
