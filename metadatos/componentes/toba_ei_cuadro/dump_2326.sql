@@ -125,7 +125,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'apex', --imagen_recurso_origen
 	'historia.png', --imagen
 	'0', --en_botonera
-	NULL, --ayuda
+	'Haga clic aqui para pasar a historico.', --ayuda
 	'3', --orden
 	NULL, --ci_predep
 	NULL, --implicito

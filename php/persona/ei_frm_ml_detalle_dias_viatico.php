@@ -51,7 +51,7 @@ class ei_frm_ml_detalle_dias_viatico extends sicd_ei_formulario_ml
 						} else {
 						
 							diff = fecha_hasta - fecha_desde;
-							dias = diff/(1000*60*60*24) ;
+							dias = diff/(1000*60*60*24)+1 ;
 							cantidad_dias_disponible = this.controlador.dep('frm').ef('cantidad_dias_disponible').get_estado();
 
 
@@ -91,7 +91,7 @@ class ei_frm_ml_detalle_dias_viatico extends sicd_ei_formulario_ml
 						} else {
 						
 							diff = fecha_hasta - fecha_desde;
-							dias = diff/(1000*60*60*24) ;
+							dias = diff/(1000*60*60*24) +1;
 							cantidad_dias_disponible = this.controlador.dep('frm').ef('cantidad_dias_disponible').get_estado();
 							if (dias > cantidad_dias_disponible)
 							{

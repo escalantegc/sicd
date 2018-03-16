@@ -59,7 +59,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'apex', --imagen_recurso_origen
 	'visible.png', --imagen
 	'0', --en_botonera
-	NULL, --ayuda
+	'Haga clic aqui para ver solo lectura', --ayuda
 	'1', --orden
 	NULL, --ci_predep
 	NULL, --implicito
@@ -125,7 +125,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'apex', --imagen_recurso_origen
 	'nucleo/subir.gif', --imagen
 	'0', --en_botonera
-	NULL, --ayuda
+	'Haga clic aqui para quitar del historico', --ayuda
 	'3', --orden
 	NULL, --ci_predep
 	NULL, --implicito

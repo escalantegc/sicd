@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudios" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f1731819-b5bd-4e7a-9435-cc0cfd3b5b83">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="17"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="idpersona" class="java.lang.Integer"/>
 	<queryString>
@@ -45,7 +45,7 @@ order by
 				<text><![CDATA[Institucion]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="0" y="0" width="710" height="29" uuid="6042532e-9e86-4568-9377-1fefb97bc250"/>
+				<reportElement x="0" y="0" width="773" height="29" uuid="6042532e-9e86-4568-9377-1fefb97bc250"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="8" y="4" width="185" height="20" uuid="0e8ff1ba-ab17-4903-b555-7e1418d4eb62"/>
@@ -59,7 +59,7 @@ order by
 	<detail>
 		<band height="27" splitType="Stretch">
 			<line>
-				<reportElement x="1" y="3" width="712" height="1" uuid="6290ef0d-8146-413c-b437-9fcf700247d7"/>
+				<reportElement x="1" y="3" width="772" height="1" uuid="6290ef0d-8146-413c-b437-9fcf700247d7"/>
 			</line>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="2" y="7" width="81" height="20" uuid="66abe865-9dfb-42a2-ad31-58bccf2fc288"/>

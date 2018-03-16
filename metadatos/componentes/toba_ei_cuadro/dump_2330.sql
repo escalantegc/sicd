@@ -221,7 +221,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'2330', --objeto_cuadro
 	'868', --objeto_cuadro_col
 	'cantidad_dias_reintegro', --clave
-	'4', --orden
+	'5', --orden
 	'Dias reintegrados', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-num-p1', --estilo
@@ -314,7 +314,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'2330', --objeto_cuadro
 	'872', --objeto_cuadro_col
 	'cantidad_dias_tomados', --clave
-	'5', --orden
+	'4', --orden
 	'Dias tomados', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-num-p1', --estilo

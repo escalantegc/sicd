@@ -622,7 +622,9 @@ class dao
   				FROM 
   					public.fuente_financiamiento
   				WHERE
-  					$where";
+  					$where
+  				order by 
+  					nombre";
   		return consultar_fuente($sql);
 	}
 
