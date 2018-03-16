@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cargos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
-	<property name="ireport.zoom" value="1.0000000000000022"/>
-	<property name="ireport.x" value="65"/>
+	<property name="ireport.zoom" value="0.9090909090909111"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fecha_inicio" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
@@ -117,12 +117,12 @@ left outer join tipo_hora  using(idtipo_hora)
 					<text><![CDATA[Cargo/Horas]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="404" y="23" width="60" height="20" uuid="ef0e7e6e-64a0-4389-ac98-eab4f44cadfd"/>
+					<reportElement x="389" y="23" width="60" height="20" uuid="ef0e7e6e-64a0-4389-ac98-eab4f44cadfd"/>
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Fecha Inicio]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="465" y="23" width="60" height="20" uuid="b1c4d259-affd-4d0b-9a1c-62badd2ba5d9"/>
+					<reportElement x="450" y="23" width="60" height="20" uuid="b1c4d259-affd-4d0b-9a1c-62badd2ba5d9"/>
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Fecha Fin]]></text>
 				</staticText>
@@ -134,15 +134,15 @@ left outer join tipo_hora  using(idtipo_hora)
 					<textFieldExpression><![CDATA[$F{bloque}]]></textFieldExpression>
 				</textField>
 				<line direction="BottomUp">
-					<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="21" width="813" height="1" forecolor="#A8A8A8" uuid="2a58527a-5685-43e5-9dba-d1a2dc97e27f"/>
+					<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="21" width="770" height="1" forecolor="#A8A8A8" uuid="2a58527a-5685-43e5-9dba-d1a2dc97e27f"/>
 				</line>
 				<staticText>
-					<reportElement x="529" y="24" width="117" height="20" uuid="25398c21-c5b0-480e-8f10-1cbe120927a8"/>
+					<reportElement x="516" y="24" width="117" height="20" uuid="25398c21-c5b0-480e-8f10-1cbe120927a8"/>
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Fuente financiamiento]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="730" y="23" width="83" height="20" uuid="9b941e40-3768-4a42-99c1-715f6986b29f"/>
+					<reportElement x="690" y="23" width="83" height="20" uuid="9b941e40-3768-4a42-99c1-715f6986b29f"/>
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Monto]]></text>
 				</staticText>
@@ -152,7 +152,7 @@ left outer join tipo_hora  using(idtipo_hora)
 	<columnHeader>
 		<band height="35">
 			<rectangle>
-				<reportElement x="2" y="3" width="811" height="29" uuid="2698affd-f045-4969-8213-f9206ccaa231"/>
+				<reportElement x="2" y="3" width="770" height="29" uuid="2698affd-f045-4969-8213-f9206ccaa231"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="10" y="7" width="185" height="20" uuid="82575f68-e919-437c-8420-253b229c9545"/>
@@ -166,10 +166,10 @@ left outer join tipo_hora  using(idtipo_hora)
 	<detail>
 		<band height="23" splitType="Stretch">
 			<line direction="BottomUp">
-				<reportElement key="line" x="0" y="1" width="813" height="1" forecolor="#A8A8A8" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
+				<reportElement key="line" x="0" y="1" width="770" height="1" forecolor="#A8A8A8" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="159" y="3" width="240" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
+				<reportElement x="159" y="3" width="225" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -185,27 +185,27 @@ left outer join tipo_hora  using(idtipo_hora)
 				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="403" y="2" width="60" height="20" uuid="44cc68d6-eaf9-41e3-91a6-23b657f13f2f"/>
+				<reportElement x="388" y="2" width="60" height="20" uuid="44cc68d6-eaf9-41e3-91a6-23b657f13f2f"/>
 				<textFieldExpression><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="466" y="2" width="60" height="20" uuid="e6cae853-3bd2-4c94-88e7-a5a7a6693601"/>
+				<reportElement x="451" y="2" width="60" height="20" uuid="e6cae853-3bd2-4c94-88e7-a5a7a6693601"/>
 				<textFieldExpression><![CDATA[$F{fecha_fin}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="530" y="3" width="195" height="20" uuid="9c77e0a8-94c1-4b5e-a65f-8676888a3324"/>
+				<reportElement x="517" y="3" width="170" height="20" uuid="9c77e0a8-94c1-4b5e-a65f-8676888a3324"/>
 				<textFieldExpression><![CDATA[$F{fuente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="$###0.00;###0.00-" isBlankWhenNull="true">
-				<reportElement x="730" y="1" width="83" height="20" uuid="0dbbd0c4-fc9f-4e93-a738-f260f972bd7a"/>
+				<reportElement x="690" y="3" width="83" height="20" uuid="0dbbd0c4-fc9f-4e93-a738-f260f972bd7a"/>
 				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="50">
+		<band height="36">
 			<staticText>
-				<reportElement isPrintRepeatedValues="false" x="10" y="12" width="555" height="35" isRemoveLineWhenBlank="true" uuid="fcb8c0dc-42ac-4657-a993-6794f2ee6a1e">
+				<reportElement isPrintRepeatedValues="false" x="10" y="0" width="555" height="35" isRemoveLineWhenBlank="true" uuid="fcb8c0dc-42ac-4657-a993-6794f2ee6a1e">
 					<printWhenExpression><![CDATA[$V{REPORT_COUNT}.equals(0)]]></printWhenExpression>
 				</reportElement>
 				<textElement>

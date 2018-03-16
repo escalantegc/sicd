@@ -67,7 +67,15 @@ class ei_frm_persona extends sicd_ei_formulario
 
 			if (this.ef('fecha_nacimiento').tiene_estado())
 			{
-				this.ef('edad').set_estado(this.ef('fecha_nacimiento').calcular_edad(fecha));	
+				var edad = this.ef('fecha_nacimiento').calcular_edad(fecha)
+				if (edad < 17)
+				{
+					alert('La persona no puede tener edad menor a 17.');
+					this.ef('fecha_nacimiento').resetear_estado()
+				} else {
+					this.ef('edad').set_estado(edad);
+				}
+					
 			} else {
 				this.ef('edad').resetear_estado();
 			}

@@ -65,12 +65,5 @@ ALTER TABLE public.cargo_por_persona ADD COLUMN idfuente_financiamiento integer;
 ALTER TABLE public.cargo_por_persona ADD COLUMN monto double precision;
 
 
--- Foreign Key: public.tipo_cargo_cargo_por_persona_fk
 
--- ALTER TABLE public.cargo_por_persona DROP CONSTRAINT tipo_cargo_cargo_por_persona_fk;
-
-ALTER TABLE public.cargo_por_persona
-  ADD CONSTRAINT tipo_cargo_cargo_por_persona_fk FOREIGN KEY (idtipo_cargo)
-      REFERENCES public.tipo_cargo (idtipo_cargo) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION;
 
