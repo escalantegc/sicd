@@ -55,7 +55,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'1', --maneja_datos
 	NULL, --sobre_fila
 	NULL, --confirmacion
-	'ei-boton-filtrar', --estilo
+	NULL, --estilo
 	'apex', --imagen_recurso_origen
 	'filtrar.png', --imagen
 	'1', --en_botonera
@@ -137,7 +137,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'idpersona', --expresion
 	'Persona', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'1', --orden
 	NULL, --estado_defecto
@@ -195,7 +195,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'cargos', --expresion
 	'Cargos', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'4', --orden
 	NULL, --estado_defecto
@@ -253,7 +253,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'estudios', --expresion
 	'Estudios', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'2', --orden
 	NULL, --estado_defecto
@@ -311,7 +311,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'viaticos', --expresion
 	'Viaticos', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'3', --orden
 	NULL, --estado_defecto

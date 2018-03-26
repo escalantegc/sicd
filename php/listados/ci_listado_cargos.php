@@ -15,7 +15,6 @@ class ci_listado_cargos extends sicd_ci
 		$filtro->columna('fecha_inicio')->set_condicion_fija('es_igual_a');
 		$filtro->columna('fecha_fin')->set_condicion_fija('es_igual_a');
 		$filtro->columna('idtipo_hora')->set_condicion_fija('es_igual_a');
-		$filtro->columna('tipo')->set_condicion_fija('es_igual_a');
 		$filtro->columna('activo')->set_condicion_fija('es_igual_a');
 		$filtro->columna('historico')->set_condicion_fija('es_igual_a');
 	}
@@ -48,7 +47,7 @@ class ci_listado_cargos extends sicd_ci
 		$fecha_inicio_mostrar = '%%';
 		$fecha_fin_mostrar = '%%';
 		$idtipo_hora = '%%';
-		$tipo = '%%';
+
 		$activo = 'true';
 		$historico = 'false';
 		
@@ -130,14 +129,7 @@ class ci_listado_cargos extends sicd_ci
 			}
 		}		
 
-		if (isset($this->s__criterios_filtrado['tipo']['valor'])!='')
-		{
-			if (trim($this->s__criterios_filtrado['tipo']['valor'])!='nopar')
-			{
-				$tipo = utf8_encode(trim($this->s__criterios_filtrado['tipo']['valor']));
 				
-			}
-		}		
 
 		if (isset($this->s__criterios_filtrado['activo']['valor'])!='')
 		{
@@ -164,7 +156,7 @@ class ci_listado_cargos extends sicd_ci
 		$report->set_parametro('fecha_inicio_mostrar', 'S', $fecha_inicio_mostrar);
 		$report->set_parametro('fecha_fin_mostrar', 'S', $fecha_fin_mostrar);
 		$report->set_parametro('idtipo_hora', 'S', $idtipo_hora);
-		$report->set_parametro('tipo', 'S', $tipo);
+		
 		$report->set_parametro('activo', 'S', $activo);
 		$report->set_parametro('historico', 'S', $historico);
 		

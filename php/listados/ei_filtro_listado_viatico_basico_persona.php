@@ -26,6 +26,8 @@ class ei_filtro_listado_viatico_basico_persona extends sicd_ei_filtro
 		                if(nro_expediente!='')
 		                {
 		                	this.controlador.ajax('get_dato_filtro_nro_expediente', nro_expediente, this, this.actualizar_datos); 
+		                } else {
+		                	this.controlador.ajax('get_dato_filtro_nro_expediente', '%%', this, this.actualizar_datos); 
 		                }
 		                
 		            }

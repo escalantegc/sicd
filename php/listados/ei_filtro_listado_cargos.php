@@ -52,11 +52,21 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 			if (!es_inicial) 
 			{
 		        fecha_inicio = this.ef('fecha_inicio').fecha();
-		        mes =  fecha_inicio.getMonth()+1;
-		        inicio = fecha_inicio.getFullYear()+ '-' +mes+'-'+fecha_inicio.getDate();
-		        inicio_mostrar = fecha_inicio.getDate()+'/'+mes+'/'+fecha_inicio.getFullYear();
-		        this.controlador.ajax('get_dato_filtro_fecha_inicio', inicio, this, this.actualizar_datos); 
-		        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar', inicio_mostrar, this, this.actualizar_datos); 
+		        if (fecha_inicio!=null)
+		        {
+			        mes =  fecha_inicio.getMonth()+1;
+			        inicio = fecha_inicio.getFullYear()+ '-' +mes+'-'+fecha_inicio.getDate();
+			        inicio_mostrar = fecha_inicio.getDate()+'/'+mes+'/'+fecha_inicio.getFullYear();
+			        this.controlador.ajax('get_dato_filtro_fecha_inicio', inicio, this, this.actualizar_datos); 
+			        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar', inicio_mostrar, this, this.actualizar_datos); 
+		        } else {
+
+			        inicio = '%%';
+			        inicio_mostrar = '%%';
+			        this.controlador.ajax('get_dato_filtro_fecha_inicio', inicio, this, this.actualizar_datos); 
+			        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar', inicio_mostrar, this, this.actualizar_datos); 
+		        }
+
 		    }
 		}
 		
@@ -65,12 +75,20 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 			if (!es_inicial) 
 			{
 		        fecha_fin = this.ef('fecha_fin').fecha();
-		        mes =  fecha_fin.getMonth()+1 ;
-		        fin = fecha_fin.getFullYear()+ '-' +mes+'-'+fecha_fin.getDate();
-		        fin_mostrar = fecha_fin.getDate()+'/'+mes+'/0'+fecha_fin.getFullYear()
+		        if (fecha_fin!=null)
+		        {
+			        mes =  fecha_fin.getMonth()+1 ;
+			        fin = fecha_fin.getFullYear()+ '-' +mes+'-'+fecha_fin.getDate();
+			        fin_mostrar = fecha_fin.getDate()+'/'+mes+'/'+fecha_fin.getFullYear();
+			        this.controlador.ajax('get_dato_filtro_fecha_fin', fin, this, this.actualizar_datos); 
+			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar', fin_mostrar, this, this.actualizar_datos); 
+		        } else {
+			        fin = '%%';
+			        fin_mostrar = '%%';
+			        this.controlador.ajax('get_dato_filtro_fecha_fin', fin, this, this.actualizar_datos); 
+			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar', fin_mostrar, this, this.actualizar_datos); 
+		        }
 
-		        this.controlador.ajax('get_dato_filtro_fecha_fin', fin, this, this.actualizar_datos); 
-		        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar', fin_mostrar, this, this.actualizar_datos); 
 		    }
 		}
 		
@@ -79,31 +97,7 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		        }
 		//---- Procesamiento de EFs --------------------------------
 		
-		{$this->objeto_js}.evt__tipo__procesar = function(es_inicial)
-		{
-			tipo = this.ef('tipo').get_estado();
-			if (!es_inicial) 
-			{
-		        this.controlador.ajax('get_dato_filtro_tipo', tipo, this, this.actualizar_datos);
-		    }
-	    	if (tipo=='nopar')
-	       	{
-	       		this.ef('idtipo_hora').ocultar();
-	       		this.ef('idtipo_cargo').ocultar();
-	       	}
-	       	
-	       	if (tipo=='hora')
-	       	{
-	       		this.ef('idtipo_hora').mostrar();
-	       		this.ef('idtipo_cargo').ocultar();
-	       	}
-	       	if (tipo=='cargo')
-	       	{
-	       		this.ef('idtipo_hora').ocultar();
-	       		this.ef('idtipo_cargo').mostrar();
-	       	}
-
-		}	
+		
 		{$this->objeto_js}.evt__activo__procesar = function(es_inicial)
 		{
 			if (!es_inicial) 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cargos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
-	<property name="ireport.zoom" value="0.9090909090909111"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.zoom" value="1.6105100000000043"/>
+	<property name="ireport.x" value="281"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fecha_inicio" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
@@ -117,12 +117,12 @@ left outer join tipo_hora  using(idtipo_hora)
 					<text><![CDATA[Cargo/Horas]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="389" y="23" width="60" height="20" uuid="ef0e7e6e-64a0-4389-ac98-eab4f44cadfd"/>
+					<reportElement x="365" y="23" width="60" height="20" uuid="ef0e7e6e-64a0-4389-ac98-eab4f44cadfd"/>
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Fecha Inicio]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="450" y="23" width="60" height="20" uuid="b1c4d259-affd-4d0b-9a1c-62badd2ba5d9"/>
+					<reportElement x="426" y="23" width="60" height="20" uuid="b1c4d259-affd-4d0b-9a1c-62badd2ba5d9"/>
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Fecha Fin]]></text>
 				</staticText>
@@ -137,13 +137,13 @@ left outer join tipo_hora  using(idtipo_hora)
 					<reportElement key="line" stretchType="RelativeToBandHeight" x="0" y="21" width="770" height="1" forecolor="#A8A8A8" uuid="2a58527a-5685-43e5-9dba-d1a2dc97e27f"/>
 				</line>
 				<staticText>
-					<reportElement x="516" y="24" width="117" height="20" uuid="25398c21-c5b0-480e-8f10-1cbe120927a8"/>
+					<reportElement x="487" y="24" width="171" height="20" uuid="25398c21-c5b0-480e-8f10-1cbe120927a8"/>
 					<textElement verticalAlignment="Bottom"/>
-					<text><![CDATA[Fuente financiamiento]]></text>
+					<text><![CDATA[Fuente de financiamiento]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="690" y="23" width="83" height="20" uuid="9b941e40-3768-4a42-99c1-715f6986b29f"/>
-					<textElement verticalAlignment="Bottom"/>
+					<reportElement x="690" y="23" width="82" height="20" uuid="9b941e40-3768-4a42-99c1-715f6986b29f"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
 					<text><![CDATA[Monto]]></text>
 				</staticText>
 			</band>
@@ -169,7 +169,7 @@ left outer join tipo_hora  using(idtipo_hora)
 				<reportElement key="line" x="0" y="1" width="770" height="1" forecolor="#A8A8A8" uuid="57cc63cc-bfc1-4f94-96bc-7404fac4fb9b"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="159" y="3" width="225" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
+				<reportElement x="159" y="3" width="203" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -185,19 +185,20 @@ left outer join tipo_hora  using(idtipo_hora)
 				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="388" y="2" width="60" height="20" uuid="44cc68d6-eaf9-41e3-91a6-23b657f13f2f"/>
+				<reportElement x="364" y="2" width="60" height="20" uuid="44cc68d6-eaf9-41e3-91a6-23b657f13f2f"/>
 				<textFieldExpression><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="451" y="2" width="60" height="20" uuid="e6cae853-3bd2-4c94-88e7-a5a7a6693601"/>
+				<reportElement x="427" y="2" width="60" height="20" uuid="e6cae853-3bd2-4c94-88e7-a5a7a6693601"/>
 				<textFieldExpression><![CDATA[$F{fecha_fin}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="517" y="3" width="170" height="20" uuid="9c77e0a8-94c1-4b5e-a65f-8676888a3324"/>
+				<reportElement x="488" y="3" width="202" height="20" uuid="9c77e0a8-94c1-4b5e-a65f-8676888a3324"/>
 				<textFieldExpression><![CDATA[$F{fuente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="$###0.00;###0.00-" isBlankWhenNull="true">
-				<reportElement x="690" y="3" width="83" height="20" uuid="0dbbd0c4-fc9f-4e93-a738-f260f972bd7a"/>
+				<reportElement x="690" y="3" width="82" height="20" uuid="0dbbd0c4-fc9f-4e93-a738-f260f972bd7a"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 			</textField>
 		</band>

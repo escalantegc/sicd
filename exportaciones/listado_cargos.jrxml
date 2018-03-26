@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_cargo" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
-	<property name="ireport.zoom" value="1.1000000000000023"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.2396694214876032"/>
+	<property name="ireport.x" value="68"/>
+	<property name="ireport.y" value="96"/>
 	<parameter name="fecha_inicio" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
@@ -14,7 +14,6 @@
 	<parameter name="idtipo_hora" class="java.lang.String"/>
 	<parameter name="fecha_fin" class="java.lang.String"/>
 	<parameter name="titulo" class="java.lang.String"/>
-	<parameter name="tipo" class="java.lang.String"/>
 	<parameter name="activo" class="java.lang.String"/>
 	<parameter name="historico" class="java.lang.String"/>
 	<parameter name="fecha_inicio_mostrar" class="java.lang.String"/>
@@ -59,13 +58,14 @@ left outer join tipo_hora  using(idtipo_hora)
  WHERE
 	historico = $P{historico}::boolean AND
 	activo = $P{activo}::boolean and
-trim(tipo) ilike $P{tipo} and
+
 
 	trim(entidad.nombre) ilike $P{identidad} and
-((trim(tipo_cargo.descripcion) ilike $P{idtipo_cargo} or trim(tipo_cargo.descripcion) is null) or
-(trim(tipo_hora.descripcion) ilike $P{idtipo_hora} or trim(tipo_hora.descripcion) is null)) and
-(trim(fecha_inicio::character(10)) ilike  $P{fecha_inicio} or trim(fecha_inicio::character(10)) is null) and
-(trim(fecha_fin::character(10)) ilike $P{fecha_fin} or trim(fecha_fin::character(10)) is null)
+(((trim(tipo_cargo.descripcion) ilike $P{idtipo_cargo} or trim(tipo_cargo.descripcion) is null)) or
+((trim(tipo_hora.descripcion) ilike $P{idtipo_hora} or trim(tipo_hora.descripcion) is null))) and
+trim(fecha_inicio::character(10)) ilike  $P{fecha_inicio} or trim(fecha_inicio::character(10)) is null and
+trim(fecha_fin::character(10)) ilike $P{fecha_fin} or trim(fecha_fin::character(10)) is null
+
   order by
 	apellido,
 	nombres,
@@ -175,7 +175,7 @@ trim(tipo) ilike $P{tipo} and
 	<title>
 		<band height="69" splitType="Stretch">
 			<textField>
-				<reportElement x="73" y="0" width="409" height="69" uuid="5239eb39-6b22-4004-9c7c-2834da3ba7e7"/>
+				<reportElement x="73" y="0" width="656" height="69" uuid="5239eb39-6b22-4004-9c7c-2834da3ba7e7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Liberation Sans" size="15" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
@@ -186,13 +186,14 @@ trim(tipo) ilike $P{tipo} and
 				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="482" y="0" width="73" height="69" uuid="60723f2b-5d80-40fb-9172-55f9a382f94e"/>
+				<reportElement x="729" y="0" width="73" height="69" uuid="60723f2b-5d80-40fb-9172-55f9a382f94e"/>
 				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="135" splitType="Stretch">
+		<band height="109" splitType="Stretch">
+			<printWhenExpression><![CDATA[($V{PAGE_NUMBER}.equals( 1 ) ? true : false  )]]></printWhenExpression>
 			<staticText>
 				<reportElement x="0" y="0" width="80" height="20" uuid="301cde45-2b61-44d0-b41f-9cf840cc005c"/>
 				<textElement>
@@ -201,33 +202,33 @@ trim(tipo) ilike $P{tipo} and
 				<text><![CDATA[Ordenado por: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="45" width="58" height="20" uuid="1de0081f-3a97-4c62-889c-64c7cac3f0ad"/>
+				<reportElement x="0" y="22" width="61" height="20" uuid="1de0081f-3a97-4c62-889c-64c7cac3f0ad"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Cargo: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="58" y="45" width="103" height="20" uuid="dd36e75f-f364-479b-a586-eea0255e33c6"/>
+				<reportElement x="64" y="22" width="100" height="20" uuid="dd36e75f-f364-479b-a586-eea0255e33c6"/>
 				<textFieldExpression><![CDATA[($P{idtipo_cargo}.toString().equals("%%") ?"TODOS":$P{idtipo_cargo})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="403" y="67" width="100" height="20" uuid="d6fe819d-8a8f-4b9f-8094-0a6e081d71d3"/>
+				<reportElement x="403" y="44" width="100" height="20" uuid="d6fe819d-8a8f-4b9f-8094-0a6e081d71d3"/>
 				<textFieldExpression><![CDATA[($P{cantidad_horas}.toString().equals("") ?"TODAS":$P{cantidad_horas})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="58" y="67" width="124" height="20" uuid="97aa7683-e3fd-4457-ac01-d331696a8edb"/>
+				<reportElement x="64" y="44" width="121" height="20" uuid="97aa7683-e3fd-4457-ac01-d331696a8edb"/>
 				<textFieldExpression><![CDATA[($P{identidad}.toString().equals("%%") ?"TODAS":$P{identidad})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="67" width="58" height="20" uuid="c3378234-04ff-470a-8236-1fea14c5e561"/>
+				<reportElement x="0" y="44" width="61" height="20" uuid="c3378234-04ff-470a-8236-1fea14c5e561"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Entidad: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="67" width="80" height="20" uuid="b3921f6a-b95d-4108-98f5-2a747f201b7e"/>
+				<reportElement x="320" y="44" width="80" height="20" uuid="b3921f6a-b95d-4108-98f5-2a747f201b7e"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
@@ -238,66 +239,55 @@ trim(tipo) ilike $P{tipo} and
 				<textFieldExpression><![CDATA[$P{orderby_mostrar}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="403" y="90" width="100" height="20" uuid="e9babb13-011a-4fec-b48c-23402896dfa5"/>
+				<reportElement x="403" y="67" width="100" height="20" uuid="e9babb13-011a-4fec-b48c-23402896dfa5"/>
 				<textFieldExpression><![CDATA[($P{fecha_fin_mostrar}.toString().equals("%%") ?"TODAS":$P{fecha_fin_mostrar})]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="58" y="89" width="100" height="20" uuid="3209a0ba-b58c-42fb-be3a-d74295a9f0e9"/>
+				<reportElement x="64" y="66" width="97" height="20" uuid="3209a0ba-b58c-42fb-be3a-d74295a9f0e9"/>
 				<textFieldExpression><![CDATA[($P{fecha_inicio_mostrar}.toString().equals("%%") ?"TODAS":$P{fecha_inicio_mostrar})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="89" width="58" height="20" uuid="738f702a-6a11-4e65-99f2-92c2c83f8755"/>
+				<reportElement x="0" y="66" width="61" height="20" uuid="738f702a-6a11-4e65-99f2-92c2c83f8755"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Fecha Inicio:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="89" width="80" height="20" uuid="f9c74275-7838-46a0-8fe2-9e6fbf74e178"/>
+				<reportElement x="320" y="66" width="80" height="20" uuid="f9c74275-7838-46a0-8fe2-9e6fbf74e178"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Fecha Fin:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="403" y="45" width="100" height="20" uuid="abaeba90-24c5-4994-9e5d-8cfabf3a5359"/>
+				<reportElement x="403" y="22" width="100" height="20" uuid="abaeba90-24c5-4994-9e5d-8cfabf3a5359"/>
 				<textFieldExpression><![CDATA[($P{idtipo_hora}.toString().equals("%%") ?"TODOS":$P{idtipo_hora})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="320" y="45" width="80" height="20" uuid="6766078b-2ef6-4937-bc29-f98c68180fbf"/>
+				<reportElement x="320" y="22" width="80" height="20" uuid="6766078b-2ef6-4937-bc29-f98c68180fbf"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Horas:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="1" y="23" width="58" height="20" uuid="75ba9c00-1428-4aa6-b69f-aa1d961a631a"/>
-				<textElement>
-					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<text><![CDATA[Cargo/Horas: ]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="60" y="23" width="103" height="20" uuid="19ea51c4-c1e9-486e-b354-921c3078814d"/>
-				<textFieldExpression><![CDATA[($P{tipo}.toString().equals("%%") ?"TODOS":$P{tipo})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="403" y="112" width="100" height="20" uuid="5f48d65d-5df0-41b3-b5d9-e3380105b9dd"/>
+				<reportElement x="403" y="89" width="100" height="20" uuid="5f48d65d-5df0-41b3-b5d9-e3380105b9dd"/>
 				<textFieldExpression><![CDATA[($P{historico}.toString().equals("true") ?"SI":"NO")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="59" y="110" width="100" height="20" uuid="9996ddd4-3c28-4213-a3b5-deb5644bca2f"/>
+				<reportElement x="64" y="89" width="97" height="20" uuid="9996ddd4-3c28-4213-a3b5-deb5644bca2f"/>
 				<textFieldExpression><![CDATA[($P{activo}.toString().equals("true") ?"SI":"NO")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="110" width="58" height="20" uuid="68f9f08e-b128-4436-9c22-bce1c90533f6"/>
+				<reportElement x="0" y="89" width="61" height="20" uuid="68f9f08e-b128-4436-9c22-bce1c90533f6"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Activo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="112" width="80" height="20" uuid="2f35e271-83cf-4f8a-ad24-4eade8a5ea7b"/>
+				<reportElement x="320" y="89" width="80" height="20" uuid="2f35e271-83cf-4f8a-ad24-4eade8a5ea7b"/>
 				<textElement>
 					<font fontName="Liberation Sans" size="9" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
 				</textElement>

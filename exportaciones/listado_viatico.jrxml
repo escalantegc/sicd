@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_viatico" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
-	<property name="ireport.zoom" value="1.2396694214876032"/>
+	<property name="ireport.zoom" value="2.9230756500000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="445"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
@@ -17,7 +17,7 @@
 	<parameter name="cantidad_dias_tomados" class="java.lang.Integer"/>
 	<parameter name="cantidad_dias_reintegro" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[SELECT 	nombres ||', '|| apellido as persona,
+		<![CDATA[SELECT 	apellido ||', '||  nombres as persona,
 	sigla ||' - '||  nro_documento as nro_documento,
 	persona.idpersona,
 	mes ,
@@ -89,6 +89,7 @@ order by
 	</title>
 	<columnHeader>
 		<band height="122" splitType="Stretch">
+			<printWhenExpression><![CDATA[( $V{PAGE_NUMBER}.equals( 1 ) ? true : false )]]></printWhenExpression>
 			<staticText>
 				<reportElement x="0" y="0" width="85" height="20" uuid="301cde45-2b61-44d0-b41f-9cf840cc005c"/>
 				<textElement>
@@ -255,28 +256,28 @@ reintegrados]]></text>
 				<textFieldExpression><![CDATA[$F{nro_expediente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="348" y="0" width="34" height="20" uuid="ae1f706a-15b2-49c0-9f93-0acd55e7e70c"/>
+				<reportElement x="348" y="2" width="34" height="20" uuid="ae1f706a-15b2-49c0-9f93-0acd55e7e70c"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_total_dias}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="392" y="0" width="32" height="20" uuid="95399f4c-71c2-4223-86df-5ef10814df19"/>
+				<reportElement x="392" y="2" width="32" height="20" uuid="95399f4c-71c2-4223-86df-5ef10814df19"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_dias_disponible}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="449" y="1" width="32" height="20" uuid="c269465e-77a8-4d5c-92e2-42eb1ca564cf"/>
+				<reportElement x="449" y="2" width="32" height="20" uuid="c269465e-77a8-4d5c-92e2-42eb1ca564cf"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_dias_tomados}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="495" y="1" width="42" height="20" uuid="238b1e64-48c9-4588-b56b-575b1bb036e6"/>
+				<reportElement x="495" y="2" width="42" height="20" uuid="238b1e64-48c9-4588-b56b-575b1bb036e6"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>

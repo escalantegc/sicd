@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudios" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f1731819-b5bd-4e7a-9435-cc0cfd3b5b83">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="6"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="idpersona" class="java.lang.Integer"/>
 	<queryString>
@@ -16,9 +16,7 @@
 FROM
 	viatico
 
-left outer join detalle_dias_viatico on detalle_dias_viatico.idviatico=viatico.idviatico
-left outer join localidad localidad_origen on localidad_origen.idlocalidad = detalle_dias_viatico.idlocalidad_origen
-left outer join localidad localidad_destino on localidad_destino.idlocalidad = detalle_dias_viatico.idlocalidad_destino
+
 where
 
 	viatico.idpersona=$P!{idpersona}
@@ -37,8 +35,8 @@ mes::int]]>
 	<columnHeader>
 		<band height="63" splitType="Stretch">
 			<staticText>
-				<reportElement x="4" y="39" width="106" height="24" uuid="0093acc2-8ab5-4702-9b3e-df0fa6d1cac4"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
+				<reportElement x="0" y="39" width="110" height="24" uuid="0093acc2-8ab5-4702-9b3e-df0fa6d1cac4"/>
+				<textElement verticalAlignment="Bottom">
 					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Nro Expediente]]></text>
@@ -48,7 +46,7 @@ mes::int]]>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Cantidad dias
+				<text><![CDATA[Cantidad de dias
 tomados]]></text>
 			</staticText>
 			<staticText>
@@ -65,14 +63,14 @@ de dias]]></text>
 					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Cantidad de dias
-para reintegro ]]></text>
+reintegrados]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="402" y="39" width="106" height="24" uuid="2b55c491-9c00-4b16-a1c0-a7c9a07db6e2"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Cantidad dias
+				<text><![CDATA[Cantidad de dias
 disponibles]]></text>
 			</staticText>
 			<staticText>
@@ -100,14 +98,14 @@ disponibles]]></text>
 				<reportElement x="1" y="3" width="769" height="1" uuid="6290ef0d-8146-413c-b437-9fcf700247d7"/>
 			</line>
 			<textField>
-				<reportElement x="4" y="7" width="35" height="20" uuid="49928dc3-9856-4588-bc7d-41eef1a57ee1"/>
+				<reportElement x="0" y="6" width="110" height="20" uuid="49928dc3-9856-4588-bc7d-41eef1a57ee1"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nro_expediente}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="149" y="7" width="24" height="20" uuid="fe76a7f0-be26-4298-b0ce-7d65881debd8"/>
+				<reportElement x="132" y="6" width="44" height="20" uuid="fe76a7f0-be26-4298-b0ce-7d65881debd8"/>
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>

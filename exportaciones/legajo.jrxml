@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="legajo" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed811449-f56c-42ef-8ee8-d6b355b7a23f">
-	<property name="ireport.zoom" value="0.6361464275587272"/>
+	<property name="ireport.zoom" value="1.1269722013523673"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="idpersona" class="java.lang.Integer"/>
@@ -21,13 +21,14 @@
        					fecha_nacimiento,
        					(case when sexo ilike 'm' then 'Masculino' else (case when sexo ilike 'f' then 'Femenino' else 'Otros' end) end) as sexo,
        					localidad.descripcion as localidad,
-       					 'Calle:' ||calle ||' Numero:' || altura as domocilio,
+       					  'Calle:' ||calle ||' Numero:' || altura  || coalesce(' Piso: '||piso,'') || coalesce(' Depto: ' || depto,'') as domocilio,
        					depto,
        					piso,
 
        					matricula_activa,
        					fecha_baja_matricula,
-       					baja
+       					baja,
+ extract(year from age(fecha_nacimiento)) as edad
   				FROM
   					public.persona
   				inner join tipo_documento using (idtipo_documento)
@@ -53,57 +54,74 @@ order by persona]]>
 	<field name="matricula_activa" class="java.lang.Boolean"/>
 	<field name="fecha_baja_matricula" class="java.sql.Date"/>
 	<field name="baja" class="java.lang.Boolean"/>
+	<field name="edad" class="java.lang.Double"/>
 	<group name="persona">
 		<groupExpression><![CDATA[$F{idpersona}]]></groupExpression>
 		<groupHeader>
-			<band height="126">
-				<textField>
-					<reportElement x="110" y="60" width="370" height="20" uuid="bfa5d291-5ecd-4ff7-94b3-b451190e589f"/>
+			<band height="103">
+				<textField isStretchWithOverflow="true">
+					<reportElement x="110" y="77" width="298" height="20" uuid="bfa5d291-5ecd-4ff7-94b3-b451190e589f"/>
 					<textFieldExpression><![CDATA[$F{domocilio}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="110" y="80" width="370" height="20" uuid="6ce03e9d-816e-46c9-9bcf-d9a678e65947"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="110" y="51" width="298" height="20" uuid="6ce03e9d-816e-46c9-9bcf-d9a678e65947"/>
 					<textFieldExpression><![CDATA[$F{estado_civil}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="20" width="105" height="20" uuid="d5a625ef-b6bd-455f-a879-af4bface49cd"/>
+					<reportElement x="0" y="27" width="105" height="20" uuid="d5a625ef-b6bd-455f-a879-af4bface49cd"/>
 					<text><![CDATA[Nacimiento:]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="110" y="40" width="370" height="20" uuid="c68a8351-69fa-4e94-acb8-9cb716b561e1"/>
-					<textFieldExpression><![CDATA[$F{nro_documento}]]></textFieldExpression>
-				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="105" height="20" uuid="5797af02-2b59-462f-9ab9-77d581f20e31"/>
+					<reportElement x="0" y="3" width="105" height="20" uuid="5797af02-2b59-462f-9ab9-77d581f20e31"/>
 					<text><![CDATA[Apellido y Nombres:]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="110" y="0" width="370" height="20" uuid="06258f79-766e-4eb7-9558-22cad3e01acb"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="110" y="3" width="298" height="20" uuid="06258f79-766e-4eb7-9558-22cad3e01acb"/>
 					<textFieldExpression><![CDATA[$F{persona}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="60" width="105" height="20" uuid="19194936-f641-4ff0-bda1-763a1cf73f51"/>
+					<reportElement x="0" y="77" width="105" height="20" uuid="19194936-f641-4ff0-bda1-763a1cf73f51"/>
 					<text><![CDATA[Domicilio:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="100" width="105" height="20" uuid="f961d0b4-f1d3-48ff-88c4-0095877967a9"/>
+					<reportElement x="420" y="77" width="105" height="20" uuid="f961d0b4-f1d3-48ff-88c4-0095877967a9"/>
 					<text><![CDATA[Localidad:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="80" width="105" height="20" uuid="c2ae04df-be02-4c13-9739-c360a353cc95"/>
+					<reportElement x="0" y="51" width="105" height="20" uuid="c2ae04df-be02-4c13-9739-c360a353cc95"/>
 					<text><![CDATA[Estado Civil:]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="110" y="100" width="370" height="20" uuid="04c4b389-de81-4629-a1e8-c064972bc614"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="530" y="77" width="272" height="20" uuid="04c4b389-de81-4629-a1e8-c064972bc614"/>
 					<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
 				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement x="110" y="27" width="298" height="20" uuid="c8e22ffc-8ffc-4d07-b076-35e8ac4ccadd"/>
+					<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+				</textField>
 				<staticText>
-					<reportElement x="0" y="40" width="105" height="20" uuid="098a3859-2815-402c-abf0-a7802b7e6db4"/>
+					<reportElement x="420" y="3" width="105" height="20" uuid="098a3859-2815-402c-abf0-a7802b7e6db4"/>
 					<text><![CDATA[Documento:]]></text>
 				</staticText>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement x="110" y="20" width="370" height="20" uuid="c8e22ffc-8ffc-4d07-b076-35e8ac4ccadd"/>
-					<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="530" y="3" width="272" height="20" uuid="c68a8351-69fa-4e94-acb8-9cb716b561e1"/>
+					<textFieldExpression><![CDATA[$F{nro_documento}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="530" y="51" width="272" height="20" uuid="116fb551-c853-410e-a104-0629374f793d"/>
+					<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="420" y="51" width="105" height="20" uuid="823df896-6f43-44e5-bbd9-9fc19309bab3"/>
+					<text><![CDATA[Sexo:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="27" width="105" height="20" uuid="ca7d12fa-71ab-467c-9613-bb5627afcd8a"/>
+					<text><![CDATA[Edad:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="###0" isBlankWhenNull="true">
+					<reportElement x="530" y="27" width="272" height="20" uuid="e257c177-2602-40e5-a8c0-e6c41892c721"/>
+					<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
