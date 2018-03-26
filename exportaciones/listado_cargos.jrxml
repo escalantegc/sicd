@@ -58,13 +58,14 @@ left outer join tipo_hora  using(idtipo_hora)
  WHERE
 	historico = $P{historico}::boolean AND
 	activo = $P{activo}::boolean and
-
-
 	trim(entidad.nombre) ilike $P{identidad} and
-(((trim(tipo_cargo.descripcion) ilike $P{idtipo_cargo} or trim(tipo_cargo.descripcion) is null)) or
-((trim(tipo_hora.descripcion) ilike $P{idtipo_hora} or trim(tipo_hora.descripcion) is null))) and
-trim(fecha_inicio::character(10)) ilike  $P{fecha_inicio} or trim(fecha_inicio::character(10)) is null and
-trim(fecha_fin::character(10)) ilike $P{fecha_fin} or trim(fecha_fin::character(10)) is null
+(case when tipo_cargo.descripcion  is null then tipo_cargo.descripcion is null else trim(tipo_cargo.descripcion) ilike $P{idtipo_cargo} end) and
+
+(case when tipo_hora.descripcion is null then tipo_hora.descripcion is null else trim(tipo_hora.descripcion) ilike $P{idtipo_hora} end) and
+
+	(case when fecha_inicio::character(10)  is null then fecha_inicio::character(10) is null else trim(fecha_inicio::character(10)) ilike  $P{fecha_inicio} end) and
+(case when fecha_fin::character(10)  is null then fecha_fin::character(10) is null else trim(fecha_fin::character(10)) ilike $P{fecha_fin}  end)
+
 
   order by
 	apellido,

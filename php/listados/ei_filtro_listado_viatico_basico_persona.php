@@ -42,6 +42,8 @@ class ei_filtro_listado_viatico_basico_persona extends sicd_ei_filtro
 		                if(cantidad_total_dias!='')
 		                {
 		                	this.controlador.ajax('get_dato_filtro_cantidad_total_dias', cantidad_total_dias, this, this.actualizar_datos); 
+		                } else{ 
+		                	this.controlador.ajax('get_dato_filtro_cantidad_total_dias', 0 , this, this.actualizar_datos); 
 		                }
 		                
 		            }
@@ -54,6 +56,8 @@ class ei_filtro_listado_viatico_basico_persona extends sicd_ei_filtro
 		                if(cantidad_dias_disponible!='')
 		                {
 		                	this.controlador.ajax('get_dato_filtro_cantidad_dias_disponible', cantidad_dias_disponible, this, this.actualizar_datos); 
+		                }  else {
+		                	this.controlador.ajax('get_dato_filtro_cantidad_dias_disponible', 0, this, this.actualizar_datos); 
 		                }
 		                
 		            }
@@ -66,6 +70,8 @@ class ei_filtro_listado_viatico_basico_persona extends sicd_ei_filtro
 		                if(cantidad_dias_tomados!='')
 		                {
 		                	this.controlador.ajax('get_dato_filtro_cantidad_dias_tomados', cantidad_dias_tomados, this, this.actualizar_datos); 
+		                } else {
+		                	this.controlador.ajax('get_dato_filtro_cantidad_dias_tomados', 0, this, this.actualizar_datos); 
 		                }
 		                
 		            }
@@ -77,6 +83,8 @@ class ei_filtro_listado_viatico_basico_persona extends sicd_ei_filtro
 		                if(cantidad_dias_reintegro!='')
 		                {
 		                	this.controlador.ajax('get_dato_filtro_cantidad_dias_reintegro', cantidad_dias_reintegro, this, this.actualizar_datos); 
+		                } else {
+		                	this.controlador.ajax('get_dato_filtro_cantidad_dias_reintegro', 0, this, this.actualizar_datos); 
 		                }
 		                
 		            }

@@ -140,7 +140,7 @@ class ci_listado_viaticos extends sicd_ci
 	{
 		$this->s__criterios_filtrado['cantidad_dias_disponible']['condicion'] =  'es_igual_a';
 		$this->s__criterios_filtrado['cantidad_dias_disponible']['valor'] =  $cantidad_dias_disponible;
-		$respuesta->set($cantidad_total_dias);	
+		$respuesta->set($cantidad_dias_disponible);	
 	}		
 
 	function ajax__get_dato_filtro_cantidad_dias_tomados($cantidad_dias_tomados, toba_ajax_respuesta $respuesta)
