@@ -12,10 +12,19 @@ class ei_filtro_legajo extends sicd_ei_filtro
 		
 		{$this->objeto_js}.evt__idpersona__procesar = function(es_inicial)
 		{
-			if (!es_inicial) {
-				idpersona = this.ef('idpersona').get_estado();
-				this.controlador.ajax('get_dato_filtro_idpersona', idpersona, this, this.actualizar_datos); 
+			
+			idpersona = this.ef('idpersona').get_estado();
+			if (idpersona!='')
+			{	
+				this.mostrar_boton('filtrar');
+				this.controlador.ajax('get_dato_filtro_idpersona', idpersona, this, this.actualizar_datos); 	
+			} else {
+				this.ocultar_boton('filtrar');
 			}
+				
+			
+
+			
 		}
 		
 		{$this->objeto_js}.evt__cargos__procesar = function(es_inicial)
