@@ -137,7 +137,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'cargo_por_persona.idtipo_cargo', --expresion
 	'Cargo', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'1', --orden
 	NULL, --estado_defecto
@@ -195,7 +195,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'cargo_por_persona.identidad', --expresion
 	'Entidad', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'3', --orden
 	NULL, --estado_defecto
@@ -253,7 +253,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'cantidad_horas', --expresion
 	'Cantidad Horas', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'4', --orden
 	NULL, --estado_defecto
@@ -311,7 +311,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'fecha_inicio', --expresion
 	'Fecha Inicio', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'5', --orden
 	NULL, --estado_defecto
@@ -369,7 +369,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'fecha_fin', --expresion
 	'Fecha Fin', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'6', --orden
 	NULL, --estado_defecto
@@ -427,7 +427,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'idtipo_hora', --expresion
 	'Tipo Hora', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'2', --orden
 	NULL, --estado_defecto
@@ -485,7 +485,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'activo', --expresion
 	'Activo', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'7', --orden
 	NULL, --estado_defecto
@@ -543,7 +543,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'historico', --expresion
 	'Historico', --etiqueta
 	NULL, --descripcion
-	'0', --obligatorio
+	'1', --obligatorio
 	'1', --inicial
 	'8', --orden
 	'0', --estado_defecto

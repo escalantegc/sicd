@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listado_cargo" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
 	<property name="ireport.zoom" value="1.2396694214876032"/>
-	<property name="ireport.x" value="68"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="fecha_inicio" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
@@ -18,6 +18,7 @@
 	<parameter name="historico" class="java.lang.String"/>
 	<parameter name="fecha_inicio_mostrar" class="java.lang.String"/>
 	<parameter name="fecha_fin_mostrar" class="java.lang.String"/>
+	<parameter name="where" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT  	cargo_por_persona.idcargo_por_persona,
 	cargo_por_persona.idpersona,
@@ -26,28 +27,15 @@
 	apellido ||', '|| nombres as persona,
 	(case when  tipo_cargo.descripcion is null then tipo_hora.descripcion else tipo_cargo.descripcion end) as cargo,
 	cargo_por_persona.idtipo_hora,
-	tipo_cargo.cantidad_cargos as max_cargos,
-  	(contar_cargos_segun_tipo(cargo_por_persona.idtipo_cargo,cargo_por_persona.idpersona )) as cantidad_cargos,
-	(contar_cargos_por_bloque(bloque,cargo_por_persona.idpersona)) as cargos_bloque,
 	entidad.nombre as entidad,
-	tipo_hora.max_hs_nivel_medio,
-	tipo_hora.max_hs_nivel_superior,
 	cantidad_horas,
-	(sumas_horas_segun_tipo(cargo_por_persona.idpersona)) as total_horas,
-	--(contar_cargos_segun_tipo(cargo_por_persona.idtipo_cargo)) as cantidad_cargos,
-	(contar_cargos_segun_tipo_jerarquico(cargo_por_persona.idpersona))  as cantidad_cargos_jerarquicos,
-					    (sumar_horas(cargo_por_persona.idpersona)) as cantidad_total_horas,
-	(sumas_horas_segun_tipo(cargo_por_persona.idpersona,cargo_por_persona.idtipo_hora)) as total_horas,
 	to_char(fecha_inicio,'DD/MM/YYYY') as fecha_inicio,
 	to_char(fecha_fin, 'DD/MM/YYYY') as fecha_fin,
-	(case when activo = true then 'ACTIVO' else 'INACTIVO' end) as estado,
+
 	(case when bloque = 'bloque2' then 'Bloque 2' else 'Bloque 1' end ) as bloque,
 	observaciones,
-	activo,
-	(case when historico = true then 'SI' else 'NO' end) as historico ,
-	tipo,
-	(case when jerarquico = true then 'SI' else 'NO' end) as jerarquico,
 	monto,
+	activo,
 	(traer_fuente_financiamiento(idfuente_financiamiento)) as fuente
 FROM
 	cargo_por_persona
@@ -56,16 +44,7 @@ inner join entidad  using(identidad)
 left outer join tipo_cargo  using(idtipo_cargo)
 left outer join tipo_hora  using(idtipo_hora)
  WHERE
-	historico = $P{historico}::boolean AND
-	activo = $P{activo}::boolean and
-	trim(entidad.nombre) ilike $P{identidad} and
-(case when tipo_cargo.descripcion  is null then tipo_cargo.descripcion is null else trim(tipo_cargo.descripcion) ilike $P{idtipo_cargo} end) and
-
-(case when tipo_hora.descripcion is null then tipo_hora.descripcion is null else trim(tipo_hora.descripcion) ilike $P{idtipo_hora} end) and
-
-	(case when fecha_inicio::character(10)  is null then fecha_inicio::character(10) is null else trim(fecha_inicio::character(10)) ilike  $P{fecha_inicio} end) and
-(case when fecha_fin::character(10)  is null then fecha_fin::character(10) is null else trim(fecha_fin::character(10)) ilike $P{fecha_fin}  end)
-
+	$P!{where}
 
   order by
 	apellido,
@@ -82,26 +61,14 @@ left outer join tipo_hora  using(idtipo_hora)
 	<field name="persona" class="java.lang.String"/>
 	<field name="cargo" class="java.lang.String"/>
 	<field name="idtipo_hora" class="java.lang.Integer"/>
-	<field name="max_cargos" class="java.lang.Long"/>
-	<field name="cantidad_cargos" class="java.math.BigDecimal"/>
-	<field name="cargos_bloque" class="java.math.BigDecimal"/>
 	<field name="entidad" class="java.lang.String"/>
-	<field name="max_hs_nivel_medio" class="java.lang.Double"/>
-	<field name="max_hs_nivel_superior" class="java.lang.Double"/>
 	<field name="cantidad_horas" class="java.lang.Double"/>
-	<field name="total_horas" class="java.math.BigDecimal"/>
-	<field name="cantidad_cargos_jerarquicos" class="java.math.BigDecimal"/>
-	<field name="cantidad_total_horas" class="java.math.BigDecimal"/>
 	<field name="fecha_inicio" class="java.lang.String"/>
 	<field name="fecha_fin" class="java.lang.String"/>
-	<field name="estado" class="java.lang.String"/>
 	<field name="bloque" class="java.lang.String"/>
 	<field name="observaciones" class="java.lang.String"/>
-	<field name="activo" class="java.lang.Boolean"/>
-	<field name="historico" class="java.lang.String"/>
-	<field name="tipo" class="java.lang.String"/>
-	<field name="jerarquico" class="java.lang.String"/>
 	<field name="monto" class="java.lang.Double"/>
+	<field name="activo" class="java.lang.Boolean"/>
 	<field name="fuente" class="java.lang.String"/>
 	<group name="persona">
 		<groupExpression><![CDATA[$F{persona}]]></groupExpression>
@@ -110,7 +77,7 @@ left outer join tipo_hora  using(idtipo_hora)
 				<rectangle>
 					<reportElement x="1" y="1" width="795" height="20" uuid="6526d9eb-8b09-426f-b5c7-d8a815e8d3e6"/>
 				</rectangle>
-				<textField isStretchWithOverflow="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement x="3" y="0" width="799" height="20" uuid="742d1810-90fb-4e38-adad-10de47881e8d"/>
 					<textElement verticalAlignment="Bottom">
 						<font size="12" isBold="true"/>
@@ -149,7 +116,7 @@ left outer join tipo_hora  using(idtipo_hora)
 					<textElement verticalAlignment="Bottom"/>
 					<text><![CDATA[Fecha Fin]]></text>
 				</staticText>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="0" y="3" width="158" height="20" forecolor="#A8A8A8" uuid="6d846ef5-696a-46d0-a588-959bd6ebce31"/>
 					<textElement>
 						<font isBold="true"/>
@@ -210,8 +177,8 @@ left outer join tipo_hora  using(idtipo_hora)
 				<text><![CDATA[Cargo: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="64" y="22" width="100" height="20" uuid="dd36e75f-f364-479b-a586-eea0255e33c6"/>
-				<textFieldExpression><![CDATA[($P{idtipo_cargo}.toString().equals("%%") ?"TODOS":$P{idtipo_cargo})]]></textFieldExpression>
+				<reportElement x="64" y="22" width="256" height="20" uuid="dd36e75f-f364-479b-a586-eea0255e33c6"/>
+				<textFieldExpression><![CDATA[($P{idtipo_cargo}.toString().equals("") ?"TODOS":$P{idtipo_cargo})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="403" y="44" width="100" height="20" uuid="d6fe819d-8a8f-4b9f-8094-0a6e081d71d3"/>
@@ -219,7 +186,7 @@ left outer join tipo_hora  using(idtipo_hora)
 			</textField>
 			<textField>
 				<reportElement x="64" y="44" width="121" height="20" uuid="97aa7683-e3fd-4457-ac01-d331696a8edb"/>
-				<textFieldExpression><![CDATA[($P{identidad}.toString().equals("%%") ?"TODAS":$P{identidad})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($P{identidad}.toString().equals("") ?"TODAS":$P{identidad})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="44" width="61" height="20" uuid="c3378234-04ff-470a-8236-1fea14c5e561"/>
@@ -241,11 +208,11 @@ left outer join tipo_hora  using(idtipo_hora)
 			</textField>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="403" y="67" width="100" height="20" uuid="e9babb13-011a-4fec-b48c-23402896dfa5"/>
-				<textFieldExpression><![CDATA[($P{fecha_fin_mostrar}.toString().equals("%%") ?"TODAS":$P{fecha_fin_mostrar})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($P{fecha_fin_mostrar}.toString().equals("") ?"TODAS":$P{fecha_fin_mostrar})]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="64" y="66" width="97" height="20" uuid="3209a0ba-b58c-42fb-be3a-d74295a9f0e9"/>
-				<textFieldExpression><![CDATA[($P{fecha_inicio_mostrar}.toString().equals("%%") ?"TODAS":$P{fecha_inicio_mostrar})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($P{fecha_inicio_mostrar}.toString().equals("") ?"TODAS":$P{fecha_inicio_mostrar})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="66" width="61" height="20" uuid="738f702a-6a11-4e65-99f2-92c2c83f8755"/>
@@ -263,7 +230,7 @@ left outer join tipo_hora  using(idtipo_hora)
 			</staticText>
 			<textField>
 				<reportElement x="403" y="22" width="100" height="20" uuid="abaeba90-24c5-4994-9e5d-8cfabf3a5359"/>
-				<textFieldExpression><![CDATA[($P{idtipo_hora}.toString().equals("%%") ?"TODOS":$P{idtipo_hora})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($P{idtipo_hora}.toString().equals("") ?"TODOS":$P{idtipo_hora})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="320" y="22" width="80" height="20" uuid="6766078b-2ef6-4937-bc29-f98c68180fbf"/>
@@ -313,7 +280,7 @@ left outer join tipo_hora  using(idtipo_hora)
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{cantidad_horas}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="1" y="2" width="100" height="20" uuid="19dc29a1-49d6-4c1a-9003-6fb39c285d3b"/>
 				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
 			</textField>

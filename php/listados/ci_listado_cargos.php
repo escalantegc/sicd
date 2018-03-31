@@ -39,14 +39,14 @@ class ci_listado_cargos extends sicd_ci
 		$report->set_parametro('logo2','S',$path_logo2);
 		//Paramentro del filtro
 		
-		$idtipo_cargo= '%%';
-		$identidad = '%%';
+		$idtipo_cargo= '';
+		$identidad = '';
 		$cantidad_horas = '';
-		$fecha_inicio = '%%';
-		$fecha_fin = '%%';	
-		$fecha_inicio_mostrar = '%%';
-		$fecha_fin_mostrar = '%%';
-		$idtipo_hora = '%%';
+		$fecha_inicio = '';
+		$fecha_fin = '';	
+		$fecha_inicio_mostrar = '';
+		$fecha_fin_mostrar = '';
+		$idtipo_hora = '';
 
 		$activo = 'true';
 		$historico = 'false';
@@ -159,6 +159,57 @@ class ci_listado_cargos extends sicd_ci
 		
 		$report->set_parametro('activo', 'S', $activo);
 		$report->set_parametro('historico', 'S', $historico);
+
+		$where = '';
+		if ($historico=='true')
+		{
+			$where .= 'historico = true ';
+		} else {
+			$where .= 'historico = false ';
+		}
+
+		if ($activo=='true')
+		{
+			$where .= ' and activo = true ';
+		} else {
+			$where .= ' and activo = false';
+		}
+		 
+		if (isset($identidad))
+		{
+			$identidad = quote("%{$identidad}%");
+			$where .= ' and entidad.nombre ilike '.$identidad;
+		}	
+		if (isset($idtipo_cargo) and $idtipo_cargo!='')
+		{	
+			$idtipo_cargo = quote("{$idtipo_cargo}%");
+			$where .=' and tipo_cargo.descripcion ilike ' .$idtipo_cargo;
+		}	
+
+		if (isset($idtipo_hora) and $idtipo_hora!='')
+		{	$idtipo_hora = quote("{$idtipo_hora}%");
+			$where .=' and tipo_hora.descripcion ilike ' .$idtipo_hora;
+		}	
+
+		if (isset($fecha_inicio) and $fecha_inicio!='')
+		{
+			$fecha_inicio = quote("%{$fecha_inicio}%");
+			$where .=' and fecha_inicio::character(10) ilike ' .$fecha_inicio;
+		}
+		if (isset($fecha_fin) and $fecha_fin!='')
+		{
+			$fecha_fin = quote("%{$fecha_fin}%");
+			$where .=' and fecha_fin::character(10) ilike ' .$fecha_fin;
+		}		
+
+		if (isset($cantidad_horas) and $cantidad_horas!='')
+		{
+			$cantidad_horas = quote("{$cantidad_horas}%");
+			$where .=' and cantidad_horas::character(10) ilike ' .$cantidad_horas;
+		}
+
+
+		$report->set_parametro('where', 'S', $where);
 		
 		$report->set_parametro('orderby_mostrar', 'S', $orderby_mostrar);
 	

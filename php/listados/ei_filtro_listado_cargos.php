@@ -55,18 +55,28 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		        if (fecha_inicio!=null)
 		        {
 			        mes =  fecha_inicio.getMonth()+1;
-			        inicio = fecha_inicio.getFullYear()+ '-' +mes+'-'+fecha_inicio.getDate();
-			        inicio_mostrar = fecha_inicio.getDate()+'/'+mes+'/'+fecha_inicio.getFullYear();
+			        dia = fecha_inicio.getDate();
+			        if(mes < 10)
+			        {
+			        	mes = '0' + mes;
+			        }
+			        if (dia < 10)
+			        {
+			        	dia = '0' + dia;
+			        }
+		
+			        inicio = fecha_inicio.getFullYear()+ '-' +mes+'-'+dia;
+			       
+			        inicio_mostrar = dia+'/'+mes+'/'+fecha_inicio.getFullYear();
 			        this.controlador.ajax('get_dato_filtro_fecha_inicio', inicio, this, this.actualizar_datos); 
 			        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar', inicio_mostrar, this, this.actualizar_datos); 
 		        } else {
-
-			        inicio = '%%';
+		
+			        
 			        inicio_mostrar = '%%';
-			        this.controlador.ajax('get_dato_filtro_fecha_inicio', inicio, this, this.actualizar_datos); 
 			        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar', inicio_mostrar, this, this.actualizar_datos); 
 		        }
-
+		
 		    }
 		}
 		
@@ -77,18 +87,26 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		        fecha_fin = this.ef('fecha_fin').fecha();
 		        if (fecha_fin!=null)
 		        {
-			        mes =  fecha_fin.getMonth()+1 ;
-			        fin = fecha_fin.getFullYear()+ '-' +mes+'-'+fecha_fin.getDate();
-			        fin_mostrar = fecha_fin.getDate()+'/'+mes+'/'+fecha_fin.getFullYear();
+			        mes =  fecha_fin.getMonth()+1;
+			        dia = fecha_fin.getDate();
+			        if(mes < 10)
+			        {
+			        	mes = '0' + mes;
+			        }
+			        if (dia < 10)
+			        {
+			        	dia = '0' + dia;
+			        }
+			        fin = fecha_fin.getFullYear()+ '-' +mes+'-'+dia;
+			        fin_mostrar = dia+'/'+mes+'/'+fecha_fin.getFullYear();
 			        this.controlador.ajax('get_dato_filtro_fecha_fin', fin, this, this.actualizar_datos); 
 			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar', fin_mostrar, this, this.actualizar_datos); 
 		        } else {
-			        fin = '%%';
+			        
 			        fin_mostrar = '%%';
-			        this.controlador.ajax('get_dato_filtro_fecha_fin', fin, this, this.actualizar_datos); 
 			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar', fin_mostrar, this, this.actualizar_datos); 
 		        }
-
+		
 		    }
 		}
 		
@@ -109,9 +127,9 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		        }
 		         this.controlador.ajax('get_dato_filtro_activo', activo, this, this.actualizar_datos); 
 		    }
-
+		
 		}		
-
+		
 		{$this->objeto_js}.evt__historico__procesar = function(es_inicial)
 		{
 			if (!es_inicial) 
@@ -121,13 +139,35 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		        {
 		        	historico = 'true';
 		        }
-
+		
 		        this.controlador.ajax('get_dato_filtro_historico', historico, this, this.actualizar_datos); 
 		    }
-
+		
+		}
+		//---- Validacion de EFs -----------------------------------
+		
+		{$this->objeto_js}.evt__idtipo_cargo__validar = function()
+		{
+			if (this.ef('idtipo_cargo').get_estado()!='nopar')
+			{
+				this.ef('idtipo_hora').ocultar();	
+			} else {
+				this.ef('idtipo_hora').mostrar();
+			}
+		}
+		
+		{$this->objeto_js}.evt__idtipo_hora__validar = function()
+		{
+			if (this.ef('idtipo_hora').get_estado()!='nopar')
+			{
+				this.ef('idtipo_cargo').ocultar();	
+			} else {
+				this.ef('idtipo_cargo').mostrar();
+			}
 		}
 		";
 	}
+
 
 
 }

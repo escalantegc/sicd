@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cargos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8776e665-eb71-46e4-85a6-72d07d0e8351">
 	<property name="ireport.zoom" value="1.6105100000000043"/>
-	<property name="ireport.x" value="281"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fecha_inicio" class="java.lang.String"/>
 	<parameter name="logo1" class="java.lang.String"/>
@@ -142,7 +142,7 @@ left outer join tipo_hora  using(idtipo_hora)
 					<text><![CDATA[Fuente de financiamiento]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="690" y="23" width="82" height="20" uuid="9b941e40-3768-4a42-99c1-715f6986b29f"/>
+					<reportElement x="706" y="23" width="66" height="20" uuid="9b941e40-3768-4a42-99c1-715f6986b29f"/>
 					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
 					<text><![CDATA[Monto]]></text>
 				</staticText>
@@ -171,7 +171,7 @@ left outer join tipo_hora  using(idtipo_hora)
 			<textField isStretchWithOverflow="true">
 				<reportElement x="159" y="3" width="203" height="20" uuid="a1cc5856-ea6d-449a-ae25-9b44905ddc10"/>
 				<textElement>
-					<font size="8"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{entidad}]]></textFieldExpression>
 			</textField>
@@ -180,7 +180,7 @@ left outer join tipo_hora  using(idtipo_hora)
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{cantidad_horas}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="1" y="2" width="100" height="20" uuid="19dc29a1-49d6-4c1a-9003-6fb39c285d3b"/>
 				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
 			</textField>
@@ -192,12 +192,12 @@ left outer join tipo_hora  using(idtipo_hora)
 				<reportElement x="427" y="2" width="60" height="20" uuid="e6cae853-3bd2-4c94-88e7-a5a7a6693601"/>
 				<textFieldExpression><![CDATA[$F{fecha_fin}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="488" y="3" width="202" height="20" uuid="9c77e0a8-94c1-4b5e-a65f-8676888a3324"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="488" y="3" width="218" height="20" uuid="9c77e0a8-94c1-4b5e-a65f-8676888a3324"/>
 				<textFieldExpression><![CDATA[$F{fuente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="$###0.00;###0.00-" isBlankWhenNull="true">
-				<reportElement x="690" y="3" width="82" height="20" uuid="0dbbd0c4-fc9f-4e93-a738-f260f972bd7a"/>
+				<reportElement x="706" y="3" width="66" height="20" uuid="0dbbd0c4-fc9f-4e93-a738-f260f972bd7a"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 			</textField>
