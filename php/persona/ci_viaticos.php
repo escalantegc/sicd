@@ -108,6 +108,7 @@ class ci_viaticos extends sicd_ci
 		if ($this->get_cn()->hay_cursor_dt_viatico())
 		{
 			$datos = $this->get_cn()->get_dt_viatico();
+			$datos['mes'] = trim($datos['mes']);
 			$form->set_datos($datos);
 		}
 	}

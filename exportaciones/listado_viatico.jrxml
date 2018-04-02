@@ -54,7 +54,7 @@ nro_expediente,
 	cantidad_dias_tomados
 
 order by
-   mes::int]]>
+   mes::int, nro_expediente ]]>
 	</queryString>
 	<field name="persona" class="java.lang.String"/>
 	<field name="nro_documento" class="java.lang.String"/>
