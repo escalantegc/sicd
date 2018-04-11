@@ -200,7 +200,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_editable', --elemento_formulario
 	'nombres', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'4', --orden
 	'Nombres', --etiqueta
 	NULL, --etiqueta_estilo
@@ -280,7 +280,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_editable', --elemento_formulario
 	'apellido', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'5', --orden
 	'Apellido', --etiqueta
 	NULL, --etiqueta_estilo
@@ -360,7 +360,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_combo', --elemento_formulario
 	'idtipo_documento', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'1', --orden
 	'Tipo Documento', --etiqueta
 	NULL, --etiqueta_estilo
@@ -440,7 +440,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_editable_numero', --elemento_formulario
 	'nro_documento', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'2', --orden
 	'Nro documento', --etiqueta
 	NULL, --etiqueta_estilo
@@ -520,7 +520,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_editable', --elemento_formulario
 	'matricula', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'16', --orden
 	'Matricula', --etiqueta
 	NULL, --etiqueta_estilo
@@ -920,7 +920,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_combo', --elemento_formulario
 	'sexo', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'9', --orden
 	'Sexo', --etiqueta
 	NULL, --etiqueta_estilo
@@ -1000,7 +1000,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_combo_editable', --elemento_formulario
 	'idlocalidad', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'15', --orden
 	'Localidad', --etiqueta
 	NULL, --etiqueta_estilo
@@ -1080,7 +1080,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_editable', --elemento_formulario
 	'calle', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'10', --orden
 	'Calle', --etiqueta
 	NULL, --etiqueta_estilo
@@ -1160,7 +1160,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_editable', --elemento_formulario
 	'altura', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'11', --orden
 	'Numero', --etiqueta
 	NULL, --etiqueta_estilo
@@ -1480,7 +1480,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_checkbox', --elemento_formulario
 	'matricula_activa', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'17', --orden
 	'Matricula activa', --etiqueta
 	NULL, --etiqueta_estilo

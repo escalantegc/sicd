@@ -139,7 +139,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_combo', --elemento_formulario
 	'idestudio', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'1', --orden
 	'Titulo', --etiqueta
 	NULL, --etiqueta_estilo
@@ -219,7 +219,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_combo', --elemento_formulario
 	'idnivel_estudio', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'2', --orden
 	'Nivel', --etiqueta
 	NULL, --etiqueta_estilo
@@ -299,7 +299,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_combo', --elemento_formulario
 	'identidad', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'3', --orden
 	'Entidad', --etiqueta
 	NULL, --etiqueta_estilo

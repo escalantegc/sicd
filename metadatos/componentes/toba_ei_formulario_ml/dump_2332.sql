@@ -139,7 +139,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_editable_moneda', --elemento_formulario
 	'monto', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'2', --orden
 	'Monto', --etiqueta
 	NULL, --etiqueta_estilo
@@ -299,7 +299,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'ef_combo', --elemento_formulario
 	'idtipo_detalle_viatico', --columnas
 	'1', --obligatorio
-	'0', --oculto_relaja_obligatorio
+	'1', --oculto_relaja_obligatorio
 	'1', --orden
 	'Tipo detalle', --etiqueta
 	NULL, --etiqueta_estilo
