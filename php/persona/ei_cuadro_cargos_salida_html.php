@@ -46,6 +46,10 @@ class ei_cuadro_cargos_salida_html extends toba_ei_cuadro_salida_html
 			//Recorro el array de datos para identificar en mi caso que fila excede el total_dispnible de 15
 			//Este dato no lo seteo en el cuadro pero si lo traigo desde mi consulta en el dao
 			//
+			$maximos = dao::get_configuracion();
+			$max_horas = $maximos[0]['cantidad_max_hs_bloque'];
+			$max_cargos = $maximos[0]['cantidad_max_cargos_bloque'];
+
 			$claves = array();
 			for ($i = 0; $i < count($datos); $i++) 
 			{
@@ -53,7 +57,7 @@ class ei_cuadro_cargos_salida_html extends toba_ei_cuadro_salida_html
 				{
 					if ($datos[$i]['tipo']=='horas')
 					{
-						if ($datos[$i]['cantidad_total_horas']>21)
+						if ($datos[$i]['cantidad_total_horas']>$max_horas)
 						{
 							$claves[] = $i;
 						} else {
@@ -70,7 +74,7 @@ class ei_cuadro_cargos_salida_html extends toba_ei_cuadro_salida_html
 
 						if ($datos[$i]['historico']=='NO')
 						{
-							if ($datos[$i]['cargos_bloque']>1)
+							if ($datos[$i]['cargos_bloque']>$max_cargos)
 							{
 									$claves[] = $i;
 							} else {

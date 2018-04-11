@@ -255,12 +255,12 @@ class dao
 						tipo_hora.max_hs_nivel_medio,
 						tipo_hora.max_hs_nivel_superior,
 						cantidad_horas, 
-					    (sumas_horas_segun_tipo(cargo_por_persona.idpersona)) as total_horas,
+					    ---(sumas_horas_segun_tipo(cargo_por_persona.idpersona,bloque)) as total_horas,
 					    --(contar_cargos_segun_tipo(cargo_por_persona.idtipo_cargo)) as cantidad_cargos,
 					  
 					    (contar_cargos_segun_tipo_jerarquico(cargo_por_persona.idpersona))  as cantidad_cargos_jerarquicos,
-					    (sumar_horas(cargo_por_persona.idpersona)) as cantidad_total_horas,
-					   	(sumas_horas_segun_tipo(cargo_por_persona.idpersona,cargo_por_persona.idtipo_hora)) as total_horas,
+					    (sumar_horas(cargo_por_persona.idpersona,bloque)) as cantidad_total_horas,
+					   	(sumas_horas_segun_tipo(cargo_por_persona.idpersona,cargo_por_persona.idtipo_hora,bloque)) as total_horas,
 
 						fecha_inicio,
 						fecha_fin, 
@@ -570,7 +570,7 @@ class dao
 
   	function get_configuracion()
   	{
-  		$sql ="	SELECT cantidad_max_dias_viatico_mensual
+  		$sql ="	SELECT *
  				 FROM 
  				 	public.configuracion;";
  		return consultar_fuente($sql);

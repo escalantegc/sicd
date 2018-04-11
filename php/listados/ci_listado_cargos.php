@@ -11,9 +11,14 @@ class ci_listado_cargos extends sicd_ci
 	{
 		$filtro->columna('idtipo_cargo')->set_condicion_fija('es_igual_a');
 		$filtro->columna('identidad')->set_condicion_fija('es_igual_a');
-		$filtro->columna('cantidad_horas')->set_condicion_fija('es_igual_a');
-		$filtro->columna('fecha_inicio')->set_condicion_fija('es_igual_a');
-		$filtro->columna('fecha_fin')->set_condicion_fija('es_igual_a');
+		$filtro->columna('cantidad_horas')->set_condicion_fija('es_mayor_igual_que');
+
+		$filtro->columna('fecha_inicio')->set_condicion_fija('desde');
+		$filtro->columna('fecha_fin')->set_condicion_fija('desde');		
+
+		$filtro->columna('fecha_inicio_hasta')->set_condicion_fija('hasta');
+		$filtro->columna('fecha_fin_hasta')->set_condicion_fija('hasta');
+
 		$filtro->columna('idtipo_hora')->set_condicion_fija('es_igual_a');
 		$filtro->columna('activo')->set_condicion_fija('es_igual_a');
 		$filtro->columna('historico')->set_condicion_fija('es_igual_a');
@@ -45,7 +50,14 @@ class ci_listado_cargos extends sicd_ci
 		$fecha_inicio = '';
 		$fecha_fin = '';	
 		$fecha_inicio_mostrar = '';
-		$fecha_fin_mostrar = '';
+		$fecha_fin_mostrar = '';		
+
+		$fecha_inicio_hasta = '';
+		$fecha_fin_hasta = '';	
+		$fecha_inicio_mostrar_hasta = '';
+		$fecha_fin_mostrar_hasta = '';
+		$fin_mostrar = '';
+		$inicio_mostrar = '';
 		$idtipo_hora = '';
 
 		$activo = 'true';
@@ -118,6 +130,43 @@ class ci_listado_cargos extends sicd_ci
 				$fecha_fin_mostrar = utf8_encode(trim($this->s__criterios_filtrado['fecha_fin_mostrar']['valor']));
 				
 			}
+		}	
+
+
+		if (isset($this->s__criterios_filtrado['fecha_inicio_hasta']['valor'])!='')
+		{
+			if (trim($this->s__criterios_filtrado['fecha_inicio_hasta']['valor'])!='nopar')
+			{
+				$fecha_inicio_hasta = utf8_encode(trim($this->s__criterios_filtrado['fecha_inicio_hasta']['valor']));
+				
+			}
+		}		
+
+		if (isset($this->s__criterios_filtrado['fecha_inicio_mostrar_hasta']['valor'])!='')
+		{
+			if (trim($this->s__criterios_filtrado['fecha_inicio_mostrar_hasta']['valor'])!='nopar')
+			{
+				$fecha_inicio_mostrar_hasta = utf8_encode(trim($this->s__criterios_filtrado['fecha_inicio_mostrar_hasta']['valor']));
+				
+			}
+		}
+		
+		if (isset($this->s__criterios_filtrado['fecha_fin_hasta']['valor'])!='')
+		{
+			if (trim($this->s__criterios_filtrado['fecha_fin_hasta']['valor'])!='nopar')
+			{
+				$fecha_fin_hasta = utf8_encode(trim($this->s__criterios_filtrado['fecha_fin_hasta']['valor']));
+				
+			}
+		}
+		
+		if (isset($this->s__criterios_filtrado['fecha_fin_mostrar_hasta']['valor'])!='')
+		{
+			if (trim($this->s__criterios_filtrado['fecha_fin_mostrar_hasta']['valor'])!='nopar')
+			{
+				$fecha_fin_mostrar_hasta = utf8_encode(trim($this->s__criterios_filtrado['fecha_fin_mostrar_hasta']['valor']));
+				
+			}
 		}		
 
 		if (isset($this->s__criterios_filtrado['idtipo_hora']['valor'])!='')
@@ -153,8 +202,7 @@ class ci_listado_cargos extends sicd_ci
 		$report->set_parametro('idtipo_cargo', 'S', $idtipo_cargo);
 		$report->set_parametro('fecha_inicio', 'S', $fecha_inicio);
 		$report->set_parametro('fecha_fin', 'S', $fecha_fin);	
-		$report->set_parametro('fecha_inicio_mostrar', 'S', $fecha_inicio_mostrar);
-		$report->set_parametro('fecha_fin_mostrar', 'S', $fecha_fin_mostrar);
+
 		$report->set_parametro('idtipo_hora', 'S', $idtipo_hora);
 		
 		$report->set_parametro('activo', 'S', $activo);
@@ -193,22 +241,66 @@ class ci_listado_cargos extends sicd_ci
 
 		if (isset($fecha_inicio) and $fecha_inicio!='')
 		{
-			$fecha_inicio = quote("%{$fecha_inicio}%");
-			$where .=' and fecha_inicio::character(10) ilike ' .$fecha_inicio;
-		}
+			if (isset($fecha_inicio_hasta) and $fecha_inicio_hasta!='' )
+			{
+				$fecha_inicio = quote("{$fecha_inicio}");
+				$fecha_inicio_hasta = quote("{$fecha_inicio_hasta}");
+				$where .=' and fecha_inicio::character(10) between' .$fecha_inicio. ' and ' .$fecha_inicio_hasta;
+				$inicio_mostrar = ' entre '.$fecha_inicio_mostrar.' y ' . $fecha_inicio_mostrar_hasta;
+			} else {
+				$fecha_inicio = quote("{$fecha_inicio}");
+				$where .=' and fecha_inicio::character(10) >= ' .$fecha_inicio;
+				$inicio_mostrar = ' >= '.$fecha_inicio_mostrar;
+			}
+			
+		} else {
+			if (isset($fecha_inicio_hasta) and $fecha_inicio_hasta!='' )
+			{
+				
+				$fecha_inicio_hasta = quote("{$fecha_inicio_hasta}");
+				$where .=' and fecha_inicio::character(10) <= ' .$fecha_inicio_hasta;
+				$inicio_mostrar =' <= '. $fecha_inicio_mostrar_hasta;
+			} 
+		}		
+
 		if (isset($fecha_fin) and $fecha_fin!='')
 		{
-			$fecha_fin = quote("%{$fecha_fin}%");
-			$where .=' and fecha_fin::character(10) ilike ' .$fecha_fin;
-		}		
+			if (isset($fecha_fin_hasta) and $fecha_fin_hasta!='' )
+			{
+				$fecha_fin = quote("{$fecha_fin}");
+				$fecha_fin_hasta = quote("{$fecha_fin_hasta}");
+				$where .=' and fecha_fin::character(10) between' .$fecha_fin. ' and ' .$fecha_fin_hasta;
+				$fin_mostrar = ' entre '.$fecha_fin_mostrar.' y ' . $fecha_fin_mostrar_hasta;
+			} else {
+				$fecha_fin = quote("{$fecha_fin}");
+				$where .=' and fecha_fin::character(10) >= ' .$fecha_fin;
+				$fin_mostrar = ' >= '.$fecha_fin_mostrar;
+			}
+			
+		} else {
+			if (isset($fecha_fin_hasta) and $fecha_fin_hasta!='' )
+			{
+				
+				$fecha_fin_hasta = quote("{$fecha_fin_hasta}");
+				$where .=' and fecha_fin::character(10) <= ' .$fecha_fin_hasta;
+				$fin_mostrar = ' <= '.$fecha_fin_mostrar_hasta;
+			} 
+		}
+		
+
+
+
+
+	
 
 		if (isset($cantidad_horas) and $cantidad_horas!='')
 		{
-			$cantidad_horas = quote("{$cantidad_horas}%");
-			$where .=' and cantidad_horas::character(10) ilike ' .$cantidad_horas;
+			$cantidad_horas = quote("{$cantidad_horas}");
+			$where .=' and cantidad_horas >= ' .$cantidad_horas;
 		}
 
-
+		$report->set_parametro('fecha_inicio_mostrar', 'S', $inicio_mostrar);
+		$report->set_parametro('fecha_fin_mostrar', 'S', $fin_mostrar);
 		$report->set_parametro('where', 'S', $where);
 		
 		$report->set_parametro('orderby_mostrar', 'S', $orderby_mostrar);
@@ -300,7 +392,35 @@ class ci_listado_cargos extends sicd_ci
 		$this->s__criterios_filtrado['historico']['valor'] =  $historico;
 		$respuesta->set($historico);	
 	}	
+	
 
+	function ajax__get_dato_filtro_fecha_inicio_hasta($fecha_inicio_hasta, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['fecha_inicio_hasta']['condicion'] =  'hasta';
+		$this->s__criterios_filtrado['fecha_inicio_hasta']['valor'] =  $fecha_inicio_hasta;
+		$respuesta->set($fecha_inicio_hasta);	
+	}	
+
+	function ajax__get_dato_filtro_fecha_inicio_mostrar_hasta($fecha_inicio_mostrar_hasta, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['fecha_inicio_mostrar_hasta']['condicion'] =  'hasta';
+		$this->s__criterios_filtrado['fecha_inicio_mostrar_hasta']['valor'] =  $fecha_inicio_mostrar_hasta;
+		$respuesta->set($fecha_inicio_mostrar_hasta);	
+	}		
+	
+	function ajax__get_dato_filtro_fecha_fin_hasta($fecha_fin_hasta, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['fecha_fin_hasta']['condicion'] =  'hasta';
+		$this->s__criterios_filtrado['fecha_fin_hasta']['valor'] =  $fecha_fin_hasta;
+		$respuesta->set($fecha_fin_hasta);	
+	}			
+
+	function ajax__get_dato_filtro_fecha_fin_mostrar_hasta($fecha_fin_mostrar_hasta, toba_ajax_respuesta $respuesta)
+	{
+		$this->s__criterios_filtrado['fecha_fin_mostrar_hasta']['condicion'] =  'hasta';
+		$this->s__criterios_filtrado['fecha_fin_mostrar_hasta']['valor'] =  $fecha_fin_mostrar_hasta;
+		$respuesta->set($fecha_fin_mostrar_hasta);	
+	}
 
 
 }

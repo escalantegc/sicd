@@ -49,9 +49,11 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		
 		{$this->objeto_js}.evt__fecha_inicio__procesar = function(es_inicial)
 		{
+
 			if (!es_inicial) 
 			{
 		        fecha_inicio = this.ef('fecha_inicio').fecha();
+		        
 		        if (fecha_inicio!=null)
 		        {
 			        mes =  fecha_inicio.getMonth()+1;
@@ -73,8 +75,42 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		        } else {
 		
 			        
-			        inicio_mostrar = '%%';
+			        inicio_mostrar = '';
 			        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar', inicio_mostrar, this, this.actualizar_datos); 
+		        }
+		
+		    }
+		}
+		{$this->objeto_js}.evt__fecha_inicio_hasta__procesar = function(es_inicial)
+		{
+
+			if (!es_inicial) 
+			{
+		        fecha_inicio_hasta = this.ef('fecha_inicio_hasta').fecha();
+		       
+		        if (fecha_inicio_hasta!=null)
+		        {
+			        mes =  fecha_inicio_hasta.getMonth()+1;
+			        dia = fecha_inicio_hasta.getDate();
+			        if(mes < 10)
+			        {
+			        	mes = '0' + mes;
+			        }
+			        if (dia < 10)
+			        {
+			        	dia = '0' + dia;
+			        }
+		
+			        inicio = fecha_inicio_hasta.getFullYear()+ '-' +mes+'-'+dia;
+			       
+			        inicio_mostrar = dia+'/'+mes+'/'+fecha_inicio_hasta.getFullYear();
+			        this.controlador.ajax('get_dato_filtro_fecha_inicio_hasta', inicio, this, this.actualizar_datos); 
+			        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar_hasta', inicio_mostrar, this, this.actualizar_datos); 
+		        } else {
+		
+			        
+			        inicio_mostrar = '';
+			        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar_hasta', inicio_mostrar, this, this.actualizar_datos); 
 		        }
 		
 		    }
@@ -103,8 +139,38 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar', fin_mostrar, this, this.actualizar_datos); 
 		        } else {
 			        
-			        fin_mostrar = '%%';
+			        fin_mostrar = '';
 			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar', fin_mostrar, this, this.actualizar_datos); 
+		        }
+		
+		    }
+		}		
+
+		{$this->objeto_js}.evt__fecha_fin_hasta__procesar = function(es_inicial)
+		{
+			if (!es_inicial) 
+			{
+		        fecha_fin_hasta = this.ef('fecha_fin_hasta').fecha();
+		        if (fecha_fin_hasta!=null)
+		        {
+			        mes =  fecha_fin_hasta.getMonth()+1;
+			        dia = fecha_fin_hasta.getDate();
+			        if(mes < 10)
+			        {
+			        	mes = '0' + mes;
+			        }
+			        if (dia < 10)
+			        {
+			        	dia = '0' + dia;
+			        }
+			        fin = fecha_fin_hasta.getFullYear()+ '-' +mes+'-'+dia;
+			        fin_mostrar_hasta = dia+'/'+mes+'/'+fecha_fin_hasta.getFullYear();
+			        this.controlador.ajax('get_dato_filtro_fecha_fin_hasta', fin, this, this.actualizar_datos); 
+			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar_hasta', fin_mostrar_hasta, this, this.actualizar_datos); 
+		        } else {
+			        
+			        fin_mostrar_hasta = '';
+			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar_hasta', fin_mostrar_hasta, this, this.actualizar_datos); 
 		        }
 		
 		    }
