@@ -149,7 +149,7 @@ order by persona]]>
 		</band>
 	</title>
 	<detail>
-		<band height="72" splitType="Stretch">
+		<band height="72" splitType="Prevent">
 			<printWhenExpression><![CDATA[$P{detalleamostrar}.contains("estudios")]]></printWhenExpression>
 			<subreport>
 				<reportElement stretchType="RelativeToBandHeight" x="2" y="5" width="800" height="67" uuid="6e9d1060-c72d-4194-b339-268cfdfe8f45"/>
@@ -160,7 +160,7 @@ order by persona]]>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+ "estudios.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="68" splitType="Immediate">
+		<band height="68" splitType="Prevent">
 			<printWhenExpression><![CDATA[$P{detalleamostrar}.contains("viaticos")]]></printWhenExpression>
 			<subreport>
 				<reportElement stretchType="RelativeToBandHeight" x="2" y="0" width="800" height="67" isPrintWhenDetailOverflows="true" uuid="0623a979-39d5-452e-870b-ed3ddb207a69"/>
@@ -171,7 +171,7 @@ order by persona]]>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "viaticos.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="72">
+		<band height="72" splitType="Prevent">
 			<printWhenExpression><![CDATA[$P{detalleamostrar}.contains("cargos")]]></printWhenExpression>
 			<subreport>
 				<reportElement stretchType="RelativeToBandHeight" x="1" y="0" width="801" height="67" isPrintWhenDetailOverflows="true" uuid="e898da9e-44e3-4b74-8caf-d32a010e5352"/>

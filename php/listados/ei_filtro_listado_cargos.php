@@ -76,6 +76,8 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		
 			        
 			        inicio_mostrar = '';
+			        inicio = '';
+			        this.controlador.ajax('get_dato_filtro_fecha_inicio', inicio, this, this.actualizar_datos); 
 			        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar', inicio_mostrar, this, this.actualizar_datos); 
 		        }
 		
@@ -110,6 +112,8 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		
 			        
 			        inicio_mostrar = '';
+			        inicio = '';
+			        this.controlador.ajax('get_dato_filtro_fecha_inicio_hasta', inicio, this, this.actualizar_datos); 
 			        this.controlador.ajax('get_dato_filtro_fecha_inicio_mostrar_hasta', inicio_mostrar, this, this.actualizar_datos); 
 		        }
 		
@@ -140,6 +144,8 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		        } else {
 			        
 			        fin_mostrar = '';
+			        fin = '';
+			        this.controlador.ajax('get_dato_filtro_fecha_fin', fin, this, this.actualizar_datos); 
 			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar', fin_mostrar, this, this.actualizar_datos); 
 		        }
 		
@@ -170,6 +176,8 @@ class ei_filtro_listado_cargos extends sicd_ei_filtro
 		        } else {
 			        
 			        fin_mostrar_hasta = '';
+			        fin = '';
+			      	this.controlador.ajax('get_dato_filtro_fecha_fin_hasta', fin, this, this.actualizar_datos); 
 			        this.controlador.ajax('get_dato_filtro_fecha_fin_mostrar_hasta', fin_mostrar_hasta, this, this.actualizar_datos); 
 		        }
 		
